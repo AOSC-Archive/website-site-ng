@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+  head
+    title #{title}
+    link(href="/css/bootstrap.min.css", rel="stylesheet")
+    script(type='text/javascript').
+      if (foo) {
+         bar(1 + 5)
+      }
+  body
+    .container
+      .row
+        .col-md-5
+          h1 Jade - node template engine
+          p You are amazing #{message}
+          p.
+            Jade is a terse and simple
+            templating language with a
+            strong focus on performance
+            and powerful features.
+          hr
+          h1 Last Section
+          p And here is another paragraph.
