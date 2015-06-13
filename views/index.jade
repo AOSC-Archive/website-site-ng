@@ -1,23 +1,17 @@
 doctype html
 html(lang="en")
   head
-    title #{title}
+    title=param.module
     link(href="/css/bootstrap.min.css", rel="stylesheet")
-    script(type='text/javascript').
-      if (foo) {
-         bar(1 + 5)
-      }
   body
     .container
       .row
         .col-md-6.col-md-offset-3
-          h1 Jade - node template engine
-          p You are amazing #{message}
-          p.
-            Jade is a terse and simple
-            templating language with a
-            strong focus on performance
-            and powerful features.
-          hr
-          h1 Last Section
-          p And here is another paragraph.
+          h1=param.module
+          each val in param.contents
+            h2
+              =val.title
+              span.label.label-default=val.type
+            each para in val.content
+              p=para
+            hr
