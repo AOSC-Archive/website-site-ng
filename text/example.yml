@@ -1,0 +1,42 @@
+module: Broadcast
+contents:
+  -
+    date: 2015-05-22
+    type: bug
+    title: Data corruption on software RAID 0 when discard is used
+    content:
+      - >
+        Recent Linux kernels (4.0.2+, LTS 3.14.41+), pushed to the [core]
+        repository in the past couple of weeks, suffered from a bug that
+        can cause data corruption on file systems mounted with the _discard_
+        option and residing on software RAID 0 arrays. Even if _discard_ is not
+        specified, the fstrim command can also trigger this bug. (**If you do
+        not use software RAID 0 or the _discard_ option, then this issue does
+        not affect you.**)
+      - >
+        The issue has been addressed in the linux 4.0.4-2 and linux-lts
+        3.14.43-2 updates. Due to the nature of the bug, however, it is likely
+        that data corruption has already occurred on systems running the
+        aforementioned kernels. It is strongly advised to verify the integrity
+        of affected file systems using fsck and/or restore their data from
+        known good backups\n
+      - >
+        For further information please read the
+        <LKML post>(https://lkml.org/lkml/2015/5/21/167) by Holger Kiehl,
+        the related article on Phoronix, as well as the proposed fix that was
+        backported to the Arch kernels.\n"
+  -
+    date: 2015-05-17
+    type: news
+    title: Puppet 4.0 enters [community]
+    content:
+      - >
+        Puppet 4 has been released and breaks compatibility with version 3.
+        Therefore users will need to upgrade a server to Puppet 4 before
+        updating their clients. Note that if only a Puppet 4 server is available,
+        Puppet 3 clients will not work. Also a number of locations for things
+        have changed including the config, manifest and module files. You will
+        need to follow upgrade instructions for your servers and clients:\n
+      - >
+        <https://docs.puppetlabs.com/puppet/4.0/reference/upgrade_server.html>
+        <https://docs.puppetlabs.com/puppet/4.0/reference/upgrade_agent.html>
