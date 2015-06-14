@@ -19,12 +19,12 @@ contents:
         that data corruption has already occurred on systems running the
         aforementioned kernels. It is strongly advised to verify the integrity
         of affected file systems using fsck and/or restore their data from
-        known good backups\n
+        known good backups
       - >
         For further information please read the
-        <LKML post>(https://lkml.org/lkml/2015/5/21/167) by Holger Kiehl,
+        [LKML post](https://lkml.org/lkml/2015/5/21/167) by Holger Kiehl,
         the related article on Phoronix, as well as the proposed fix that was
-        backported to the Arch kernels.\n"
+        backported to the Arch kernels.
   -
     date: 2015-05-17
     type: news
@@ -36,7 +36,7 @@ contents:
         updating their clients. Note that if only a Puppet 4 server is available,
         Puppet 3 clients will not work. Also a number of locations for things
         have changed including the config, manifest and module files. You will
-        need to follow upgrade instructions for your servers and clients:\n
+        need to follow upgrade instructions for your servers and clients:
       - >
         <https://docs.puppetlabs.com/puppet/4.0/reference/upgrade_server.html>
         <https://docs.puppetlabs.com/puppet/4.0/reference/upgrade_agent.html>

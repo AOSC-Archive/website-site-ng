@@ -6,7 +6,8 @@
   "dependencies": {
     "express": "^4.12.4",
     "jade": "^1.11.0",
-    "js-yaml": "^3.3.1"
+    "js-yaml": "^3.3.1",
+    "markdown": "^0.5.0"
   },
   "devDependencies": {},
   "scripts": {
