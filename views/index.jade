@@ -1,17 +1,87 @@
 doctype html
 html(lang="en")
   head
-    title=param.module
+    title.
+      AOSC
     link(href="/css/bootstrap.min.css", rel="stylesheet")
+    link(href="/css/common.css", rel="stylesheet")
+    link(href="/css/index.css", rel="stylesheet")
   body
-    .container
+    nav.global-navbar
+      .container
+          .row
+            .col-xs-12.col-sm-12.col-md-12.col-lg-12
+              .text-center
+                img.navbar-aosc-logo(src="/img/aosc-logo_navbar.svg", alt="AOSC Logo")
+    header.index-download-section
+      .container
+        .row
+          .col-xs-12.col-sm-12.col-md-12.col-lg-12
+            .dl-project-details
+              .dl-proj-logo-frame.col-xs-3.col-sm-3.col-md-3.col-lg-3
+                //img#current.dl-proj-logo(src="/img/some.svg")
+                img#current.dl-proj-logo(src="/img/solid-color.png")
+              .dl-porj-text.col-xs-9.col-sm-9.col-md-9.col-lg-9
+                h2.dl-porj-title
+                  | Lorem Ipsum
+                p.dl-porj-description
+                  | I jump over the lazy doge; it doesn't hurt me. I jump over the lazy doge; it doesn't hurt me. I jump over the lazy doge; it doesn't hurt me. I jump over the lazy doge; it doesn't hurt me. I jump over the lazy doge; it doesn't hurt me. I jump over the lazy doge; it doesn't hurt me. I jump over the lazy doge; it doesn't hurt me. I jump over the lazy doge; it doesn't hurt me. I jump over the lazy doge; it doesn't hurt me.
+              .clear-fix
+        .row
+          .dl-select-download-version.text-center
+            | Download with:
+            span.hover-to-show-primary-and-hide-normal
+              a.btn.btn-primary(href="some")
+                | Plasma
+              a.btn.btn-normal(href="some")
+                | Plasma
+            span.hover-to-show-primary-and-hide-normal
+              a.btn.btn-primary(href="some")
+                | GNOME
+              a.btn.btn-normal(href="some")
+                | GNOME
+            span.hover-to-show-primary-and-hide-normal
+              a.btn.btn-primary(href="some")
+                | XFCE
+              a.btn.btn-normal(href="some")
+                | XFCE
+            span.hover-to-show-primary-and-hide-normal
+              a.btn.btn-primary(href="some")
+                | Pantheon
+              a.btn.btn-normal(href="some")
+                | Pantheon
+            span.hover-to-show-primary-and-hide-normal
+              a.btn.btn-primary(href="some")
+                | MATE
+              a.btn.btn-normal(href="some")
+                | MATE
+            span.hover-to-show-primary-and-hide-normal
+              a.btn.btn-primary(href="some")
+                | Kodi
+              a.btn.btn-normal(href="some")
+                | Kodi
+            span.hover-to-show-primary-and-hide-normal
+              a.btn.btn-primary(href="some")
+                | Unity
+              a.btn.btn-normal(href="some")
+                | Unity
+        .row
+          .dl-select-project
+            ul.dl-list-of-projects
+              each arrayElement in param.projects
+                li
+                  a(href="/project/" + arrayElement.mininame)
+                    //img.dl-select-project-proj-logo(src="/img/projects-thumbnails/" + arrayElement.mininame + ".svg", alt="Icon of " + arrayElement.fullname)
+                    img.dl-select-project-proj-logo(src="/img/solid-color.png", alt="Icon of " + arrayElement.fullname)
+                    span.dl-select-project-proj-name=arrayElement.fullname
+    article.container
       .row
-        .col-md-6.col-md-offset-3
+        section.col-xs-12.col-sm-12.col-md-8.col-md-offset-2.col-lg-8.col-lg-offset-2
           h1=param.module
           each val in param.contents
-            h2
-              =val.title
-              span.label.label-default=val.type
+            h2=val.title
+              each arrayElement in val.type
+                span.label.label-default=arrayElement
             each para in val.content
               !=para
             hr
