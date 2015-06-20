@@ -1,0 +1,23 @@
+?
+  name: AOSC OS with Plasma
+  description: Foo, bar, and baz.
+  core-version: !!str 0.0.0.0
+  background: http://example.org/example.png
+  url: http://example.org/example.iso
+  alert:
+?
+  name: AOSC OS with Unity
+  description: Foo, bar, and baz.
+  core-version: !!str 0.0.0.0
+  background: http://example.org/example.png
+  url: http://example.org/example.iso
+  alert: >
+    Wow! Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua.
+?
+  name: AOSC OS with Pantheon
+  description: Foo, bar, and baz.
+  core-version: !!str 0.0.0.0
+  background: http://example.org/example.png
+  url: http://example.org/example.iso
+  alert:

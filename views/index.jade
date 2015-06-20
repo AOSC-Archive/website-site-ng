@@ -1,14 +1,14 @@
 doctype html
 html(lang="en")
   head
-    title=param.module
+    title Index
     link(href="/css/bootstrap.min.css", rel="stylesheet")
   body
     .container
       .row
         .col-md-6.col-md-offset-3
-          h1=param.module
-          each val in param.contents
+          h1 News
+          each val in param
             h2
               =val.title
               span.label.label-default=val.type
