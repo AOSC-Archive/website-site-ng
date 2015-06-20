@@ -1,6 +1,7 @@
 -
   date: 2015-05-22
-  type: bug
+  type:
+    - bug
   title: Data corruption on software RAID 0 when discard is used
   content:
     - >
@@ -25,7 +26,9 @@
       backported to the Arch kernels.
 -
   date: 2015-05-17
-  type: news
+  type:
+    - news
+    - test
   title: Puppet 4.0 enters [community]
   content:
     - >

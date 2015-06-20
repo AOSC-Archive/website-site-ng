@@ -1,7 +1,7 @@
 var express = require('express');
 var yaml    = require('js-yaml');
 var fs      = require('fs');
-var md      = require( "markdown" ).markdown;
+var md      = require('markdown').markdown;
 var app     = express();
 
 function readYAML(yamlfile) {
@@ -15,16 +15,22 @@ function router(req, res) {
     switch(req.params.resource) {
       case undefined :
       case 'index.html' :
-        var doc = readYAML('news');
+        var bc = readYAML('news');
+        var pj = readYAML('projects');
         for(var i_ct in doc) {
           var _ct = doc[i_ct].content;
           for(var i_para in _ct) _ct[i_para] = md.toHTML(_ct[i_para]);
         }
-        res.render('index', {'param':doc});
+        res.render('index',
+          {'param' : {
+              'broadcast' : bc,
+              'projects' : pj
+            }
+          });
         break;
       case 'distro.html' :
         var doc = readYAML('distro');
-        res.render('distro', {'param':doc});
+        res.render('distro', {'param' : doc});
         break;
       default:
         res.status(404).render('err/404');
