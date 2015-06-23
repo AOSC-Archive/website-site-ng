@@ -17,8 +17,8 @@ function router(req, res) {
       case 'index.html' :
         var bc = readYAML('news');
         var pj = readYAML('projects');
-        for(var i_ct in doc) {
-          var _ct = doc[i_ct].content;
+        for(var i_ct in bc) {
+          var _ct = bc[i_ct].content;
           for(var i_para in _ct) _ct[i_para] = md.toHTML(_ct[i_para]);
         }
         res.render('index',
@@ -35,7 +35,7 @@ function router(req, res) {
       default:
         res.status(404).render('err/404');
     }
-  } catch (e) { console.log(e); res.status(505).render('err/505'); }
+  } catch (e) { console.log(e); res.status(500).render('err/500'); }
 }
 
 app.set('view engine', 'jade');     // use *Jade* to render templates

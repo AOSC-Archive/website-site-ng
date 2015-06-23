@@ -1,87 +1,89 @@
 doctype html
-html(lang="en")
+html.no-js
   head
-    title.
-      AOSC
-    link(href="/css/bootstrap.min.css", rel="stylesheet")
-    link(href="/css/common.css", rel="stylesheet")
-    link(href="/css/index.css", rel="stylesheet")
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='description', content='')
+    meta(name='keywords', content='')
+    meta(name='viewport',
+      content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+    title Hello Amaze UI
+    //- Set render engine for 360 browser
+    meta(name='renderer', content='webkit')
+    //- No Baidu Siteapp
+    meta(http-equiv='Cache-Control', content='no-siteapp')
+    //-
+      link(rel='icon', type='image/png', href='assets/i/favicon.png')
+      //- Add to homescreen for Chrome on Android
+      meta(name='mobile-web-app-capable', content='yes')
+      link(rel='icon', sizes='192x192', href='assets/i/app-icon72x72@2x.png')
+      //- Add to homescreen for Safari on iOS
+      meta(name='apple-mobile-web-app-capable', content='yes')
+      meta(name='apple-mobile-web-app-status-bar-style', content='black')
+      meta(name='apple-mobile-web-app-title', content='Amaze UI')
+      link(rel='apple-touch-icon-precomposed', href='assets/i/app-icon72x72@2x.png')
+      //- Tile icon for Win8 (144x144 + tile color)
+      meta(name='msapplication-TileImage', content='assets/i/app-icon72x72@2x.png')
+      meta(name='msapplication-TileColor', content='#0e90d2')
+    link(rel='stylesheet', href='assets/css/amazeui.min.css')
+    link(rel='stylesheet', href='assets/css/common.css')
+    link(rel='stylesheet', href='assets/css/index.css')
   body
-    nav.global-navbar
-      .container
-          .row
-            .col-xs-12.col-sm-12.col-md-12.col-lg-12
-              .text-center
-                img.navbar-aosc-logo(src="/img/aosc-logo_navbar.svg", alt="AOSC Logo")
-    header.index-download-section
-      .container
-        .row
-          .col-xs-12.col-sm-12.col-md-12.col-lg-12
-            .dl-project-details
-              .dl-proj-logo-frame.col-xs-3.col-sm-3.col-md-3.col-lg-3
-                //img#current.dl-proj-logo(src="/img/some.svg")
-                img#current.dl-proj-logo(src="/img/solid-color.png")
-              .dl-porj-text.col-xs-9.col-sm-9.col-md-9.col-lg-9
-                h2.dl-porj-title
-                  | Lorem Ipsum
-                p.dl-porj-description
-                  | I jump over the lazy doge; it doesn't hurt me. I jump over the lazy doge; it doesn't hurt me. I jump over the lazy doge; it doesn't hurt me. I jump over the lazy doge; it doesn't hurt me. I jump over the lazy doge; it doesn't hurt me. I jump over the lazy doge; it doesn't hurt me. I jump over the lazy doge; it doesn't hurt me. I jump over the lazy doge; it doesn't hurt me. I jump over the lazy doge; it doesn't hurt me.
-              .clear-fix
-        .row
-          .dl-select-download-version.text-center
-            | Download with:
-            span.hover-to-show-primary-and-hide-normal
-              a.btn.btn-primary(href="some")
-                | Plasma
-              a.btn.btn-normal(href="some")
-                | Plasma
-            span.hover-to-show-primary-and-hide-normal
-              a.btn.btn-primary(href="some")
-                | GNOME
-              a.btn.btn-normal(href="some")
-                | GNOME
-            span.hover-to-show-primary-and-hide-normal
-              a.btn.btn-primary(href="some")
-                | XFCE
-              a.btn.btn-normal(href="some")
-                | XFCE
-            span.hover-to-show-primary-and-hide-normal
-              a.btn.btn-primary(href="some")
-                | Pantheon
-              a.btn.btn-normal(href="some")
-                | Pantheon
-            span.hover-to-show-primary-and-hide-normal
-              a.btn.btn-primary(href="some")
-                | MATE
-              a.btn.btn-normal(href="some")
-                | MATE
-            span.hover-to-show-primary-and-hide-normal
-              a.btn.btn-primary(href="some")
-                | Kodi
-              a.btn.btn-normal(href="some")
-                | Kodi
-            span.hover-to-show-primary-and-hide-normal
-              a.btn.btn-primary(href="some")
-                | Unity
-              a.btn.btn-normal(href="some")
-                | Unity
-        .row
-          .dl-select-project
-            ul.dl-list-of-projects
-              each arrayElement in param.projects
-                li
-                  a(href="/project/" + arrayElement.mininame)
-                    //img.dl-select-project-proj-logo(src="/img/projects-thumbnails/" + arrayElement.mininame + ".svg", alt="Icon of " + arrayElement.fullname)
-                    img.dl-select-project-proj-logo(src="/img/solid-color.png", alt="Icon of " + arrayElement.fullname)
-                    span.dl-select-project-proj-name=arrayElement.fullname
-    article.container
-      .row
-        section.col-xs-12.col-sm-12.col-md-8.col-md-offset-2.col-lg-8.col-lg-offset-2
-          h1 Broadcast
-          each val in param.broadcast
-            h2=val.title
-              each arrayElement in val.type
-                span.label.label-default=arrayElement
-            each para in val.content
-              !=para
-            hr
+    .am-g.afe-bigbanner.am-vertical-align.afe-dbg
+      .am-vertical-align-middle.am-cf.afe-dbg
+        .am-u-md-8
+          h1 Wow, a big banner
+          p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        .am-u-md-4
+          button.am-btn.am-btn-primary.am-fr Download AOSC OS
+        .am-u-md-4
+          button.am-btn.am-btn-primary.am-fr Donate a cuppa
+    #wrapper
+      .am-g.afe-dbg
+        .am-u-md-8.afe-dbg
+          ul
+            each val in param.broadcast
+              li
+                h2=val.title
+                  each arrayElement in val.type
+                    span.am-radius.am-badge=arrayElement
+                each para in val.content
+                  !=para
+        .am-u-md-4.afe-dbg
+          h2 Projects Overview
+          ul#afe-prjs
+            - var wowid=0
+            while wowid<3
+              - wowid++
+              li.am-cf
+                img.am-fl.am-round(src="assets/i/test.png")
+                .afe-prjs-body
+                  h3 AOSC OS
+                  small Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    footer.am-g.afe-dbg
+      .am-u-md-8.am-cf.afe-dbg
+        - var wowid=0
+        while wowid<3
+          ul.links.am-fl
+            li
+              !='Main Sites ' + wowid++
+            li
+              a(href="www.example.org") Portal
+            li
+              a(href="www.example.org") Portal
+            li
+              a(href="www.example.org") Portal
+            li
+              a(href="www.example.org") Portal
+      .am-u-md-4.afe-dbg
+        h3  Anthon Open Source Community
+        p  Copyleft 2011 - 2015, for every member of the community.
+        p  粤ICP备14040623号
+        p  Powered by AOSC-Fe Team and Amaze UI.
+        p  Fonts by xxxx.
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <script src="assets/js/jquery.min.js"></script>
+    <!--<![endif]-->
+    <!--[if lte IE 8 ]>
+    <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+    <![endif]-->

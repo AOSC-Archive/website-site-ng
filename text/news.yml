@@ -39,5 +39,5 @@
       have changed including the config, manifest and module files. You will
       need to follow upgrade instructions for your servers and clients:
     - >
-      <https://docs.puppetlabs.com/puppet/4.0/reference/upgrade_server.html>
+      <http://docs.puppetlabs.com/puppet/4.0/reference/upgrade_server.html>
       <https://docs.puppetlabs.com/puppet/4.0/reference/upgrade_agent.html>

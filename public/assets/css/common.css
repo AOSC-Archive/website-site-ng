@@ -1,0 +1,75 @@
+/* ---- Common ---- */
+
+body {
+	background-color: #eee;
+}
+.afe-bigbanner {
+	background-color: #ccc;
+}
+footer {
+	background-color: #ccc;
+}
+
+/* ---- Components ---- */
+
+.afe-dbg {
+	border: none;
+	border-width: 1px;
+	border-color: red;
+}
+.afe-bigbanner, #wrapper, footer {
+	padding: 2rem 5% 0;
+}
+.afe-bigbanner {
+	padding: 5%;
+}
+.afe-bigbanner h1 {
+	font-size: xx-large;
+}
+footer {
+	padding-top: 2rem;
+	padding-bottom: 3rem;
+}
+footer ul.links {
+	margin: 1rem 1.5rem;
+}
+footer h3 {
+	margin: 1.5rem 0;
+}
+footer p {
+	margin: 0;
+	margin-bottom: 0.5px;
+	padding: 0;
+	font-size: xx-small;
+}
+
+/* ---- Layout ---- */
+
+h1, .h1 {
+
+}
+
+h2, .h2 {
+
+}
+
+h3, .h3 {
+
+}
+
+h4, .h4 {
+
+}
+
+h5, .h5 {
+
+}
+
+h6, .h6 {
+
+}
+
+p {
+	word-wrap: break-word;
+	word-break: normal;
+}
