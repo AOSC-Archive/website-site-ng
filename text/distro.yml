@@ -1,23 +1,42 @@
 ?
-  name: AOSC OS with Plasma
-  description: Foo, bar, and baz.
-  core-version: !!str 0.0.0.0
+  name: AOSC OS with KDE
+  description: Plasma desktop (KDE) is a complete, stable, and highly customizable 
+               desktop experience suite.
+  core-version: !!str 3.0.0
   background: http://example.org/example.png
   url: http://example.org/example.iso
   alert:
 ?
-  name: AOSC OS with Unity
-  description: Foo, bar, and baz.
-  core-version: !!str 0.0.0.0
+  name: AOSC OS with GNOME
+  description: GNOME is a desktop experience suite aiming for universal accessibility 
+               and a worry-free experience.
+  core-version: !!str 3.0.0
   background: http://example.org/example.png
   url: http://example.org/example.iso
   alert: >
     Wow! Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
     eiusmod tempor incididunt ut labore et dolore magna aliqua.
 ?
-  name: AOSC OS with Pantheon
-  description: Foo, bar, and baz.
-  core-version: !!str 0.0.0.0
+  name: AOSC OS with XFCE
+  description: XFCE is a cute little mouse running on your computer. And yes, it does 
+               run fast!
+  core-version: !!str 3.0.0
+  background: http://example.org/example.png
+  url: http://example.org/example.iso
+  alert:
+?
+  name: AOSC OS with Cinnamon
+  description: Cinnamon is a fork of GNOME, while being powered by GNOME technologies, 
+               it is optimized for desktop users.
+  core-version: !!str 3.0.0
+  background: http://example.org/example.png
+  url: http://example.org/example.iso
+  alert:
+?
+  name: AOSC OS with MATE
+  description: MATE is a fork of GNOME 2.x with a strong attention to new technologies
+               and security features.
+  core-version: !!str 3.0.0
   background: http://example.org/example.png
   url: http://example.org/example.iso
   alert:
