@@ -103,7 +103,7 @@ div {
 	font-size: xx-large;
 }
 .afe-bigbanner p {
-	font-size: 1.5rem;
+	font-size: medium;
 	text-align: justify;
 }
 footer {
@@ -120,10 +120,10 @@ footer p {
 	margin: 0;
 	margin-bottom: 0.5px;
 	padding: 0;
-	font-size: xx-small;
+	font-size: x-small;
 }
 .afe-littlecaption {
-	font-size: 1rem;
+	font-size: small;
 	font-weight: bold;
 	margin: 1rem 0;
 }
