@@ -1,7 +1,5 @@
-doctype html
-html(lang="en")
-  head
-    title 500 Internal Server Error
-    link(href="/css/bootstrap.min.css", rel="stylesheet")
-  body
-    h1(class="text-center") Something went wrong, and it's always Back-end Engineers' pot.
+extend ../templates/framework.jade
+block title
+  | 500 Internal Server Error
+block content
+  h1.am-text-center Something went wrong, and it's always Back-end Engineers' pot.

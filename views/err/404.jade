@@ -1,7 +1,5 @@
-doctype html
-html(lang="en")
-  head
-    title 404 Not Found
-    link(href="/css/bootstrap.min.css", rel="stylesheet")
-  body
-    h1(class="text-center") No. There's nothing but air.
+extend ../templates/framework.jade
+block title
+  | 404 Not Found
+block content
+  h1.am-text-center No. There's nothing but air.

@@ -1,89 +1,42 @@
-doctype html
-html.no-js
-  head
-    meta(charset='utf-8')
-    meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    meta(name='description', content='')
-    meta(name='keywords', content='')
-    meta(name='viewport',
-      content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
-    title Hello Amaze UI
-    //- Set render engine for 360 browser
-    meta(name='renderer', content='webkit')
-    //- No Baidu Siteapp
-    meta(http-equiv='Cache-Control', content='no-siteapp')
-    //-
-      link(rel='icon', type='image/png', href='assets/i/favicon.png')
-      //- Add to homescreen for Chrome on Android
-      meta(name='mobile-web-app-capable', content='yes')
-      link(rel='icon', sizes='192x192', href='assets/i/app-icon72x72@2x.png')
-      //- Add to homescreen for Safari on iOS
-      meta(name='apple-mobile-web-app-capable', content='yes')
-      meta(name='apple-mobile-web-app-status-bar-style', content='black')
-      meta(name='apple-mobile-web-app-title', content='Amaze UI')
-      link(rel='apple-touch-icon-precomposed', href='assets/i/app-icon72x72@2x.png')
-      //- Tile icon for Win8 (144x144 + tile color)
-      meta(name='msapplication-TileImage', content='assets/i/app-icon72x72@2x.png')
-      meta(name='msapplication-TileColor', content='#0e90d2')
-    link(rel='stylesheet', href='assets/css/amazeui.min.css')
-    link(rel='stylesheet', href='assets/css/common.css')
-    link(rel='stylesheet', href='assets/css/index.css')
-  body
-    .am-g.afe-bigbanner.am-vertical-align.afe-dbg
-      .am-vertical-align-middle.am-cf.afe-dbg
-        .am-u-md-8
-          h1 Wow, a big banner
-          p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        .am-u-md-4
-          button.am-btn.am-btn-primary.am-fr Download AOSC OS
-        .am-u-md-4
-          button.am-btn.am-btn-primary.am-fr Donate a cuppa
-    #wrapper
-      .am-g.afe-dbg
-        .am-u-md-8.afe-dbg
-          ul
-            each val in param.broadcast
-              li
-                h2=val.title
-                  each arrayElement in val.type
-                    span.am-radius.am-badge=arrayElement
+extend ./templates/layout.jade
+
+block title
+  | Community Portal - AOSC
+block append stylesheet
+  link(rel='stylesheet', href='assets/css/index.css')
+block content
+  .afe-bigbanner: .am-g.am-g-fixed.am-vertical-align: .am-vertical-align-middle.am-cf
+    .am-u-md-9
+      h1 Anthon Open Source Community
+      p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    .am-u-md-3: a(href="/"): button.am-btn.am-btn-primary(style="height:9rem;")
+      | Download AOSC OS
+    .am-u-md-3: button.am-btn.am-btn-default
+      | Donate a cuppa
+  #wrapper: .am-g.am-g-fixed
+    .am-u-md-9
+      h2.afe-littlecaption LASTEST NEWS
+      ul.afe-news
+        each val, index in params.broadcast
+          li(class="afe-news-tag-"+val.type): .afe-news-container
+            if index<2
+              h3=val.title
+              p.afe-news-info
+                span.afe-news-date=val.date
+              .afe-news-body
                 each para in val.content
                   !=para
-        .am-u-md-4.afe-dbg
-          h2 Projects Overview
-          ul#afe-prjs
-            - var wowid=0
-            while wowid<3
-              - wowid++
-              li.am-cf
-                img.am-fl.am-round(src="assets/i/test.png")
-                .afe-prjs-body
-                  h3 AOSC OS
-                  small Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    footer.am-g.afe-dbg
-      .am-u-md-8.am-cf.afe-dbg
-        - var wowid=0
-        while wowid<3
-          ul.links.am-fl
-            li
-              !='Main Sites ' + wowid++
-            li
-              a(href="www.example.org") Portal
-            li
-              a(href="www.example.org") Portal
-            li
-              a(href="www.example.org") Portal
-            li
-              a(href="www.example.org") Portal
-      .am-u-md-4.afe-dbg
-        h3  Anthon Open Source Community
-        p  Copyleft 2011 - 2015, for every member of the community.
-        p  粤ICP备14040623号
-        p  Powered by AOSC-Fe Team and Amaze UI.
-        p  Fonts by xxxx.
-    <!--[if (gte IE 9)|!(IE)]><!-->
-    <script src="assets/js/jquery.min.js"></script>
-    <!--<![endif]-->
-    <!--[if lte IE 8 ]>
-    <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-    <![endif]-->
+            else
+              a(href="#")
+                h3=val.title
+            hr
+        li: a(href="somewhere"): h4 Read more...
+    .am-u-md-3
+      h2.afe-littlecaption PROJECTS OVERVIEW
+      ul.afe-prjs
+        each project in params.projects
+          li.am-cf
+            img.am-fl(src="assets/i/test.png")
+            .afe-prjs-body
+              h3=project.fullname
+              p=project.description

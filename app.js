@@ -4,6 +4,14 @@ var fs      = require('fs');
 var md      = require('markdown').markdown;
 var app     = express();
 
+function formatDate(date) {
+  var month = ['January', 'February', 'March', 'April', 'May',
+    'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  return month[date.getUTCMonth()] + ' '
+               + date.getUTCDate() + ', '
+               + date.getUTCFullYear();
+}
+
 function readYAML(yamlfile) {
   try {
     return yaml.safeLoad(fs.readFileSync('text/' + yamlfile + '.yml', 'utf8'));
@@ -18,11 +26,13 @@ function router(req, res) {
         var bc = readYAML('news');
         var pj = readYAML('projects');
         for(var i_ct in bc) {
+          bc[i_ct].date = formatDate(bc[i_ct].date).toUpperCase();
           var _ct = bc[i_ct].content;
           for(var i_para in _ct) _ct[i_para] = md.toHTML(_ct[i_para]);
         }
         res.render('index',
-          {'param' : {
+          {'params' : {
+              'title' : 'Community Portal - AOSC',
               'broadcast' : bc,
               'projects' : pj
             }
