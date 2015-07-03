@@ -80,16 +80,16 @@
 	font-size: 1rem;
 	margin: 0;
 	opacity: 0;
-	overflow: hidden;
-	height: 0;
+	transition: max-height 200ms;
+  max-height: 30px;
+  overflow: hidden;
+  height: auto;
 }
 .afe-prjs-body:hover p {
 	font-size: 1rem;
 	margin: 0;
 	opacity: 1;
-	height: 200px;
-	transition: all 100ms ease 100ms;
-	-webkit-transition: all 100ms ease 100ms;
+	max-height: 10rem;
 }
 
 /* about page */
