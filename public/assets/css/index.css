@@ -29,14 +29,14 @@
 
 /* //// news list //// */
 .afe-news h3 {
-	font-size: 2rem;
+	font-size: large;
 	margin: 0;
 }
 .afe-news-body {
 }
 .afe-news-body p {
 	margin: 0 0 1rem;
-	font-size: 1.5rem;
+	font-size: small;
 	text-align: justify;
 }
 .afe-news-body p:last-of-type {
@@ -54,7 +54,7 @@
 	margin: 0.2rem 0;
 }
 .afe-news-date {
-	font-size: 0.5rem;
+	font-size: small;
 }
 .afe-news .am-badge {
 	margin: 0 0 0 0.5rem;
@@ -71,10 +71,10 @@
 	margin-bottom: 1.5rem;
 }
 .afe-prjs-body h3 {
-	font-size: 1.8rem;
+	font-size: medium;
 	margin: 0;
 }
 .afe-prjs-body p {
-	font-size: 1rem;
+	font-size: small;
 	margin: 0;
 }
