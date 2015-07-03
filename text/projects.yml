@@ -1,20 +1,20 @@
 -
   fullname: AOSC OS
   mininame: aosc-os
-  description: Lorem ipsum dolor sit amet. I jump over the lazy doge; it doesn't hurt me.
+  description: Brutally simplified rolling Linux Distribution.
 -
   fullname: LinkC
   mininame: linkc
-  description: Lorem ipsum dolor sit amet. I jump over the lazy doge; it doesn't hurt me.
+  description: A JSON based, XMPP-like instant messaging server and client.
 -
   fullname: Richat
   mininame: richat
-  description: Lorem ipsum dolor sit amet. I jump over the lazy doge; it doesn't hurt me.
+  description: An instant messenger with double security.
 -
   fullname: Anthon Starter
   mininame: anthon-starter
-  description: Lorem ipsum dolor sit amet. I jump over the lazy doge; it doesn't hurt me.
+  description: Install AOSC OS on your Windows machine.
 -
   fullname: Localization
   mininame: localization
-  description: Lorem ipsum dolor sit amet. I jump over the lazy doge; it doesn't hurt me.
+  description: Localization improvements made by the community.
