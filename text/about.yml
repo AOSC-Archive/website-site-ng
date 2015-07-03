@@ -1,0 +1,44 @@
+-
+  section: The Who?
+  type: info
+  text:
+    - >
+      We are a group of free and open technology enthusiasts holding
+      improvement and progress in mind.
+-
+  section: The What?
+  type: info
+  text:
+    - >
+      Anthon Open Source Community originated as a small school based
+      development team in November of 2011, with only three members (and just
+      one of them as the developer). It used to be named after "Anthon.Dev",
+      or Anthon Developers.
+    - >
+      The community was established one year later, and was therefore named as
+      "Anthon Open Source Community"; The community was established in a wish
+      to open up opportunities for new projects to join, and a more equal system
+      that open source developers will like to work in.
+    - >
+      Many projects are started, ended, forked, ... you name it, after the
+      establishment of the community.
+-
+  section: The Law?
+  type: warning
+  text:
+    - >
+      The registered trademark Linux(R) is used pursuant to a sublicense from
+      LMI, the exclusive licensee of Linus Torvalds, owner of the mark on a
+      world-wide basis.
+    - >
+      This distribution is built up, based on, or linked against various
+      (free and open source) projects, any licence information can be obtained
+      from its original distribution package.
+    - >
+      AOSC OS is an open source Linux distribution with a different way source
+      code distributing: when not included in autobuild archives (or abbs tree
+      manifests), look for upstream source package.
+    - >
+      The AOSC OS logo, as seen above is the mutual creation of AOSC-Dev,
+      licenced under Apache 2.0 licence, any usage outside of distribution
+      building is prohibited without permission from AOSC-Dev.

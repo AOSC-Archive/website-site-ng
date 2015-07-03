@@ -38,6 +38,17 @@ function router(req, res) {
             }
           });
         break;
+        case 'about' :
+          var abt = readYAML('about');
+          var ct = readYAML('contacts');
+          res.render('about',
+            {'params' : {
+                'title' : 'Community Portal - About',
+                'about' : abt,
+                'contacts' : ct
+              }
+            });
+          break;
       case 'distro.html' :
         var doc = readYAML('distro');
         res.render('distro', {'param' : doc});
