@@ -3,21 +3,41 @@ block title
   | Templates::Layout
 block append stylesheet
   link(rel='stylesheet', href='assets/css/common.css')
+block navbar
+  ul.afe-navbar.am-nav.am-navbar-default.am-nav-justify.am-nav-pills
+    img.afe-navbar-logo(src="assets/i/test.png")
+    li: a(href="#") Portal
+    li: a(href="somewhere") Downloads
+    li: a(href="somewhere") Projects
+    li: a(href="https://github.com/AOSC-Dev/") Git
+    li: a(href="somewhere") About
 block content
 block footer
-  .am-g.am-g-fixed
-    .am-u-md-9.am-cf
-      - var wowid=0
-      while wowid<3
-        ul.links.am-fl
-          li!='Main Sites ' + wowid++
+  .am-g
+    .am-u-md-11.am-u-md-offset-1
+      .am-u-md-2
+          h4 SITES
           li: a(href="somewhere") Portal
-          li: a(href="somewhere") Portal
-          li: a(href="somewhere") Portal
-          li: a(href="somewhere") Portal
-    .am-u-md-3
-      h3  Anthon Open Source Community
-      p  Copyleft 2011 - 2015, for every member of the community.
-      p  粤ICP备14040623号
-      p  Powered by AOSC-Fe Team and Amaze UI.
-      p  Fonts by xxxx.
+          li: a(href="somewhere") News
+          li: a(href="somewhere") Downloads
+          li: a(href="somewhere") Projects
+          li: a(href="somewhere") About
+      .am-u-md-2
+          h4 PROJECTS
+          li: a(href="somewhere") AOSC OS
+          li: a(href="somewhere") Anthon Starter
+          li: a(href="somewhere") LinkC
+          li: a(href="somewhere") Localization
+          li: a(href="somewhere") Git
+      .am-u-md-2
+          h4 SERVICES
+          li: a(href="somewhere") Pastebin
+          li: a(href="somewhere") Mailing List
+          li: a(href="somewhere") IRC
+      .am-u-md-1
+        img.afe-footer-logo(src="assets/i/test.png")
+      .am-u-md-5
+        h4  Anthon Open Source Community
+        p  Copyleft 2011 - 2015, members of the community.
+        p  AOSC "Safe" Fe Team, 2015. Amaze UI.
+        p  粤 ICP 备 14040623 号
