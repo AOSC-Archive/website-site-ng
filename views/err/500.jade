@@ -2,4 +2,13 @@ extend ../templates/framework.jade
 block title
   | 500 Internal Server Error
 block content
-  h1.am-text-center Something went wrong, and it's always Back-end Engineers' pot.
+  h1.am-text-center
+    br
+    | Something went wrong
+  h2.am-text-center and it's always
+  h1.am-text-center
+    | Back-end Engineers' pot.
+  p.am-text-center: em  Oops, sorry.
+  .am-g.am-g-fixed
+    p URL: #{params.url}
+    p=params.err
