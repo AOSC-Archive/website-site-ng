@@ -1,320 +1,57 @@
+# The News YAML storage. Please append new entries to the top.
 -
-  date: 2015-05-22
+  date: 2015-07-07
   type: news
-  title: Data corruption on software RAID 0 when discard is used
+  title: Just four days away! The 2015 AOSCC in Shenzhen
   content:
     - >
-      Recent Linux kernels (4.0.2+, LTS 3.14.41+), pushed to the [core]
-      repository in the past couple of weeks, suffered from a bug that
-      can cause data ```corruption on file systems mounted``` with the _discard_
-      option and residing on software RAID 0 arrays. Even if _discard_ is not
-      specified, the fstrim command can also trigger this bug. (**If you do
-      not use software RAID 0 or the _discard_ option, then this issue does
-      not affect you.**)
+      The AOSCC (Anthon Open Source Community Conference) is happening! The
+      conference this year will be held in Shenzhen. With a 3-day agenda filled and
+      free-of-charge admission tickets, you are welcome to attend, no matter your
+      ages and skill levels.
     - >
-      The issue has been addressed in the linux 4.0.4-2 and linux-lts
-      3.14.43-2 updates. Due to the nature of the bug, however, it is likely
-      that data corruption has already occurred on systems running the
-      aforementioned kernels. It is strongly advised to verify the integrity
-      of affected file systems using fsck and/or restore their data from
-      known good backups
-    - >
-      For further information please read the
-      [LKML post](https://lkml.org/lkml/2015/5/21/167) by Holger Kiehl,
-      the related article on Phoronix, as well as the proposed fix that was
-      backported to the Arch kernels.
+      For more info about the AOSCC events, please checkout our
+      [activity page](https://github.com/AOSC-Dev/aoscc-2015). We are looking
+      forward to your attendance!
 -
-  date: 2015-05-17
+  date: 2015-07-06
   type: bug
-  title: Puppet 4.0 enters [community]
+  title: "Bug fixed: noto-fonts has wrong font weight and sizes"
   content:
     - >
-      Puppet 4 has been released and breaks compatibility with version 3.
-      Therefore users will need to upgrade a server to Puppet 4 before
-      updating their clients. Note that if only a Puppet 4 server is available,
-      Puppet 3 clients will not work. Also a number of locations for things
-      have changed including the config, manifest and module files. You will
-      need to follow upgrade instructions for your servers and clients:
+      Users had reported us with some issues when using the included
+      ```noto-fonts``` package from the repository that:
     - >
-      <http://docs.puppetlabs.com/puppet/4.0/reference/upgrade_server.html>
-      <https://docs.puppetlabs.com/puppet/4.0/reference/upgrade_agent.html>
+      ```font has wrong sizes when scaling down in browsers;```
+    - >
+      ```font has wrong weight when using CJK locales like zh_TW;```
+    - >
+      The issues above have been addressed in the new ```1:1.0-0``` version of
+      ```noto-fonts``` package.
 -
-  date: 2015-05-22
+  date: 2015-07-02
   type: news
-  title: Data corruption on software RAID 0 when discard is used
+  title: AOSC OS Core 3.0.0 is now green!
   content:
     - >
-      Recent Linux kernels (4.0.2+, LTS 3.14.41+), pushed to the [core]
-      repository in the past couple of weeks, suffered from a bug that
-      can cause data corruption on file systems mounted with the _discard_
-      option and residing on software RAID 0 arrays. Even if _discard_ is not
-      specified, the fstrim command can also trigger this bug. (**If you do
-      not use software RAID 0 or the _discard_ option, then this issue does
-      not affect you.**)
+      AOSC OS Core, the future base for AOSC OS is now marked stable in the Git
+      repository [here](https://github.com/AOSC-Dev/aosc-os-core). AOSC OS3's
+      final release will come with the 3.0.0 tagged Core.
     - >
-      The issue has been addressed in the linux 4.0.4-2 and linux-lts
-      3.14.43-2 updates. Due to the nature of the bug, however, it is likely
-      that data corruption has already occurred on systems running the
-      aforementioned kernels. It is strongly advised to verify the integrity
-      of affected file systems using fsck and/or restore their data from
-      known good backups
+      AOSC OS Core is the baseline definitions for development tool chain(s), C
+      library, and many more defining libraries, configurations, etc. that will ship
+      with all AOSC OS releases, and possibly derivatives, too.
     - >
-      For further information please read the
-      [LKML post](https://lkml.org/lkml/2015/5/21/167) by Holger Kiehl,
-      the related article on Phoronix, as well as the proposed fix that was
-      backported to the Arch kernels.
--
-  date: 2015-05-17
-  type: news
-  title: Puppet 4.0 enters [community]
-  content:
+      The 3.0.0 tag contains ```29``` packages from ```27``` source packages.
+      Users of AOSC OS3 Beta may install the updated packages from the repository
+      that is included in the Core; Developers may clone the Core repository with
     - >
-      Puppet 4 has been released and breaks compatibility with version 3.
-      Therefore users will need to upgrade a server to Puppet 4 before
-      updating their clients. Note that if only a Puppet 4 server is available,
-      Puppet 3 clients will not work. Also a number of locations for things
-      have changed including the config, manifest and module files. You will
-      need to follow upgrade instructions for your servers and clients:
+      ```git clone https://github.com/AOSC-Dev/aosc-os-core```
     - >
-      <http://docs.puppetlabs.com/puppet/4.0/reference/upgrade_server.html>
-      <https://docs.puppetlabs.com/puppet/4.0/reference/upgrade_agent.html>
--
-  date: 2015-05-22
-  type: news
-  title: Data corruption on software RAID 0 when discard is used
-  content:
+      With ```abbs``` and ```autobuild3``` installed, developers may build the
+      Core with
     - >
-      Recent Linux kernels (4.0.2+, LTS 3.14.41+), pushed to the [core]
-      repository in the past couple of weeks, suffered from a bug that
-      can cause data ```corruption on file systems mounted``` with the _discard_
-      option and residing on software RAID 0 arrays. Even if _discard_ is not
-      specified, the fstrim command can also trigger this bug. (**If you do
-      not use software RAID 0 or the _discard_ option, then this issue does
-      not affect you.**)
+      ```assets/scripts/build-core-full```
     - >
-      The issue has been addressed in the linux 4.0.4-2 and linux-lts
-      3.14.43-2 updates. Due to the nature of the bug, however, it is likely
-      that data corruption has already occurred on systems running the
-      aforementioned kernels. It is strongly advised to verify the integrity
-      of affected file systems using fsck and/or restore their data from
-      known good backups
-    - >
-      For further information please read the
-      [LKML post](https://lkml.org/lkml/2015/5/21/167) by Holger Kiehl,
-      the related article on Phoronix, as well as the proposed fix that was
-      backported to the Arch kernels.
--
-  date: 2015-05-17
-  type: bug
-  title: Puppet 4.0 enters [community]
-  content:
-    - >
-      Puppet 4 has been released and breaks compatibility with version 3.
-      Therefore users will need to upgrade a server to Puppet 4 before
-      updating their clients. Note that if only a Puppet 4 server is available,
-      Puppet 3 clients will not work. Also a number of locations for things
-      have changed including the config, manifest and module files. You will
-      need to follow upgrade instructions for your servers and clients:
-    - >
-      <http://docs.puppetlabs.com/puppet/4.0/reference/upgrade_server.html>
-      <https://docs.puppetlabs.com/puppet/4.0/reference/upgrade_agent.html>
--
-  date: 2015-05-22
-  type: news
-  title: Data corruption on software RAID 0 when discard is used
-  content:
-    - >
-      Recent Linux kernels (4.0.2+, LTS 3.14.41+), pushed to the [core]
-      repository in the past couple of weeks, suffered from a bug that
-      can cause data corruption on file systems mounted with the _discard_
-      option and residing on software RAID 0 arrays. Even if _discard_ is not
-      specified, the fstrim command can also trigger this bug. (**If you do
-      not use software RAID 0 or the _discard_ option, then this issue does
-      not affect you.**)
-    - >
-      The issue has been addressed in the linux 4.0.4-2 and linux-lts
-      3.14.43-2 updates. Due to the nature of the bug, however, it is likely
-      that data corruption has already occurred on systems running the
-      aforementioned kernels. It is strongly advised to verify the integrity
-      of affected file systems using fsck and/or restore their data from
-      known good backups
-    - >
-      For further information please read the
-      [LKML post](https://lkml.org/lkml/2015/5/21/167) by Holger Kiehl,
-      the related article on Phoronix, as well as the proposed fix that was
-      backported to the Arch kernels.
--
-  date: 2015-05-17
-  type: news
-  title: Puppet 4.0 enters [community]
-  content:
-    - >
-      Puppet 4 has been released and breaks compatibility with version 3.
-      Therefore users will need to upgrade a server to Puppet 4 before
-      updating their clients. Note that if only a Puppet 4 server is available,
-      Puppet 3 clients will not work. Also a number of locations for things
-      have changed including the config, manifest and module files. You will
-      need to follow upgrade instructions for your servers and clients:
-    - >
-      <http://docs.puppetlabs.com/puppet/4.0/reference/upgrade_server.html>
-      <https://docs.puppetlabs.com/puppet/4.0/reference/upgrade_agent.html>
--
-  date: 2015-05-22
-  type: news
-  title: Data corruption on software RAID 0 when discard is used
-  content:
-    - >
-      Recent Linux kernels (4.0.2+, LTS 3.14.41+), pushed to the [core]
-      repository in the past couple of weeks, suffered from a bug that
-      can cause data ```corruption on file systems mounted``` with the _discard_
-      option and residing on software RAID 0 arrays. Even if _discard_ is not
-      specified, the fstrim command can also trigger this bug. (**If you do
-      not use software RAID 0 or the _discard_ option, then this issue does
-      not affect you.**)
-    - >
-      The issue has been addressed in the linux 4.0.4-2 and linux-lts
-      3.14.43-2 updates. Due to the nature of the bug, however, it is likely
-      that data corruption has already occurred on systems running the
-      aforementioned kernels. It is strongly advised to verify the integrity
-      of affected file systems using fsck and/or restore their data from
-      known good backups
-    - >
-      For further information please read the
-      [LKML post](https://lkml.org/lkml/2015/5/21/167) by Holger Kiehl,
-      the related article on Phoronix, as well as the proposed fix that was
-      backported to the Arch kernels.
--
-  date: 2015-05-17
-  type: bug
-  title: Puppet 4.0 enters [community]
-  content:
-    - >
-      Puppet 4 has been released and breaks compatibility with version 3.
-      Therefore users will need to upgrade a server to Puppet 4 before
-      updating their clients. Note that if only a Puppet 4 server is available,
-      Puppet 3 clients will not work. Also a number of locations for things
-      have changed including the config, manifest and module files. You will
-      need to follow upgrade instructions for your servers and clients:
-    - >
-      <http://docs.puppetlabs.com/puppet/4.0/reference/upgrade_server.html>
-      <https://docs.puppetlabs.com/puppet/4.0/reference/upgrade_agent.html>
--
-  date: 2015-05-22
-  type: news
-  title: Data corruption on software RAID 0 when discard is used
-  content:
-    - >
-      Recent Linux kernels (4.0.2+, LTS 3.14.41+), pushed to the [core]
-      repository in the past couple of weeks, suffered from a bug that
-      can cause data corruption on file systems mounted with the _discard_
-      option and residing on software RAID 0 arrays. Even if _discard_ is not
-      specified, the fstrim command can also trigger this bug. (**If you do
-      not use software RAID 0 or the _discard_ option, then this issue does
-      not affect you.**)
-    - >
-      The issue has been addressed in the linux 4.0.4-2 and linux-lts
-      3.14.43-2 updates. Due to the nature of the bug, however, it is likely
-      that data corruption has already occurred on systems running the
-      aforementioned kernels. It is strongly advised to verify the integrity
-      of affected file systems using fsck and/or restore their data from
-      known good backups
-    - >
-      For further information please read the
-      [LKML post](https://lkml.org/lkml/2015/5/21/167) by Holger Kiehl,
-      the related article on Phoronix, as well as the proposed fix that was
-      backported to the Arch kernels.
--
-  date: 2015-05-17
-  type: news
-  title: Puppet 4.0 enters [community]
-  content:
-    - >
-      Puppet 4 has been released and breaks compatibility with version 3.
-      Therefore users will need to upgrade a server to Puppet 4 before
-      updating their clients. Note that if only a Puppet 4 server is available,
-      Puppet 3 clients will not work. Also a number of locations for things
-      have changed including the config, manifest and module files. You will
-      need to follow upgrade instructions for your servers and clients:
-    - >
-      <http://docs.puppetlabs.com/puppet/4.0/reference/upgrade_server.html>
-      <https://docs.puppetlabs.com/puppet/4.0/reference/upgrade_agent.html>
--
-  date: 2015-05-22
-  type: news
-  title: Data corruption on software RAID 0 when discard is used
-  content:
-    - >
-      Recent Linux kernels (4.0.2+, LTS 3.14.41+), pushed to the [core]
-      repository in the past couple of weeks, suffered from a bug that
-      can cause data ```corruption on file systems mounted``` with the _discard_
-      option and residing on software RAID 0 arrays. Even if _discard_ is not
-      specified, the fstrim command can also trigger this bug. (**If you do
-      not use software RAID 0 or the _discard_ option, then this issue does
-      not affect you.**)
-    - >
-      The issue has been addressed in the linux 4.0.4-2 and linux-lts
-      3.14.43-2 updates. Due to the nature of the bug, however, it is likely
-      that data corruption has already occurred on systems running the
-      aforementioned kernels. It is strongly advised to verify the integrity
-      of affected file systems using fsck and/or restore their data from
-      known good backups
-    - >
-      For further information please read the
-      [LKML post](https://lkml.org/lkml/2015/5/21/167) by Holger Kiehl,
-      the related article on Phoronix, as well as the proposed fix that was
-      backported to the Arch kernels.
--
-  date: 2015-05-17
-  type: bug
-  title: Puppet 4.0 enters [community]
-  content:
-    - >
-      Puppet 4 has been released and breaks compatibility with version 3.
-      Therefore users will need to upgrade a server to Puppet 4 before
-      updating their clients. Note that if only a Puppet 4 server is available,
-      Puppet 3 clients will not work. Also a number of locations for things
-      have changed including the config, manifest and module files. You will
-      need to follow upgrade instructions for your servers and clients:
-    - >
-      <http://docs.puppetlabs.com/puppet/4.0/reference/upgrade_server.html>
-      <https://docs.puppetlabs.com/puppet/4.0/reference/upgrade_agent.html>
--
-  date: 2015-05-22
-  type: news
-  title: Data corruption on software RAID 0 when discard is used
-  content:
-    - >
-      Recent Linux kernels (4.0.2+, LTS 3.14.41+), pushed to the [core]
-      repository in the past couple of weeks, suffered from a bug that
-      can cause data corruption on file systems mounted with the _discard_
-      option and residing on software RAID 0 arrays. Even if _discard_ is not
-      specified, the fstrim command can also trigger this bug. (**If you do
-      not use software RAID 0 or the _discard_ option, then this issue does
-      not affect you.**)
-    - >
-      The issue has been addressed in the linux 4.0.4-2 and linux-lts
-      3.14.43-2 updates. Due to the nature of the bug, however, it is likely
-      that data corruption has already occurred on systems running the
-      aforementioned kernels. It is strongly advised to verify the integrity
-      of affected file systems using fsck and/or restore their data from
-      known good backups
-    - >
-      For further information please read the
-      [LKML post](https://lkml.org/lkml/2015/5/21/167) by Holger Kiehl,
-      the related article on Phoronix, as well as the proposed fix that was
-      backported to the Arch kernels.
--
-  date: 2015-05-17
-  type: news
-  title: Puppet 4.0 enters [community]
-  content:
-    - >
-      Puppet 4 has been released and breaks compatibility with version 3.
-      Therefore users will need to upgrade a server to Puppet 4 before
-      updating their clients. Note that if only a Puppet 4 server is available,
-      Puppet 3 clients will not work. Also a number of locations for things
-      have changed including the config, manifest and module files. You will
-      need to follow upgrade instructions for your servers and clients:
-    - >
-      <http://docs.puppetlabs.com/puppet/4.0/reference/upgrade_server.html>
-      <https://docs.puppetlabs.com/puppet/4.0/reference/upgrade_agent.html>
+      Please report to us with any issues experienced at the
+      [issue section](https://github.com/AOSC-Dev/aosc-os-core/issues)
