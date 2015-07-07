@@ -9,12 +9,11 @@ block content
   .afe-bigbanner(style="height:18rem;"): .am-g.am-g-fixed.am-vertical-align: .am-vertical-align-middle.am-cf
     .am-u-md-12.am-u-md-offset-2
       h1 More News
-      p.afe-bigbanner-text Work hard, get it all caught up! :-D
+      p.afe-bigbanner-text Read hard, get it all caught up! :-D
   #wrapper: .am-g.am-g-fixed
     .am-u-md-10.afe-news-flow
       ul.afe-news(style="margin-top:35px;")
         each val, index in params.broadcast
-          if index>1
             li(class="afe-news-tag-"+val.type): .afe-news-container
               if index<4
                 h3=val.title

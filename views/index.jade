@@ -26,11 +26,12 @@ block content
               .afe-news-body
                 each para in val.content
                   !=para
-            else
+            else if index<5
               a(href="#")
                 h3=val.title
+            else if index>5
             hr
-        li: a(href="somewhere"): h4 Read more...
+        li: a(href="news-flow"): h4 Read more...
     .am-u-md-3
       h2.afe-littlecaption PROJECTS OVERVIEW
       ul.afe-prjs
