@@ -38,6 +38,20 @@ function router(req, res) {
             }
           });
         break;
+        case 'news-flow' :
+          var bct = readYAML('news');
+          for(var i_ct in bc) {
+            bc[i_ct].date = formatDate(bc[i_ct].date).toUpperCase();
+            var _ct = bc[i_ct].content;
+            for(var i_para in _ct) _ct[i_para] = md.toHTML(_ct[i_para]);
+          }
+          res.render('news-flow',
+            {'params' : {
+                'title' : 'Community Portal - More News',
+                'broadcast' : bct,
+              }
+            });
+          break;
         case 'projects' :
           var pjt = readYAML('projects');
           res.render('projects',
