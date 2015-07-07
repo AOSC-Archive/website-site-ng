@@ -1,0 +1,20 @@
+extend ./templates/layout.jade
+
+block title
+  | Community Portal - AOSC
+block append stylesheet
+  link(rel='stylesheet', href='assets/css/index.css')
+  link(rel='stylesheet', href='assets/css/projects.css')
+block content
+  .afe-bigbanner: .am-g.am-g-fixed.am-vertical-align: .am-vertical-align-middle
+    .am-u-md-12
+      each project in params.project
+        .am-u-md-2
+          li.am-cf.afe-projects-horizon
+            img.afe-projects-logo-horizon(src="assets/i/test.png")
+  #wrapper: .am-g.am-g-fixed
+    .am-u-md-9.afe-projects-centered.afe-projects-details
+      each pjt in params.project
+        h2=pjt.fullname
+        p=pjt.long
+        hr

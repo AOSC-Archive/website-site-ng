@@ -38,6 +38,15 @@ function router(req, res) {
             }
           });
         break;
+        case 'projects' :
+          var pjt = readYAML('projects');
+          res.render('projects',
+            {'params' : {
+                'title' : 'Community Portal - Projects',
+                'project' : pjt
+              }
+            });
+        break;
         case 'about' :
           var abt = readYAML('about');
           var ct = readYAML('contacts');
@@ -49,12 +58,12 @@ function router(req, res) {
               }
             });
           break;
-      case 'distro.html' :
-        var doc = readYAML('distro');
-        res.render('distro', {'param' : doc});
-        break;
-      default:
-        res.status(404).render('err/404');
+          case 'distro.html' :
+            var doc = readYAML('distro');
+            res.render('distro', {'param' : doc});
+          break;
+          default:
+            res.status(404).render('err/404');
     }
   } catch (e) { console.log(e); res.status(500).render('err/500'); }
 }
