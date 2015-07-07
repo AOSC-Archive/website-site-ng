@@ -31,6 +31,7 @@
 	background-image: url("/assets/i/banner.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
+	margin-top: 50px;
 }
 .afe-bigbanner-non-index {
 	background-color: #3d8499;
@@ -38,8 +39,7 @@
 	background-image: url("/assets/i/banner.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
-	margin-top: 20px;
-	margin-bottom:20px;
+	margin-top: 50px;
 }
 .afe-bigbanner-text {
 	font-size: normal;
