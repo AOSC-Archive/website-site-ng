@@ -12,7 +12,8 @@ block content
       p.afe-bigbanner-text Read hard, get it all caught up! :-D
   #wrapper: .am-g.am-g-fixed
     .am-u-md-10.afe-news-flow
-      ul.afe-news(style="margin-top:35px;")
+      h2.afe-littlecaption MORE NEWS AHEAD
+      ul.afe-news
         each val, index in params.broadcast
             li(class="afe-news-tag-"+val.type): .afe-news-container
               if index<4
