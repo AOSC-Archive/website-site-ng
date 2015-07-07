@@ -8,10 +8,12 @@
 }
 .afe-navbar> li > a {
 	color:#FFFFFF;
+	font-weight: 800;
 }
 .afe-navbar > li > a:hover {
 	color:#FFFFFF;
 	background-color: #39635F;
+	font-weight: 800;
 }
 .afe-navbar-logo {
 	width: 32px;
