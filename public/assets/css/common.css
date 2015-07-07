@@ -57,6 +57,9 @@ body {
 footer {
 	background-color: #D1D1D1;
 }
+.afe-footer-links {
+	margin-bottom: 25px;
+}
 .afe-littlecaption {
 	color: #aaa;
 }
