@@ -11,7 +11,7 @@
 }
 .afe-navbar > li > a:hover {
 	color:#FFFFFF;
-	background-color: #42736E;
+	background-color: #39635F;
 }
 .afe-navbar-logo {
 	width: 32px;
@@ -22,7 +22,10 @@
 	margin-right: 30px;
 }
 .afe-navbar-download-highlight {
-	background-color: #00706C;
+	background-color: #E51572;
+}
+.afe-navbar-download-highlight > li > a:hover {
+	background-color: #E51572;
 }
 /* ---- Colors ---- */
 .afe-bigbanner {
