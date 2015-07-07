@@ -18,18 +18,19 @@ block content
       h2.afe-littlecaption LASTEST NEWS
       ul.afe-news
         each val, index in params.broadcast
-          li(class="afe-news-tag-"+val.type): .afe-news-container
-            if index<2
-              h3=val.title
-              p.afe-news-info
-                span.afe-news-date=val.date
-              .afe-news-body
-                each para in val.content
-                  !=para
-            else if index<5
-              a(href="#")
+          if index<5
+            li(class="afe-news-tag-"+val.type): .afe-news-container
+              if index<2
                 h3=val.title
-            else if index>5
+                p.afe-news-info
+                  span.afe-news-date=val.date
+                .afe-news-body
+                  each para in val.content
+                    !=para
+              else if index<5
+                a(href="#")
+                  h3=val.title
+              else if index>5
             hr
         li: a(href="news-flow"): h4 Read more...
     .am-u-md-3.am-u-md-offset-1
