@@ -7,6 +7,8 @@
 .afe-news-tag-news .afe-news-body p:first-of-type:before {
 	color: #35C2FF;
 	content: "aosc@web /news $ ";
+	font-weight: 800;
+	font-size: normal;
 }
 .afe-news-tag-bug .afe-news-container {
 	border-color: #FF8A27;
@@ -14,6 +16,8 @@
 .afe-news-tag-bug .afe-news-body p:first-of-type:before {
 	color: #FF8A27;
 	content: "aosc@web /news ! ";
+	font-weight: 800;
+	font-size: normal;
 }
 
 .afe-news .am-badge {
