@@ -46,8 +46,39 @@ exports.DoBoom = function(app) {
     }catch(err){sayOops(req, res, err);}
   });
 
+// - /news-flow.html
+app.get('/news-flow' , function(req, res) {
+  try{
+    var bct = readYAML('news');
+    for(var i_ct in bct) {
+      bct[i_ct].date = formatDate(bct[i_ct].date).toUpperCase();
+      var _ct = bct[i_ct].content;
+      for(var i_para in _ct) _ct[i_para] = md.toHTML(_ct[i_para]);
+    }
+    res.render('news-flow',
+      {'params' : {
+          'title' : 'Community Portal - News',
+          'broadcast' : bct
+        }
+      });
+    }catch(err){sayOops(req, res, err);}
+  });
+
+  // - /projects
+  app.get( '/projects' , function(req, res) {
+    try{
+      var prj = readYAML('projects');
+      res.render('projects',
+      {'params' : {
+            'title' : 'Community Portal - Projects',
+            'project' : prj
+          }
+        });
+      }catch(err){sayOops(req, res, err);}
+  });
+
 // - /about.html
-  app.get( '/about.html' , function(req, res) {
+  app.get( '/about' , function(req, res) {
     try{
       var abt = readYAML('about');
       var ct = readYAML('contacts');
@@ -62,7 +93,7 @@ exports.DoBoom = function(app) {
   });
 
 // - /distro.html
-  app.get( '/distro.html' , function(req, res) {
+  app.get( '/distro' , function(req, res) {
     try{
       var doc = readYAML('distro');
       res.render('distro', {'param' : doc});
