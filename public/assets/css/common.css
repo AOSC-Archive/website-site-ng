@@ -4,6 +4,9 @@
 .afe-navbar {
 	background-color: #39635F;
 }
+.afe-navbar > li > a:hover {
+	background-color: #42736E;
+}
 .afe-navbar-logo {
 	width: 32px;
 	height: 32px;

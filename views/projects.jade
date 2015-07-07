@@ -16,5 +16,7 @@ block content
     .am-u-md-9.afe-projects-centered.afe-projects-details
       each pjt in params.project
         h2=pjt.fullname
-        p=pjt.long
+        .afe-about-body
+          each para in pjt.long
+            p=para
         hr
