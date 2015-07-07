@@ -7,13 +7,13 @@ block header
     .am-topbar.am-topbar-fixed-top.afe-navbar
       .am-u-md-10.am-u-md-offset-1
         ul.afe-navbar.am-topbar-nav.am-nav.am-nav-pills.am-nav-justify
-          img.afe-navbar-logo(src="assets/i/test.png")
-          li: a(href="index.html") Portal
-          li: a(href="somewhere") Downloads
+          a(href="/index.html")
+            img.afe-navbar-logo(src="assets/i/aosc.png")
           li: a(href="news-flow") News
           li: a(href="projects") Projects
           li: a(href="https://github.com/AOSC-Dev/") Git
           li: a(href="about") About
+          li.afe-navbar-download-highlight: a(href="somewhere") Downloads
 block content
 block footer
   .am-g
@@ -38,7 +38,7 @@ block footer
           li: a(href="somewhere") Mailing List
           li: a(href="somewhere") IRC
       .am-u-md-1
-        img.afe-footer-logo(src="assets/i/test.png")
+        img.afe-footer-logo(src="assets/i/aosc.png")
       .am-u-md-5
         h4  Anthon Open Source Community
         p  Copyleft 2011 - 2015, members of the community.

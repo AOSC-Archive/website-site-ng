@@ -21,7 +21,9 @@
 	margin-bottom: 9px;
 	margin-right: 30px;
 }
-
+.afe-navbar-download-highlight {
+	background-color: #00706C;
+}
 /* ---- Colors ---- */
 .afe-bigbanner {
 	background-color: #3d8499;
@@ -29,6 +31,15 @@
 	background-image: url("/assets/i/banner.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
+}
+.afe-bigbanner-non-index {
+	background-color: #3d8499;
+	color: #fff;
+	background-image: url("/assets/i/banner.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin-top: 20px;
+	margin-bottom:20px;
 }
 .afe-bigbanner-text {
 	font-size: normal;

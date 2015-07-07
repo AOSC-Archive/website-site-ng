@@ -6,15 +6,15 @@ block append stylesheet
   link(rel='stylesheet', href='assets/css/index.css')
 block content
   .afe-bigbanner: .am-g.am-g-fixed.am-vertical-align: .am-vertical-align-middle.am-cf
-    .am-u-md-9
+    .am-u-md-8
       h1 Anthon Open Source Community
       p.afe-bigbanner-text Hi, and welcome to AOSC. We are a group of free and open technology enthusiasts working hard for improvements.
-    .am-u-md-3: a(href="/"): button.am-btn.am-btn-primary(style="height:9rem;")
+    .am-u-md-3.am-u-md-offset-1: a(href="/"): button.am-btn.am-btn-primary(style="height:9rem;")
       | Download AOSC OS
-    .am-u-md-3: button.am-btn.am-btn-default
+    .am-u-md-3.am-u-md-offset-1: button.am-btn.am-btn-default
       | Donate a cup of coffee
   #wrapper: .am-g.am-g-fixed
-    .am-u-md-9
+    .am-u-md-8
       h2.afe-littlecaption LASTEST NEWS
       ul.afe-news
         each val, index in params.broadcast
@@ -32,12 +32,12 @@ block content
             else if index>5
             hr
         li: a(href="news-flow"): h4 Read more...
-    .am-u-md-3
+    .am-u-md-3.am-u-md-offset-1
       h2.afe-littlecaption PROJECTS OVERVIEW
       ul.afe-prjs
         each project in params.projects
           li.am-cf
-            img.am-fl(src="assets/i/test.png")
+            img.am-fl(src="/assets/i/" + project.mininame + ".svg")
             .afe-prjs-body
               h3=project.fullname
               p=project.description
