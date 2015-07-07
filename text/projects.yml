@@ -1,20 +1,73 @@
 -
   fullname: AOSC OS
   mininame: aosc-os
-  description: Brutally simplified rolling Linux Distribution.
+  description: Brutally simplified rolling Linux distribution.
+  long:
+    - >
+      AOSC OS is a semi-rolling Linux distribution that tries to offer a simplified
+      user experience, while keeping it hackable and standardized. AOSC OS (will)
+      is offered across multiple platforms and it runs on a variety of devices.
+    - >
+      AOSC OS was initially built according to Linux From Scratch, and Beyond
+      Linux From Scratch. With many software and technology ported, AOSC OS is
+      probably not a bad choice as your daily driver.
+    - >
+      You may obtain AOSC OS for absolutely no charge from the Download
+      section.
+  logo: "assets/i/test.png"
 -
   fullname: LinkC
   mininame: linkc
   description: A JSON based, XMPP-like instant messaging server and client.
+  long:
+    - >
+      LinkC is a XMPP-like instant (while being relayed) messenger for your Linux
+      desktop (possibly more OS platforms too).
+    - >
+      LinkC is currently under heavy development, and no production build(s) is
+      available for use. You may support the development at will, and we will
+      certainly appreciate your help.
+  logo: "assets/i/test.png"
 -
   fullname: Richat
   mininame: richat
   description: An instant messenger with double security.
+  long:
+    - >
+      **TODO**
+  logo: "assets/i/test.png"
 -
   fullname: Anthon Starter
   mininame: anthon-starter
   description: Install AOSC OS on your Windows machine.
+  long:
+    - >
+      Anthon Starter is a HDD installation helper for AOSC OS. This project focuses
+      on making installation of AOSC OS from Windows easier.
+  logo: "assets/i/test.png"
 -
   fullname: Localization
   mininame: localization
   description: Localization improvements made by the community.
+  long:
+    - >
+      A large-scaled community project to contribute/maintain localization work
+      for multiple F/OSS (free, and/or open source software) projects.
+  logo: "assets/i/test.png"
+-
+  fullname: AOSC OS
+  mininame: aosc-os
+  description: Brutally simplified rolling Linux distribution.
+  long:
+    - >
+      AOSC OS is a semi-rolling Linux distribution that tries to offer a simplified
+      user experience, while keeping it hackable and standardized. AOSC OS (will)
+      is offered across multiple platforms and it runs on a variety of devices.
+    - >
+      AOSC OS was initially built according to Linux From Scratch, and Beyond
+      Linux From Scratch. With many software and technology ported, AOSC OS is
+      probably not a bad choice as your daily driver.
+    - >
+      You may obtain AOSC OS for absolutely no charge from the Download
+      section.
+  logo: "assets/i/test.png"

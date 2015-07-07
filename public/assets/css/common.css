@@ -1,5 +1,27 @@
 /* ---- Common ---- */
 
+/* ---- Narod (Nav Bar) ---- */
+.afe-navbar {
+	background-color: #39635F;
+	border-width: 0px;
+	border-style: solid;
+}
+.afe-navbar> li > a {
+	color:#FFFFFF;
+}
+.afe-navbar > li > a:hover {
+	color:#FFFFFF;
+	background-color: #42736E;
+}
+.afe-navbar-logo {
+	width: 32px;
+	height: 32px;
+	margin-left: 30px;
+	margin-top: 9px;
+	margin-bottom: 9px;
+	margin-right: 30px;
+}
+
 /* ---- Colors ---- */
 .afe-bigbanner {
 	background-color: #3d8499;
@@ -8,19 +30,21 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 }
+.afe-bigbanner-text {
+	font-size: normal;
+}
 .afe-bigbanner h1 {
 	color: #fff;
 }
 body {
 	color: #1F1F1A;
 	background-color: #fff;
-	margin-top: 50px;
 }
 #wrapper .am-g {
 	background-color: inherit;
 }
 footer {
-	background-color: #fcfcfc;
+	background-color: #D1D1D1;
 }
 .afe-littlecaption {
 	color: #aaa;
@@ -106,6 +130,10 @@ div {
 	font-size: medium;
 	text-align: justify;
 }
+.afe-footer-logo {
+	width: 80px;
+	height: 80px;
+}
 footer {
 	padding-top: 2rem;
 	padding-bottom: 3rem;
@@ -125,7 +153,7 @@ footer p {
 .afe-littlecaption {
 	font-size: small;
 	font-weight: bold;
-	margin: 1rem 0;
+	margin: 25px 0;
 }
 /* ---- Layout ---- */
 
