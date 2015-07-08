@@ -1,5 +1,20 @@
 /* ---- Common ---- */
 
+hr {
+	border-top-color: #f5f5f5;
+	margin: 10px;
+}
+
+/* ---- Shadows ---- */
+.am-topbar {
+	box-shadow: 0 1px 2px 0 #071D1B;
+}
+.afe-bigbanner,
+.afe-bigbanner-non-index,
+footer {
+	box-shadow: 0 1px 3px 0 #cccccc;
+}
+
 /* ---- Narod (Nav Bar) ---- */
 .afe-navbar {
 	background-color: #39635F;
@@ -46,9 +61,6 @@
 	background-size: cover;
 	margin-top: 50px;
 }
-.afe-bigbanner-text {
-	font-size: normal;
-}
 .afe-bigbanner h1 {
 	color: #fff;
 }
@@ -73,16 +85,16 @@ footer {
     /* - Button - */
 
 .am-btn-default {
-	background-color: #3bb4f2;}
+	background-color: #19a7f0;}
 .am-btn-default:hover,.am-btn-default:focus {
-  background-color: #19a7f0;}
+  background-color: #61BFEF;}
 .am-btn-default:active,.am-btn-default.am-active {
 	background-color: #0e93d7;}
 
 .am-btn-primary {
-	background-color: #a0d6e5;}
+	background-color: #19a7f0;}
 .am-btn-primary:hover,.am-btn-primary:focus {
-  background-color: #19a7f0;}
+  background-color: #61BFEF;}
 .am-btn-primary:active,.am-btn-primary.am-active {
 	background-color: #0e93d7;}
 
@@ -114,21 +126,10 @@ footer {
 .am-btn-secondary:active,
 .am-btn-secondary.am-active, {color: #ffffff;}
 
-.am-btn-default,
-.am-btn-default:hover,
-.am-btn-default:focus,
-.am-btn-default:active,
-.am-btn-default.am-active,
-.am-btn-primary,
-.am-btn-primary:hover,
-.am-btn-primary:focus,
-.am-btn-primary:active,
-.am-btn-primary.am-active,
-.am-btn-secondary,
-.am-btn-secondary:hover,
-.am-btn-secondary:focus,
-.am-btn-secondary:active,
-.am-btn-secondary.am-active {border: none;}
+.am-btn {
+	border: none;
+	transition-duration: 100ms 100ms;
+}
 /* ---- Components ---- */
 div {
 	border: none;  /* For debugging */
@@ -148,6 +149,9 @@ div {
 .afe-bigbanner p {
 	font-size: medium;
 	text-align: justify;
+}
+.afe-bigbanner-text {
+	font-size: normal;
 }
 .afe-ack-logo {
 	width: 96px;

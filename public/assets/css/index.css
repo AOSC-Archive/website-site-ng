@@ -39,12 +39,12 @@
 .afe-news-body {
 }
 .afe-news-body p {
-	margin: 0 0 1rem;
+	margin: 0 0 0.5rem;
 	font-size: small;
-	text-align: justify;
+	/*text-align: justify;*/
 }
 .afe-news-body p:last-of-type {
-	margin: 0 0 3rem;
+	margin: 0;
 }
 .afe-news-container {
 	width: 100%;
@@ -59,6 +59,7 @@
 }
 .afe-news-date {
 	font-size: small;
+	color: #aaa;
 }
 .afe-news .am-badge {
 	margin: 0 0 0 0.5rem;
