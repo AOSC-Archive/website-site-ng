@@ -1,5 +1,17 @@
 # The News YAML storage. Please append new entries to the top.
 -
+  date: 2015-07-08
+  type: bug
+  title: "Security advisory: cups-filters"
+  content:
+    - >
+      Two CVEs (Common Vulnerabilities and Exposures), ```CVE-2015-3258 and
+      CVE-2015-3279``` are reported recently to ```oss-security``` list, and an
+      update to the package is recommended.
+    - >
+      AOSC OS users may update ```cups-filters``` to ```1.0.71``` to fix this
+      issue.
+-
   date: 2015-07-07
   type: bug
   title: "Security advisory: nodejs"
