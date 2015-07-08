@@ -1,6 +1,20 @@
 # The News YAML storage. Please append new entries to the top.
 -
   date: 2015-07-08
+  type: news
+  title: Information regarding a recent "vim" update
+  content:
+    - >
+      The package ```vim``` is recently split into four packages:
+      ```vim-runtime``` that contains common runtime libraries and data;
+      ```vim-nox``` that contains a non-X dependent copy of Vim;
+      ```gvim``` that contains the graphical copy of Vim with a GTK+ frontend;
+      ```vim``` that has become a transitional package that depends on
+      ```vim-nox```.
+    - >
+      Users are recommended to remove ```vim``` before updating.
+-
+  date: 2015-07-08
   type: bug
   title: "Security advisory: cups-filters"
   content:
