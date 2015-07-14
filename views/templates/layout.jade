@@ -4,20 +4,20 @@ block title
 block append stylesheet
   link(rel='stylesheet', href='assets/css/common.css')
 block header
-    .am-topbar.am-topbar-fixed-top.afe-navbar
-      .am-u-md-10.am-u-md-offset-1
-        ul.afe-navbar.am-topbar-nav.am-nav.am-nav-pills.am-nav-justify
-          a(href="/index.html")
-            img.afe-navbar-logo(src="assets/i/aosc.png")
-          li: a(href="news-flow") NEWS
-          li: a(href="projects") PROJECTS
-          li: a(href="https://github.com/AOSC-Dev/") GIT
-          li: a(href="about") ABOUT
-          li.afe-navbar-download-highlight: a(href="somewhere") DOWNLOADS
+  header.am-topbar.am-topbar-fixed-top.afe-navbar
+    .am-u-md-10.am-u-md-offset-1
+      ul.afe-navbar.am-topbar-nav.am-nav.am-nav-pills.am-nav-justify
+        a(href="/index.html")
+          img.afe-navbar-logo(src="assets/i/aosc.png")
+        li: a(href="news-flow") NEWS
+        li: a(href="projects") PROJECTS
+        li: a(href="https://github.com/AOSC-Dev/") GIT
+        li: a(href="about") ABOUT
+        li.afe-navbar-download-highlight: a(href="somewhere") DOWNLOADS
 block content
 block footer
-  .am-g
-    div
+  footer
+    .am-g
       .am-u-md-9.am-u-md-offset-1
         .am-u-md-2.afe-footer-links
             h4 SITES
@@ -42,7 +42,7 @@ block footer
             h4 ACKNOWLEDGEMENT
             a(href="https://www.qingcloud.com/")
               img.afe-ack-logo(src="assets/i/ack.png")
-    div
+    .am-g
       .am-u-md-9.am-u-md-offset-1
         .am-u-md-1.afe-footer-links
           img.afe-footer-logo(src="assets/i/aosc.png")

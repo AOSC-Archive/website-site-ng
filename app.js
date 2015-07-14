@@ -7,11 +7,12 @@ var express = require('express'); // ← Familiar things
 
 // Do blink-of-an-WINK
 var app = express(); // ← things
+var log = require('./log.js');
 // With quick start up and performance.
 
 // Do the same things
 // Because
-var routes  = require('./routes.js'); // ← your stuff
+var routes = require('./routes.js'); // ← your stuff
 // comes with you.
 
 /* Do personal things
@@ -42,9 +43,9 @@ app.use(express.static('public')); // on your *public*
 routes.DoBoom(app);
 // Cha-cha-cha
 
-var server = app.listen(3000, function () {
-  console.log('Listening at port %s', server.address().port);
-});
+var child_process = require('child_process');
+child_process.fork('./watcher.js');
+log.debug('server: Fork watcher');
 // tweet-tweet
 
 // With a one-stop AOSC Web Team
@@ -54,6 +55,9 @@ var server = app.listen(3000, function () {
     and bis.  */
 
 // Do visual things
+var server = app.listen(3000, function () {
+  log.debug('server: Listening at port ' + server.address().port);
+});
 // Like using AOSC OS for
 // Free
 // Zero

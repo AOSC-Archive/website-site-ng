@@ -1,98 +1,91 @@
 /* Local Stylesheet */
-
 /* ---- Colours ---- */
 .afe-news-tag-news .afe-news-container {
-	border-color: #35C2FF;
+  border-color: #35c2ff;
 }
 .afe-news-tag-news .afe-news-body p:first-of-type:before {
-	color: #35C2FF;
-	content: "aosc@web /news $ ";
-	font-weight: 800;
-	font-size: normal;
+  color: #35c2ff;
+  content: "aosc@web /news $ ";
+  font-weight: 800;
+  font-size: normal;
 }
 .afe-news-tag-bug .afe-news-container {
-	border-color: #FF8A27;
+  border-color: #ff8a27;
 }
 .afe-news-tag-bug .afe-news-body p:first-of-type:before {
-	color: #FF8A27;
-	content: "aosc@web /news ! ";
-	font-weight: 800;
-	font-size: normal;
+  color: #ff8a27;
+  content: "aosc@web /news ! ";
+  font-weight: 800;
+  font-size: normal;
 }
-
 .afe-news .am-badge {
-	background-color: #fafafa;
-	color: #888;
+  background-color: #fafafa;
+  color: #888;
 }
-
 /* //// big banner //// */
 .afe-bigbanner button {
-	width: 20rem;
-	margin: 0.5rem 0;
+  width: 20rem;
+  margin: 0.5rem 0;
 }
-
 /* //// news list //// */
 .afe-news h3 {
-	font-size: large;
-	margin: 0;
-}
-.afe-news-body {
+  font-size: large;
+  margin: 0;
 }
 .afe-news-body p {
-	margin: 0 0 0.5rem;
-	font-size: small;
-	/*text-align: justify;*/
+  margin: 0 0 0.5rem;
+  font-size: small;
+/*text-align: justify;*/
 }
 .afe-news-body p:last-of-type {
-	margin: 0;
+  margin: 0;
 }
 .afe-news-container {
-	width: 100%;
-	margin-left: 0;
-	padding-left: 1rem;
-	border-width: 0;
-	border-left-style: solid;
-	border-left-width: 0.8rem;
+  width: 100%;
+  margin-left: 0;
+  padding-left: 1rem;
+  border-width: 0;
+  border-left-style: solid;
+  border-left-width: 0.8rem;
 }
 .afe-news-info {
-	margin: 0.2rem 0;
+  margin: 0.2rem 0;
 }
 .afe-news-date {
-	font-size: small;
-	color: #aaa;
+  font-size: small;
+  color: #aaa;
 }
 .afe-news .am-badge {
-	margin: 0 0 0 0.5rem;
-	font-weight: normal;
+  margin: 0 0 0 0.5rem;
+  font-weight: normal;
 }
-
 /* //// projects list //// */
 .afe-prjs li img {
-	width: 50px;
-	height: 50px;
-	margin-top: 0.5rem;
-	margin-bottom: 0.5rem;
+  width: 50px;
+  height: 50px;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 .afe-prjs-body {
-	margin-left: 60px;
-	margin-bottom: 1.5rem;
+  margin-left: 60px;
+  margin-bottom: 1.5rem;
 }
 .afe-prjs-body h3 {
-	font-size: medium;
-	margin: 0;
+  font-size: medium;
+  margin: 0;
 }
 .afe-prjs-body p {
-	font-size: small;
-	margin: 0;
-	opacity: 0;
-	transition: max-height 200ms;
+  font-size: small;
+  margin: 0;
+  opacity: 0;
+  transition: max-height 200ms;
   max-height: 30px;
   overflow: hidden;
   height: auto;
 }
 .afe-prjs-body:hover p {
-	font-size: small;
-	margin: 0;
-	opacity: 1;
-	max-height: 10rem;
+  font-size: small;
+  margin: 0;
+  opacity: 1;
+  max-height: 10rem;
 }
