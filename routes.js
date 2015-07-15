@@ -104,7 +104,7 @@ app.get('/news-flow' , function(req, res) {
 // !!! This route MUST be the LAST.
   app.get( '*' , function(req, res) {
     try{
-      log.debug('[Router] Client requested a unreachable URI ' + req.originalUrl);
+      log.debug('router: Client requested a unreachable URI ' + req.originalUrl);
       res.status(404).render('err/404',
         {'params' : {
             'url' : req.path

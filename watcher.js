@@ -1,5 +1,6 @@
 'use strict'
 var stylus = require('stylus');
+var nib = require('nib');
 var fs = require('fs');
 var log = require('./log.js');
 
@@ -13,7 +14,7 @@ function fullPathOfStylus(file) {
 function forEachStylus(callback) {
   var files = fs.readdirSync(STYLUS_DIR);
   files.forEach(function(file) {
-    var regExFilename = file.match(/.+(?=\.styl)/i);
+    var regExFilename = file.match(/^[^\.]+(?=\.styl$)/i);
     if(regExFilename == null) return;
     if(!fs.statSync(fullPathOfStylus(regExFilename)).isFile()) return;
     callback(regExFilename[0]);
@@ -44,7 +45,11 @@ function compileStylus() {
   log.info('watcher.compiler: Compiling start');
   forEachStylus(function(file) {
     var sourceStylus = fs.readFileSync(fullPathOfStylus(file), 'utf8');
-    stylus(sourceStylus).set('compress', false).render(function(err, targetCss) {
+    stylus(sourceStylus)
+    .set('filename', __dirname + '/' + __filename)
+    .set('compress', false)
+    .use(nib())
+    .render(function(err, targetCss) {
       if(err) {
         log.warn('watcher.compiler: Failed on compiling ' + file + '.styl :\n' + err);
       }
