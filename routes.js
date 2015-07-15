@@ -2,6 +2,7 @@
 var yaml    = require('js-yaml');
 var fs      = require('fs');
 var md      = require('markdown').markdown;
+var log     = require('./log.js');
 
 function formatDate(date) {
   var month = ['January', 'February', 'March', 'April', 'May',
@@ -103,6 +104,7 @@ app.get('/news-flow' , function(req, res) {
 // !!! This route MUST be the LAST.
   app.get( '*' , function(req, res) {
     try{
+      log.debug('router: Client requested a unreachable URI ' + req.originalUrl);
       res.status(404).render('err/404',
         {'params' : {
             'url' : req.path
