@@ -1,0 +1,5 @@
+shadow-color(baseColor)
+	alpha(darken(baseColor,50%),0.8)
+
+paper-shadow(layer, baseColor)
+	box-shadow: 0 0 layer*2px 0 shadow-color(baseColor)

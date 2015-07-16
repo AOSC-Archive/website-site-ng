@@ -1,6 +1,6 @@
-/* Local Stylesheet */
+@import 'index.layout.styl'
+@import 'functions/decorations.styl'
 
-/* ---- Colours ---- */
 .afe-news-tag-news .afe-news-container {
 	border-color: #35C2FF;
 }
@@ -24,28 +24,6 @@
 	background-color: #fafafa;
 	color: #888;
 }
-
-/* //// big banner //// */
-.afe-bigbanner button {
-	width: 20rem;
-	margin: 0.5rem 0;
-}
-
-/* //// news list //// */
-.afe-news h3 {
-	font-size: large;
-	margin: 0;
-}
-.afe-news-body {
-}
-.afe-news-body p {
-	margin: 0 0 0.5rem;
-	font-size: small;
-	/*text-align: justify;*/
-}
-.afe-news-body p:last-of-type {
-	margin: 0;
-}
 .afe-news-container {
 	width: 100%;
 	margin-left: 0;
@@ -54,45 +32,12 @@
 	border-left-style: solid;
 	border-left-width: 0.8rem;
 }
-.afe-news-info {
-	margin: 0.2rem 0;
-}
 .afe-news-date {
-	font-size: small;
 	color: #aaa;
 }
-.afe-news .am-badge {
-	margin: 0 0 0 0.5rem;
-	font-weight: normal;
-}
 
-/* //// projects list //// */
-.afe-prjs li img {
-	width: 50px;
-	height: 50px;
-	margin-top: 0.5rem;
-	margin-bottom: 0.5rem;
-}
-.afe-prjs-body {
-	margin-left: 60px;
-	margin-bottom: 1.5rem;
-}
-.afe-prjs-body h3 {
-	font-size: medium;
-	margin: 0;
-}
-.afe-prjs-body p {
-	font-size: small;
-	margin: 0;
-	opacity: 0;
-	transition: max-height 200ms;
-  max-height: 30px;
-  overflow: hidden;
-  height: auto;
-}
-.afe-prjs-body:hover p {
-	font-size: small;
-	margin: 0;
-	opacity: 1;
-	max-height: 10rem;
-}
+.afe-prjs-body
+	p
+		opacity: 0
+	&:hover p
+		opacity: 1

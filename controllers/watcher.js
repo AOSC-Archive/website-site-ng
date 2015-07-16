@@ -46,7 +46,7 @@ function compileStylus() {
   forEachStylus(function(file) {
     var sourceStylus = fs.readFileSync(fullPathOfStylus(file), 'utf8');
     stylus(sourceStylus)
-    .set('filename', __dirname + '/' + __filename)
+    .set('filename', fullPathOfStylus(file))
     .set('compress', false)
     .use(nib())
     .render(function(err, targetCss) {
