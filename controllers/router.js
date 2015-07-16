@@ -4,6 +4,8 @@ var fs      = require('fs');
 var md      = require('markdown').markdown;
 var log     = require('./log.js');
 
+var CONTENTS_DIR    = 'contents';
+
 function formatDate(date) {
   var month = ['January', 'February', 'March', 'April', 'May',
     'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -13,7 +15,7 @@ function formatDate(date) {
 }
 
 function readYAML(yamlfile) {
-  return yaml.safeLoad(fs.readFileSync('text/' + yamlfile + '.yml', 'utf8'));
+  return yaml.safeLoad(fs.readFileSync(CONTENTS_DIR + '/' + yamlfile + '.yml', 'utf8'));
 }
 
 function sayOops(req, res, err) {

@@ -4,8 +4,8 @@ var nib = require('nib');
 var fs = require('fs');
 var log = require('./log.js');
 
-var STYLUS_DIR = 'public/assets/stylus';
-var CSS_DIR    = 'public/assets/css';
+var STYLUS_DIR = 'stylesheets';
+var CSS_DIR    = 'static/assets/css';
 
 function fullPathOfStylus(file) {
   return STYLUS_DIR + '/' + file + '.styl';

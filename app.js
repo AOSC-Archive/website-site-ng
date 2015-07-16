@@ -7,12 +7,12 @@ var express = require('express'); // ← Familiar things
 
 // Do blink-of-an-WINK
 var app = express(); // ← things
-var log = require('./log.js');
+var log = require('./controllers/log.js');
 // With quick start up and performance.
 
 // Do the same things
 // Because
-var routes = require('./routes.js'); // ← your stuff
+var routes = require('./controllers/router.js'); // ← your stuff
 // comes with you.
 
 /* Do personal things
@@ -34,7 +34,7 @@ app.set('views', './views');    // your truly personal digital
 
 // and
 // finding that static pages
-app.use(express.static('public')); // on your *public*
+app.use(express.static('static')); // on your *public*
 
 // Do unexpected things
 // that turn browsing
@@ -44,7 +44,7 @@ routes.DoBoom(app);
 // Cha-cha-cha
 
 var child_process = require('child_process');
-child_process.fork('./watcher.js');
+child_process.fork('./controllers/watcher.js');
 log.debug('server: Fork watcher');
 // tweet-tweet
 
