@@ -1,16 +1,13 @@
 @import '../functions/layout.styl'
 
-.afe-bigbanner, .afe-bigbanner-non-index
+.afe-bigbanner
 	paper-layer: 1
 	padding: 50px 0
-
-/* ---- Colors ---- */
-.afe-bigbanner
-	margin-top: 50px
 	h1
 		font-size: xx-large
 	p
 		font-size: medium
 		text-align: justify
+
 .afe-bigbanner-non-index
-	margin-top: 50px
+	@extend .afe-bigbanner

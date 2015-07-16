@@ -1,3 +1,4 @@
 Thumbs.db
 /static/assets/css/*
 !/static/assets/css/static/
+!/static/assets/css/fonts/
