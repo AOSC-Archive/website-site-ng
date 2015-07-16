@@ -1,17 +1,21 @@
 @import 'header.layout.styl'
 @import '../functions/decorations.styl'
 
+navBgColor = #3D5CAC
+navDlBgColor = #C42E71
+
 .afe-navbar
-	paper-shadow: 2 #39635F
-	background-color: #39635F
+	background-color: navBgColor
+	paper-shadow: 2 navBgColor
 	border-width: 0px
 	border-style: solid
-	li a
-		color: white
-		&:hover
-			color: white
-			background-color: #39635F
-	li.afe-navbar-download-highlight a
-		background-color: #E51572
-		&:hover
-			background-color: #E51572
+	#doc-navbar-collapse
+		li a
+			color: alpha(white, 80%)
+			&:hover
+				color: alpha(white, 100%)
+				background-color: lighten(navBgColor, 50%)
+		li.afe-navbar-download-highlight a
+			background-color: navDlBgColor
+			&:hover
+				background-color: lighten(navDlBgColor, 50%)

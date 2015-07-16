@@ -3,35 +3,20 @@
 .afe-bigbanner button
 	width: 100%
 
-.afe-news h3
-	font-size: large
-	margin: 0
-
-.afe-news-body p
-	margin: 0 0 0.5rem
-	font-size: small
-	&:last-of-type
-		margin: 0
-
-.afe-news-container
-	width: 100%
-	margin-left: 0
-	padding-left: 1rem
-	border-width: 0
-	border-left-style: solid
-	border-left-width: 0.8rem
-
-.afe-news-info
-	margin: 0.2rem 0
-
-.afe-news-date
-	font-size: small
-	color: #aaa
-
-.afe-news .am-badge
-	margin: 0 0 0 0.5rem
-	font-weight: normal
-
+.afe-news
+	.afe-news-container
+		h3
+			font-size: large
+			font-weight: bold
+			margin: 0
+		padding-top: 0.5rem
+		width: 100%
+		.afe-news-info
+			font-size: small
+		.afe-news-body p
+			margin: 0 0 0.5rem
+			&:last-of-type
+				margin: 0
 
 /* //// projects list //// */
 .afe-prjs li img
@@ -40,14 +25,15 @@
 	margin: 0.5rem 0
 
 .afe-prjs-body
-	margin-left: 60px
-	margin-bottom: 1.5rem
+	padding: 10px 0
+	margin: 2px 0 0 60px
 	h3
 		font-size: medium
 		margin: 0
 	p
 		font-size: small
 		margin: 0
+		min-height: 30px
 		max-height: 30px
 		overflow: hidden
 		height: auto

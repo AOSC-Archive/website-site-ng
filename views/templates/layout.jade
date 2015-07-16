@@ -3,66 +3,66 @@ block title
   | Templates::Layout
 block append stylesheet
   link(rel='stylesheet', href='assets/css/common.css')
-block append javascript
-  script(src="assets/js/amazeui.min.js")
 block header
-  header.am-topbar.am-topbar-fixed-top.afe-navbar
-    button.am-topbar-btn.am-topbar-toggle.am-btn.am-btn-sm.am-show-sm-only(data-am-collapse="{target: '#doc-topbar-collapse'}")
-      span.am-sr-only 导航切换
-      span.am-icon-bars
-    #doc-topbar-collapse.am-collapse.am-topbar-collapse
-      ul.am-topbar-nav.am-nav.am-nav-pills.am-avg-md-7
-        li: a(href="/index.html")
-          img.afe-navbar-logo(src="assets/i/aosc.png")
-        li: a(href="news-flow") NEWS
-        li: a(href="projects") PROJECTS
-        li: a(href="https://github.com/AOSC-Dev/") GIT
-        li: a(href="about") ABOUT
-        li.afe-navbar-download-highlight: a(href="somewhere") DOWNLOADS
+  nav.navbar.navbar-inverse.navbar-fixed-top.afe-navbar
+    .text-center
+      .container
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#doc-navbar-collapse', aria-expanded='false')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='#') AOSC
+        #doc-navbar-collapse.navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li: a(href="/news-flow") NEWS
+            li: a(href="/projects") PROJECTS
+            li: a(href="https://github.com/AOSC-Dev/" target='_blank') GIT
+            li: a(href="/about") ABOUT
+            li.afe-navbar-download-highlight: a(href="somewhere") DOWNLOADS
 block content
 block footer
-  footer
-    .am-g
-      .am-u-md-10.am-u-md-offset-1.afe-footer-links
-        .am-u-md-2
-          h4 SITES
-          ul
-            li: a(href="#") Portal
-            li: a(href="news-flow") News
-            li: a(href="somewhere") Downloads
-            li: a(href="projects") Projects
-            li: a(href="about") About
-        .am-u-md-2
-          h4 PROJECTS
-          ul
-            li: a(href="somewhere") AOSC OS
-            li: a(href="somewhere") Anthon Starter
-            li: a(href="somewhere") LinkC
-            li: a(href="http://l10n.anthonos.org/") Localization
-            li: a(href="https://github.com/AOSC-Dev/") Git
-        .am-u-md-2
-          h4 SERVICES
-          ul
-            li: a(href="https://pastebin.anthonos.org/") Pastebin
-            li: a(href="somewhere") Mailing List
-            li: a(href="somewhere") IRC
-        .am-u-md-4
-          h4 ACKNOWLEDGEMENT
-          ul
-            a(href="https://www.qingcloud.com/")
-              img.afe-ack-logo(src="assets/i/ack.png")
-    .am-g(style="margin-top:20px;")
-      .am-u-md-10.am-u-md-offset-1
-        .am-u-md-2
-          img.afe-footer-logo(src="assets/i/aosc.png")
-        .am-u-md-4
-          h4 Anthon Open Source Community
-          p  Copyleft 2011 - 2015, members of the community.
-          p  AOSC "Safe" Web Team, 2015. Amaze UI.
-          p  粤 ICP 备 14040623 号
-        .am-u-md-4
-          p(style="font-size:medium;")
-            | "Most good programmers do programming not because they expect 
-            | to get paid or get adulation by the public, but because it 
-            | is fun to program."
-          p(style="float:right;") -- Linus Torvalds
+  footer: .container
+    .row.afe-footer-links
+      .col-md-2
+        h4 SITES
+        ul
+          li: a(href="#") Portal
+          li: a(href="news-flow") News
+          li: a(href="somewhere") Downloads
+          li: a(href="projects") Projects
+          li: a(href="about") About
+      .col-md-2
+        h4 PROJECTS
+        ul
+          li: a(href="somewhere") AOSC OS
+          li: a(href="somewhere") Anthon Starter
+          li: a(href="somewhere") LinkC
+          li: a(href="http://l10n.anthonos.org/") Localization
+          li: a(href="https://github.com/AOSC-Dev/") Git
+      .col-md-2
+        h4 SERVICES
+        ul
+          li: a(href="https://pastebin.anthonos.org/") Pastebin
+          li: a(href="somewhere") Mailing List
+          li: a(href="somewhere") IRC
+      .col-md-4.col-md-offset-2
+        h4 ACKNOWLEDGEMENT
+        ul
+          a(href="https://www.qingcloud.com/")
+            img.afe-ack-logo(src="assets/i/ack.png")
+    .row(style="margin-top:20px;")
+      .col-md-2
+        img.afe-footer-logo(src="assets/i/aosc.png")
+      .col-md-4
+        h4 Anthon Open Source Community
+        p  Copyleft 2011 - 2015, members of the community.
+        p  AOSC "Safe" Web Team, 2015. Amaze UI.
+        p  粤 ICP 备 14040623 号
+      .col-md-4.col-md-offset-2
+        p(style="font-size:medium;")
+          | "Most good programmers do programming not because they expect 
+          | to get paid or get adulation by the public, but because it 
+          | is fun to program."
+        p(style="float:right;") -- Linus Torvalds
