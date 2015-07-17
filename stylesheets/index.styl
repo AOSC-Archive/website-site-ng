@@ -1,52 +1,5 @@
 @import 'index.layout.styl'
 @import 'functions/decorations.styl'
 
-@keyframes blinking
-	0%
-		color: transparent
-	50%
-		color: transparent
-	51%
-		color: black
-	100%
-		color: black
-
-news-tag-style(tag, color, prompt='$')
-	.afe-news-tag-{tag}
-		.afe-news-container
-			h3
-				color: darken(color,25%)
-			border-color: color
-			.afe-news-body
-				p:first-of-type:before
-					color: darken(color,25%)
-					content: 'aosc@web /news ' + prompt + ' '
-					font-family: monospace
-				p:last-of-type:after
-					color: transparent
-					content: '_'
-					font-family: monospace
-			&:hover
-				.afe-news-body
-					p:last-of-type:after
-						animation: blinking .4s linear infinite
-
-news-tag-style(news, #35C2FF, '$')
-news-tag-style(bug, #FF8A27, '!')
-
-.afe-news-container
-	width: 100%
-	margin-left: 0
-	padding-left: 1rem
-	border-width: 0
-	border-left-style: solid
-	border-left-width: 0.8rem
-
-.afe-news-date
-	color: #aaa
-
-.afe-prjs-body
-	p
-		opacity: 0
-	&:hover p
-		opacity: 1
+.afe-bigbanner
+	//background-image: url("/assets/i/banner.svg")

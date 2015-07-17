@@ -1,4 +1,3 @@
-'use strict'
 var stylus = require('stylus');
 var nib = require('nib');
 var fs = require('fs');

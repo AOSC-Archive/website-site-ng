@@ -19,51 +19,42 @@ function readYAML(yamlfile) {
 }
 
 function sayOops(req, res, err) {
-  res.status(500).render('err/500',
-    {'params' : {
-        'url' : req.originalUrl,
-        'err' : err
-      }
-    });
+  res.status(500).render('err/500', {'params' : {
+    'url' : req.originalUrl,
+    'err' : err
+  }});
 }
 
 exports.DoBoom = function(app) {
-// - /
-// - or /index.html
-  app.get( /(^\/index\.html$|^\/$)/ , function(req, res) {
+  // - / or /index
+  app.get( /(^\/index$|^\/$)/ , function(req, res) {
     try{
-      var bc = readYAML('news');
+      var bc = readYAML('news').slice(0,9);
       var pj = readYAML('projects');
       for(var i_ct in bc) {
         bc[i_ct].date = formatDate(bc[i_ct].date).toUpperCase();
         var _ct = bc[i_ct].content;
         for(var i_para in _ct) _ct[i_para] = md.toHTML(_ct[i_para]);
       }
-      res.render('index',
-        {'params' : {
-            'title' : 'Community Portal - AOSC',
-            'broadcast' : bc,
-            'projects' : pj
-          }
-        });
+      res.render('index', {'params' : {
+        'broadcast' : bc,
+        'projects' : pj
+      }});
     }catch(err){sayOops(req, res, err);}
   });
 
-// - /news-flow.html
-app.get('/news-flow' , function(req, res) {
-  try{
-    var bct = readYAML('news');
-    for(var i_ct in bct) {
-      bct[i_ct].date = formatDate(bct[i_ct].date).toUpperCase();
-      var _ct = bct[i_ct].content;
-      for(var i_para in _ct) _ct[i_para] = md.toHTML(_ct[i_para]);
-    }
-    res.render('news-flow',
-      {'params' : {
-          'title' : 'Community Portal - News',
-          'broadcast' : bct
-        }
-      });
+  // - /news-flow
+  app.get('/news-flow' , function(req, res) {
+    try{
+      var bct = readYAML('news');
+      for(var i_ct in bct) {
+        bct[i_ct].date = formatDate(bct[i_ct].date).toUpperCase();
+        var _ct = bct[i_ct].content;
+        for(var i_para in _ct) _ct[i_para] = md.toHTML(_ct[i_para]);
+      }
+      res.render('news-flow', {'params' : {
+        'broadcast' : bct
+      }});
     }catch(err){sayOops(req, res, err);}
   });
 
@@ -71,31 +62,25 @@ app.get('/news-flow' , function(req, res) {
   app.get( '/projects' , function(req, res) {
     try{
       var prj = readYAML('projects');
-      res.render('projects',
-      {'params' : {
-            'title' : 'Community Portal - Projects',
-            'project' : prj
-          }
-        });
-      }catch(err){sayOops(req, res, err);}
+      res.render('projects', {'params' : {
+        'project' : prj
+      }});
+    }catch(err){sayOops(req, res, err);}
   });
 
-// - /about.html
+  // - /about
   app.get( '/about' , function(req, res) {
     try{
       var abt = readYAML('about');
       var ct = readYAML('contacts');
-      res.render('about',
-        {'params' : {
-            'title' : 'Community Portal - About',
-            'about' : abt,
-            'contacts' : ct
-          }
-        });
+      res.render('about', {'params' : {
+        'about' : abt,
+        'contacts' : ct
+      }});
     }catch(err){sayOops(req, res, err);}
   });
 
-// - /distro.html
+  // - /distro
   app.get( '/distro' , function(req, res) {
     try{
       var doc = readYAML('distro');
@@ -103,15 +88,13 @@ app.get('/news-flow' , function(req, res) {
     }catch(err){sayOops(req, res, err);}
   });
 
-// !!! This route MUST be the LAST.
+  // !!! This route MUST be the LAST.
   app.get( '*' , function(req, res) {
     try{
       log.debug('router: Client requested a unreachable URI ' + req.originalUrl);
-      res.status(404).render('err/404',
-        {'params' : {
-            'url' : req.path
-          }
-        });
+      res.status(404).render('err/404', {'params' : {
+        'url' : req.path
+      }});
     }catch(err){sayOops(req, res, err);}
   });
 };
