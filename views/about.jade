@@ -1,32 +1,31 @@
 extend ./templates/layout.jade
 
 block title
-  | Community Portal - About
+  | About - AOSC
 block append stylesheet
-  link(rel='stylesheet', href='assets/css/index.css')
   link(rel='stylesheet', href='assets/css/about.css')
 block content
-  .afe-bigbanner-non-index: .am-g.am-g-fixed.am-vertical-align: .am-vertical-align-middle.am-cf
-    .am-u-md-12
+  .afe-bigbanner-non-index: .container: .row
+    .col-md-12
       h1 ABOUT
-      h3 All about this community.
-  #wrapper: .am-g.am-g-fixed
-    .am-u-md-9
+      p All about this community.
+  #wrapper: .container: .row
+    .col-md-8
       h2.afe-littlecaption THE STORY
-      each composition in params.about
-        li(class="afe-about-tag-"+composition.type): .afe-about-container
-          .afe-about
+      ul.afe-main
+        each composition in params.about
+          li(class="afe-tag-"+composition.type): .afe-main-item
             h3=composition.section
-          .afe-about-body
-            each para in composition.text
-              p=para
-          hr
-    .am-u-md-3
+            .afe-main-item-body
+              each para in composition.text
+                p=para
+            hr
+    .col-md-3.col-md-offset-1
       h2.afe-littlecaption FIND US
-      ul.afe-prjs
+      ul.afe-side
         each contact in params.contacts
-          li.am-cf
-            img.am-fl(src="assets/i/test.png")
-            .afe-prjs-body
+          li
+            img.pull-left(src="assets/i/test.png")
+            .afe-side-item-body
               h3=contact.type
               p=contact.way

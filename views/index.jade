@@ -4,26 +4,26 @@ block title
   | Community Portal - AOSC
 block append stylesheet
   link(rel='stylesheet', href='assets/css/index.css')
+  link(rel='stylesheet', href='assets/css/news-flow.css')
 block content
-  .afe-bigbanner: .am-g.am-g-fixed.am-vertical-align: .am-vertical-align-middle.am-cf
-    .am-u-md-8
+  .afe-bigbanner: .container: .row
+    .col-md-8
       h1 ANTHON OPEN SOURCE COMMUNITY
       p Hi, and welcome to AOSC. We are a group of free and open technology enthusiasts working hard for improvements.
-    .am-u-md-3.am-u-md-offset-1: a(href="/"): button.am-btn.am-btn-primary(style="height:9rem;")
+    .col-md-3.col-md-offset-1: a(href="/distro"): button.btn.btn-primary(style="height:9rem;")
       | DOWNLOAD AOSC OS
-    .am-u-md-3.am-u-md-offset-1: button.am-btn.am-btn-default
+    .col-md-3.col-md-offset-1: a(href="/donate"): button.btn.btn-default
       | CUP O' BOBA?
-  #wrapper: .am-g.am-g-fixed
-    .am-u-md-8
+  #wrapper: .container: .row
+    .col-md-8
       h2.afe-littlecaption LASTEST NEWS
-      ul.afe-news
+      ul.afe-main
         each val, index in params.broadcast
-          li(class="afe-news-tag-"+val.type): .afe-news-container
+          li(class="afe-tag-"+val.type): .afe-main-item
             if index<5
               h3=val.title
-              p.afe-news-info
-                span.afe-news-date=val.date
-              .afe-news-body
+              p.afe-main-item-subtitle=val.date
+              .afe-main-item-body
                 each para in val.content
                   !=para
               hr
@@ -32,14 +32,13 @@ block content
                 h3=val.title
               hr
             else if index>=8
-            
         li: a(href="news-flow"): h4 Read more...
-    .am-u-md-3.am-u-md-offset-1
+    .col-md-3.col-md-offset-1
       h2.afe-littlecaption PROJECTS OVERVIEW
-      ul.afe-prjs
+      ul.afe-side
         each project in params.projects
-          li.am-cf
-            img.am-fl(src="/assets/i/" + project.mininame + ".svg")
-            .afe-prjs-body
+          li
+            img.pull-left(src="/assets/i/" + project.mininame + ".svg")
+            .afe-side-item-body
               h3=project.fullname
               p=project.description

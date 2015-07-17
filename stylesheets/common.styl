@@ -1,31 +1,48 @@
 @import 'common.layout.styl'
 @import 'functions/decorations.styl'
 
+body
+	background-color: #fff
+
 #wrapper
 	color: #1F1F1A
-	background-color: #fff
-	.am-g
-		background-color: inherit
+	.container
+		padding-left: 20px;
+		padding-right: 20px;
+		background-color: #fff
+		box-shadow: alpha(black,0.2) 0 0 2px
 
 .afe-littlecaption
 	color: #aaa
 
-am-setBtnColor(name, default, hover, active, fontcolor=#ffffff)
-	.am-btn-{name}
-		background-color: default
-		&:hover, &:focus
-			background-color: hover
-		&:active, .am-active
-			background-color: active
-		&, &:visited, &:hover, &:focus, &:active, .am-active
-			color: fontcolor
-.am-btn
-	border: none
-	transition-duration: 100ms 100ms
+.afe-main-item
+	width: 100%
+	margin-left: 0
+	padding-left: 1rem
+	border-width: 0
+	border-left-style: solid
+	border-left-width: 0.8rem
+	.afe-main-item-subtitle
+		color: #aaa
 
-am-setBtnColor(default, #19a7f0, #61BFEF, #0e93d7)
-am-setBtnColor(primary, #19a7f0, #61BFEF, #0e93d7)
-am-setBtnColor(secondary, #3bb4f2, #19a7f0, #0e93d7)
+@keyframes blinking
+	0%
+		color: transparent
+	50%
+		color: transparent
+	51%
+		color: black
+	100%
+		color: black
+
+.btn
+	border-radius: 0;
+
+.afe-side-item-body
+	p
+		opacity: 0
+	&:hover p
+		opacity: 1
 
 @import 'components/header.styl'
 @import 'components/banner.styl'

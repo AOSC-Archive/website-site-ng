@@ -6,14 +6,58 @@ li
 ol, ul
 	padding-left: 0
 
-p
+p, code
 	word-wrap: break-word
 	word-break: normal
+	white-space: normal
 
-#wrapper
-	padding: 20px 0
+code
+	color: rgb(14,121,161)
+
+body
+	padding-top: 50px
+
+#wrapper .container
+	padding: 20px 10px
 
 .afe-littlecaption
 	font-size: small
 	font-weight: bold
-	margin: 25px 0
+	margin: 25px 0 #2183D9
+
+.afe-main
+	.afe-main-item
+		h3
+			font-size: large
+			font-weight: bold
+			margin: 0
+		padding-top: 0.5rem
+		width: 100%
+		.afe-main-item-subtitle
+			font-size: small
+		.afe-main-item-body p
+			margin: 0 0 0.5rem
+			&:last-of-type
+				margin: 0
+
+.afe-side
+	li img
+		width: 50px
+		height: 50px
+		margin: 0.5rem 0
+	.afe-side-item-body
+		padding: 10px 0
+		margin: 2px 0 0 60px
+		h3
+			font-size: medium
+			margin: 0
+		p
+			font-size: small
+			margin: 0
+			min-height: 30px
+			max-height: 30px
+			overflow: hidden
+			height: auto
+			transition: all 200ms
+		&:hover p
+			max-height: 10rem

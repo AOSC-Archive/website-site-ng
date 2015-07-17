@@ -1,30 +1,23 @@
 extend ./templates/layout.jade
 
 block title
-  | Community Portal - More News
+  | News Flow - AOSC
 block append stylesheet
-  link(rel='stylesheet', href='assets/css/index.css')
   link(rel='stylesheet', href='assets/css/news-flow.css')
 block content
-  .afe-bigbanner-non-index: .am-g.am-g-fixed.am-vertical-align: .am-vertical-align-middle.am-cf
-    .am-u-md-12.am-u-md-offset-3
+  .afe-bigbanner-non-index: .container: .row
+    .col-md-9.col-md-offset-3
       h1 MORE NEWS
-      h3.afe-bigbanner-text Read hard, get it all caught up! :-D
-  #wrapper: .am-g.am-g-fixed
-    .am-u-md-10.afe-news-flow
+      p Read hard, get it all caught up! :-D
+  #wrapper: .container: .row
+    .col-md-10.afe-news-flow
       h2.afe-littlecaption MORE NEWS AHEAD
-      ul.afe-news
+      ul.afe-main
         each val, index in params.broadcast
-            li(class="afe-news-tag-"+val.type): .afe-news-container
-              if index<4
-                h3=val.title
-                p.afe-news-info
-                  span.afe-news-date=val.date
-                .afe-news-body
-                  each para in val.content
-                    !=para
-              else if index>=4
-                  a(href="#")
-                    h3=val.title
-                  span.afe-news-date=val.date
-              hr
+            li(class="afe-tag-"+val.type): .afe-main-item
+              h3=val.title
+              p.afe-main-item-subtitle=val.date
+              .afe-main-item-body
+                each para in val.content
+                  !=para
+            hr
