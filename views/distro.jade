@@ -1,0 +1,28 @@
+extend ./templates/layout.jade
+
+block title
+  | AOSC OS Downloads - AOSC
+block append stylesheet
+  link(rel='stylesheet', href='assets/css/distro.css')
+block content
+  .afe-bigbanner-non-index: .container: .row
+    .col-md-12
+      h1 AOSC OS
+      p Simplified Linux computing starts right here.
+  #wrapper: .container: .row
+    .col-md-12
+      each distros in params.distro
+        //FIXME: MERGE STYLE 
+        .afe-cards.container(style="padding: 0 0 0 0;")
+          .col-md-12(style="max-height: 200px; overflow: hidden; padding: 0 0 0 0;")
+            img(src="/assets/i/screenshot.png" style="min-height: 200px; width: 100%;")
+          .container
+            .col-md-7.col-sm-12
+              h1=distros.name
+              p Core version: #{distros.core}            
+            .col-md-5.col-sm-12.container
+              a(href="/donate"): button.btn.btn-primary.btn-block
+                | DOWNLOAD
+              // FIXME: MERGE STYLE
+              .label.label-default(style="display: block; width: 100%; text-color: #FFFFFF; border-radius: 0px; padding: 6px 12px;") 
+                | 54ed3a7bd8a74dc17829670d388d121c
