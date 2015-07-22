@@ -83,8 +83,10 @@ exports.DoBoom = function(app) {
   // - /distro
   app.get( '/distro' , function(req, res) {
     try{
-      var doc = readYAML('distro');
-      res.render('distro', {'param' : doc});
+      var dto = readYAML('distro');
+      res.render('distro', {'params' : {
+        'distro' : dto
+      }});
     }catch(err){sayOops(req, res, err);}
   });
 
