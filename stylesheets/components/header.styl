@@ -1,8 +1,9 @@
 @import 'header.layout.styl'
 @import '../functions/decorations.styl'
 
-navBgColor = #3D5CAC
-navDlBgColor = #C42E71
+navColor = #000
+navBgColor = #FFF
+navDlBgColor = #FF3E94
 
 .afe-navbar
 	background-color: navBgColor
@@ -11,11 +12,12 @@ navDlBgColor = #C42E71
 	border-style: solid
 	#doc-navbar-collapse
 		li a
-			color: alpha(white, 80%)
+			color: alpha(navColor, 80%)
 			&:hover
-				color: alpha(white, 100%)
+				color: alpha(navColor, 100%)
 				background-color: lighten(navBgColor, 50%)
 		li.afe-navbar-download-highlight a
 			background-color: navDlBgColor
+			color: white
 			&:hover
 				background-color: lighten(navDlBgColor, 50%)
