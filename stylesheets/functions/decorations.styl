@@ -11,7 +11,7 @@ add-tag-style(tag, color, prompt='')
 				color: darken(color,25%)
 			border-color: color
 			.afe-main-item-body
-				if(prompt=='')
+				unless prompt==''
 					p:first-of-type:before
 						color: darken(color,25%)
 						content: 'aosc@web /news ' + prompt + ' '
