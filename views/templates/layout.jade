@@ -23,6 +23,16 @@ block header
             li: a(href="/about") ABOUT
             li.afe-navbar-download-highlight: a(href="somewhere") DOWNLOADS
 block content
+  
+mixin myDearAOSC()
+  .col-xs-4.col-sm-2.col-md-2.col-lg-3 
+    img.pull-right.afe-footer-logo(src="assets/i/aosc.png")
+  .col-xs-8.col-sm-10.col-md-10.col-lg-9
+    h4 Anthon Open Source Community
+    p  Copyleft 2011 - 2015, members of the community.
+    p  AOSC "Safe" Web Team, 2015. Bootstrap.
+    p  粤 ICP 备 14040623 号
+
 block footer
   footer
     hr
@@ -36,6 +46,8 @@ block footer
             | is fun to program.
             span.text-nowrap  -- Linus Torvalds
       .row.afe-footer-links
+        .col-lg-5.visible-lg
+          +myDearAOSC()
         .col-xs-12.col-lg-7
           .col-xs-6.col-sm-3.col-md-2.col-lg-3
             h4 SITES
@@ -66,11 +78,5 @@ block footer
                 img(src="assets/i/qingcloud.svg", style="max-width:170px")
               li: a(href="https://gitcafe.com/")
                 img(src="assets/i/gitcafe.png", style="max-width:104px")
-        .col-xs-12.col-lg-5
-          .col-xs-4.col-sm-2.col-md-2.col-lg-3
-            img.pull-right.afe-footer-logo(src="assets/i/aosc.png")
-          .col-xs-8.col-sm-10.col-md-10.col-lg-9
-            h4 Anthon Open Source Community
-            p  Copyleft 2011 - 2015, members of the community.
-            p  AOSC "Safe" Web Team, 2015. Bootstrap.
-            p  粤 ICP 备 14040623 号
+        .col-xs-12.hidden-lg
+          +myDearAOSC()
