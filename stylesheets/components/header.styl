@@ -3,7 +3,7 @@
 
 navColor = #000
 navBgColor = #FFF
-navDlBgColor = #F948BA
+navDlBgColor = #0D397E
 
 .afe-navbar
 	background-color: navBgColor
@@ -20,8 +20,8 @@ navDlBgColor = #F948BA
 			&:hover
 				color: alpha(navColor, 100%)
 				background-color: darken(navBgColor, 10%)
-		li.afe-navbar-download-highlight a
-			background-color: navDlBgColor
-			color: white
-			&:hover
-				background-color: darken(navDlBgColor, 10%)
+	a.afe-navbar-index-highlight
+		background-color: navDlBgColor
+		color: white
+		&:hover
+			background-color: lighten(navDlBgColor, 10%)
