@@ -21,7 +21,7 @@ what's left to do.
 - Fix styles on various pages, especially "about";
 - "about" needs icons for various ways of contact;
 
-# Lower priority
+### Lower priority
 
 - Multi-language support;
 - A banner background, if needed;
