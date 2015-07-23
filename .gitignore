@@ -1,5 +1,6 @@
 Thumbs.db
 /static/assets/css/*
+!/static/assets/css/font-awesome*
 !/static/assets/css/bootstrap*
 /.buildpath
 /build/
