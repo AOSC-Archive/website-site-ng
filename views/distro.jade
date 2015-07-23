@@ -12,17 +12,41 @@ block content
   #wrapper: .container: .row
     .col-md-12
       each distros in params.distro
-        //FIXME: MERGE STYLE 
         .afe-cards.container(style="padding: 0 0 0 0;")
           .col-md-12(style="max-height: 200px; overflow: hidden; padding: 0 0 0 0;")
-            img(src="/assets/i/screenshot.png" style="min-height: 200px; width: 100%;")
+            img(src="#{distros.screenshot}" style="min-height: 200px; width: 100%;")
           .container
-            .col-md-7.col-sm-12
-              h1=distros.name
-              p Core version: #{distros.core}            
-            .col-md-5.col-sm-12.container
-              a(href="/donate"): button.btn.btn-primary.btn-block
-                | DOWNLOAD
-              // FIXME: MERGE STYLE
-              .label.label-default(style="display: block; width: 100%; text-color: #FFFFFF; border-radius: 0px; padding: 6px 12px;") 
-                | 54ed3a7bd8a74dc17829670d388d121c
+            .afe-cards-text
+              .col-md-7.col-sm-12
+                h1 AOSC OS with #{distros.desktop}
+                p Core version: #{distros.core}            
+              .col-md-5.col-sm-12.container
+                a(href="#{distros.url}"): button.btn.btn-primary.btn-block(style="padding: 14px;")
+                  | DOWNLOAD
+                .label.label-default(style="display: block; width: 100%; text-color: #FFFFFF; border-radius: 0px; padding: 6.5px 12px;") 
+                  | 54ed3a7bd8a74dc17829670d388d121c
+          hr
+          .container
+            .col-md-6.col-sm-12
+              .afe-cards-text
+                p=distros.description
+                div(style="padding-top: 25px;")
+                .col-xs-1
+                  span.glyphicon.glyphicon-fire
+                .col-xs-11
+                  p #{distros.processor}
+                .col-xs-1
+                  span.glyphicon.glyphicon-tasks
+                .col-xs-11
+                  p #{distros.ram}
+                .col-xs-1
+                  span.glyphicon.glyphicon-hdd
+                .col-xs-11
+                  p #{distros.hdd}
+                .col-xs-1
+                  span.glyphicon.glyphicon-briefcase
+                .col-xs-11
+                  p #{distros.machine}
+            .col-md-4.col-md-offset-2
+              img.afe-cards-distro-logo.hidden-sm.hidden-xs(src="#{distros.logo}" style="width: 256px; height: 256px;")
+          

@@ -1,42 +1,70 @@
 -
-  name: AOSC OS with KDE
-  description: Plasma desktop (KDE) is a complete, stable, and highly customizable
-               desktop experience suite.
-  core-version: 3.0.1
-  background: http://example.org/example.png
+  desktop: KDE
+  core: 3.0.1
+  screenshot: /assets/i/kde-scr.png
+  logo: /assets/i/kde.svg
   url: http://example.org/example.iso
-  alert:
+  processor: Intel Core 2 Duo or faster
+  ram: 2.0 GiB of RAM
+  hdd: 8.0 GiB of HDD space
+  machine: ThinkPad X61 or equivalent
+  description: A beautiful, well-rounded, and customizable desktop environment
+                           and applications suite. KDE is a good choice for those who seeks
+                           for fancy desktop effects, ability to customize their own desktop,
+                           while demanding assurance on security, and stability.
 -
-  name: AOSC OS with GNOME
-  description: GNOME is a desktop experience suite aiming for universal accessibility
-               and a worry-free experience.
-  core-version: 3.0.1
-  background: http://example.org/example.png
+  desktop: GNOME
+  core: 3.0.1
+  screenshot: /assets/i/gnome-scr.jpg
+  logo: /assets/i/gnome.svg
   url: http://example.org/example.iso
-  alert: >
-    Wow! Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-    eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  processor: Intel Core 2 Duo or faster
+  ram: 2.0 GiB of RAM
+  hdd: 8.0 GiB of HDD space
+  machine: ThinkPad X61 or equivalent
+  description: GNOME is a free and open source desktop environment that aims
+                           for universal access and a worry-free working environment.
+                           GNOME is extremely friendly to first timer Linux users, and
+                           arguably the simpliest to configure.
 -
-  name: AOSC OS with XFCE
-  description: XFCE is a cute little mouse running on your computer. And yes, it does
-               run fast!
-  core-version: 3.0.1
-  background: http://example.org/example.png
+  desktop: XFCE
+  core: 3.0.1
+  logo: /assets/i/xfce.svg
+  screenshot: /assets/i/xfce-scr.jpg
   url: http://example.org/example.iso
-  alert:
+  processor: Intel Pentium 4 HT "Prescott" or faster
+  ram: 0.5 GiB of RAM
+  hdd: 5.0 GiB of HDD space
+  machine: HP Compaq DC5100 or equivalent
+  description: XFCE is a lightweight, and modern desktop environment. XFCE runs
+                              reasonably fast even on older machines. That doesn't mean that
+                              XFCE is just plain and old, it provides users with loads of options in
+                              customization.
 -
-  name: AOSC OS with Cinnamon
-  description: Cinnamon is a fork of GNOME, while being powered by GNOME technologies,
-               it is optimized for desktop users.
-  core-version: 3.0.1
-  background: http://example.org/example.png
+  desktop: Cinnamon
+  core: 3.0.1
+  logo: /assets/i/cinnamon.svg
+  screenshot: /assets/i/cinnamon-scr.jpg
   url: http://example.org/example.iso
-  alert:
+  processor: Intel Core 2 Duo or faster
+  ram: 2.0 GiB of RAM
+  hdd: 8.0 GiB of HDD space
+  machine: ThinkPad X61 or equivalent
+  description: Cinnamon originated from the Linux Mint community as a fork of
+                              GNOME 3 desktop interface - GNOME Shell. Cinnamon provides a
+                              more conventional desktop interface, while offering the ease-of-use
+                              that GNOME is loved for.
 -
-  name: AOSC OS with MATE
-  description: MATE is a fork of GNOME 2.x with a strong attention to new technologies
-               and security features.
-  core-version: 3.0.1
-  background: http://example.org/example.png
+  desktop: MATE
+  core: 3.0.1
+  logo: /assets/i/mate.svg
+  screenshot: /assets/i/mate-scr.png
   url: http://example.org/example.iso
-  alert:
+  processor: Intel Pentium 4 HT "Prescott" or faster
+  ram: 0.5 GiB of RAM
+  hdd: 6.0 GiB of HDD space
+  machine: HP Compaq DC5100 or equivalent
+  description: MATE desktop is a fork of the deprecated GNOME 2, however, MATE
+                              provides the newest desktop technologies just like the others. MATE
+                              is for those who are still liking the old school GNOME feel, while
+                              having a major demand in customization and reliability.
