@@ -90,6 +90,15 @@ exports.DoBoom = function(app) {
     }catch(err){sayOops(req, res, err);}
   });
 
+//-/work-in-progress
+app.get( '/wip' , function(req, res) {
+  try{
+    res.render('wip', {'params' : {
+      'url' : req.path
+    }});
+  }catch(err){sayOops(req, res, err);}
+});
+
   // !!! This route MUST be the LAST.
   app.get( '*' , function(req, res) {
     try{
