@@ -3,7 +3,7 @@ extend ./framework.jade
 block title
   | Templates::Layout
 block append stylesheet
-  link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Open+Sansb+27px|Montserrat')
+  link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Open+Sans+27px|Montserrat')
   link(rel='stylesheet', href='assets/css/common.css')
 block header
   nav.navbar.navbar-fixed-top.afe-navbar
@@ -15,14 +15,14 @@ block header
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand(href='/') AOSC
+          a.afe-navbar-index-highlight.navbar-brand(href='/') AOSC
         #doc-navbar-collapse.navbar-collapse.collapse
           ul.nav.navbar-nav
             li: a(href="/news-flow") NEWS
             li: a(href="/projects") PROJECTS
             li: a(href="https://github.com/AOSC-Dev/" target='_blank') GIT
             li: a(href="/about") ABOUT
-            li.afe-navbar-download-highlight: a(href="somewhere") DOWNLOADS
+            li.navbar-right: a(href="somewhere") DOWNLOADS
 block content
   
 mixin myDearAOSC()
