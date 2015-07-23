@@ -25,7 +25,16 @@ block content
       ul.afe-side
         each contact in params.contacts
           li
-            img.pull-left(src="assets/i/test.png")
+            .col-md-1(style="padding: 0px")
+              case contact.type
+                when "mail"
+                  span.fa.fa-envelope-o(style="font-size: 40px")
+                when "Twitter"
+                  span.fa.fa-twitter(style="font-size: 40px")
+                when "Sina Weibo"
+                  span.fa.fa-weibo(style="font-size: 40px")
+                when "QQ"
+                  span.fa.fa-qq(style="font-size: 40px")
             .afe-side-item-body
               h3=contact.type
               p=contact.way
