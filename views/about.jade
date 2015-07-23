@@ -37,4 +37,16 @@ block content
                   span.fa.fa-qq(style="font-size: 40px")
             .afe-side-item-body
               h3=contact.type
-              p=contact.way
+              case contact.type
+                when "mail"
+                  a(href="mailto: #{contact.way}")
+                    p=contact.way
+                when "Twitter"
+                  a(href="https://twitter.com/aosc_dev")
+                    p=contact.way
+                when "Sina Weibo"
+                  a(href="http://weibo.com/anthondev")
+                    p=contact.way
+                when "QQ"
+                  a(href="http://jq.qq.com/?_wv=1027&k=dOxFcX")
+                    p=contact.way
