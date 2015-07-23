@@ -19,12 +19,12 @@ block content
             .afe-cards-text
               .col-md-7.col-sm-12
                 h1 AOSC OS with #{distros.desktop}
-                p Core version: #{distros.core}            
+                p Core version: #{distros.core}
               .col-md-5.col-sm-12.container
                 a(href="#{distros.url}"): button.btn.btn-primary.btn-block(style="padding: 14px;")
                   | DOWNLOAD
                 // FIXME: stretched on narrow screens.
-                .label.label-default(style="display: block; width: 100%; text-color: #FFFFFF; border-radius: 0px; padding: 6.5px 12px;") 
+                .label.label-default(style="display: block; width: 100%; text-color: #FFFFFF; border-radius: 0px; padding: 6.5px 12px;")
                   | #{distros.checksum}
           hr
           .container
@@ -50,4 +50,3 @@ block content
                   p #{distros.machine}
             .col-md-4.col-md-offset-2
               img.afe-cards-distro-logo.hidden-sm.hidden-xs(src="#{distros.logo}" style="width: 256px; height: 256px;")
-          
