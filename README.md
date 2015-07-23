@@ -14,7 +14,7 @@ what's left to do.
 
 ### Higher priority
 
-- A distribution download page ("AOSC OS downloads");
+~~- A distribution download page ("AOSC OS downloads");~~
 - Links to GitHub, Downloads on the "Projects" page;
 - Support for linking to specific news entry on both "index" and "news-flow";
 - Fix dummy links;
