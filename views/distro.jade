@@ -23,8 +23,9 @@ block content
               .col-md-5.col-sm-12.container
                 a(href="#{distros.url}"): button.btn.btn-primary.btn-block(style="padding: 14px;")
                   | DOWNLOAD
+                // FIXME: stretched on narrow screens.
                 .label.label-default(style="display: block; width: 100%; text-color: #FFFFFF; border-radius: 0px; padding: 6.5px 12px;") 
-                  | 54ed3a7bd8a74dc17829670d388d121c
+                  | #{distros.checksum}
           hr
           .container
             .col-md-6.col-sm-12
@@ -32,19 +33,19 @@ block content
                 p=distros.description
                 div(style="padding-top: 25px;")
                 .col-xs-1
-                  span.glyphicon.glyphicon-fire
+                  span.fa.fa-bar-chart
                 .col-xs-11
                   p #{distros.processor}
                 .col-xs-1
-                  span.glyphicon.glyphicon-tasks
+                  span.fa.fa-database
                 .col-xs-11
                   p #{distros.ram}
                 .col-xs-1
-                  span.glyphicon.glyphicon-hdd
+                  span.fa.fa-hdd-o
                 .col-xs-11
                   p #{distros.hdd}
                 .col-xs-1
-                  span.glyphicon.glyphicon-briefcase
+                  span.fa.fa-laptop
                 .col-xs-11
                   p #{distros.machine}
             .col-md-4.col-md-offset-2
