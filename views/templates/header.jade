@@ -14,4 +14,11 @@ nav.navbar.navbar-fixed-top.afe-navbar
           li: a(href="/projects") PROJECTS
           li: a(href="https://github.com/AOSC-Dev/" target='_blank') GIT
           li: a(href="/about") ABOUT
-          li.navbar-right: a(href="/distro") DOWNLOADS
+          li.dropdown.navbar-right
+            a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") DOWNLOADS 
+              span(class="caret")
+            ul.dropdown-menu.afe-dropdown-menu
+              li: a(href="/distro") AOSC OS
+              li: a(href="/somewhere") DOCKER
+              li: a(href="/somewhere") PORTS
+              li: a(href="/somewhere") PROJECTS
