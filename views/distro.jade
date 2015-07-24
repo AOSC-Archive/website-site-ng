@@ -24,7 +24,7 @@ block content
               p Core version: #{distros.core}
             .col-md-5.col-lg-4.col-sm-12
               a.afe-card-distro-dl.btn.btn-primary.btn-block(href="#{distros.url}") DOWNLOAD
-              code.afe-hash.label.label-default=distros.checksum
+              code.afe-hash.label.label-default MD5: #{distros.checksum}
           .col-xs-12: hr
           .col-md-7.col-lg-6.col-lg-offset-1.col-sm-12: .afe-card-text
             p=distros.description
