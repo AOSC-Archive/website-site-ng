@@ -1,29 +1,34 @@
 -
-  section: The Who?
+  section: The Community
+  subtitle: Mr. Obvious on AOSC
   type: info
   text:
     - >
-      We are a group of free and open technology enthusiasts holding
-      improvement and progress in mind.
+      Anthon Open Source Community - or AOSC- is a community that puts major
+      attention on F/OSS software projects, our work focuses on making them
+      easier to get, more enjoyable to use, and more suitable for international users.
+    - >
+      AOSC is a community in which everyone works volunteeringly. The majority of
+      developers, contributors of the community are students.
 -
-  section: The What?
+  section: The Projects
+  subtitle: Not just a distribution
   type: info
   text:
     - >
-      Anthon Open Source Community originated as a small school based
-      development team in November of 2011, with only three members (and just
-      one of them as the developer). It used to be named after "Anthon.Dev",
-      or Anthon Developers.
+      AOSC's most extensive project is the Linux distribution project, "AOSC OS".
+      However, the community is not merely just a group of people working on the
+      distribution project. We have many other projects, big or small, hosted and
+      contributed by members of the community.
     - >
-      The community was established one year later, and was therefore named as
-      "Anthon Open Source Community"; The community was established in a wish
-      to open up opportunities for new projects to join, and a more equal system
-      that open source developers will like to work in.
-    - >
-      Many projects are started, ended, forked, ... you name it, after the
-      establishment of the community.
+      A good example would be the L10n - or "localization" - project, the AOSC L10n
+      projects holds localization improvements, bug fixes for various F/OSS projects.
+      These fixes will not just benefit AOSC OS itself, all the contributed or improved
+      localization work will be pushed back onto the upstream, making every user of
+      the software easier when using with his/her first language.
 -
-  section: The Law?
+  section: The Law
+  subtitle: Respect the rules, gain more freedom
   type: warning
   text:
     - >
