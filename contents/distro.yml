@@ -1,7 +1,7 @@
 -
   desktop: KDE
   core: 3.0.1
-  screenshot: /assets/i/kde-scr.png
+  screenshot: /assets/i/kde-scr.jpg
   logo: /assets/i/kde.svg
   url: http://mirrors.anthonos.org/anthon/aosc-os/kde/aosc-os_kde_cyanflame_dpkg_20150709_en-US.tar.xz
   checksum: 273c68113672b2ac760da597daeaf82b
@@ -62,7 +62,7 @@
   desktop: MATE
   core: 3.0.1
   logo: /assets/i/mate.svg
-  screenshot: /assets/i/mate-scr.png
+  screenshot: /assets/i/mate-scr.jpg
   url: http://mirrors.anthonos.org/anthon/aosc-os/mate/aosc-os_mate_cyanflame_dpkg_20150709_en-US.tar.xz
   checksum: 9a34b44f925bc600faff4d2ceab0c71e
   processor: Intel Pentium 4 HT "Prescott" or faster

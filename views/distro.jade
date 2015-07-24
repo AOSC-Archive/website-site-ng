@@ -4,49 +4,34 @@ block title
   | AOSC OS Downloads - AOSC
 block append stylesheet
   link(rel='stylesheet', href='assets/css/distro.css')
+
+mixin systemRequirement(faicon, text)
+  p
+    span.afe-card-sysreq-icon(class='fa '+ faicon)
+    span.afe-card-sysreq-text=text
 block content
   .afe-bigbanner-non-index: .container: .row
     .col-md-12
       h1 AOSC OS
       p Simplified Linux computing starts right here.
   #wrapper: .container: .row
-    .col-md-12
       each distros in params.distro
-        .afe-cards.container(style="padding: 0 0 0 0;")
-          .col-md-12(style="max-height: 200px; overflow: hidden; padding: 0 0 0 0;")
-            img(src="#{distros.screenshot}" style="min-height: 200px; width: 100%;")
-          .container
-            .afe-cards-text
-              .col-md-7.col-sm-12
-                h1 AOSC OS with #{distros.desktop}
-                p Core version: #{distros.core}
-              .col-md-5.col-sm-12.container
-                a(href="#{distros.url}"): button.btn.btn-primary.btn-block(style="padding: 14px;")
-                  | DOWNLOAD
-                // FIXME: stretched on narrow screens.
-                .label.label-default(style="display: block; width: 100%; text-color: #FFFFFF; border-radius: 0px; padding: 6.5px 12px;")
-                  | #{distros.checksum}
-          hr(style="margin: 0px")
-          .container
-            .col-md-6.col-sm-12
-              .afe-cards-text
-                p=distros.description
-                div(style="padding-top: 25px;")
-                .col-xs-1
-                  span.fa.fa-bar-chart
-                .col-xs-11
-                  p #{distros.processor}
-                .col-xs-1
-                  span.fa.fa-database
-                .col-xs-11
-                  p #{distros.ram}
-                .col-xs-1
-                  span.fa.fa-hdd-o
-                .col-xs-11
-                  p #{distros.hdd}
-                .col-xs-1
-                  span.fa.fa-laptop
-                .col-xs-11
-                  p #{distros.machine}
-            .col-md-4.col-md-offset-2
-              img.afe-cards-distro-logo.hidden-sm.hidden-xs(src="#{distros.logo}" style="width: 256px; height: 256px;")
+        .col-xs-12: .afe-card.clearfix
+          div
+            .afe-card-banner(style="background-image: url(#{distros.screenshot})")
+            .col-md-7.col-lg-6.col-lg-offset-1.col-sm-12
+              h2 AOSC OS with #{distros.desktop}
+              p Core version: #{distros.core}
+            .col-md-5.col-lg-4.col-sm-12
+              a.afe-card-distro-dl.btn.btn-primary.btn-block(href="#{distros.url}") DOWNLOAD
+              code.afe-hash.label.label-default=distros.checksum
+          .col-xs-12: hr
+          .col-md-6.col-lg-5.col-lg-offset-1.col-sm-12: .afe-card-text
+            p=distros.description
+            .afe-card-sysreq
+              +systemRequirement('fa-bar-chart', distros.processor)
+              +systemRequirement('fa-database', distros.ram)
+              +systemRequirement('fa-hdd-o', distros.hdd)
+              +systemRequirement('fa-laptop', distros.machine)
+          .col-md-4.col-md-offset-2.col-lg-4.col-lg-offset-1.hidden-sm.hidden-xs
+            img.afe-card-distro-logo(src="#{distros.logo}")
