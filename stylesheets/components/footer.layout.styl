@@ -1,18 +1,22 @@
 @import '../functions/layout.styl'
 
+.afe-footer-fixed footer
+	position: fixed
+	right: 0
+	left: 0
+	bottom: 0
+	z-index: -200
+	opacity: 1
+
 footer
+	opacity: 0
 	paper-layer: 1
-	padding-bottom: 3rem
-	position: fixed;
-	right: 0;
-	left: 0;
-	bottom: 0;
-	z-index: -200;
+	padding: 3rem 0
 	ul
 		padding-left: 0
 		margin-bottom: 25px
 		li
-			font-size: medium
+			font-size: small
 	h3
 		margin: 1.5rem 0
 	p

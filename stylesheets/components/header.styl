@@ -7,7 +7,7 @@ navDlBgColor = #536583
 
 .afe-navbar
 	background-color: navBgColor
-	paper-shadow: 2 navBgColor
+	paper-shadow: 1 navBgColor
 	border-width: 0px
 	border-style: solid
 	.navbar-toggle
@@ -25,6 +25,9 @@ navDlBgColor = #536583
 		color: white
 		&:hover
 			background-color: lighten(navDlBgColor, 10%)
-		//paper-shadow: 2 navBgColor
-		box-shadow: 0 2px 4px 0 alpha(darken(navBgColor,50%),0.4)
-		border-top-style: none
+		//paper-shadow: 1 navBgColor
+	.hidden-xs
+		.afe-dropdown-menu
+			border-radius: 0
+			box-shadow: 0 1px 2px 0 alpha(darken(navBgColor,50%),0.2)
+			border-top-style: none
