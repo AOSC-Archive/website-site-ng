@@ -90,6 +90,16 @@ exports.DoBoom = function(app) {
     }catch(err){sayOops(req, res, err);}
   });
 
+  // - /osdownload
+  app.get( '/osdownload' , function(req, res) {
+    try{
+      var dto = readYAML('distro');
+      res.render('osdownload', {'params' : {
+        'distro' : dto
+      }});
+    }catch(err){sayOops(req, res, err);}
+  });
+
 //-/work-in-progress
 app.get( '/wip' , function(req, res) {
   try{

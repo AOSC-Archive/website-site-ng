@@ -1,7 +1,7 @@
 extend ./templates/layout.jade
 
 block title
-  | AOSC OS Downloads - AOSC
+  | AOSC OS - AOSC
 block append stylesheet
   link(rel='stylesheet', href='assets/css/distro.css')
 
@@ -17,30 +17,17 @@ block content
           img(src="/assets/i/aosc-os.svg" style="width: 96px; height: 96px;")
         // FIXME: vertical alignment.
         .col-md-6.col-sm-12.col-xs-12
-          h1 AOSC OS
+          h1(style="margin-top: 5px;") AOSC OS
           a(href="#download"): button.btn.btn-primary
             | DOWNLOAD
-    .row
-      .col-md-10.col-md-offset-1.col-sm-12.col-xs-12
-        hr
     .row
       .col-md-8.col-md-offset-2.col-sm-12.col-xs-12(style="padding-top: 40px 30px; vertical-align: center;")
         each feature, index in params.distro.features
           .row.afe-left-and-right-receptor
+            hr
             .col-md-8.col-xs-12.col-sm-12.afe-left-and-right-effector
               h2=feature.name
               p=feature.why
               small=feature.ps
             .col-md-4.hidden-xs.hidden-sm
               img(src=feature.image style="width: 192px; height: 192px;")
-    #download: .col-md-8.col-md-offset-2.col-sm-12.col-xs-12
-      hr
-      each desu in params.distro.spins
-        .col-md-2.col-xs-4.col-sm-4
-          p=desu.desktop
-        .col-md-2.col-xs-4.col-sm-4
-          p=desu.core
-        .col-md-6.hidden-xs.hidden-sm
-          p=desu.checksum
-        .col-md-2.col-xs-4.col-sm-4
-          p=desu.desktop

@@ -1,0 +1,13 @@
+extend ./templates/layout.jade
+
+block title
+  | AOSC OS Downloads - AOSC
+block append stylesheet
+  link(rel='stylesheet', href='assets/css/distro.css')
+
+mixin systemRequirement(faicon, text)
+  p
+    span.afe-card-sysreq-icon(class='fa '+ faicon)
+    span.afe-card-sysreq-text=text
+block content
+  #wrapper: .container
