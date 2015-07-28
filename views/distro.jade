@@ -10,54 +10,32 @@ mixin systemRequirement(faicon, text)
     span.afe-card-sysreq-icon(class='fa '+ faicon)
     span.afe-card-sysreq-text=text
 block content
-  #wrapper: .container: .row
-    .col-md-8.col-md-offset-2.col-xs-12(style="padding-top: 40px; padding-bottom: 40px;")
-      .col-md-2.hidden-sm.hidden-xs(style="padding-left: 0px")
-        img(src="/assets/i/aosc-os.svg" style="width: 96px; height: 96px;")
-      // FIXME: vertical alignment.
-      .col-md-6.col-sm-12.col-xs-12
-        h1 AOSC OS
-        a(href="#download"): button.btn.btn-primary
-          | DOWNLOAD
-    .col-md-10.col-md-offset-1.col-sm-12.col-xs-12
-      hr
-    .col-md-8.col-md-offset-2.col-sm-12.col-xs-12(style="padding-top: 40px 30px; vertical-align: center;")
-      .col-md-8.col-xs-12
-        h2 Simplified, Secure, Refined
-        p 
-          | AOSC OS is a Linux distribution, with major attention to personal, day-to-day Linux
-          | computing. AOSC OS offers new, usable, and secure technology on your devices.
-      .col-md-4.hidden-xs.hidden-sm
-        img(src="/assets/i/package-x-generic.svg" style="width: 192px; height: 192px;")
-      .col-md-4.hidden-xs.hidden-sm
-        img(src="/assets/i/text-x-texinfo.svg" style="width: 192px; height: 192px;")
-      .col-md-7.col-xs-12.col-sm-12
-        h2 Simplified
-        p
-          | We are determined to offer a simpler using experience with AOSC OS, with
-          | recognized tools to manage and keep your system running. We have also put down
-          | some work to simplify the dependency tree, no more confusing package names.
-          | All for a better using experience for both users and developers.
-      .col-md-8.col-xs-12.col-sm-12
-        h2 Secure
-        p
-          | AOSC OS pays a great deal of attention on security of users. From full-system
-          | hardening (*), to fast response to newest security vulnerabilities, AOSC OS has
-          | you covered in this dangerous world.
-        span * Minor amount of packages may not be hardened due to runtime issues.
-      .col-md-4.hidden-xs.hidden-sm
-        img(src="/assets/i/system-lock-screen.svg" style="width: 192px; height: 192px;")
-      .col-md-4.hidden-xs.hidden-sm
-        img(src="/assets/i/dialog-ok-apply.svg" style="width: 192px; height: 192px;")
-      .col-md-7.col-xs-12.hidden-sm
-        h2 Refined
-        p
-          | Rather than trying to overhaul the interface, we offer close-to-vanilla experience
-          | with the software. Most of the software we offer would work right out of the
-          | box, to your pleasure.
+  #wrapper: .container
+    .row
+      .col-md-8.col-md-offset-2.col-xs-12(style="padding-top: 40px; padding-bottom: 40px;")
+        .col-md-2.hidden-sm.hidden-xs(style="padding-left: 0px")
+          img(src="/assets/i/aosc-os.svg" style="width: 96px; height: 96px;")
+        // FIXME: vertical alignment.
+        .col-md-6.col-sm-12.col-xs-12
+          h1 AOSC OS
+          a(href="#download"): button.btn.btn-primary
+            | DOWNLOAD
+    .row
+      .col-md-10.col-md-offset-1.col-sm-12.col-xs-12
+        hr
+    .row
+      .col-md-8.col-md-offset-2.col-sm-12.col-xs-12(style="padding-top: 40px 30px; vertical-align: center;")
+        each feature, index in params.distro.features
+          .row.afe-left-and-right-receptor
+            .col-md-8.col-xs-12.col-sm-12.afe-left-and-right-effector
+              h2=feature.name
+              p=feature.why
+              small=feature.ps
+            .col-md-4.hidden-xs.hidden-sm
+              img(src=feature.image style="width: 192px; height: 192px;")
     #download: .col-md-8.col-md-offset-2.col-sm-12.col-xs-12
       hr
-      each desu in params.distro
+      each desu in params.distro.spins
         .col-md-2.col-xs-4.col-sm-4
           p=desu.desktop
         .col-md-2.col-xs-4.col-sm-4

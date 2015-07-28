@@ -1,75 +1,107 @@
--
-  desktop: KDE
-  core: 3.0.1
-  screenshot: /assets/i/kde-scr.jpg
-  logo: /assets/i/kde.svg
-  url: http://mirrors.anthonos.org/anthon/aosc-os/kde/aosc-os_kde_cyanflame_dpkg_20150709_en-US.tar.xz
-  checksum: 273c68113672b2ac760da597daeaf82b
-  processor: Intel Core 2 Duo or faster
-  ram: 2.0 GiB of RAM
-  hdd: 8.0 GiB of HDD space
-  machine: ThinkPad X61 or equivalent
-  description: "A beautiful, well-rounded, and customizable desktop environment
-                           and applications suite. KDE is a good choice for those who seeks
-                           for fancy desktop effects, ability to customize their own desktop,
-                           while demanding assurance on security, and stability."
--
-  desktop: GNOME
-  core: 3.0.1
-  screenshot: /assets/i/gnome-scr.jpg
-  logo: /assets/i/gnome.svg
-  url: http://mirrors.anthonos.org/anthon/aosc-os/gnome/aosc-os_gnome_cyanflame_dpkg_20150708_en-US.tar.xz
-  checksum: b5c092db806a4b02c712128833429671
-  processor: Intel Core 2 Duo or faster
-  ram: 2.0 GiB of RAM
-  hdd: 8.0 GiB of HDD space
-  machine: ThinkPad X61 or equivalent
-  description: "GNOME is a free and open source desktop environment that aims
-                           for universal access and a worry-free working environment.
-                           GNOME is extremely friendly to first timer Linux users, and
-                           arguably the simpliest to configure."
--
-  desktop: XFCE
-  core: 3.0.1
-  logo: /assets/i/xfce.svg
-  screenshot: /assets/i/xfce-scr.jpg
-  url: http://mirrors.anthonos.org/anthon/aosc-os/xfce/aosc-os_xfce_cyanflame_dpkg_20150709_en-US.tar.xz
-  checksum: 88f50dfc6b24c2f06a6855bee98f53d8
-  processor: Intel Pentium 4 HT "Prescott" or faster
-  ram: 0.5 GiB of RAM
-  hdd: 5.0 GiB of HDD space
-  machine: HP Compaq DC5100 or equivalent
-  description: "XFCE is a lightweight, and modern desktop environment. XFCE runs
-                              reasonably fast even on older machines. That doesn't mean that
-                              XFCE is just plain and old, it provides users with loads of options in
-                              customization."
--
-  desktop: Cinnamon
-  core: 3.0.1
-  logo: /assets/i/cinnamon.svg
-  screenshot: /assets/i/cinnamon-scr.jpg
-  url: http://mirrors.anthonos.org/anthon/aosc-os/cinnamon/aosc-os_cinnamon_cyanflame_dpkg_20150708_en-US.tar.xz
-  checksum: bcfbc975691f67f69adcc6db02e0e225
-  processor: Intel Core 2 Duo or faster
-  ram: 2.0 GiB of RAM
-  hdd: 8.0 GiB of HDD space
-  machine: ThinkPad X61 or equivalent
-  description: Cinnamon originated from the Linux Mint community as a fork of
-                              GNOME 3 desktop interface - GNOME Shell. Cinnamon provides a
-                              more conventional desktop interface, while offering the ease-of-use
-                              that GNOME is loved for.
--
-  desktop: MATE
-  core: 3.0.1
-  logo: /assets/i/mate.svg
-  screenshot: /assets/i/mate-scr.jpg
-  url: http://mirrors.anthonos.org/anthon/aosc-os/mate/aosc-os_mate_cyanflame_dpkg_20150709_en-US.tar.xz
-  checksum: 9a34b44f925bc600faff4d2ceab0c71e
-  processor: Intel Pentium 4 HT "Prescott" or faster
-  ram: 0.5 GiB of RAM
-  hdd: 6.0 GiB of HDD space
-  machine: HP Compaq DC5100 or equivalent
-  description: MATE desktop is a fork of the deprecated GNOME 2, however, MATE
-                              provides the newest desktop technologies just like the others. MATE
-                              is for those who are still liking the old school GNOME feel, while
-                              having a major demand in customization and reliability.
+features:
+  -
+    name: Simplified, Secure, Refined
+    image: "/assets/i/package-x-generic.svg"
+    why: >
+      AOSC OS is a Linux distribution, with major attention to personal, day-to-day Linux
+      computing. AOSC OS offers new, usable, and secure technology on your devices.
+  -
+    name: Simplified
+    image: "/assets/i/text-x-texinfo.svg"
+    why: >
+      We are determined to offer a simpler using experience with AOSC OS, with
+      recognized tools to manage and keep your system running. We have also put down
+      some work to simplify the dependency tree, no more confusing package names.
+      All for a better using experience for both users and developers.
+  -
+    name: Secure
+    image: "/assets/i/system-lock-screen.svg"
+    why: >
+      AOSC OS pays a great deal of attention on security of users. From full-system
+      hardening (*), to fast response to newest security vulnerabilities, AOSC OS has
+      you covered in this dangerous world.
+    ps: >
+      * Minor amount of packages may not be hardened due to runtime issues.
+  -
+    name: Refined
+    image: "/assets/i/dialog-ok-apply.svg"
+    why: >
+      Rather than trying to overhaul the interface, we offer close-to-vanilla experience
+      with the software. Most of the software we offer would work right out of the
+      box, to your pleasure.
+spins:
+  -
+    desktop: KDE
+    core: 3.0.1
+    screenshot: /assets/i/kde-scr.jpg
+    logo: /assets/i/kde.svg
+    url: http://mirrors.anthonos.org/anthon/aosc-os/kde/aosc-os_kde_cyanflame_dpkg_20150709_en-US.tar.xz
+    checksum: 273c68113672b2ac760da597daeaf82b
+    processor: Intel Core 2 Duo or faster
+    ram: 2.0 GiB of RAM
+    hdd: 8.0 GiB of HDD space
+    machine: ThinkPad X61 or equivalent
+    description: "A beautiful, well-rounded, and customizable desktop environment
+                 and applications suite. KDE is a good choice for those who seeks
+                 for fancy desktop effects, ability to customize their own desktop,
+                 while demanding assurance on security, and stability."
+  -
+    desktop: GNOME
+    core: 3.0.1
+    screenshot: /assets/i/gnome-scr.jpg
+    logo: /assets/i/gnome.svg
+    url: http://mirrors.anthonos.org/anthon/aosc-os/gnome/aosc-os_gnome_cyanflame_dpkg_20150708_en-US.tar.xz
+    checksum: b5c092db806a4b02c712128833429671
+    processor: Intel Core 2 Duo or faster
+    ram: 2.0 GiB of RAM
+    hdd: 8.0 GiB of HDD space
+    machine: ThinkPad X61 or equivalent
+    description: "GNOME is a free and open source desktop environment that aims
+                 for universal access and a worry-free working environment.
+                 GNOME is extremely friendly to first timer Linux users, and
+                 arguably the simpliest to configure."
+  -
+    desktop: XFCE
+    core: 3.0.1
+    logo: /assets/i/xfce.svg
+    screenshot: /assets/i/xfce-scr.jpg
+    url: http://mirrors.anthonos.org/anthon/aosc-os/xfce/aosc-os_xfce_cyanflame_dpkg_20150709_en-US.tar.xz
+    checksum: 88f50dfc6b24c2f06a6855bee98f53d8
+    processor: Intel Pentium 4 HT "Prescott" or faster
+    ram: 0.5 GiB of RAM
+    hdd: 5.0 GiB of HDD space
+    machine: HP Compaq DC5100 or equivalent
+    description: "XFCE is a lightweight, and modern desktop environment. XFCE runs
+                  reasonably fast even on older machines. That doesn't mean that
+                  XFCE is just plain and old, it provides users with loads of options in
+                  customization."
+  -
+    desktop: Cinnamon
+    core: 3.0.1
+    logo: /assets/i/cinnamon.svg
+    screenshot: /assets/i/cinnamon-scr.jpg
+    url: http://mirrors.anthonos.org/anthon/aosc-os/cinnamon/aosc-os_cinnamon_cyanflame_dpkg_20150708_en-US.tar.xz
+    checksum: bcfbc975691f67f69adcc6db02e0e225
+    processor: Intel Core 2 Duo or faster
+    ram: 2.0 GiB of RAM
+    hdd: 8.0 GiB of HDD space
+    machine: ThinkPad X61 or equivalent
+    description: Cinnamon originated from the Linux Mint community as a fork of
+                GNOME 3 desktop interface - GNOME Shell. Cinnamon provides a
+                more conventional desktop interface, while offering the ease-of-use
+                that GNOME is loved for.
+  -
+    desktop: MATE
+    core: 3.0.1
+    logo: /assets/i/mate.svg
+    screenshot: /assets/i/mate-scr.jpg
+    url: http://mirrors.anthonos.org/anthon/aosc-os/mate/aosc-os_mate_cyanflame_dpkg_20150709_en-US.tar.xz
+    checksum: 9a34b44f925bc600faff4d2ceab0c71e
+    processor: Intel Pentium 4 HT "Prescott" or faster
+    ram: 0.5 GiB of RAM
+    hdd: 6.0 GiB of HDD space
+    machine: HP Compaq DC5100 or equivalent
+    description: MATE desktop is a fork of the deprecated GNOME 2, however, MATE
+                  provides the newest desktop technologies just like the others. MATE
+                  is for those who are still liking the old school GNOME feel, while
+                  having a major demand in customization and reliability.

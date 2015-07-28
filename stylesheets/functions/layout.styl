@@ -7,3 +7,15 @@ font-sans-serif()
 
 font-serif()
 	font-family: "Sanchez", FontAwesome, serif;
+
+.afe-left-and-right-receptor
+	&:nth-child(odd)
+		.afe-left-and-right-effector
+			float: left
+			&.afe-inverse
+				float: right
+	&:nth-child(even)
+		.afe-left-and-right-effector
+			float: right
+			&.afe-inverse
+				float: left
