@@ -1,8 +1,8 @@
 shadow-color(baseColor)
-	alpha(darken(baseColor,50%),0.8)
+	alpha(darken(baseColor,30%),0.8)
 
-paper-shadow(deep, baseColor)
-	box-shadow: 0 0 deep*4px 0 shadow-color(baseColor)
+paper-shadow(baseColor, deep=1)
+	box-shadow: 0 0 deep*8px 1px shadow-color(baseColor)
 
 add-tag-style(tag, color, prompt='')
 	.afe-tag-{tag}
