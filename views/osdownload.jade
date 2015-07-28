@@ -4,6 +4,7 @@ block title
   | AOSC OS Downloads - AOSC
 block append stylesheet
   link(rel='stylesheet', href='assets/css/distro.css')
+  link(rel='stylesheet', href='assets/css/news-flow.css')
 
 mixin systemRequirement(faicon, text)
   p
@@ -11,3 +12,158 @@ mixin systemRequirement(faicon, text)
     span.afe-card-sysreq-text=text
 block content
   #wrapper: .container
+    .row
+      .col-md-10.col-md-offset-1.col-xs-12(style="padding-top: 40px; padding-bottom: 40px;")
+        .col-md-2.hidden-sm.hidden-xs(style="padding-left: 0px")
+          img(src="/assets/i/aosc-os.svg" style="width: 96px; height: 96px;")
+        // FIXME: vertical alignment.
+        .col-md-6.col-sm-12.col-xs-12
+          h1(style="margin-top: 5px;") Downloads
+          p 
+            | AOSC OS is available for you to download freely, in all languages. Pick your
+            | chocolate for the day!
+    .row 
+      .col-md-10.col-md-offset-1.col-xs-12
+        .alert.alert-info
+          p <strong>What are my choices and which one to chooser from?</strong>
+          p 
+            | AOSC OS is available in (many) different flavors, ranging from various architectural
+            | ports, to different desktop environments and usages.
+          ul.afe-literal-list(style="padding-top: 8px")
+            li Tarball releases, with different desktop environments  for regular installation.
+            li Docker releases, with different specified functionalities, for fast deployment.
+            li BuildKit releases, with basic development tools and environment, for developers.
+    .row
+      .col-md-10.col-md-offset-1.col-xs-12
+        ul(role="tablist").nav.nav-tabs.nav-justified
+          li(role="presentation" class="active"): a(href="#amd64" data-toggle="tab") x86_64 (AMD64)
+          li(role="presentation"): a(href="#armv7" data-toggle="tab") ARMv7 (hard-float)
+          li(role="presentation"): a(href="#mips3" data-toggle="tab") MIPS-III (n32)
+    .row
+      .col-md-10.col-md-offset-1.col-xs-12
+        div(class="tab-content")
+          div(role="tabpanel" class="tab-pane active" id="amd64")
+            .col-md-7.col-xs-12
+              h3 AMD64 releases
+              p 
+                | AMD64, or x86_64 is the current main focus of AOSC OS development. This is
+                | the achitecture to use for most of the modern PCs and servers.
+                | This branch is stable and suitable for personal use.
+              hr
+              #dpkg: h4 Tarball releases (DPKG)
+              ul.list-group
+                each desu in params.distro.spins
+                  a(href="#{desu.url}").list-group-item
+                    <strong>#{desu.desktop}</strong> 
+                    span.afe-littlecaption (Core #{desu.core})
+                    span(style="vertical-align: middle;").pull-right.fa.fa-download
+              #rpm: h4 Tarball releases (RPM)
+              ul.list-group
+                each desu in params.distro.spins
+                  a(href="#{desu.url}").list-group-item
+                    <strong>#{desu.desktop}</strong> 
+                    span.afe-littlecaption (Core #{desu.core})
+                    span(style="vertical-align: middle;").pull-right.fa.fa-download
+              #docker: h4 Docker images
+              ul.list-group
+                a(href="#").list-group-item
+                  span
+                    | <strong>COMING SOON</strong>
+                    span(style="vertical-align: middle;").pull-right.fa.fa-spin.fa-refresh
+              #buildkit: h4 BuildKit
+              ul.list-group
+                a(href="#").list-group-item
+                  span
+                    | <strong>20150611</strong>
+                    span(style="vertical-align: middle;").pull-right.fa.fa-spin.fa-refresh
+            .col-md-5.col-xs-12(style="padding-top: 20px")
+              .alert.alert-warning.alert-dismissible
+                <strong>RPM builds are experimental!</strong>
+                button(type="button" data-dismiss="alert" aria-label="Close").close
+                  span(aria-hidden="true") &times
+              h4 Will it run on mine...
+              p Please refer to the system requirement listed below.
+              ul.afe-literal-list
+                li CPU: AMD64 or compatible, faster the better
+                li RAM: 1 GiB, the more the better
+                li HDD: 8 GiB of HDD space
+                li NET: Internet connection advised
+              p For running KDE you may want more RAM.
+              hr
+              h4 How to install...
+              p Please refer to the 
+                a(href="#") installation guide.
+              hr
+              h4 Latest advisories
+              ul.afe-advisory-list
+                each val, index in params.news
+                  li(class="afe-tag-"+val.type): .afe-main-item
+                    a(href="#")
+                      h3=val.title
+          div(role="tabpanel" class="tab-pane" id="armv7")
+            .col-md-7.col-xs-12
+              h3 ARMv7 (hard-float) releases
+              p 
+                | ARMv7 (hard-float) is an experimental port of AOSC OS, currently under
+                | heavy development. ARMv7 will be available for a variety of devices, like
+                | phones (cellular calls not in plan), tablets, and development boards.
+              hr
+              #dpkg: h4 All releases
+              ul.list-group
+                a(href="#").list-group-item
+                  span
+                    | <strong>COMING SOON</strong>
+                    span(style="vertical-align: middle;").pull-right.fa.fa-spin.fa-refresh
+            .col-md-5.col-xs-12(style="padding-top: 20px;")
+              h4 Will it run on mine...
+              p Please refer to the system requirement listed below.
+              ul.afe-literal-list
+                li CPU: ARMv7, with Neon FPU support
+                li RAM: 0.2 GiB, the more the better
+                li HDD: 2 GiB of storage space
+                li NET: Internet connection advised
+              p Requirement varies between different versions.
+              hr
+              h4 How to install...
+              p Please refer to the 
+                a(href="#") installation guide.
+              hr
+              h4 Latest advisories
+              ul.afe-advisory-list
+                each val, index in params.news
+                  li(class="afe-tag-"+val.type): .afe-main-item
+                    a(href="#")
+                      h3=val.title
+          div(role="tabpanel" class="tab-pane" id="mips3")
+            .col-md-7.col-xs-12
+              h3 MIPS-III (n32) releases
+              p 
+                | MIPS-III (n32) is an experimental port of AOSC OS to specifically
+                | MIPS-III, or Loongson 2 series-based computers such as the
+                | "Yeeloong 8089" netbook. This port is currently under heavy development.
+              hr
+              #dpkg: h4 All releases
+              ul.list-group
+                a(href="#").list-group-item
+                  span
+                    | <strong>COMING SOON</strong>
+                    span(style="vertical-align: middle;").pull-right.fa.fa-spin.fa-refresh
+            .col-md-5.col-xs-12(style="padding-top: 20px")
+              h4 Will it run on mine...
+              p Please refer to the system requirement listed below.
+              ul.afe-literal-list
+                li CPU: MIPS-III compatible
+                li RAM: 1 GiB, the more the better
+                li HDD: 4 GiB of HDD space
+                li NET: Internet connection advised
+              hr
+              h4 How to install...
+              p Please refer to the 
+                a(href="#") installation guide.
+              hr
+              h4 Latest advisories
+              ul.afe-advisory-list
+                each val, index in params.news
+                  li(class="afe-tag-"+val.type): .afe-main-item
+                    a(href="#")
+                      h3=val.title

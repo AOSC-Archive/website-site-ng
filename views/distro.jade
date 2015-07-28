@@ -12,16 +12,16 @@ mixin systemRequirement(faicon, text)
 block content
   #wrapper: .container
     .row
-      .col-md-8.col-md-offset-2.col-xs-12(style="padding-top: 40px; padding-bottom: 40px;")
+      .col-md-10.col-md-offset-1.col-xs-12(style="padding-top: 40px; padding-bottom: 40px;")
         .col-md-2.hidden-sm.hidden-xs(style="padding-left: 0px")
           img(src="/assets/i/aosc-os.svg" style="width: 96px; height: 96px;")
         // FIXME: vertical alignment.
         .col-md-6.col-sm-12.col-xs-12
           h1(style="margin-top: 5px;") AOSC OS
-          a(href="#download"): button.btn.btn-primary
+          a(href="/osdownload"): button.btn.btn-primary
             | DOWNLOAD
     .row
-      .col-md-8.col-md-offset-2.col-sm-12.col-xs-12(style="padding-top: 40px 30px; vertical-align: center;")
+      .col-md-10.col-md-offset-1.col-sm-12.col-xs-12(style="padding-top: 40px 30px; vertical-align: center;")
         each feature, index in params.distro.features
           .row.afe-left-and-right-receptor
             hr

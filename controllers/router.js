@@ -91,11 +91,13 @@ exports.DoBoom = function(app) {
   });
 
   // - /osdownload
-  app.get( '/osdownload' , function(req, res) {
+  app.get( '/osdownload', function(req, res) {
     try{
       var dto = readYAML('distro');
+      var nws = readYAML('news').slice(0,9);
       res.render('osdownload', {'params' : {
-        'distro' : dto
+        'distro' : dto,
+        'news' : nws
       }});
     }catch(err){sayOops(req, res, err);}
   });
