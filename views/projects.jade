@@ -28,18 +28,18 @@ block content
               h2=projects.fullname
               each para in projects.long
                 p=para
-              .col-xs-2(style="padding: 0;")
-                a(href="#")
-                  p.fa.fa-info-circle(style="font-size: 20px")
-              .col-xs-2(style="padding: 0;")
-                a(href="#")
-                  p.fa.fa-git-square(style="font-size: 20px")
+              hr
+              .col-xs-4(style="padding: 0;")
+                a(href="#{projects.gitlink}")
+                  p.fa.fa-git-square(style="font-size: 20px; margin-right: 10px;")
+                  | Git
               .col-xs-8(style="padding: 0;")
-                a(href="#")
-                  p.fa.fa-download(style="font-size: 20px")
+                a(href="#{projects.url}")
+                  p.fa.fa-download(style="font-size: 20px; margin-right: 10px;")
+                  | Downloads
             .col-md-4.hidden-xs.hidden-sm
               img(src="/assets/i/" + projects.mininame + ".svg" style="width: 160px; height: 160px;")
         hr
         .col-xs-4.col-xs-offset-5
-          a(href="somewhere")
+          a(href="https://github.com/AOSC-Dev/")
             img(src="/assets/i/list-add.svg" style="width: 48px; height: 48px;")
