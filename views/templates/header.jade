@@ -11,6 +11,7 @@ nav.navbar.navbar-fixed-top.afe-navbar
       #doc-navbar-collapse.navbar-collapse.collapse
         ul.nav.navbar-nav
           li: a(href="/news-flow") NEWS
+          li: a(href="/osdownload") DOWNLOADS
           li 
             a.afe-nav-right-btn(href="#", class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") PROJECTS 
               span(class="caret")
@@ -19,13 +20,3 @@ nav.navbar.navbar-fixed-top.afe-navbar
               li: a(href="/projects") OTHER PROJECTS
           li: a(href="https://github.com/AOSC-Dev/", target='_blank') GIT
           li: a(href="/about") ABOUT
-          mixin downloadDropdown()
-            a.afe-nav-right-btn(href="#", class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") DOWNLOADS 
-              span(class="caret")
-            ul.dropdown-menu.afe-dropdown-menu
-              li: a(href="/osdownload") AOSC OS
-              li: a(href="/somewhere") PROJECTS
-          li.visible-xs.dropdown.navbar-right
-            +downloadDropdown()
-          li.hidden-xs.dropdown.navbar-right
-            +downloadDropdown()
