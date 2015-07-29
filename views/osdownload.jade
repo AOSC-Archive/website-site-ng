@@ -22,17 +22,27 @@ block content
           p 
             | AOSC OS is available for you to download freely, in all languages. Pick your
             | chocolate for the day!
-    .row 
-      .col-md-10.col-md-offset-1.col-xs-12
+    .row
+      .col-md-6.col-md-offset-1.col-xs-12
         .alert.alert-info
           p <strong>What are my choices and which one to chooser from?</strong>
           p 
             | AOSC OS is available in (many) different flavors, ranging from various architectural
             | ports, to different desktop environments and usages.
           ul.afe-literal-list(style="padding-top: 8px")
-            li Tarball releases, with different desktop environments  for regular installation.
-            li Docker releases, with different specified functionalities, for fast deployment.
-            li BuildKit releases, with basic development tools and environment, for developers.
+            li Tarball releases, for regular installation.
+            li Docker releases, for fast deployment.
+            li BuildKit releases, for developers.
+      .col-md-4.col-xs-12
+        ul.list-group
+          each ad in params.distro.featured
+            a(href="#{ad.url}").list-group-item(style="padding: 15px;")
+                span.fa.fa-2x.fa-download
+                  |   Featured
+                p(style="padding-left: 36px") AOSC OS with #{ad.desktop}
+                ul.afe-literal-list(style="padding-left: 36px")
+                  each foo in ad.reason
+                    li=foo
     .row
       .col-md-10.col-md-offset-1.col-xs-12
         ul(role="tablist").nav.nav-tabs.nav-justified
@@ -53,16 +63,16 @@ block content
               #dpkg: h4 Tarball releases (DPKG)
               ul.list-group
                 each desu in params.distro.spins
-                  a(href="#{desu.url}").list-group-item
+                  a(href="#{desu.dpkgurl}").list-group-item
                     <strong>#{desu.desktop}</strong> 
-                    span.afe-littlecaption (Core #{desu.core})
+                    span.afe-littlecaption(style="font-weight: normal") (Core #{desu.dpkgcore})
                     span(style="vertical-align: middle;").pull-right.fa.fa-download
               #rpm: h4 Tarball releases (RPM)
               ul.list-group
                 each desu in params.distro.spins
-                  a(href="#{desu.url}").list-group-item
+                  a(href="#{desu.rpmurl}").list-group-item
                     <strong>#{desu.desktop}</strong> 
-                    span.afe-littlecaption (Core #{desu.core})
+                    span.afe-littlecaption(style="font-weight: normal") (Core #{desu.rpmcore})
                     span(style="vertical-align: middle;").pull-right.fa.fa-download
               #docker: h4 Docker images
               ul.list-group
@@ -72,10 +82,11 @@ block content
                     span(style="vertical-align: middle;").pull-right.fa.fa-spin.fa-refresh
               #buildkit: h4 BuildKit
               ul.list-group
-                a(href="#").list-group-item
-                  span
-                    | <strong>20150611</strong>
-                    span(style="vertical-align: middle;").pull-right.fa.fa-spin.fa-refresh
+                each bk in params.distro.buildkit
+                  a(href="#{bk.url}").list-group-item
+                    span
+                      | <strong>#{bk.datetag}</strong>
+                    span(style="vertical-align: middle;").pull-right.fa.fa-download
             .col-md-5.col-xs-12(style="padding-top: 20px")
               .alert.alert-warning.alert-dismissible
                 <strong>RPM builds are experimental!</strong>
@@ -93,13 +104,6 @@ block content
               h4 How to install...
               p Please refer to the 
                 a(href="#") installation guide.
-              hr
-              h4 Latest advisories
-              ul.afe-advisory-list
-                each val, index in params.news
-                  li(class="afe-tag-"+val.type): .afe-main-item
-                    a(href="#")
-                      h3=val.title
           div(role="tabpanel" class="tab-pane" id="armv7")
             .col-md-7.col-xs-12
               h3 ARMv7 (hard-float) releases
@@ -127,13 +131,6 @@ block content
               h4 How to install...
               p Please refer to the 
                 a(href="#") installation guide.
-              hr
-              h4 Latest advisories
-              ul.afe-advisory-list
-                each val, index in params.news
-                  li(class="afe-tag-"+val.type): .afe-main-item
-                    a(href="#")
-                      h3=val.title
           div(role="tabpanel" class="tab-pane" id="mips3")
             .col-md-7.col-xs-12
               h3 MIPS-III (n32) releases
@@ -160,10 +157,3 @@ block content
               h4 How to install...
               p Please refer to the 
                 a(href="#") installation guide.
-              hr
-              h4 Latest advisories
-              ul.afe-advisory-list
-                each val, index in params.news
-                  li(class="afe-tag-"+val.type): .afe-main-item
-                    a(href="#")
-                      h3=val.title

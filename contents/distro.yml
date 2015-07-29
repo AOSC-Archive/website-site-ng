@@ -32,10 +32,12 @@ features:
 spins:
   -
     desktop: KDE
-    core: 3.0.1
+    dpkgcore: 3.0.1
+    rpmcore: 2.98.1
     screenshot: /assets/i/kde-scr.jpg
     logo: /assets/i/kde.svg
-    url: http://mirrors.anthonos.org/anthon/aosc-os/kde/aosc-os_kde_cyanflame_dpkg_20150709_en-US.tar.xz
+    dpkgurl: http://mirrors.anthonos.org/anthon/aosc-os/kde/aosc-os_kde_cyanflame_dpkg_20150709_en-US.tar.xz
+    rpmurl: '#'
     checksum: 273c68113672b2ac760da597daeaf82b
     processor: Intel Core 2 Duo or faster
     ram: 2.0 GiB of RAM
@@ -48,10 +50,12 @@ spins:
       while demanding assurance on security, and stability.
   -
     desktop: GNOME
-    core: 3.0.1
+    dpkgcore: 3.0.1
+    rpmcore: 2.98.1
     screenshot: /assets/i/gnome-scr.jpg
     logo: /assets/i/gnome.svg
-    url: http://mirrors.anthonos.org/anthon/aosc-os/gnome/aosc-os_gnome_cyanflame_dpkg_20150708_en-US.tar.xz
+    dpkgurl: http://mirrors.anthonos.org/anthon/aosc-os/gnome/aosc-os_gnome_cyanflame_dpkg_20150708_en-US.tar.xz
+    rpmurl: http://download.anthonos.org/anthon/os3-releases/01_Beta-2/01_Tarballs/aosc-os3_gnome-beta2_obsidian_rpm_20150606_en-US.tar.xz
     checksum: b5c092db806a4b02c712128833429671
     processor: Intel Core 2 Duo or faster
     ram: 2.0 GiB of RAM
@@ -64,10 +68,12 @@ spins:
       arguably the simpliest to configure.
   -
     desktop: XFCE
-    core: 3.0.1
+    dpkgcore: 3.0.1
+    rpmcore: 2.98.1
     logo: /assets/i/xfce.svg
     screenshot: /assets/i/xfce-scr.jpg
-    url: http://mirrors.anthonos.org/anthon/aosc-os/xfce/aosc-os_xfce_cyanflame_dpkg_20150709_en-US.tar.xz
+    dpkgurl: http://mirrors.anthonos.org/anthon/aosc-os/xfce/aosc-os_xfce_cyanflame_dpkg_20150709_en-US.tar.xz
+    rpmurl: http://download.anthonos.org/anthon/os3-releases/01_Beta-2/01_Tarballs/aosc-os3_xfce-beta2_obsidian_rpm_20150604_en-US.tar.xz
     checksum: 88f50dfc6b24c2f06a6855bee98f53d8
     processor: Intel Pentium 4 HT "Prescott" or faster
     ram: 0.5 GiB of RAM
@@ -80,10 +86,12 @@ spins:
       customization.
   -
     desktop: Cinnamon
-    core: 3.0.1
+    dpkgcore: 3.0.1
+    rpmcore: 2.98.1
     logo: /assets/i/cinnamon.svg
     screenshot: /assets/i/cinnamon-scr.jpg
-    url: http://mirrors.anthonos.org/anthon/aosc-os/cinnamon/aosc-os_cinnamon_cyanflame_dpkg_20150708_en-US.tar.xz
+    dpkgurl: http://mirrors.anthonos.org/anthon/aosc-os/cinnamon/aosc-os_cinnamon_cyanflame_dpkg_20150708_en-US.tar.xz
+    rpmurl: http://download.anthonos.org/anthon/os3-releases/01_Beta-2/01_Tarballs/aosc-os3_cinnamon-beta2_obsidian_rpm_20150604_en-US.tar.xz
     checksum: bcfbc975691f67f69adcc6db02e0e225
     processor: Intel Core 2 Duo or faster
     ram: 2.0 GiB of RAM
@@ -96,10 +104,12 @@ spins:
       that GNOME is loved for.
   -
     desktop: MATE
-    core: 3.0.1
+    dpkgcore: 3.0.1
+    rpmcore: 2.98.1
     logo: /assets/i/mate.svg
     screenshot: /assets/i/mate-scr.jpg
-    url: http://mirrors.anthonos.org/anthon/aosc-os/mate/aosc-os_mate_cyanflame_dpkg_20150709_en-US.tar.xz
+    dpkgurl: http://mirrors.anthonos.org/anthon/aosc-os/mate/aosc-os_mate_cyanflame_dpkg_20150709_en-US.tar.xz
+    rpmurl: http://download.anthonos.org/anthon/os3-releases/01_Beta-2/01_Tarballs/aosc-os3_mate-beta2_obsidian_rpm_20150607_en-US.tar.xz
     checksum: 9a34b44f925bc600faff4d2ceab0c71e
     processor: Intel Pentium 4 HT "Prescott" or faster
     ram: 0.5 GiB of RAM
@@ -110,3 +120,19 @@ spins:
       provides the newest desktop technologies just like the others. MATE
       is for those who are still liking the old school GNOME feel, while
       having a major demand in customization and reliability.
+buildkit:
+  -
+    datetag: 20150611
+    url: http://download.anthonos.org/anthon/os3-releases/01_Beta-2/02_BuildKit/aosc-os-buildkit_dpkg_20150611.tar.xz
+  -
+    datetag: 20150423
+    url: http://download.anthonos.org/anthon/os3-releases/01_Beta-2/02_BuildKit/aosc-os-buildkit_dpkg_20150423.tar.xz
+featured:
+  -
+    desktop: KDE
+    reason:
+      - >
+        New Plasma 5 desktop.
+      - >
+        Applications with a new Breeze look.
+    url: http://mirrors.anthonos.org/anthon/aosc-os/kde/aosc-os_kde_cyanflame_dpkg_20150709_en-US.tar.xz
