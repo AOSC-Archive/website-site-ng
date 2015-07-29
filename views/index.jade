@@ -43,11 +43,11 @@ block content
               h3=project.fullname
               p=project.description
                 .col-xs-2(style="padding: 0;")
-                  a(href="#")
+                  a(href="/projects")
                     p.fa.fa-info-circle(style="font-size: 20px")
                 .col-xs-2(style="padding: 0;")
-                  a(href="#")
+                  a(href="#{project.gitlink}")
                     p.fa.fa-git-square(style="font-size: 20px")
                 .col-xs-8(style="padding: 0;")
-                  a(href="#")
+                  a(href="#{project.url}")
                     p.fa.fa-download(style="font-size: 20px")
