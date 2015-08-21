@@ -1,0 +1,61 @@
+//-
+  I am the header file which is used in blocks head-* .
+  I can not produce any code directly.
+  I am sorry for I will affect all the following code through the scopes.
+  I can be include many times without conflict.
+  
+  My mixins' prototype:
+    
+    +meta-charset(charset)
+    
+    +meta-scalable(scalable)
+    
+    +meta-compatibility()
+    
+    +meta-icon-and-color(icon, mime, sizes, lagacyicon, color)
+    
+    +meta-title(title)
+    
+    +meta-description(description, [keywords])
+
+mixin meta-charset(charset)
+  meta(charset=charset)
+
+mixin meta-scalable(scalable)
+  meta(name="viewport",
+    content="width=device-width, initial-scale=1, user-scalable=" + scalable)
+
+mixin meta-compatibility()
+  meta(http-equiv="X-UA-Compatible", content="IE=edge")
+  meta(name="viewport",
+    content="width=device-width, initial-scale=1, user-scalable=no")
+  //- Set render engine for 360 browser
+  meta(name="renderer", content="webkit")
+  //- No Baidu Siteapp
+  meta(http-equiv="Cache-Control", content="no-siteapp")
+  meta(name="mobile-web-app-capable", content="yes")
+  meta(name="apple-mobile-web-app-capable", content="yes")
+
+mixin meta-icon-and-color(icon, mime, sizes, lagacyicon, color)
+  link(rel="icon", href=lagacyicon)
+  //- Homescreen icon for Chrome on Android
+  link(rel="icon", sizes=sizes, type=mime, href=icon)
+  link(rel="apple-touch-icon-precomposed", href=icon)
+  //- System status bar's style for iOS
+  meta(name="apple-mobile-web-app-status-bar-style", content="black")
+  //- Tile icon for Win8 (144x144 + tile color)
+  meta(name="msapplication-TileImage", content=icon)
+  meta(name="msapplication-TileColor", content=color)
+
+mixin meta-title(title)
+  title=title
+  meta(name="apple-mobile-web-app-title", content=title)
+
+mixin meta-description(description, keywords)
+  if keywords
+    - keywords = KEYWORDS_GLOBAL + ", " + keywords;
+  else
+    - keywords = KEYWORDS_GLOBAL;
+  meta(name="description", content=description)
+  meta(name="keywords", content=keywords)
+  //- FIXME: search XML?

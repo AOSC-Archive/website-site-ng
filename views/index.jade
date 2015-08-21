@@ -1,53 +1,10 @@
-extend ./templates/layout.jade
-
-block title
-  | Community Portal - AOSC
-block append stylesheet
-  link(rel='stylesheet', href='assets/css/index.css')
-  link(rel='stylesheet', href='assets/css/news-flow.css')
-block content
-  .afe-bigbanner: .container: .row
-    .col-md-8
-      h1 ANTHON OPEN SOURCE COMMUNITY
-      p Hi, and welcome to AOSC. We are a group of free and open technology enthusiasts working hard for improvements.
-    .col-md-3.col-md-offset-1: a(href="/osdownload"): button.btn.btn-primary(style="height:9rem;")
-      | DOWNLOAD AOSC OS
-    .col-md-3.col-md-offset-1: a(href="/about"): button.btn.btn-default
-      | ABOUT US
-  #wrapper: .container: .row
-    .col-md-8
-      h2.afe-littlecaption LASTEST NEWS
-      ul.afe-main
-        each val, index in params.broadcast
-          li(class="afe-tag-"+val.type): .afe-main-item
-            if index<5
-              h3=val.title
-              p.afe-main-item-subtitle=val.date
-              .afe-main-item-body
-                each para in val.content
-                  !=para
-              hr
-            else if index<8
-              a(href="#")
-                h3=val.title
-              hr
-            else if index>=8
-        li: a(href="news-flow"): h4 Read more...
-    .col-md-3.col-md-offset-1
-      h2.afe-littlecaption PROJECTS OVERVIEW
-      ul.afe-side
-        each project in params.projects
-          li
-            img.pull-left(src="/assets/i/" + project.mininame + ".svg")
-            .afe-side-item-body
-              h3=project.fullname
-              p=project.description
-                .col-xs-2(style="padding: 0;")
-                  a(href="/projects")
-                    p.fa.fa-info-circle(style="font-size: 20px")
-                .col-xs-2(style="padding: 0;")
-                  a(href="#{project.gitlink}")
-                    p.fa.fa-git-square(style="font-size: 20px")
-                .col-xs-8(style="padding: 0;")
-                  a(href="#{project.url}")
-                    p.fa.fa-download(style="font-size: 20px")
+extend templates/master.jade
+block variables
+  - var LANGUAGE_CURRENT = "ker";
+block append javascript
+  script.
+    $(document).ready(function() {
+      $(this).click(function() {
+        alert("狮子半夜出来吓人啦");
+      });
+    });
