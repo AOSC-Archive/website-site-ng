@@ -42,7 +42,7 @@ may start a branch whenever needed.
 - 代码风格（Jade 有一些特例，见下文）;
   ```
   function(x, y) {
-    a = b+1;
+    a = b + 1;
   }
   ```
 - 极力避免肮脏的、语义晦涩难懂的代码，如有必要，必须书写清晰的注释说明;
