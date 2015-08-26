@@ -6,7 +6,7 @@
     "@gray": "lighten(@gray-base, 33.5%)",
     "@gray-light": "lighten(@gray-base, 46.7%)",
     "@gray-lighter": "lighten(@gray-base, 93.5%)",
-    "@brand-primary": "#536583",
+    "@brand-primary": "darken(#428bca, 6.5%)",
     "@brand-success": "#5cb85c",
     "@brand-info": "#5bc0de",
     "@brand-warning": "#f0ad4e",
@@ -14,7 +14,7 @@
     "@body-bg": "#fff",
     "@text-color": "@gray-dark",
     "@link-color": "@brand-primary",
-    "@link-hover-color": "darken(@link-color, 45%)",
+    "@link-hover-color": "darken(@link-color, 15%)",
     "@link-hover-decoration": "underline",
     "@font-family-sans-serif": "\"Helvetica Neue\", Helvetica, Arial, sans-serif",
     "@font-family-serif": "Georgia, \"Times New Roman\", Times, serif",
@@ -430,5 +430,5 @@
     "scrollspy.js",
     "transition.js"
   ],
-  "customizerUrl": "http://getbootstrap.com/customize/?id=6cf7910ca37489abb74c"
+  "customizerUrl": "http://getbootstrap.com/customize/?id=753805aa484f97f5711d"
 }
