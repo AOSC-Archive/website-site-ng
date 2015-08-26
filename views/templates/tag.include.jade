@@ -1,0 +1,15 @@
+//-
+  I am a mixins header file designed for:
+    simplifying tags to some little mixins.
+  
+  My mixins' prototype:
+    
+    +include-css(url)
+    
+    +include-js(url)
+
+mixin include-css(url)
+  link(rel="stylesheet", href=url)
+
+mixin include-js(url)
+  script(src=url)

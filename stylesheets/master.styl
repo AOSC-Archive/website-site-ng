@@ -1,0 +1,50 @@
+@import "variables.include.styl"
+
+.afe-nav
+  float: none
+  > li
+    display: inline-block
+    &.afe-primary
+      margin-left: -15px // = Bootstrap: @grid-gutter-width / -2
+    &.afe-highlight
+      float: right
+
+.afe-banner
+  width: 100%
+  min-height: 230px
+  padding: 20px
+  background-color: $color-light-grey
+  box-shadow: 0 3px 3px 0 alpha(black, 35%)
+  position: relative
+  z-index: 100
+  .row
+    padding: 0 $side-padding
+    h1, h2, p
+      color: $color-blue
+    h1
+      font-size: $banner-h1-size
+      font-weight: bold
+      margin: 10px
+    h2
+      font-size: $banner-h1-size * 0.4
+      font-weight: bold
+
+.afe-body
+  .row
+    padding: 0 $side-padding
+    background-color: $color-light-grey
+
+.afe-footer
+  height: $footer-height
+  background-color: $color-light-grey
+  color: $color-blue
+  span
+    line-height: @height
+    margin-right: 2em
+    &:last-type
+      margin-right: 0
+
+body
+  padding-top: $navbar-height // = Bootstrap: @navbar-height
+  padding-bottom: $footer-height
+  background-color: $color-blue

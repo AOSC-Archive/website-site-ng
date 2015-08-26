@@ -3,9 +3,65 @@
 
 extend basic-html.jade
 
+block append stylesheet
+  +include-css("assets/css/master.css")
+
 block head-custom
   +meta-title("狮子的胖次掉啦！！！")
   +meta-description("狮子尝试仔细地描述自己，尽管这依然是不对的。", "狮子持续卖萌中")
 
 block body
+  #meow.visible-xs.visible-sm(style="width:100%;height:100%;position:absolute;z-index:100000000;background-color:black;color:white")
+    h3 Page designed for the small screen is not yet complete.
   
+  //fixed navbar
+  header
+    nav.navbar.navbar-default.navbar-fixed-top
+      .container
+        ul.afe-nav.navbar-nav.nav
+          block navbar
+            // Example for block "navbar"
+            li.afe-primary: a(href="#") MASTER
+            li.active: a(href="#") ACTIVE LINK
+              span.sr-only (current)
+            li: a(href="#") LINK
+            li: a(href="#") LINK
+            li.afe-highlight: a(href="#") HIGHLIGHT
+  
+  //banner
+  .afe-banner
+    .container
+      block banner
+        // Example for block "banner"
+        .row
+          .col-md-12.text-center
+            h1 Do
+            h2 Something new
+          .col-md-offset-3.col-md-6.text-center
+            p
+              | Hi, and welcome to AOSC. We are a group of free and open
+              | technology enthusiasts working hard for improvements.
+  
+  //content
+  .afe-body
+    .container
+      block content
+        // Example for block "content"
+        .row
+          .col-md-6
+            p(style="height: 400px;")
+  
+  //fixed footer
+  footer.afe-footer.navbar-fixed-bottom.text-center
+    span Copyleft 2011–2015, members of the community.
+    span AOSC "Safe" Web Team, 2015. Bootstrap.
+    span 粤 ICP 备 14040623 号
+    
+
+block append javascript
+  script.
+    $(document).ready(function() {
+      $("#meow").click(function() {
+        alert("Nothing happened.");
+      });
+    });
