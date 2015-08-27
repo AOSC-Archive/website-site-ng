@@ -5,8 +5,8 @@
  */
 
 /*!
- * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=3db76f99a7c444271f28)
- * Config saved to config.json and https://gist.github.com/3db76f99a7c444271f28
+ * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=fa07669e0f5928c42104)
+ * Config saved to config.json and https://gist.github.com/fa07669e0f5928c42104
  */
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
@@ -346,12 +346,12 @@ fieldset[disabled] .btn-danger.active {
   background-color: #2e6da4;
 }
 .navbar-default {
-  background-image: -webkit-linear-gradient(top, rgba(50, 74, 109, 0.92) 0%, rgba(34, 50, 74, 0.92) 100%);
-  background-image: -o-linear-gradient(top, rgba(50, 74, 109, 0.92) 0%, rgba(34, 50, 74, 0.92) 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(50, 74, 109, 0.92)), to(rgba(34, 50, 74, 0.92)));
-  background-image: linear-gradient(to bottom, rgba(50, 74, 109, 0.92) 0%, rgba(34, 50, 74, 0.92) 100%);
+  background-image: -webkit-linear-gradient(top, rgba(50, 73, 111, 0.92) 0%, rgba(34, 50, 76, 0.92) 100%);
+  background-image: -o-linear-gradient(top, rgba(50, 73, 111, 0.92) 0%, rgba(34, 50, 76, 0.92) 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(50, 73, 111, 0.92)), to(rgba(34, 50, 76, 0.92)));
+  background-image: linear-gradient(to bottom, rgba(50, 73, 111, 0.92) 0%, rgba(34, 50, 76, 0.92) 100%);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eb324a6d', endColorstr='#eb22324a', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eb32496f', endColorstr='#eb22324c', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 5px rgba(0, 0, 0, 0.075);
@@ -359,12 +359,12 @@ fieldset[disabled] .btn-danger.active {
 }
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .active > a {
-  background-image: -webkit-linear-gradient(top, rgba(16, 23, 34, 0.92) 0%, rgba(20, 30, 44, 0.92) 100%);
-  background-image: -o-linear-gradient(top, rgba(16, 23, 34, 0.92) 0%, rgba(20, 30, 44, 0.92) 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(16, 23, 34, 0.92)), to(rgba(20, 30, 44, 0.92)));
-  background-image: linear-gradient(to bottom, rgba(16, 23, 34, 0.92) 0%, rgba(20, 30, 44, 0.92) 100%);
+  background-image: -webkit-linear-gradient(top, rgba(16, 23, 35, 0.92) 0%, rgba(21, 30, 46, 0.92) 100%);
+  background-image: -o-linear-gradient(top, rgba(16, 23, 35, 0.92) 0%, rgba(21, 30, 46, 0.92) 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(16, 23, 35, 0.92)), to(rgba(21, 30, 46, 0.92)));
+  background-image: linear-gradient(to bottom, rgba(16, 23, 35, 0.92) 0%, rgba(21, 30, 46, 0.92) 100%);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eb101722', endColorstr='#eb141e2c', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eb101723', endColorstr='#eb151e2e', GradientType=0);
   -webkit-box-shadow: inset 0 3px 9px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 3px 9px rgba(0, 0, 0, 0.075);
 }
