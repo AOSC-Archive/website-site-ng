@@ -1,13 +1,33 @@
+//
+// I am the master stylesheet which will be applied on all pages.
+//
+
 @import "variables.include.styl"
+@import "fonts.include.styl"
 
 .afe-nav
   float: none
-  > li
+  font-size: 18px
+  li
     display: inline-block
+
+    &:nth-of-type(2)
+      a
+        margin-left: $navs-padding
+
     &.afe-primary
       margin-left: -15px // = Bootstrap: @grid-gutter-width / -2
+      float: left
+      a, a:hover
+        color: $color-light-grey
+        background-color: $color-blue
+
     &.afe-highlight
+      margin-right: -15px // = Bootstrap: @grid-gutter-width / -2
       float: right
+      a, a:hover
+        color: $color-light-grey
+        background-color: $color-magenta
 
 .afe-banner
   width: 100%
@@ -24,20 +44,20 @@
     h1
       font-size: $banner-h1-size
       font-weight: bold
-      margin: 10px
+      margin: 10px // override the margin setting of Bootstrap
     h2
       font-size: $banner-h1-size * 0.4
       font-weight: bold
 
 .afe-body
   .row
-    padding: 0 $side-padding
+    padding: $content-padding
     background-color: $color-light-grey
 
 .afe-footer
   height: $footer-height
-  background-color: $color-light-grey
   color: $color-blue
+  background-color: $color-grey
   span
     line-height: @height
     margin-right: 2em
@@ -47,4 +67,5 @@
 body
   padding-top: $navbar-height // = Bootstrap: @navbar-height
   padding-bottom: $footer-height
-  background-color: $color-blue
+  color: $color-blue
+  background-color: $color-blue // It's just the side

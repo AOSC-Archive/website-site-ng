@@ -1,5 +1,5 @@
 //-
-  This is  file for blocks head-*
+  This is a template for all pages
 
 extend basic-html.jade
 
@@ -7,8 +7,8 @@ block append stylesheet
   +include-css("assets/css/master.css")
 
 block head-custom
-  +meta-title("狮子的胖次掉啦！！！")
-  +meta-description("狮子尝试仔细地描述自己，尽管这依然是不对的。", "狮子持续卖萌中")
+  +meta-title("Interesting")
+  +meta-description("What a pity...", "So Keywords, Such Do")
 
 block body
   #meow.visible-xs.visible-sm(style="width:100%;height:100%;position:absolute;z-index:100000000;background-color:black;color:white")
@@ -22,8 +22,7 @@ block body
           block navbar
             // Example for block "navbar"
             li.afe-primary: a(href="#") MASTER
-            li.active: a(href="#") ACTIVE LINK
-              span.sr-only (current)
+            li: a(href="#") LINK
             li: a(href="#") LINK
             li: a(href="#") LINK
             li.afe-highlight: a(href="#") HIGHLIGHT
@@ -38,9 +37,9 @@ block body
             h1 Do
             h2 Something new
           .col-md-offset-3.col-md-6.text-center
-            p
-              | Hi, and welcome to AOSC. We are a group of free and open
-              | technology enthusiasts working hard for improvements.
+            p.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+              do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   
   //content
   .afe-body
@@ -48,8 +47,67 @@ block body
       block content
         // Example for block "content"
         .row
-          .col-md-6
-            p(style="height: 400px;")
+          .col-md-8
+            h1.
+              h1 tag
+            p.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+              do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            h2.
+              h2 tag
+            p.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+              do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            h3.
+              h3 tag
+            p.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+              do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            hr
+            h4.
+              h4 tag
+            p.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+              do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut enim ad minim <em>veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint</em> occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            p.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+              do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut enim ad minim veniam, <strong>quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur</strong> sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+          .col-md-4
+            p.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+              do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            p.
+              Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
   
   //fixed footer
   footer.afe-footer.navbar-fixed-bottom.text-center
