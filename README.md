@@ -25,10 +25,10 @@ what's left to do.
 
 1. [x] 产品需求分析 [REQUIREMENT.md](REQUIREMENT.md)
 -  [x] 视觉设计及评审 `Branch design-axionl: *.ai / *.muse`
--  [ ] 书写设计细节文档
+-  [x] 书写设计细节文档
 -  [x] 代码规范 [CONTRIBUTING.md](CONTRIBUTING.md)
 -  [x] 后端构建 `app.js & /controller/*`
--  [ ] 前端母版框架构建
+-  [x] 前端母版框架构建
 -  [ ] 前端单独页面实现
   - [ ] Home
   - [ ] News
@@ -54,5 +54,5 @@ what's left to do.
 ### Lower priority - 次要事项
 
 1. [ ] 多语言支持
--  [ ] 选用横幅背景图
+-  [x]~~选用横幅背景图~~
 -  [ ] 自动切换的夜间模式
