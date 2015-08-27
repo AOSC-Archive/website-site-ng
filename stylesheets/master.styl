@@ -7,7 +7,7 @@
 
 .afe-nav
   float: none
-  font-size: 18px
+  font-size: 15px
   li
     display: inline-block
 
@@ -20,7 +20,7 @@
       float: left
       a, a:hover
         color: $color-light-grey
-        background-color: $color-blue
+        background-color: $color-dark-blue
 
     &.afe-highlight
       margin-right: -15px // = Bootstrap: @grid-gutter-width / -2
@@ -28,19 +28,20 @@
       a, a:hover
         color: $color-light-grey
         background-color: $color-magenta
+.navbar-default
+  border: none
 
 .afe-banner
   width: 100%
   min-height: 230px
-  padding: 20px
-  background-color: $color-light-grey
-  box-shadow: 0 3px 3px 0 alpha(black, 35%)
+  padding: 20px 20px 30px 20px
+  background-color: $color-blue
   position: relative
   z-index: 100
   .row
     padding: 0 $side-padding
     h1, h2, p
-      color: $color-blue
+      color: $color-light-grey
     h1
       font-size: $banner-h1-size
       font-weight: bold
@@ -68,4 +69,4 @@ body
   padding-top: $navbar-height // = Bootstrap: @navbar-height
   padding-bottom: $footer-height
   color: $color-blue
-  background-color: $color-blue // It's just the side
+  background-color: $color-light-grey // It's just the side
