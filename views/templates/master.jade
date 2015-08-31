@@ -43,17 +43,29 @@ block body
   
   //banner
   .afe-banner
-    .container
-      block banner
-        // Example for block "banner"
-        .row
-          .col-md-12.text-center
-            h1 Do
-            h2 Something new
-          .col-md-offset-3.col-md-6.text-center
-            p.
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-              do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    .afe-static-banner
+      .container
+        block banner
+          // Example for block "banner"
+          .row
+            .col-md-12.text-center
+              h1 Do
+              h2 Something new
+            .col-md-offset-3.col-md-6.text-center
+              p.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    
+    //floating-banner, immediate child of .afe-banner
+    .afe-floating-banner
+      .container
+        block banner-floating
+          #flag-not-extend-banner-floating
+          .row
+            .col-md-12.text-center
+              small.
+                Most good programmers do programming not because they expect to get paid
+                or get adulation by the public, but because it is fun to program. -- Linus Torvalds
   
   //content
   .afe-body
@@ -132,8 +144,30 @@ block body
 
 block append javascript
   script.
+    var navHeight, floatBannerTop, floatBannerStatus;
+    
     $(document).ready(function() {
-      $("#meow").click(function() {
-        alert("Nothing happened.");
-      });
+      
+      if($("#flag-not-extend-banner-floating").length == 0) {
+        floatBannerStatus = false;
+        
+        $(window).resize(function() {
+          navHeight = $(".afe-nav").height();
+          floatBannerTop = $(".afe-floating-banner").offset().top;
+          $(document).scroll()
+        }); $(window).resize();
+        
+        $(".afe-static-banner").show();
+        $(".afe-floating-banner").hide();
+        
+        $(document).scroll(function() {
+          if((!floatBannerStatus && $(document).scrollTop() + navHeight >  floatBannerTop) ||
+             ( floatBannerStatus && $(document).scrollTop() + navHeight <= floatBannerTop)) {
+            floatBannerStatus = !floatBannerStatus;
+            $(".afe-static-banner").toggle();
+            $(".afe-floating-banner").toggle().addClass("afe-fixed");
+          }
+        });
+      }
+      
     });

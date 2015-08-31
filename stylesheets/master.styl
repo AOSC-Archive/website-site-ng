@@ -30,15 +30,20 @@
         background-color: $color-magenta
 
 .afe-banner
-  width: 100%
-  min-height: 230px
-  padding: 20px
-  background-color: $color-light-grey
-  box-shadow: 0 3px 3px 0 alpha(black, 35%)
+  min-height: $banner-min-height
   position: relative
   z-index: 100
+
+.afe-banner > div
+  background-color: $color-light-grey
+  box-shadow: 0 3px 3px 0 alpha(black, 35%)
+
+.afe-static-banner
+  position: relative
+  width: 100%
+  z-index: 100
   .row
-    padding: 0 $side-padding
+    padding: 20px $side-padding
     h1, h2, p
       color: $color-blue
     h1
@@ -48,6 +53,19 @@
     h2
       font-size: $banner-h1-size * 0.4
       font-weight: bold
+
+.afe-floating-banner
+  position: absolute
+  width: 100%
+  bottom: 0
+  opacity: 0.9
+  min-height: $floating-banner-min-height
+  &.afe-fixed
+    position: fixed
+    top: $navbar-height
+    bottom: auto
+  .row
+    padding: 0 $side-padding // same as ".afe-banner .row"
 
 .afe-body
   background-color: $color-blue // The side
@@ -67,5 +85,6 @@
 
 body
   color: $color-blue // text color
+  background-color: $color-light-grey // for dynamic banner
   padding-top: $navbar-height // = Bootstrap: @navbar-height
   padding-bottom: $footer-height
