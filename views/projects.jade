@@ -1,0 +1,39 @@
+extend templates/master.jade
+
+block head-custom
+  +meta-title("Community Portal")
+  +meta-description("Anthon Open Source Community")
+
+block banner
+  .row(style="padding-bottom: 0;")
+    .col-md-12
+      h1(style="font-weight: 500;") PROJECTS
+      h2 Not just another brick in the wall.
+    .col-md-6
+      p(style="padding-bottom: 20px").
+         AOSC is far from just a Linux distribution community. The community holds a bucket
+         full of F/OSS goodness developed by us.
+
+block banner-floating
+  .row
+    .col-md-12.text-center
+      small.
+        Most good programmers do programming not because they expect to get paid
+        or get adulation by the public, but because it is fun to program. -- Linus Torvalds
+
+block content
+  .row(style="padding-top: 25px;")
+    .col-md-8
+      h4(style="padding-left: 4rem;").afe-small-captions-important AOSC OS
+      .afe-main(style="padding-left: 0;")
+        .col-md-10.col-md-offset-1.col-sm-12.col-xs-12
+        each feature, index in params.distro.features
+          .row(style="padding: 10px 0px;")
+            .col-md-3.hidden-xs.hidden-sm
+              img(src=feature.image style="width: 150px; height: 150px;")
+            .col-md-8.col-xs-12.col-sm-12
+              h2=feature.name
+              p=feature.why
+              small=feature.ps
+    .col-md-4
+      h4(style="padding-left: 4rem;").afe-small-captions OTHER PROJECTS

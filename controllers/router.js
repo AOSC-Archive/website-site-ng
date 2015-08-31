@@ -62,7 +62,9 @@ exports.DoBoom = function(app) {
   app.get( '/projects' , function(req, res) {
     try{
       var prj = readYAML('projects');
+      var dto = readYAML('distro');
       res.render('projects', {'params' : {
+        'distro' : dto,
         'project' : prj
       }});
     }catch(err){sayOops(req, res, err);}

@@ -50,6 +50,8 @@
 
 .afe-small-captions
   margin-bottom: 30px
+  &-important
+    color: $color-magenta
 
 .afe-little-node
   width: 16px
@@ -84,9 +86,9 @@
         background-color: $color-magenta
 
 .afe-banner
-  min-height: $banner-min-height
   position: relative
   z-index: 100
+  min-height: $banner-min-height
 
 .afe-banner > div
   background-color: $color-light-grey
@@ -102,14 +104,18 @@
       color: $color-blue
     h1
       font-size: $banner-h1-size
-      font-weight: bold
+      font-weight: 600
       margin: 10px // override the margin setting of Bootstrap
     h2
       font-size: $banner-h1-size * 0.4
-      font-weight: bold
+      font-weight: 400
+      margin: 10px
     h3
       font-size: $banner-h1-size * 0.3
-      font-weight: bold
+      font-weight: 400
+      margin: 10px
+    p
+      margin: 10px
 
 .afe-floating-banner
   position: absolute
