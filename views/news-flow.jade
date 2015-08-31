@@ -1,0 +1,37 @@
+extend templates/master.jade
+
+block head-custom
+  +meta-title("News Flow")
+  +meta-description("Anthon Open Source Community")
+
+block banner
+  .row(style="padding-bottom: 0;")
+    .col-md-12
+      h1(style="font-weight: 500;") NEWS
+      h2 Read hard, get it all caught up :-D
+    .col-md-6
+      p(style="padding-bottom: 20px").
+         Things are (actually) going on around the community (surprise!), here we provide
+         you with a stream of news in the community.
+
+block banner-floating
+  .row
+    .col-md-12.text-center
+      small.
+        Most good programmers do programming not because they expect to get paid
+        or get adulation by the public, but because it is fun to program. -- Linus Torvalds
+
+block content
+
+  .row(style="padding-top: 25px")
+    .col-md-8
+      h4.afe-small-captions(style="padding-left: 0rem;") LASTEST NEWS
+      ul.afe-main
+        each val, index in params.broadcast
+          li(style="list-style-type: none;" class="afe-tag-"+val.type): .afe-main-item
+              h3=val.title
+              small.afe-main-item-subtitle=val.date
+              .afe-main-item-body
+                each para in val.content
+                  !=para
+              hr
