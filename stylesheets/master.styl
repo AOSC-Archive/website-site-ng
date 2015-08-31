@@ -5,6 +5,60 @@
 @import "variables.include.styl"
 @import "fonts.include.styl"
 
+.afe-main-item-subtitle
+  small
+    color: $color-dark-grey
+
+.afe-main-item-body
+  padding-top: 10px
+  p
+    color: $color-blue
+  a
+    color: $color-magenta
+
+.afe-side
+  li
+    p
+      font-size: small
+      margin: 0 0 0.5rem 0
+      min-height: 4px
+      max-height: 4px
+      overflow: hidden
+      height: auto
+      transition: all 200ms
+    &:hover p
+      max-height: 10rem
+
+.afe-button-upper
+  border-radius: 6px 6px 0px 0px
+  background: $color-blue
+  transition: all 200ms
+  &:hover
+    background: #999999
+
+.afe-button-bottom
+  border-radius: 0px 0px 6px 6px
+  background: $color-light-grey
+  transition: all 200ms
+  &:hover
+    background: $color-grey
+
+.afe-sub-banner
+  background-color: #cdcdcd
+  margin: 0
+  padding: 0
+
+.afe-small-captions
+  margin-bottom: 30px
+
+.afe-little-node
+  width: 16px
+  height: 16px
+  background-color: $color-light-blue
+  border-radius: 5px
+  &:hover
+    background-color: $color-blue
+
 .afe-nav
   float: none
   font-size: 18px
@@ -68,7 +122,7 @@
     top: $navbar-height
     bottom: auto
   .row
-    padding: 0 $side-padding // same as ".afe-banner .row"
+    padding: 5px $side-padding // same as ".afe-banner .row"
 
 .afe-body
   background-color: $color-blue // The side
@@ -91,3 +145,5 @@ body
   background-color: $color-light-grey // for dynamic banner
   padding-top: $navbar-height // = Bootstrap: @navbar-height
   padding-bottom: $footer-height
+  a
+    color: $color-blue

@@ -1,24 +1,56 @@
 extend templates/master.jade
 
+block head-custom
+  +meta-title("Community Portal")
+  +meta-description("Anthon Open Source Community")
+
 block banner
-  .row
+  .row(style="padding-bottom: 0;")
     .col-md-12.text-center
       h1 AOSC
-      h2 WELCOME IN
+      // HERE IS AN IDEA, RANDOM SUB-TITLE EACH VISIT?
+      h2 Overuse that shell!
     .col-md-offset-3.col-md-6.text-center
       p.
-         We are a group of free and open technology enthusiasts working hard for improvements.
+         Welcome to Anthon Open Source Community! We are a group of free and open technology enthusiasts working hard for improvements.
+    a(href="#")
+      .col-md-2.col-md-offset-5.col-xs-4.col-xs-offset-4.text-center.afe-button-upper(style="margin-top: 20px")
+        h2(style="margin-top: 10px; margin-bottom: 10px; color: #F2F2F2; font-weight: 300") Download
+
+block banner-floating
+  .row
+    .col-md-12.text-center
+      small.
+        Most good programmers do programming not because they expect to get paid
+        or get adulation by the public, but because it is fun to program. -- Linus Torvalds
 
 block content
-  .row
+  .afe-sub-banner
+    .row(style="background-color: #cdcdcd; padding-top: 0; padding-bottom: 15px;")
+      // FIXME: PROTOTYPE
+      .col-md-1.hidden-sm.hidden-xs
+        div.afe-little-node(style="width: 65px; height: 65px; border-radius: 0; margin: 15px 0px 0px;")
+      .col-md-1.hidden-sm.hidden-xs
+        div.afe-little-node(style="width: 65px; height: 65px; border-radius: 0; margin: 15px 0px 0px;")
+      .col-md-1.hidden-sm.hidden-xs
+        div.afe-little-node(style="width: 65px; height: 65px; border-radius: 0; margin: 15px 0px 0px;")
+      .col-md-1.hidden-sm.hidden-xs
+        div.afe-little-node(style="width: 65px; height: 65px; border-radius: 0; margin: 15px 0px 0px;")
+      .col-md-1.hidden-sm.hidden-xs
+        a(href="#")
+          span(style="display: block; margin-top: 60px;") More...
+      a(href="#")
+        .col-md-2.col-md-offset-0.col-xs-4.col-xs-offset-4.text-center.afe-button-bottom(style="margin-top: 0px")
+          h2(style="margin-top: 10px; margin-bottom: 10px; font-weight: 300") About
+  .row(style="padding-top: 25px")
     .col-md-8
-      h4(style="padding-left: 4rem;") LASTEST NEWS
+      h4.afe-small-captions(style="padding-left: 0rem;") LASTEST NEWS
       ul.afe-main
         each val, index in params.broadcast
           li(style="list-style-type: none;" class="afe-tag-"+val.type): .afe-main-item
             if index<5
               h3=val.title
-              p.afe-main-item-subtitle=val.date
+              small.afe-main-item-subtitle=val.date
               .afe-main-item-body
                 each para in val.content
                   !=para
@@ -32,3 +64,13 @@ block content
                 a(href="#")
                   h4 "read more..."
     .col-md-4
+      h4(style="padding-left: 4rem;").afe-small-captions PROJECTS OVERVIEW
+      ul.afe-side
+        each project in params.projects
+          li(style="list-style-type: none;")
+            .row(style="padding: 0;")
+              .col-xs-1
+                div.afe-little-node(style="margin-top: 3px")
+              .col-xs-10
+                h4(style="margin-top: 0; margin-bottom: 5px")=project.fullname
+                p=project.description
