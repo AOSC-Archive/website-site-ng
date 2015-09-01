@@ -70,8 +70,9 @@
     background-color: $color-blue
 
 .afe-nav
-  float: none
-  font-size: 18px
+  ul
+    float: none
+    font-size: 16px
   li
     display: inline-block
 
@@ -108,32 +109,27 @@
   min-height: $banner-min-height
   .row
     padding: $banner-padding-vertical $side-padding
-    h1, h2, p
-      color: $color-blue
+    h1, h2, h3, p
+      margin: 0 // override the margin setting of Bootstrap
     h1
       font-size: $banner-h1-size
       font-weight: 600
-      margin: 10px // override the margin setting of Bootstrap
     h2
       font-size: $banner-h1-size * 0.4
       font-weight: 400
-      margin: 10px
     h3
       font-size: $banner-h1-size * 0.3
       font-weight: 400
-      margin: 10px
-    p
-      margin: 10px
 
 .afe-floating-banner
   position: absolute
+  z-index: 200
   width: 100%
   bottom: 0
   opacity: 0.9
   min-height: $floating-banner-min-height
   &.afe-fixed
     position: fixed
-    top: $navbar-height
     bottom: auto
   .row
     padding: 5px $side-padding // same as ".afe-banner .row"

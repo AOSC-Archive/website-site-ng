@@ -20,7 +20,7 @@
 extend basic-html.jade
 
 block append stylesheet
-  +include-css("assets/css/master.css")
+  +include-css("/assets/css/master.css")
 
 block head-custom
   +meta-title("Interesting")
@@ -30,9 +30,9 @@ block body
   
   //fixed navbar
   header
-    nav.navbar.navbar-default.navbar-fixed-top
+    nav.navbar.navbar-default.navbar-fixed-top.afe-nav
       .container
-        ul.afe-nav.navbar-nav.nav
+        ul.navbar-nav.nav
           block navbar
             // Example for block "navbar"
             li.afe-primary: a(href="/") AOSC
@@ -153,25 +153,23 @@ block append javascript
       
       if($("#flag-not-extend-banner-floating").length == 0) {
         floatBannerStatus = false;
+        $(".afe-floating-banner").hide();
         
         $(window).resize(function() {
           navHeight = $(".afe-nav").height();
           floatBannerTop = $(".afe-banner").offset().top + $(".afe-static-banner").height() - $(".afe-floating-banner").height();
-          if(floatBannerStatus) $(".afe-body").css("padding-top", $(".afe-static-banner").height());
-          $(document).scroll()
+          $(document).scroll();
         }); $(window).resize();
         
         $(document).scroll(function() {
           if(!floatBannerStatus && $(document).scrollTop() + navHeight >  floatBannerTop) {
             floatBannerStatus = true;
-            $(".afe-static-banner").hide();
-            $(".afe-body").css("padding-top", $(".afe-static-banner").height());
-            $(".afe-floating-banner").show().addClass("afe-fixed");
+            $(".afe-static-banner").addClass("invisible");
+            $(".afe-floating-banner").show().addClass("afe-fixed").css("top", navHeight + "px");
           }else if(floatBannerStatus && $(document).scrollTop() + navHeight <= floatBannerTop) {
             floatBannerStatus = false;
-            $(".afe-static-banner").show();
-            $(".afe-body").css("padding-top", "0");
-            $(".afe-floating-banner").hide().removeClass("afe-fixed");
+            $(".afe-static-banner").removeClass("invisible");
+            $(".afe-floating-banner").hide().removeClass("afe-fixed").css("top", "auto");
           }
         });
       }

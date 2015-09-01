@@ -4,23 +4,24 @@ block head-custom
   +meta-title("Community Portal")
   +meta-description("Anthon Open Source Community")
 
+block append stylesheet
+  +include-css("/assets/css/index.css")
+
 block banner
   .row
     .col-md-12.text-center
-      h1(style="margin: 0;") AOSC
+      h1 AOSC
       // HERE IS AN IDEA, RANDOM SUB-TITLE EACH VISIT?
       // GOOD IDEA
-      h2(style="margin: 5px 0;") Overuse that shell!
+      h2 Overuse that shell!
     .col-md-offset-3.col-md-6.text-center
       p.
          Welcome to Anthon Open Source Community! We are a group of free and open technology enthusiasts working hard for improvements.
     .col-md-12.text-center
-    //
-      a(href="#").afe-button-upper
-        h2(style="color: #F2F2F2; font-weight: 300") Download
-      br
-      a(href="#").afe-button-bottom
-        h2(style="font-weight: 300") About
+      a(href="#").afe-button
+        img(alt="Download", src="/assets/i/button-download.svg")
+      a(href="#").afe-button
+        img(alt="About", src="/assets/i/button-about.svg")
 block banner-floating
   .row
     .col-md-12.text-center
@@ -29,18 +30,18 @@ block banner-floating
         or get adulation by the public, but because it is fun to program. -- Linus Torvalds
 
 block content
-  .afe-sub-banner
+  .afe-sub-banner.hidden-sm.hidden-xs
     .row(style="background-color: #cdcdcd; padding-top: 0; padding-bottom: 15px;")
       // FIXME: PROTOTYPE
-      .col-md-1.hidden-sm.hidden-xs
+      .col-md-1
         div.afe-little-node(style="width: 65px; height: 65px; border-radius: 0; margin: 15px 0px 0px;")
-      .col-md-1.hidden-sm.hidden-xs
+      .col-md-1
         div.afe-little-node(style="width: 65px; height: 65px; border-radius: 0; margin: 15px 0px 0px;")
-      .col-md-1.hidden-sm.hidden-xs
+      .col-md-1
         div.afe-little-node(style="width: 65px; height: 65px; border-radius: 0; margin: 15px 0px 0px;")
-      .col-md-1.hidden-sm.hidden-xs
+      .col-md-1
         div.afe-little-node(style="width: 65px; height: 65px; border-radius: 0; margin: 15px 0px 0px;")
-      .col-md-1.hidden-sm.hidden-xs
+      .col-md-1
         a(href="#")
           span(style="display: block; margin-top: 60px;") More...
   .row(style="padding-top: 25px")
