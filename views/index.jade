@@ -5,18 +5,22 @@ block head-custom
   +meta-description("Anthon Open Source Community")
 
 block banner
-  .row(style="padding-bottom: 0;")
+  .row
     .col-md-12.text-center
       h1(style="margin: 0;") AOSC
       // HERE IS AN IDEA, RANDOM SUB-TITLE EACH VISIT?
+      // GOOD IDEA
       h2(style="margin: 5px 0;") Overuse that shell!
     .col-md-offset-3.col-md-6.text-center
       p.
          Welcome to Anthon Open Source Community! We are a group of free and open technology enthusiasts working hard for improvements.
-    a(href="#")
-      .col-md-2.col-md-offset-5.col-xs-4.col-xs-offset-4.text-center.afe-button-upper(style="margin-top: 20px")
-        h2(style="margin-top: 10px; margin-bottom: 10px; color: #F2F2F2; font-weight: 300") Download
-
+    .col-md-12.text-center
+    //
+      a(href="#").afe-button-upper
+        h2(style="color: #F2F2F2; font-weight: 300") Download
+      br
+      a(href="#").afe-button-bottom
+        h2(style="font-weight: 300") About
 block banner-floating
   .row
     .col-md-12.text-center
@@ -39,9 +43,6 @@ block content
       .col-md-1.hidden-sm.hidden-xs
         a(href="#")
           span(style="display: block; margin-top: 60px;") More...
-      a(href="#")
-        .col-md-2.col-md-offset-0.col-xs-4.col-xs-offset-4.text-center.afe-button-bottom(style="margin-top: 0px")
-          h2(style="margin-top: 10px; margin-bottom: 10px; font-weight: 300") About
   .row(style="padding-top: 25px")
     .col-md-8
       h4.afe-small-captions(style="padding-left: 0rem;") LASTEST NEWS

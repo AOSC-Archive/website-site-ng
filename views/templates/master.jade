@@ -156,19 +156,22 @@ block append javascript
         
         $(window).resize(function() {
           navHeight = $(".afe-nav").height();
-          floatBannerTop = $(".afe-floating-banner").offset().top;
+          floatBannerTop = $(".afe-banner").offset().top + $(".afe-static-banner").height() - $(".afe-floating-banner").height();
+          if(floatBannerStatus) $(".afe-body").css("padding-top", $(".afe-static-banner").height());
           $(document).scroll()
         }); $(window).resize();
         
-        $(".afe-static-banner").show();
-        $(".afe-floating-banner").hide();
-        
         $(document).scroll(function() {
-          if((!floatBannerStatus && $(document).scrollTop() + navHeight >  floatBannerTop) ||
-             ( floatBannerStatus && $(document).scrollTop() + navHeight <= floatBannerTop)) {
-            floatBannerStatus = !floatBannerStatus;
-            $(".afe-static-banner").toggle();
-            $(".afe-floating-banner").toggle().addClass("afe-fixed");
+          if(!floatBannerStatus && $(document).scrollTop() + navHeight >  floatBannerTop) {
+            floatBannerStatus = true;
+            $(".afe-static-banner").hide();
+            $(".afe-body").css("padding-top", $(".afe-static-banner").height());
+            $(".afe-floating-banner").show().addClass("afe-fixed");
+          }else if(floatBannerStatus && $(document).scrollTop() + navHeight <= floatBannerTop) {
+            floatBannerStatus = false;
+            $(".afe-static-banner").show();
+            $(".afe-body").css("padding-top", "0");
+            $(".afe-floating-banner").hide().removeClass("afe-fixed");
           }
         });
       }

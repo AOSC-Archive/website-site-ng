@@ -30,6 +30,10 @@
       max-height: 10rem
 
 .afe-button-upper
+  display: inline-block/*
+  position: relative
+  margin-bottom: -1 * $banner-padding-vertical*/
+  transform: translateY($banner-padding-vertical)
   border-radius: 6px 6px 0px 0px
   background: $color-blue
   transition: all 200ms
@@ -37,6 +41,10 @@
     background: #999999
 
 .afe-button-bottom
+  display: inline-block
+  position: absolute/*
+  bottom: -1*$banner-padding-vertical*/
+  transform: translateY($banner-padding-vertical)
   border-radius: 0px 0px 6px 6px
   background: $color-light-grey
   transition: all 200ms
@@ -88,7 +96,6 @@
 .afe-banner
   position: relative
   z-index: 100
-  min-height: $banner-min-height
 
 .afe-banner > div
   background-color: $color-light-grey
@@ -98,8 +105,9 @@
   position: relative
   width: 100%
   z-index: 100
+  min-height: $banner-min-height
   .row
-    padding: 20px $side-padding
+    padding: $banner-padding-vertical $side-padding
     h1, h2, p
       color: $color-blue
     h1
