@@ -23,7 +23,7 @@ what's left to do.
 
 ### Higher priority - 优先事项
 
-1. [x] 产品需求分析 [REQUIREMENT.md](REQUIREMENT.md)
+-  [x] 产品需求分析 [REQUIREMENT.md](REQUIREMENT.md)
 -  [x] 视觉设计及评审 `Branch design-axionl: *.ai / *.muse`
 -  [x] 书写设计细节文档
 -  [x] 代码规范 [CONTRIBUTING.md](CONTRIBUTING.md)
@@ -53,6 +53,6 @@ what's left to do.
 
 ### Lower priority - 次要事项
 
-1. [ ] 多语言支持
+-  [ ] 多语言支持
 -  [x]~~选用横幅背景图~~
 -  [ ] 自动切换的夜间模式
