@@ -65,18 +65,18 @@ block content
             else if index>=8
               li
                 a(href="#")
-        a(href="/news-flow")
-          h4 Read more...
+        h4(style="margin-bottom: 40px;")
+          a(href="/news-flow") Read more...
     .col-md-4
-      h4(style="padding-left: 4rem;").afe-small-captions PROJECTS OVERVIEW
+      h1(style="padding-left: 4rem;").afe-small-captions PROJECTS OVERVIEW
       ul.afe-side
         each project in params.projects
-          li(style="list-style-type: none;")
+          li
             .row(style="padding: 0;")
               .col-xs-1
                 div.afe-little-node(style="margin-top: 3px")
               .col-xs-10
-                h4(style="margin-top: 0; margin-bottom: 5px")=project.fullname
+                h1(style="margin-top: 0; margin-bottom: 5px")=project.fullname
                 p=project.description
 
 block append javascript
