@@ -13,7 +13,7 @@ block banner
       h1 AOSC
       // HERE IS AN IDEA, RANDOM SUB-TITLE EACH VISIT?
       // GOOD IDEA
-      h2 Overuse that shell!
+      h2 &nbsp;
     .col-md-offset-3.col-md-6.text-center
       p.
          Welcome to Anthon Open Source Community! We are a group of free and open technology enthusiasts working hard for improvements.
@@ -22,6 +22,7 @@ block banner
         img(alt="Download", src="/assets/i/button-download.svg")
       a(href="#").afe-button
         img(alt="About", src="/assets/i/button-about.svg")
+
 block banner-floating
   .row
     .col-md-12.text-center
@@ -83,4 +84,7 @@ block append javascript
   script.
     $(function() {
       $(".afe-side .row").hoverPanel();
+      $.getJSON("/api/splashes", function(json) {
+        if(json.splashes) $(".afe-banner h2").text(json.splashes);
+      });
     });
