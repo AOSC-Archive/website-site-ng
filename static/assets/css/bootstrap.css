@@ -5,8 +5,8 @@
  */
 
 /*!
- * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=196594a2431f598a0ac3)
- * Config saved to config.json and https://gist.github.com/196594a2431f598a0ac3
+ * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=5cad822b46d84c92ebf0)
+ * Config saved to config.json and https://gist.github.com/5cad822b46d84c92ebf0
  */
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
@@ -1606,7 +1606,7 @@ pre code {
 }
 @media (min-width: 1200px) {
   .container {
-    width: 1170px;
+    width: 1098px;
   }
 }
 .container-fluid {
@@ -4548,7 +4548,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default {
   background-color: #e6e6e6;
-  border-color: #d5d5d5;
+  border-color: transparent;
 }
 .navbar-default .navbar-brand {
   color: #5e7395;
@@ -4582,7 +4582,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   background-color: transparent;
 }
 .navbar-default .navbar-toggle {
-  border-color: #dddddd;
+  border-color: transparent;
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
@@ -4593,7 +4593,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
-  border-color: #d5d5d5;
+  border-color: transparent;
 }
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
