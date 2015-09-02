@@ -147,11 +147,12 @@ block body
 
 block append javascript
   script.
-    var navHeight, floatBannerTop, floatBannerStatus;
     
-    $(document).ready(function() {
+    $(function() {
       
       if($("#flag-not-extend-banner-floating").length == 0) {
+        var navHeight, floatBannerTop, floatBannerStatus;
+        
         floatBannerStatus = false;
         $(".afe-floating-banner").hide();
         
