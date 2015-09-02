@@ -5,6 +5,7 @@ block head-custom
   +meta-description("Anthon Open Source Community")
 
 block append stylesheet
+  +include-css("/assets/css/flow.css")
   +include-css("/assets/css/index.css")
 
 block banner
@@ -47,28 +48,22 @@ block content
           span(style="display: block; margin-top: 60px;") More...
   .row(style="padding-top: 25px")
     .col-md-8
-      h4.afe-small-captions(style="padding-left: 0rem;") LASTEST NEWS
-      ul.afe-main
+      h1.afe-small-captions(style="padding-left: 0rem;") LASTEST NEWS
+      ul.afe-flow
         each val, index in params.broadcast
-          li(style="list-style-type: none;" class="afe-tag-"+val.type): .afe-main-item
-            if index<5
-              h3=val.title
-              small.afe-main-item-subtitle=val.date
-              .afe-main-item-body
-                each para in val.content
-                  !=para
-              hr
-            else if index<8
-              a(href="#")
-                h3=val.title
-                hr
-            else if index>=8
-              li
-                a(href="#")
+          if index<5
+            li(class="afe-tag-"+val.type)
+                h1=val.title
+                  small=val.date
+                .afe-content
+                  each para in val.content
+                    !=para
+          else if index<8
+            li(class="afe-tag-"+val.type): h1: a(href="#")=val.title
         h4(style="margin-bottom: 40px;")
           a(href="/news-flow") Read more...
     .col-md-4
-      h1(style="padding-left: 4rem;").afe-small-captions PROJECTS OVERVIEW
+      h1.afe-small-captions PROJECTS OVERVIEW
       ul.afe-side
         each project in params.projects
           li
