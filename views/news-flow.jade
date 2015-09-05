@@ -30,7 +30,7 @@ block content
       h1.afe-small-captions(style="padding-left: 0rem;") LASTEST NEWS
       ul.afe-flow
         each val, index in params.broadcast
-          li(style="list-style-type: none;" class="afe-tag-"+val.type)
+          li(class="afe-tag-"+val.type)
             h1=val.title
               small=val.date
             .afe-content
