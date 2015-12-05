@@ -6,6 +6,7 @@ block head-custom
 
 block append stylesheet
   +include-css("/assets/css/flow.css")
+  +include-css("/assets/css/hoverpanel.css")
   +include-css("/assets/css/index.css")
 
 block banner
@@ -64,7 +65,7 @@ block content
           a(href="/news-flow") Read more...
     .col-md-4
       h1.afe-small-captions PROJECTS OVERVIEW
-      ul.afe-side
+      ul.afe-hoverpanel
         each project in params.projects
           li
             .row(style="padding: 0;")
@@ -78,7 +79,7 @@ block append javascript
   +include-js("/assets/js/hoverpanel.js")
   script.
     $(function() {
-      $(".afe-side .row").hoverPanel();
+      $(".afe-hoverpanel .row").hoverPanel();
       $.getJSON("/api/splashes", function(json) {
         if(json.splashes) $(".afe-banner h2").text(json.splashes);
       });
