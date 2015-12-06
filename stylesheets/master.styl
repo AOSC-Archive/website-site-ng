@@ -90,9 +90,12 @@
 
 .afe-body
   background-color: $color-blue // The side
-  .row
+  >.container>.row
     padding: $body-padding-vertical $side-padding
     background-color: $color-light-grey
+
+#wrapper, .afe-wrapper.row
+  padding-top: $wrapper-padding-top
 
 .afe-footer
   height: $footer-height
