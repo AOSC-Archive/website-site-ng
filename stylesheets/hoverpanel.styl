@@ -16,20 +16,24 @@
 @import "variables.include.styl"
 
 ul.afe-hoverpanel
+  margin: 20px 0
   padding-left: 0
   li
-    margin: 5px 0
+    margin: 10px 0
     list-style-type: none
     h1
+      margin: 0 0 3px
       font-size: 18px
       font-weight: normal
+      &:before
+        content: " "
+        display: inline-block
+        width: 1em
+        height: 1em
+        margin-right: 1em
+        background-color: $color-light-blue
     p
+      padding-left: 18px * 2
       display: none
       font-size: small
       margin: 0 0 0.5rem 0
-    .afe-little-node
-      width: 16px
-      height: 16px
-      background-color: $color-light-blue
-      &:hover
-        background-color: $color-blue

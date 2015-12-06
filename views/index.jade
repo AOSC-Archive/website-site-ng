@@ -68,18 +68,14 @@ block content
       ul.afe-hoverpanel
         each project in params.projects
           li
-            .row(style="padding: 0;")
-              .col-xs-1
-                div.afe-little-node(style="margin-top: 3px")
-              .col-xs-10
-                h1(style="margin-top: 0; margin-bottom: 5px")=project.fullname
-                p=project.description
+            h1=project.fullname
+            p=project.description
 
 block append javascript
   +include-js("/assets/js/hoverpanel.js")
   script.
     $(function() {
-      $(".afe-hoverpanel .row").hoverPanel();
+      $(".afe-hoverpanel li").hoverPanel();
       $.getJSON("/api/splashes", function(json) {
         if(json.splashes) $(".afe-banner h2").text(json.splashes);
       });
