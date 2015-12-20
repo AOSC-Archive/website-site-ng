@@ -4,7 +4,7 @@ block head-custom
   +meta-title("Community Portal")
   +meta-description("Anthon Open Source Community")
 
-block append stylesheet
+append stylesheet
   +include-css("/assets/css/flow.css")
   +include-css("/assets/css/hoverpanel.css")
   +include-css("/assets/css/index.css")
@@ -71,7 +71,7 @@ block content
             h1=project.fullname
             p=project.description
 
-block append javascript
+append javascript
   +include-js("/assets/js/hoverpanel.js")
   script.
     $(function() {
