@@ -58,6 +58,20 @@ exports.DoBoom = function(app) {
     }catch(err){sayOops(req, res, err);}
   });
 
+  // - /community
+  app.get('/community' , function(req, res) {
+    try{
+      // var bct = readYAML('news');
+      // for(var i_ct in bct) {
+      //   bct[i_ct].date = formatDate(bct[i_ct].date).toUpperCase();
+      //   var _ct = bct[i_ct].content;
+      //   for(var i_para in _ct) _ct[i_para] = md.toHTML(_ct[i_para]);
+      // }
+      res.render('community', {'params' : {
+      }});
+    }catch(err){sayOops(req, res, err);}
+  });
+
   // - /projects
   app.get( '/projects' , function(req, res) {
     try{
