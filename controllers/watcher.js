@@ -48,6 +48,7 @@ function compileStylus() {
     .set("filename", fullPathOfStylus(file))
     .set("compress", false)
     .use(nib())
+    .import('nib')
     .render(function(err, targetCss) {
       if(err) {
         log.warn("watcher.compiler: Failed on compiling " + file + ".styl :\n" + err);
