@@ -2,6 +2,7 @@ Thumbs.db
 /static/assets/css/*
 !/static/assets/css/font-awesome*
 !/static/assets/css/bootstrap*
+!/static/assets/css/magnific-popup.css
 /.buildpath
 /build/
 */archive/
