@@ -12,18 +12,13 @@ append stylesheet
 block banner
   .row
     .col-md-12.text-center
-      h1 AOSC
+      h1.afe-index-title AOSC
       // HERE IS AN IDEA, RANDOM SUB-TITLE EACH VISIT?
       // GOOD IDEA
       h2 &nbsp;
     .col-md-offset-3.col-md-6.text-center
       p.
         Welcome to Anthon Open Source Community! We are a group of free and open technology enthusiasts working hard for improvements.
-    .col-md-12.text-center
-      a(href="#").afe-button
-        img(alt="Download", src="/assets/i/button-download.svg")
-      a(href="#").afe-button
-        img(alt="About", src="/assets/i/button-about.svg")
 
 block banner-floating
   .row
@@ -34,19 +29,13 @@ block banner-floating
 
 block content
   .afe-sub-banner.hidden-sm.hidden-xs
-    .row(style="background-color: #cdcdcd; padding-top: 0; padding-bottom: 15px;")
+    .container: .row: .col-md-12: ul
       // FIXME: PROTOTYPE
-      .col-md-1
-        div.afe-little-node(style="width: 65px; height: 65px; border-radius: 0; margin: 15px 0px 0px;")
-      .col-md-1
-        div.afe-little-node(style="width: 65px; height: 65px; border-radius: 0; margin: 15px 0px 0px;")
-      .col-md-1
-        div.afe-little-node(style="width: 65px; height: 65px; border-radius: 0; margin: 15px 0px 0px;")
-      .col-md-1
-        div.afe-little-node(style="width: 65px; height: 65px; border-radius: 0; margin: 15px 0px 0px;")
-      .col-md-1
-        a(href="#")
-          span(style="display: block; margin-top: 60px;") More...
+      each val in [1, 2, 3, 4, 5]
+        li: a.image-popup-no-margins(href="/assets/i/test.png"): img(src="/assets/i/test.png")
+      li: a(href="/community") More...
+  .afe-sub-banner-padding.hidden-sm.hidden-xs
+  
   #wrapper.row
     .col-md-8
       h1.afe-small-captions LASTEST NEWS
@@ -61,7 +50,7 @@ block content
                     !=para
           else if index<8
             li(class="afe-tag-"+val.type): h1: a(href="#")=val.title
-        h1(style="font-size: 18px;")
+        h1(style="font-size: 18px; margin-bottom: 50px;")
           a(href="/news-flow") Read more...
     .col-md-4
       h1.afe-small-captions PROJECTS OVERVIEW
@@ -70,12 +59,29 @@ block content
           li
             h1=project.fullname
             p=project.description
-
+            
+append stylesheet
+  +include-css("/assets/css/magnific-popup.css")
 append javascript
-  +include-js("/assets/js/hoverpanel.js")
+  +include-js("/assets/js/jquery.magnific-popup.min.js")
   script.
     $(function() {
-      $(".afe-hoverpanel li").hoverPanel();
+      $('.image-popup-no-margins').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        closeBtnInside: false,
+        fixedContentPos: true,
+        image: {
+          verticalFit: true
+        },
+        zoom: {
+          enabled: true,
+          duration: 300 // don't foget to change the duration also in CSS
+        }
+      });
+    });
+  script.
+    $(function() {
       $.getJSON("/api/splashes", function(json) {
         if(json.splashes) $(".afe-banner h2").text(json.splashes);
       });

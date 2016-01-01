@@ -14,6 +14,7 @@
       var setttings = $.extend(defaults, options || {});
       var inTimer, outTimer;
       var caller = $(this).find(setttings.selector);
+      caller.hide();
 
       $(this).hover(function() {
         clearTimeout(outTimer);

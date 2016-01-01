@@ -15,11 +15,11 @@ $(function() {
     $(document).scroll(function() {
       if(!floatBannerStatus && $(document).scrollTop() + navHeight >  floatBannerTop) {
         floatBannerStatus = true;
-        $(".afe-static-banner").addClass("invisible");
+        $(".afe-static-banner>.container").addClass("invisible");
         $(".afe-floating-banner").show().addClass("afe-fixed").css("top", navHeight + "px");
       }else if(floatBannerStatus && $(document).scrollTop() + navHeight <= floatBannerTop) {
         floatBannerStatus = false;
-        $(".afe-static-banner").removeClass("invisible");
+        $(".afe-static-banner>.container").removeClass("invisible");
         $(".afe-floating-banner").hide().removeClass("afe-fixed").css("top", "auto");
       }
     });
