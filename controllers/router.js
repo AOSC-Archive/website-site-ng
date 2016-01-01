@@ -107,13 +107,15 @@ exports.DoBoom = function(app) {
   });
 
   // - /osdownload
-  app.get( '/osdownload', function(req, res) {
+  app.get( '/os-download', function(req, res) {
     try{
-      var dto = readYAML('distro');
-      var nws = readYAML('news').slice(0,9);
-      res.render('osdownload', {'params' : {
-        'distro' : dto,
-        'news' : nws
+      // var dto = readYAML('distro');
+      // var nws = readYAML('news').slice(0,9);
+      // res.render('osdownload', {'params' : {
+      //   'distro' : dto,
+      //   'news' : nws
+      // }});
+      res.render('os-download', {'params' : {
       }});
     }catch(err){sayOops(req, res, err);}
   });
