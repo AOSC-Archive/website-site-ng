@@ -150,7 +150,7 @@
     "@navbar-default-bg": "#32405a",
     "@navbar-default-border": "transparent",
     "@navbar-default-link-color": "white",
-    "@navbar-default-link-hover-color": "#d70a53",
+    "@navbar-default-link-hover-color": "white",
     "@navbar-default-link-hover-bg": "transparent",
     "@navbar-default-link-active-color": "white",
     "@navbar-default-link-active-bg": "darken(@navbar-default-bg, 6.5%)",
@@ -430,5 +430,5 @@
     "scrollspy.js",
     "transition.js"
   ],
-  "customizerUrl": "http://v3.bootcss.com/customize/?id=e053338ecc34a452e9ed"
+  "customizerUrl": "http://v3.bootcss.com/customize/?id=184224e17337574e38e0"
 }
