@@ -1,0 +1,44 @@
+@import "variables.include.styl"
+
+.afe-footer
+  position: static
+body
+  padding-bottom: 0
+
+.afe-body
+  .row
+    padding: $body-padding-vertical $side-padding
+  .afe-invert-background .row
+    padding-top: $body-padding-vertical*0.5
+  h1
+    margin-top: 0
+    font-weight: 800
+
+ol, ul
+  margin: 0
+  padding: 0
+  list-style-type: none
+
+.afe-arch > li
+  float: left
+  display: block
+  padding-right: 3em
+  width: 33.33% /* = 100% / 3.0 */
+
+#section-desktop
+  >.container
+    color: #881E44
+  .afe-invert-background
+    background-color: #881E44
+
+#section-docker
+  >.container
+    color: #2280AD
+  .afe-invert-background
+    background-color: #2280AD
+
+#section-buildkit
+  >.container
+    color: #1D1F23
+  .afe-invert-background
+    background-color: #1D1F23
