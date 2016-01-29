@@ -10,20 +10,54 @@ body
     padding: $body-padding-vertical $side-padding
   .afe-invert-background .row
     padding-top: $body-padding-vertical*0.5
+  h1, h2, h3, h4, h5, h6
+    margin: 0 /* reset margins */
   h1
-    margin-top: 0
+    margin: 2px 0 10px
     font-weight: 800
+  h2
+    font-size: 26px
+    margin: 2px 0 20px
+    font-weight: 500
+  h3
+    text-align: center
+    margin: 5px 0 10px
+    font-weight: 600
+  h4
+    margin: 5px 0 10px
+    font-weight: 200
+  h5
+    margin: 5px 0 10px
+    font-weight: 200
+  h6
+    margin: 0 0 10px
+    font-weight: 100
 
 ol, ul
   margin: 0
   padding: 0
   list-style-type: none
 
+ol.afe-arch, ul.afe-arch
+  display: table
+  table-layout: fixed
+  width: 100%
+  border-collapse: separate
+  border-spacing: 20px 0
+
 .afe-arch > li
-  float: left
-  display: block
-  padding-right: 3em
-  width: 33.33% /* = 100% / 3.0 */
+  vertical-align: top
+  display: table-cell
+  padding: 1em
+
+.afe-arch > li.btn /* override stylesheets in Bootstrap*/
+  text-align: left
+  border-radius: 0
+  white-space: normal
+  background-color: alpha(#ffffff, 0.2)
+  &:hover
+    color: $gray-lighter
+    background-color: alpha(#ffffff, 0.3)
 
 #section-desktop
   >.container

@@ -28,47 +28,43 @@ block content-without-container
         .row
           h2 What's Your CPU architecture?
           ol.afe-arch
-            li
+            li.btn#desktop-amd64
               h3 amd64(x64, x86-64)
-              p The most 64-bit architecture of personal computers.
-              
-              h4 Which desktop environment you like?
-              form(style="display: none")
-                span
-                  | DPKG
-                  input(type="radio", name="os_pm", value="DPKG", checked="checked")
-                span
-                  | RPM(experimental)
-                  input(type="radio", name="os_pm", value="RPM")
-                
-              ul(style="display: none")
-                li
-                  h5 KDE
-                  ul
-                    li: img
-                    li: img
-                    li: img
-                  p some description of this one.
-                  button DOWNLOAD
-                li
-                  h5 GNOME
-                  ul
-                    li: img
-                    li: img
-                    li: img
-                  p some description of this one.
-                  button DOWNLOAD
-                
-            li
+              p The most 64-bit architecture of personal computers. The most 64-bit architecture of personal computers.
+              .afe-de-menu
+                h4(style="display: none") Which desktop environment you like?
+                form(style="display: none")
+                  span
+                    | DPKG
+                    input(type="radio", name="os_pm", value="DPKG", checked="checked")
+                  span
+                    | RPM(experimental)
+                    input(type="radio", name="os_pm", value="RPM")
+                ul(style="display: none")
+                  li
+                    h5 KDE
+                    ul
+                      li: img
+                      li: img
+                      li: img
+                    p some description of this one.
+                    a.btn DOWNLOAD
+                  li
+                    h5 GNOME
+                    ul
+                      li: img
+                      li: img
+                      li: img
+                    p some description of this one.
+                    a.btn DOWNLOAD
+            li.btn.disabled#desktop-arm
               h3 ARM
               p At least my mobile phones are this type.
-              
-              h4 coming soon...
-            li
+              p Coming soon...
+            li.btn.disabled#desktop-mips
               h3 MIPS
               p Merely...
-              
-              h4 coming soon...
+              p Coming soon...
               
   #section-docker
     .container
@@ -89,3 +85,24 @@ block content-without-container
       .container
         .row
           h2(style="height: 10em") meow
+
+append javascript
+  script.
+    $(function() {
+      hideAllArchMenu = function() {
+        var promise_hideLast = function() {
+          return $("ol.afe-arch > li[data-last-visible!='true']:last")
+            .animate({opacity: "0"}, "fast")
+            .attr("data-last-visible", "true");
+        }
+        var prevPromise = $.when(promise_hideLast());
+        for(var i = 1; i <= $("ol.afe-arch > li").length - 1; i++)
+          prevPromise = prevPromise.then(promise_hideLast);
+        return prevPromise;
+      }
+      $("#desktop-amd64").click(function() {
+        hideAllArchMenu().done(function(){
+          alert("TODO");
+        });
+      });
+    });
