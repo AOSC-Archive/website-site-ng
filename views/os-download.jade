@@ -18,7 +18,7 @@ block banner
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 block content-without-container
-  #section-desktop
+  .afe-section-wrapper#section-desktop
     .container
       .row
         h1 Desktop Distributions
@@ -26,47 +26,49 @@ block content-without-container
     .afe-invert-background
       .container
         .row
-          h2 What's Your CPU architecture?
-          ol.afe-arch
-            li.btn#desktop-amd64
-              h3 amd64(x64, x86-64)
-              p The most 64-bit architecture of personal computers. The most 64-bit architecture of personal computers.
-              .afe-de-menu
-                h4(style="display: none") Which desktop environment you like?
-                form(style="display: none")
-                  span
-                    | DPKG
-                    input(type="radio", name="os_pm", value="DPKG", checked="checked")
-                  span
-                    | RPM(experimental)
-                    input(type="radio", name="os_pm", value="RPM")
-                ul(style="display: none")
-                  li
-                    h5 KDE
-                    ul
-                      li: img
-                      li: img
-                      li: img
-                    p some description of this one.
-                    a.btn DOWNLOAD
-                  li
-                    h5 GNOME
-                    ul
-                      li: img
-                      li: img
-                      li: img
-                    p some description of this one.
-                    a.btn DOWNLOAD
-            li.btn.disabled#desktop-arm
-              h3 ARM
-              p At least my mobile phones are this type.
-              p Coming soon...
-            li.btn.disabled#desktop-mips
-              h3 MIPS
-              p Merely...
-              p Coming soon...
-              
-  #section-docker
+          #desktop-stage-title
+          #desktop-stage
+          
+          #desktop-repo(style="display: none")
+            h2.afe-stage-title#arch-title What's Your CPU architecture?
+              span(style="margin-left: 1em").afe-architecture
+                span.afe-architecture-text
+                a(href="javascript:void;").afe-architecture-cancel [x]
+            h2.afe-stage-title#de-title Which desktop environment do you like?
+            .afe-arch
+              ol
+                li.btn#desktop-amd64
+                  h3 amd64(x64, x86-64)
+                  p The most 64-bit architecture of personal computers. The most 64-bit architecture of personal computers.
+                li.btn.disabled#desktop-arm
+                  h3 ARM
+                  p At least my mobile phones are this type.
+                  p Coming soon...
+                li.btn.disabled#desktop-mips
+                  h3 MIPS
+                  p Merely...
+                  p Coming soon...  
+            .afe-de
+              form
+                span Package Manager:
+                input(type="radio", name="package-manager", value="DPKG", checked="checked")
+                span.afe-radio-caption DPKG
+                input(type="radio", name="package-manager", value="RPM")
+                span.afe-radio-caption RPM(experimental)
+              ul.afe-de-list
+                each val in [1, 2, 3]
+                  li.container: .row
+                    ul.afe-de-gallery.col-md-4
+                      li: img(src="/assets/i/snapshot_test.png")
+                    .afe-de-text.col-md-8
+                      h3.afe-de-title KDE
+                      .afe-de-content
+                        p some description of this one.
+                        p Download:
+                        p
+                          a.btn LIVE CD
+                          a.btn tarball
+  .afe-section-wrapper#section-docker
     .container
       .row
         h1 Dockers
@@ -76,7 +78,7 @@ block content-without-container
         .row
           h2(style="height: 10em") meow
 
-  #section-buildkit
+  .afe-section-wrapper#section-buildkit
     .container
       .row
         h1 BuildKit
@@ -89,20 +91,58 @@ block content-without-container
 append javascript
   script.
     $(function() {
-      hideAllArchMenu = function() {
-        var promise_hideLast = function() {
-          return $("ol.afe-arch > li[data-last-visible!='true']:last")
-            .animate({opacity: "0"}, "fast")
-            .attr("data-last-visible", "true");
+      
+      
+      var desktop = {
+        step: "asking architecture",
+        architecture: "",
+        doBackground: function (fnc, callback){
+          $("#desktop-stage").slideUp("fast", function() {
+            fnc(); $("#desktop-stage").slideDown("fast", callback);
+          });
+        },
+        onStage: function (selector){
+          $("#desktop-stage").children().appendTo("#desktop-repo");
+          $("#desktop-repo").children(selector).appendTo("#desktop-stage");
+        },
+        selectArch: function(arch) {
+          architecture = arch;
+          $(".afe-architecture-text").text(architecture);
+        },
+        cancelArch: function() {
+          this.selectArch();
         }
-        var prevPromise = $.when(promise_hideLast());
-        for(var i = 1; i <= $("ol.afe-arch > li").length - 1; i++)
-          prevPromise = prevPromise.then(promise_hideLast);
-        return prevPromise;
-      }
+      };
+      
+      $(".afe-stage-title").hide();
+      $(".afe-architecture").hide();
+      $("#arch-title").appendTo("#desktop-stage-title");
+      $("#arch-title").show();
+      desktop.onStage(".afe-arch");
+      
       $("#desktop-amd64").click(function() {
-        hideAllArchMenu().done(function(){
-          alert("TODO");
+        desktop.selectArch("amd64");
+        $(".afe-architecture").fadeIn();
+        $(".afe-arch").animate({opacity: "0"}, "fast", function(){
+          $("#arch-title").css("margin-bottom", "10px").animate({fontSize: "20px"});
+          $("#de-title").appendTo("#desktop-stage-title");
+          $("#de-title").fadeIn();
+          desktop.doBackground(function() {desktop.onStage(".afe-de");}, function() {
+            $(".afe-de").animate({opacity: "1"}, "fast");
+          });
+        });
+      });
+      
+      $(".afe-architecture-cancel").click(function() {
+        desktop.cancelArch();
+        $(".afe-architecture").fadeOut("fast");
+        $("#de-title").fadeOut("fast");
+        $(".afe-de").animate({opacity: "0"}, "fast", function(){
+          $("#arch-title").css("margin-bottom", "20px").animate({fontSize: "26px"});
+          $("#de-title").appendTo("#desktop-stage-repo");
+          desktop.doBackground(function() {desktop.onStage(".afe-arch");}, function() {
+            $(".afe-arch").animate({opacity: "1"}, "fast");
+          });
         });
       });
     });

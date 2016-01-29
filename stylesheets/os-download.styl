@@ -1,17 +1,21 @@
 @import "variables.include.styl"
 
+$color-section-desktop = #881E44
+$color-section-docker = #2280AD
+$color-section-buildkit = #1D1F23
+
 .afe-footer
   position: static
 body
   padding-bottom: 0
 
-.afe-body
-  .row
+.afe-body .afe-section-wrapper
+  >.container >.row
     padding: $body-padding-vertical $side-padding
-  .afe-invert-background .row
-    padding-top: $body-padding-vertical*0.5
+  >.afe-invert-background >.container >.row
+    padding: $body-padding-vertical*0.5 $side-padding $body-padding-vertical*1.5
   h1, h2, h3, h4, h5, h6
-    margin: 0 /* reset margins */
+    margin: 0 0 10px /* reset margins as how 'p' is in Bootstrap */
   h1
     margin: 2px 0 10px
     font-weight: 800
@@ -19,60 +23,84 @@ body
     font-size: 26px
     margin: 2px 0 20px
     font-weight: 500
-  h3
-    text-align: center
-    margin: 5px 0 10px
-    font-weight: 600
-  h4
-    margin: 5px 0 10px
-    font-weight: 200
-  h5
-    margin: 5px 0 10px
-    font-weight: 200
-  h6
-    margin: 0 0 10px
-    font-weight: 100
 
 ol, ul
   margin: 0
   padding: 0
   list-style-type: none
 
-ol.afe-arch, ul.afe-arch
-  display: table
-  table-layout: fixed
-  width: 100%
-  border-collapse: separate
-  border-spacing: 20px 0
-
-.afe-arch > li
-  vertical-align: top
-  display: table-cell
-  padding: 1em
-
-.afe-arch > li.btn /* override stylesheets in Bootstrap*/
-  text-align: left
-  border-radius: 0
-  white-space: normal
-  background-color: alpha(#ffffff, 0.2)
+.afe-architecture-cancel
+  padding-left: 5px
+  color: alpha(white, 0.3)
+  font-size: 20px
   &:hover
-    color: $gray-lighter
-    background-color: alpha(#ffffff, 0.3)
+    color: alpha(white, 0.5)
+    text-decoration: none
+
+.afe-arch
+  ol
+    display: table
+    table-layout: fixed
+    width: 100%
+    border-collapse: separate
+    border-spacing: 20px 0
+    li
+      vertical-align: top
+      display: table-cell
+      padding: 1em
+    li.btn /* override stylesheets in Bootstrap*/
+      text-align: left
+      border-radius: 0
+      white-space: normal
+      background-color: alpha(white, 0.2)
+      &:hover
+        color: $gray-lighter
+        background-color: alpha(white, 0.3)
+  h3
+    text-align: center
+    margin: 5px 0 10px
+    font-weight: 600
+
+.afe-de
+  form
+    margin-bottom: 10px
+    color: alpha(white, 0.5)
+    span
+      padding: 0 10px 0 0
+    span.afe-radio-caption
+      padding: 0 10px 0 2px
+  ul.afe-de-list
+    >li
+      width: 100%
+      margin-bottom: 10px
+      padding: 30px 30px
+      background-color: alpha(white, 0.2)
+      &:hover
+        background-color: alpha(white, 0.3)
+      ul.afe-de-gallery
+        >li
+          img
+            width: 100%
+  .afe-de-content
+    .btn /* override stylesheets in Bootstrap*/
+      margin: 2px 5px 2px 0
+      color: alpha(white, 0.5)
+      border-radius: 0
+      background-color: alpha(white, 0.2)
+      &:hover
+        color: alpha(white, 0.8)
+        background-color: alpha(white, 0.3)
+
+section-style(color)
+  >.container
+    color: color
+  .afe-invert-background
+    background-color: color
+
 
 #section-desktop
-  >.container
-    color: #881E44
-  .afe-invert-background
-    background-color: #881E44
-
+  section-style: $color-section-desktop
 #section-docker
-  >.container
-    color: #2280AD
-  .afe-invert-background
-    background-color: #2280AD
-
+  section-style: $color-section-docker
 #section-buildkit
-  >.container
-    color: #1D1F23
-  .afe-invert-background
-    background-color: #1D1F23
+  section-style: $color-section-buildkit
