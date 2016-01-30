@@ -77,10 +77,13 @@ ol, ul
       background-color: alpha(white, 0.2)
       &:hover
         background-color: alpha(white, 0.3)
-      ul.afe-de-gallery
-        >li
-          img
-            width: 100%
+  ul.afe-de-gallery
+    li
+      display: none
+    li:first-of-type
+      display: list-item
+    img
+      width: 100%
   .afe-de-content
     .btn /* override stylesheets in Bootstrap*/
       margin: 2px 5px 2px 0
