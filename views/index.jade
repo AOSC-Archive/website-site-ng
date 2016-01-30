@@ -43,7 +43,7 @@ block content
         each val, index in params.broadcast
           if index<5
             li(class="afe-tag-"+val.type)
-                h1=val.title
+                h1.afe-title=val.title
                   small=val.date
                 .afe-content
                   each para in val.content
