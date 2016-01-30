@@ -20,12 +20,13 @@ block banner
 block content
   #wrapper.row
     .col-md-8
-      h1.afe-small-captions LASTEST NEWS
-      ul.afe-flow
-        each val, index in params.broadcast
-          li(class="afe-tag-"+val.type)
-            h1=val.title
-              small=val.date
-            .afe-content
-              each para in val.content
-                !=para
+      block news-reuse
+        h1.afe-small-captions LASTEST NEWS
+        ul.afe-flow
+          each val, index in params.broadcast
+            li(class="afe-tag-"+val.type)
+              h1.afe-title=val.title
+                small=val.date
+              .afe-content
+                each para in val.content
+                  !=para

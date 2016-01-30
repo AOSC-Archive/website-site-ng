@@ -1,0 +1,28 @@
+extend news.jade
+
+block head-custom
+  +meta-title("News Flow")
+  +meta-description("Anthon Open Source Community")
+  
+append stylesheet
+  style.
+    input[type='text']{
+      width: 100%;
+    }
+    textarea{
+      width: 100%;
+      height: 300px;
+    }
+block news-reuse
+  h1.afe-small-captions COMPOSE &amp;  POST NEWS
+  ul.afe-flow
+    li(class="afe-tag-"+params.type)
+      h1.afe-title=params.title
+        small=params.date
+      .afe-content
+        !=params.htmlcontent
+  form(method="post", action="/news-post")
+    p: input(name="title", type="text", placeholder="Title", required, value=params.title)
+    p: input(name="type", type="text", placeholder="Type: news, bug, etc.", required, value=params.type)
+    p: textarea(name="content", required)=params.content
+    p: input(type="submit", value="Preview")

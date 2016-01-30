@@ -45,8 +45,7 @@ exports.DoBoom = function(app) {
 
   // - /news
   app.get('/news' , function(req, res) {
-    try{
-      var bct = readYAML('news');
+      var bct = readYAML('old-news');
       for(var i_ct in bct) {
         bct[i_ct].date = formatDate(bct[i_ct].date).toUpperCase();
         var _ct = bct[i_ct].content;
@@ -55,7 +54,49 @@ exports.DoBoom = function(app) {
       res.render('news', {'params' : {
         'broadcast' : bct
       }});
+  });
+
+  // - /news-post
+  app.get('/news-post' , function(req, res) {
+    try{
+      res.render('news-post', {'params' : {
+        'type' : "",
+        'title' : "",
+        'date' : formatDate(new Date()).toUpperCase(),
+        'content' :
+"\
+# Example\n\
+## Example\n\
+### Example\n\
+#### Example\n\
+##### Example\n\
+###### Example\n\n\
+foo\nbar\n\n\
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\n\
+- a2\n\
+- fsck\n\n\
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\n\
+1. a2\n\
+2. fsck\n\n\
+Lorem ipsum dolor sit amet, `consectetur adipisicing elit`, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \
+*Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.* \
+**Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.** \
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\n\
+    - [x] yep\n\
+    - [ ] yep\n\
+",
+        'htmlcontent' : "The content shows here.",
+      }});
     }catch(err){sayOops(req, res, err);}
+  });
+  app.post('/news-post' , function(req, res) {
+      res.render('news-post', {'params' : {
+        'type' : req.body.type,
+        'title' : req.body.title,
+        'date' : formatDate(new Date()).toUpperCase(),
+        'content' : req.body.content,
+        'htmlcontent' : md.toHTML(req.body.content),
+      }});
   });
 
   // - /community
