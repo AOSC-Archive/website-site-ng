@@ -132,7 +132,7 @@ exports.DoBoom = function(app) {
   // APIs
   app.get( '/api/splashes', function(req, res) {
     try{
-      var splashes = readYAML('splashes');
+      var splashes = readYAML('api/splashes');
 
       res.send({'splashes': splashes[Math.floor(Math.random() * splashes.length)]});
     }catch(err){sayOops(req, res, err);}
