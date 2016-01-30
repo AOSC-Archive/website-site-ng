@@ -43,8 +43,8 @@ exports.DoBoom = function(app) {
     }catch(err){sayOops(req, res, err);}
   });
 
-  // - /news-flow
-  app.get('/news-flow' , function(req, res) {
+  // - /news
+  app.get('/news' , function(req, res) {
     try{
       var bct = readYAML('news');
       for(var i_ct in bct) {
@@ -52,7 +52,7 @@ exports.DoBoom = function(app) {
         var _ct = bct[i_ct].content;
         for(var i_para in _ct) _ct[i_para] = md.toHTML(_ct[i_para]);
       }
-      res.render('news-flow', {'params' : {
+      res.render('news', {'params' : {
         'broadcast' : bct
       }});
     }catch(err){sayOops(req, res, err);}
