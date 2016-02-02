@@ -49,7 +49,7 @@ block content
                   each para in val.content
                     !=para
           else if index<8
-            li(class="afe-tag-"+val.type): h1: a(href="#")=val.title
+            li(class="afe-tag-"+val.type): h1.afe-title: a(href="#")=val.title
         h1(style="font-size: 18px; margin-bottom: 50px;")
           a(href="/news-flow") Read more...
     .col-md-4
