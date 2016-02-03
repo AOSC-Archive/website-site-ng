@@ -37,7 +37,7 @@ block content
               p (Content should be written in <strong>Markdown</strong>)
     .col-md-4
       h2.afe-news-post-title EDITOR
-      form(method="post", action="/news-post")
+      form(method="post", action="#")
         p: input(name="title", type="text", placeholder="Title", required, value=params.title)
         p: input(name="type", type="text", placeholder="Type: news, bug, etc.", required, value=params.type)
         if params.content

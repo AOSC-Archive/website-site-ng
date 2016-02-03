@@ -1,0 +1,30 @@
+extend news.jade
+
+block head-custom
+  +meta-title(params.title + " | AOSC News")
+  +meta-description("Anthon Open Source Community")
+  
+append stylesheet
+  style.
+    .afe-static-banner {
+      min-height: 0
+    }
+    .afe-banner .afe-static-banner h1 {
+      font-size: 30px;
+    }
+    .afe-banner .afe-static-banner h2 {
+      font-size: 18px;
+    }
+
+block banner
+  .row
+    .col-md-12
+      h1=params.title.toUpperCase()
+      h2=params.date
+
+
+block content
+  #wrapper.row
+    .col-md-8
+      .afe-content
+        !=params.htmlcontent
