@@ -126,6 +126,13 @@ exports.DoBoom = function(app) {
     });
   });
 
+  app.get('/news/:slug' , function(req, res) {
+    getNewsBySlug(req.params.slug, function(err, result) {
+      if(err) throw(err);
+      res.render("news-view", {"params" : result});
+    });
+  });
+
   // - /api/news-db-upgrade
   app.get('/api/news-db-upgrade' , function(req, res) {
     var bct = readYAML('old-news');
