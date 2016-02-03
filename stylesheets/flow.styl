@@ -19,6 +19,7 @@ ul.afe-flow
   padding-left: 0
   list-style-type: none
   >li
+    position: relative
     margin: 20px 0
     border-left-style: solid
     border-left-width: 15px
@@ -36,39 +37,22 @@ ul.afe-flow
         display: block
         color: $gray-darker
         margin-top: 10px
-    img
+    .afe-cover
       float: left
       margin: 0 20px 20px 0
       width: 200px
-    .afe-content
-      h1
-        font-size: 20px
-        font-weight: bold
-      h2
-        font-size: 18px
-        font-weight: bold
-      h3
-        font-size: 16px
-        font-weight: bold
-      h4
-        font-size: 16px
-        font-weight: normal
-      h5
-        font-size: 14px
-        font-weight: bold
-      h6
-        font-size: 14px
-        font-weight: normal
-      hr
-        opacity: 0.1
-        border-color: $color-secondary
-      a
-        color: $color-contrastive
-      code
-        white-space: pre
-        color: lighten($color-secondary, 40%)
-        background-color: transparent
-      pre
-        border-radius: 0
-      ol, ul
-        margin-bottom: 10px
+    .afe-anchor
+      display: block
+      position: absolute
+      top: -1 * ($navbar-height + 20px)
+      visiblity: hidden
+    .afe-popup-content-icon
+      display: inline-block
+      margin: -2px 0.5em 0
+      vertical-align: text-top
+      opacity: 0.8
+      img
+        max-height: 0.75em
+        max-width: 2em
+      &:hover
+        opacity: 1

@@ -25,6 +25,9 @@ block content
         each val, index in params.items
           li(class="afe-tag-"+val.type)
             h1.afe-title=val.title
+              a.afe-anchor(name=val.slug)
+              a.afe-popup-content-icon(href="/news/"+val.slug, target="_blank")
+                img(src="/assets/i/popup.png", alt="View in a new window")
               small=val.date
             .afe-content
               !=val.htmlcontent
