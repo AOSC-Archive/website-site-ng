@@ -4,14 +4,16 @@
   "description": "The portal website program for Anthon Open Source Community (AOSC).",
   "main": "index.js",
   "dependencies": {
+    "bluebird": "^3.2.1",
     "body-parser": "^1.14.2",
-    "express": "^4.12.4",
+    "express": "^4.13.4",
     "jade": "^1.11.0",
-    "js-yaml": "^3.3.1",
+    "js-yaml": "^3.5.2",
     "jstransformer-markdown": "^1.1.0",
     "markdown": "^0.5.0",
     "nib": "^1.1.0",
     "redis": "^2.4.2",
+    "slug": "^0.9.1",
     "stylus": "^0.51.1"
   },
   "devDependencies": {},
