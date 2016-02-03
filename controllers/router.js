@@ -3,6 +3,15 @@ var yaml    = require('js-yaml');
 var fs      = require('fs');
 var md      = require('markdown').markdown;
 var log     = require('./log.js');
+var slug    = require('slug');
+var redis   = require('redis');
+var bluebird= require('bluebird');
+slug.defaults.mode = "rfc3986";
+bluebird.promisifyAll(redis.RedisClient.prototype);
+bluebird.promisifyAll(redis.Multi.prototype);
+
+var redisNews = redis.createClient({prefix: "news:"});
+redisNews.select("0");
 
 var CONTENTS_DIR    = 'contents';
 
@@ -18,33 +27,42 @@ function readYAML(yamlfile) {
   return yaml.safeLoad(fs.readFileSync(CONTENTS_DIR + '/' + yamlfile + '.yml', 'utf8'));
 }
 
+function writeYAML(yamlfile, data) {
+  return fs.writeFileSync(CONTENTS_DIR + '/' + yamlfile + '.yml', yaml.safeDump(data));
+}
+
 function sayOops(req, res, err) {
-  res.status(500).render('err/500', {'params' : {
-    'url' : req.originalUrl,
-    'err' : err
-  }});
+  res.status(500).send(err);
+}
+
+function getNewsInList(begin, maxcount, callback) {
+  redisNews.zrevrange(["items", begin, -1], function(err, result) {
+    for(var index in result) {
+      result[index] = JSON.parse(result[index]);
+      var date = new Date();
+      date.setTime(result[index].timestamp);
+      result[index].date = formatDate(date).toUpperCase();
+      result[index].htmlcontent = md.toHTML(result[index].content);
+    }
+    callback(err, result);
+  });
 }
 
 exports.DoBoom = function(app) {
   // - / or /index
   app.get( /(^\/index$|^\/$)/ , function(req, res) {
-    try{
-      var bc = readYAML('news').slice(0,9);
-      var pj = readYAML('projects');
-      for(var i_ct in bc) {
-        bc[i_ct].date = formatDate(bc[i_ct].date).toUpperCase();
-        var _ct = bc[i_ct].content;
-        for(var i_para in _ct) _ct[i_para] = md.toHTML(_ct[i_para]);
-      }
+    var pj = readYAML('projects');
+    getNewsInList(0, 8, function(err, result) {
+      if(err) throw(err);
       res.render('index', {'params' : {
-        'broadcast' : bc,
+        'items' : result,
         'projects' : pj
       }});
-    }catch(err){sayOops(req, res, err);}
+    })
   });
 
   // - /news
-  app.get('/news' , function(req, res) {
+  app.get('/old-news' , function(req, res) {
       var bct = readYAML('old-news');
       for(var i_ct in bct) {
         bct[i_ct].date = formatDate(bct[i_ct].date).toUpperCase();
@@ -56,47 +74,79 @@ exports.DoBoom = function(app) {
       }});
   });
 
-  // - /news-post
-  app.get('/news-post' , function(req, res) {
-    try{
-      res.render('news-post', {'params' : {
-        'type' : "",
-        'title' : "",
-        'date' : formatDate(new Date()).toUpperCase(),
-        'content' :
-"\
-# Example\n\
-## Example\n\
-### Example\n\
-#### Example\n\
-##### Example\n\
-###### Example\n\n\
-foo\nbar\n\n\
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\n\
-- a2\n\
-- fsck\n\n\
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\n\
-1. a2\n\
-2. fsck\n\n\
-Lorem ipsum dolor sit amet, `consectetur adipisicing elit`, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \
-*Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.* \
-**Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.** \
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\n\
-    - [x] yep\n\
-    - [ ] yep\n\
-",
-        'htmlcontent' : "The content shows here.",
+  // - /news
+  app.get('/news' , function(req, res) {
+    var begin = req.query.begin? req.query.begin : 0;
+    var maxcount = req.query.maxcount? req.query.maxcount : 10;
+    maxcount = maxcount > 100? 100 : maxcount;
+    maxcount = maxcount < 1? 1 : maxcount;
+    getNewsInList(begin, maxcount, function(err, result) {
+      if(err) throw(err);
+      res.render("news", {"params" : {
+        "begin" : begin,
+        "maxcount" : maxcount,
+        "items" : result,
       }});
-    }catch(err){sayOops(req, res, err);}
+    });
   });
-  app.post('/news-post' , function(req, res) {
+
+  // - /api/news-db-upgrade
+  app.get('/api/news-db-upgrade' , function(req, res) {
+    var bct = readYAML('old-news');
+    for(var i_ct in bct) {
+      bct[i_ct].timestamp = Date.parse(bct[i_ct].date);
+      var _ct = bct[i_ct].content;
+      bct[i_ct].content = "";
+      for(var i_para in _ct)
+        bct[i_ct].content = bct[i_ct].content + _ct[i_para] + "\n";
+      if(bct[i_ct].content.slice(-2) == "\n\n")
+        bct[i_ct].content = bct[i_ct].content.slice(0,-1);
+      log.debug(bct[i_ct].title);
+      var news = {
+        "title" : bct[i_ct].title,
+        "type" : bct[i_ct].type,
+        "content" : bct[i_ct].content,
+        "timestamp" : bct[i_ct].timestamp,
+        "slug" : slug(bct[i_ct].title),
+        };
+      redisNews.multi()
+        .set("item:" + news.slug, news.timestamp)
+        .zadd("items", news.timestamp, JSON.stringify(news))
+        .exec(function (err, replies) {
+          if(err) log.error("redis: " + err);
+        });
+    }
+    res.send('done');
+  });
+
+  // - /news-post
+  app.all('/news-post' , function(req, res) {
+    if(req.body.action == "post") {
+      var news = {
+        "title" : req.body.title,
+        "type" : req.body.type,
+        "content" : req.body.content,
+        "timestamp" : new Date().getTime(),
+        "slug" : slug(req.body.title),
+        };
+      log.debug("redis: post news " + req.body.title);
+      redisNews.multi()
+        .set("item:" + news.slug, news.timestamp)
+        .zadd("items", news.timestamp, JSON.stringify(news))
+        .exec(function (err, replies) {
+          if(err) log.error("redis: " + err);
+          res.redirect('/news');
+        });
+    } else {
       res.render('news-post', {'params' : {
-        'type' : req.body.type,
-        'title' : req.body.title,
-        'date' : formatDate(new Date()).toUpperCase(),
-        'content' : req.body.content,
-        'htmlcontent' : md.toHTML(req.body.content),
+        "title" : (req.body.title? req.body.title : "Lovely Title"),
+        "type" : (req.body.type? req.body.type : "news"),
+        "content" : req.body.content,
+        "htmlcontent" : (req.body.content? md.toHTML(req.body.content) : ""),
+        "previewed" : (req.body.action == "preview"? true : false),
+        "date" : formatDate(new Date()).toUpperCase(),
       }});
+    }
   });
 
   // - /community

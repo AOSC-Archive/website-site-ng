@@ -11,18 +11,80 @@ append stylesheet
     }
     textarea{
       width: 100%;
-      height: 300px;
+      min-height: 500px;
+      font-family: Courier, monospace;
     }
-block news-reuse
-  h1.afe-small-captions COMPOSE &amp;  POST NEWS
-  ul.afe-flow
-    li(class="afe-tag-"+params.type)
-      h1.afe-title=params.title
-        small=params.date
-      .afe-content
-        !=params.htmlcontent
-  form(method="post", action="/news-post")
-    p: input(name="title", type="text", placeholder="Title", required, value=params.title)
-    p: input(name="type", type="text", placeholder="Type: news, bug, etc.", required, value=params.type)
-    p: textarea(name="content", required)=params.content
-    p: input(type="submit", value="Preview")
+    .afe-news-post-title{
+      font-size: 22px;
+      font-weight: 600;
+    }
+    .afe-flow{
+      margin-bottom: 40px;
+    }
+
+block content
+  #wrapper.row
+    .col-md-8
+      h2.afe-news-post-title PREVIEW
+      ul.afe-flow
+        li(class="afe-tag-"+params.type)
+          h1.afe-title=params.title
+            small=params.date
+          .afe-content
+            if params.htmlcontent
+              !=params.htmlcontent
+            else
+              p (Content should be written in <strong>Markdown</strong>)
+    .col-md-4
+      h2.afe-news-post-title EDITOR
+      form(method="post", action="/news-post")
+        p: input(name="title", type="text", placeholder="Title", required, value=params.title)
+        p: input(name="type", type="text", placeholder="Type: news, bug, etc.", required, value=params.type)
+        if params.content
+          p: textarea(name="content", required)
+            =params.content
+        else
+          p: textarea(name="content", required).
+            # Example
+            ## Example
+            ### Example
+            #### Example
+            ##### Example
+            ###### Example
+            
+            foo
+            bar
+            
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+            ut aliquip ex ea commodo consequat.
+            
+            - a2
+            - fsck
+            
+            ---
+            
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua.
+            
+            1. a2
+            2. fsck
+            
+            Lorem ipsum dolor sit amet, `consectetur adipisicing elit`, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua.*Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo consequat.* **Duis aute irure dolor in reprehenderit in voluptate
+            velit esse cillum dolore eu fugiat nulla pariatur.** Excepteur sint
+            occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+            
+                - [x] yep
+                - [ ] nooo
+        p
+          input(type="radio", name="action", value="preview", checked="checked")
+          span.afe-radio-caption Preview
+          if params.previewed
+            input(type="radio", name="action", value="post")
+          else
+            input(type="radio", name="action", value="post", disabled)
+          span.afe-radio-caption Post (preview first)
+          p: input(type="submit", value="Submit")

@@ -40,13 +40,13 @@ block content
     .col-md-8
       h1.afe-small-captions LASTEST NEWS
       ul.afe-flow
-        each val, index in params.broadcast
+        each val, index in params.items
           if index<5
             li(class="afe-tag-"+val.type)
                 h1.afe-title=val.title
                   small=val.date
                 .afe-content
-                  each para in val.content
+                  each para in val.htmlcontent
                     !=para
           else if index<8
             li(class="afe-tag-"+val.type): h1.afe-title: a(href="#")=val.title
