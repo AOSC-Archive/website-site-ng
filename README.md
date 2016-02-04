@@ -30,12 +30,14 @@ what's left to do.
 -  [x] 后端构建 `app.js & /controller/*`
 -  [x] 前端母版框架构建
 -  [ ] 前端单独页面实现
-  - [ ] Home
-  - [ ] News
+  - [x] Home
+  - [x] News
+  - [ ] Community
   - [ ] Project
+  - [ ] Service
   - [ ] About
   - [ ] Download
-  - [ ] News 长消息二级页面模板
+  - [x] News 长消息二级页面模板
   - [ ] Project 项目页面模板
 -  [ ] 前端 PC 端代码审查
 -  [ ] 移动端响应式处理
