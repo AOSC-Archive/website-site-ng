@@ -1,4 +1,3 @@
-/* ---- Router ---- */
 var redis   = require('redis');
 var bluebird= require('bluebird');
 var slug    = require('slug');
