@@ -4,6 +4,7 @@ var fs      = require('fs');
 var md      = require('markdown').markdown;
 var log     = require('./log.js');
 var newsdb   = require('./news-db.js');
+var auth   = require('./auth.js');
 var slug    = require('slug');
 slug.defaults.mode = "rfc3986";
 
@@ -47,6 +48,38 @@ exports.DoBoom = function(app) {
   app.get('/news/:slug' , function(req, res) {
     newsdb.get(req.params.slug, function(result) {
       res.render("news-view", {"params" : result});
+    });
+  });
+
+  // - /admin/auth
+  app.get('/admin/auth' , function(req, res) {
+    if(!req.secure && req.hostname!=="127.0.0.1" && req.hostname!=="localhost")
+      return res.redirect(301, 'https://' + req.get('host') + req.originalUrl);
+    auth.createTicket(function(ticket) {
+      res.render("auth", {"params" : {
+        "ticket" : ticket,
+        "timeout" : auth.TICKET_ACCEPT_TIMEOUT,
+        "expire" : auth.TICKET_EXPIRE_TIMEOUT,
+        "redirect" : "/",
+      }});
+    });
+  });
+
+  // - /api/auth
+  app.get('/api/auth' , function(req, res) {
+    auth.getStatus(req.query.ticket, function(status) {
+      if(status === "ACCEPTED") res.send("accepted");
+      if(status === "INVALID") res.send("noooooo");
+      auth.createListener(req.query.ticket, function() {
+        res.cookie('adminTicket', req.query.ticket, {
+          path: '/',
+          secure: true,
+          httpOnly: true,
+          maxAge: auth.TICKET_EXPIRE_TIMEOUT * 1000
+        });
+        res.cookie('rememberme', '1', { expires: 0, httpOnly: true });
+        res.send("accepted");
+      }, function() {});
     });
   });
 

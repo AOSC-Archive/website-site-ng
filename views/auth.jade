@@ -1,0 +1,76 @@
+extend templates/master.jade
+
+block head-custom
+  +meta-title("Authenticate")
+  +meta-description("Anthon Open Source Community")
+  
+append stylesheet
+  style.
+    .afe-static-banner {
+      min-height: 0
+    }
+    .afe-banner .afe-static-banner h1 {
+      font-size: 30px;
+    }
+    .afe-banner .afe-static-banner h2 {
+      font-size: 18px;
+    }
+
+block banner
+  .row
+    .col-md-12
+      h1 Authenticate
+      h2 " DID YOU REALLY NAME YOUR SON Robert'); DROP TABLE Students;--? "
+
+block content
+  #wrapper.row
+    .col-md-8.col-md-offset-2.afe-content
+      p You may connect the server via SSH to accept the following ticket in&nbsp;<strong>
+        span#accept-countdown=params.timeout
+        | &nbsp;second(s)</strong>.
+      pre.
+        $ accept-ticket #{params.ticket}
+      p Then it will be available in about <strong>#{Math.floor(params.expire/60)} minute(s)</strong>.
+      p Whenever you want to destroy the ticket immediately, just execute the following command via SSH.
+      pre.
+        $ destroy-ticket #{params.ticket}
+      div#div-success(style="display: none; margin-top: 40px;")
+        p Ticket accepted.
+        p It will redirect to&nbsp;
+          a(href=params.redirect) here
+          | &nbsp;in&nbsp;
+          span#redirect-countdown 5
+          | &nbsp;second(s).
+
+append javascript
+  script.
+    function countDown(cd, cb){
+      var i = cd.text();
+      if(--i>0) {
+        cd.text(i);
+        setTimeout(function() {countDown(cd, cb)}, 1000);
+      } else {
+        cb();
+      }
+    }
+    
+    countDown($("#accept-countdown"), function() {});
+    
+    function pendingTicket() {
+      $.ajax({
+        url:"/api/auth?ticket=#{params.ticket}&timestamp=" + new Date().getTime(),
+        success: function(result) {
+          if(result == "accepted") {
+            $("#div-success").css("display", "block");
+            countDown($("#redirect-countdown"), function() {
+              window.location.href="#{params.redirect}";
+            });
+          }
+        },
+        error: function(xhr, text, err) {
+          if(text == "timeout") {
+            pendingTicket();
+          }
+        }
+      });
+    } pendingTicket();
