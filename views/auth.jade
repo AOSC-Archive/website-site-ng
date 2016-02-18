@@ -45,16 +45,17 @@ block content
 append javascript
   script.
     function countDown(cd, cb){
-      var i = cd.text();
-      if(--i>0) {
-        cd.text(i);
-        setTimeout(function() {countDown(cd, cb)}, 1000);
+      var i = parseInt(cd.text());
+      if(--i>=0) {
+        setTimeout(function() {cd.text(i); countDown(cd, cb)}, 1000);
       } else {
         cb();
       }
     }
     
-    countDown($("#accept-countdown"), function() {});
+    countDown($("#accept-countdown"), function() {
+      window.location.reload();
+    });
     
     function pendingTicket() {
       $.ajax({
