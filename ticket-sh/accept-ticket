@@ -1,0 +1,2 @@
+#!/bin/bash
+redis-cli publish auth:$1 accept
