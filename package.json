@@ -6,6 +6,7 @@
   "dependencies": {
     "bluebird": "^3.2.1",
     "body-parser": "^1.14.2",
+    "cookie-parser": "^1.4.1",
     "express": "^4.13.4",
     "jade": "^1.11.0",
     "js-yaml": "^3.5.2",

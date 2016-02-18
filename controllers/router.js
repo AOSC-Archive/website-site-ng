@@ -56,6 +56,12 @@ exports.DoBoom = function(app) {
     if(!req.secure && req.hostname!=="127.0.0.1" && req.hostname!=="localhost")
       return res.redirect(301, 'https://' + req.get('host') + req.originalUrl);
     auth.createTicket(function(ticket) {
+      res.cookie('adminTicket', ticket, {
+        path: '/',
+        secure: need_https(req),
+        httpOnly: true,
+        maxAge: auth.TICKET_ACCEPT_TIMEOUT * 1000
+      });
       res.render("auth", {"params" : {
         "ticket" : ticket,
         "timeout" : auth.TICKET_ACCEPT_TIMEOUT,
@@ -67,17 +73,17 @@ exports.DoBoom = function(app) {
 
   // - /api/auth
   app.get('/api/auth' , function(req, res) {
-    auth.getStatus(req.query.ticket, function(status) {
+    var ticket = req.cookies.adminTicket;
+    auth.getStatus(ticket, function(status) {
       if(status === "ACCEPTED") res.send("accepted");
       if(status === "INVALID") res.send("noooooo");
-      auth.createListener(req.query.ticket, function() {
-        res.cookie('adminTicket', req.query.ticket, {
+      auth.createListener(ticket, function() {
+        res.cookie('adminTicket', ticket, {
           path: '/',
           secure: true,
           httpOnly: true,
           maxAge: auth.TICKET_EXPIRE_TIMEOUT * 1000
         });
-        res.cookie('rememberme', '1', { expires: 0, httpOnly: true });
         res.send("accepted");
       }, function() {});
     });

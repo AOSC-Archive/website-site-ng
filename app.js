@@ -1,6 +1,7 @@
 // ** DO **
 var express = require('express'); // ← Familiar things
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser')
 // Because it's still the **BACKEND**
 "Neop's love." // you love
 /* only better */
@@ -26,6 +27,7 @@ var routes = require('./controllers/router.js'); // ← your stuff
 // to-do things
 '"Plz read the fine manual" says the Jeff'
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 app.set('view engine', 'jade'); // Use Lion and Jade
 app.set('views', './views');    // your truly personal digital
 // assistant
