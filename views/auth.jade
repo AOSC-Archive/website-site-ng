@@ -69,7 +69,7 @@ append javascript
           }
         },
         error: function(xhr, text, err) {
-          if(text == "timeout") {
+          if(text == "timeout" || xhr.status == 504 ) {
             pendingTicket();
           }
         }
