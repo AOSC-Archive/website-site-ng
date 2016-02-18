@@ -30,6 +30,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.set('view engine', 'jade'); // Use Lion and Jade
 app.set('views', './views');    // your truly personal digital
+app.set('trust proxy', 'loopback');
 // assistant
 
 // on your home
