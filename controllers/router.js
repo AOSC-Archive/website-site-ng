@@ -51,9 +51,11 @@ exports.DoBoom = function(app) {
     });
   });
 
+  var need_https = function(req) {return req.hostname!=="127.0.0.1" && req.hostname!=="localhost";}
+
   // - /admin/auth
   app.get('/admin/auth' , function(req, res) {
-    if(!req.secure && req.hostname!=="127.0.0.1" && req.hostname!=="localhost")
+    if(!req.secure && need_https(req))
       return res.redirect(301, 'https://' + req.get('host') + req.originalUrl);
     auth.createTicket(function(ticket) {
       res.cookie('adminTicket', ticket, {
@@ -80,7 +82,7 @@ exports.DoBoom = function(app) {
       auth.createListener(ticket, function() {
         res.cookie('adminTicket', ticket, {
           path: '/',
-          secure: true,
+          secure: need_https(req),
           httpOnly: true,
           maxAge: auth.TICKET_EXPIRE_TIMEOUT * 1000
         });
