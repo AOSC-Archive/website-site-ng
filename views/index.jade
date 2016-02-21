@@ -49,9 +49,9 @@ block content
         each val, index in params.items
           if index<5
             li(class="afe-tag-"+val.type)
-                h1.afe-title=val.title
-                  a.afe-popup-content-icon(href="/news/"+val.slug, target="_blank")
-                    img(src="/assets/i/popup.png", alt="View in a new window")
+                h1.afe-title
+                  a(href="/news/"+val.slug, target="_blank")
+                    =val.title
                   small=val.date
                 .afe-content
                   each para in val.htmlcontent
