@@ -1,3 +1,5 @@
+(function(){
+
 var redis   = require('redis');
 var bluebird= require('bluebird');
 var slug    = require('slug');
@@ -93,3 +95,5 @@ exports.slugFix = function(slug, callback) {
   }
   iterator(slug, 0, callback);
 };
+
+})();

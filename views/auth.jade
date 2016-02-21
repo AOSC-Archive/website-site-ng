@@ -59,7 +59,7 @@ append javascript
     
     function pendingTicket() {
       $.ajax({
-        url:"/api/auth?timestamp=" + new Date().getTime(),
+        url:"/admin/api/wait-auth?timestamp=" + new Date().getTime(),
         success: function(result) {
           if(result == "accepted") {
             $("#div-success").css("display", "block");

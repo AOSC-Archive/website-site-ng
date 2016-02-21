@@ -7,7 +7,7 @@ var log     = require('./log.js');
 
 const TICKET_LENGTH = 6;
 const TICKET_ACCEPT_TIMEOUT = 60 * 5;
-const TICKET_EXPIRE_TIMEOUT = 60 * 30;
+const TICKET_EXPIRE_TIMEOUT = 60 * 15;
 
 bluebird.promisifyAll(redis.RedisClient.prototype);
 bluebird.promisifyAll(redis.Multi.prototype);
@@ -17,7 +17,10 @@ redisAuth.select("0");
 
 exports.getStatus = function(ticket, callback) {
   redisAuth.get(ticket, function(err, result) {
-    callback(result==null?"INVALID":result);
+    if(result == null) return callback({status: "INVALID", ttl: -1});
+    redisAuth.ttl(ticket, function(err, resultTTL) {
+      callback({status: result, ttl: resultTTL});
+    });
   });
 };
 
@@ -57,7 +60,7 @@ exports.createTicket = function(callback) {
   };
   function has(ticket, callback) {
     exports.getStatus(ticket, function(result) {
-      callback(result != 'INVALID');
+      callback(result.status != 'INVALID');
     });
   }
   function generateTicket(callback) {

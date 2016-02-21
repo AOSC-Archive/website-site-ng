@@ -14,7 +14,7 @@ var log = require('./controllers/log.js');
 
 // Do the same things
 // Because
-var routes = require('./controllers/router.js'); // ← your stuff
+// your stuff
 // comes with you.
 
 /* Do personal things
@@ -45,8 +45,19 @@ app.use(express.static('static')); // on your *public*
 // that turn browsing
 /* into doing */
 
-routes.DoBoom(app);
 // Cha-cha-cha
+app.use('/', require('./controllers/router.js'));
+app.use('/admin', require('./controllers/router-admin.js'));
+app.get( '*' , function(req, res) {
+  log.debug('router: Client requested a unreachable URI ' + req.originalUrl);
+  res.status(404).render('err/404', {'params' : {
+    'url' : req.path
+  }});
+});
+app.all( '*' , function(req, res) {
+  log.debug('router: Bad Request ' + req.originalUrl);
+  res.sendStatus(400);
+});
 
 var child_process = require('child_process');
 child_process.fork('./controllers/watcher.js');
