@@ -1,5 +1,11 @@
 (function(){
 
+/*
+ * When you modify the prototype of database,
+ * you MUST increase this value to ensure it not compatible with the old one.
+ */
+const prototypeVersion = 2;
+
 var redis   = require('redis');
 var bluebird= require('bluebird');
 var slug    = require('slug');
@@ -12,6 +18,21 @@ bluebird.promisifyAll(redis.Multi.prototype);
 
 var redisNews = redis.createClient({prefix: "news:"});
 redisNews.select("0");
+
+redisNews.get("prototypeVersion", function(err, result) {
+  switch(result) {
+    case null: // Clear database
+      log.info("news-db: set prototypeVersion to " + prototypeVersion);
+      redisNews.set("prototypeVersion", prototypeVersion);
+      break;
+    case prototypeVersion.toString(): // Bingo
+      log.debug("news-db: prototypeVersion = " + result);
+      break;
+    default:
+      log.error("news-db: not compatible, prototypeVersion = " + result);
+      throw "Fatal Error: Database's prototype version is not compatible.";
+  }
+});
 
 function formatDate(date) {
   var month = ['January', 'February', 'March', 'April', 'May',
