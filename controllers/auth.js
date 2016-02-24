@@ -32,10 +32,13 @@ exports.createListener = function(ticket, resolve, callback) {
   var session = redis.createClient();
   session.on("message", function (channel, message) {
     log.debug("ticket: received " + channel + ": " + message);
-    if(message.toLowerCase()=='accept') {
-      resolve(ticket);
-      session.unsubscribe();
-      session.end();
+    switch(message.toLowerCase()) {
+      case 'accept':
+        resolve(ticket);
+      case 'break':
+        session.unsubscribe();
+        session.end();
+        break;
     }
   });
   session.on("subscribe", function (channel, count) {
@@ -43,6 +46,9 @@ exports.createListener = function(ticket, resolve, callback) {
     callback(ticket);
   });
   session.subscribe("auth:" + ticket);
+  setTimeout(function() {
+    redisAuth.publish("auth:" + ticket, "break");
+  }, TICKET_ACCEPT_TIMEOUT * 1000);
 };
 
 exports.destroyTicket = function(ticket, callback) {
@@ -81,11 +87,9 @@ exports.createTicket = function(callback) {
     });
   };
   generateTicket(function(ticket) {
-    redisAuth.set(ticket, 'PENDING');
-    redisAuth.expire(ticket, TICKET_ACCEPT_TIMEOUT);
+    redisAuth.setex(ticket, TICKET_ACCEPT_TIMEOUT, 'PENDING');
     exports.createListener(ticket, function() {
-      redisAuth.set(ticket, 'ACCEPTED');
-      redisAuth.expire(ticket, TICKET_EXPIRE_TIMEOUT);
+      redisAuth.setex(ticket, TICKET_EXPIRE_TIMEOUT, 'ACCEPTED');
       log.info("ticket: accept " + ticket);
     }, function() {
       callback(ticket);
