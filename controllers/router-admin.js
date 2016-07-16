@@ -3,6 +3,7 @@
 var express = require('express');
 var router = express.Router();
 
+var log    = require('./log.js');
 var auth    = require('./auth.js');
 var newsdb  = require('./news-db.js');
 
@@ -76,7 +77,7 @@ router.all('/news-post' , function(req, res) {
       "type" : req.body.type,
       "content" : req.body.content,
       "timestamp" : new Date().getTime(),
-      "slug" : slug(req.body.title),
+      "slug" : newsdb.slug(req.body.title),
     }, function() {
       res.redirect('/news');
     });

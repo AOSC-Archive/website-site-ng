@@ -4,7 +4,30 @@
  * When you modify the prototype of database,
  * you MUST increase this value to ensure it not compatible with the old one.
  */
-const prototypeVersion = 2;
+
+const prototypeVersion = 3;
+
+/*
+  Database: 0
+    - [prefix]news
+      - [k]prototypeVersion
+      - [z]items
+        - slug => [score]timestamp
+        - slug => [score]timestamp
+        - slug => [score]timestamp
+        - ...
+      - [prefix]item
+        - [k]timestamp = {}
+        - [k]timestamp = {}
+        - [k]timestamp = {}
+        - [k]...
+
+  [k] Key
+  [z] Sorted List
+  [prefix] For example, 'bar' in a prefix 'foo' is 'foo:bar' exactly.
+
+*/
+
 
 var redis   = require('redis');
 var bluebird= require('bluebird');
@@ -18,6 +41,15 @@ bluebird.promisifyAll(redis.Multi.prototype);
 
 var redisNews = redis.createClient({prefix: "news:"});
 redisNews.select("0");
+
+redisNews.expandWithScores = function(arr){
+    var result = [];
+    for (var i=0, j=0; i < arr.length; i+=2, j++) {
+      result[j] = [arr[i], arr[i+1]];
+      log.warn([arr[i], arr[i+1]]);
+    }
+    return result;
+};
 
 redisNews.get("prototypeVersion", function(err, result) {
   switch(result) {
@@ -42,6 +74,8 @@ function formatDate(date) {
                + date.getUTCFullYear();
 }
 
+exports.slug = slug;
+
 exports.render = function(news) {
   var date = new Date();
   var anews = news;
@@ -56,18 +90,32 @@ exports.list = function(begin, maxcount, callback) {
   maxcount = maxcount? maxcount : 10;
   maxcount = maxcount > 100? 100 : maxcount;
   maxcount = maxcount < 1? 1 : maxcount;
-  redisNews.zrevrange(["items", begin, -1], function(err, result) {
-    for(var index in result) {
-      result[index] = exports.render(JSON.parse(result[index]));
+  redisNews.zrevrange(["items", begin, -1, 'withscores'], function(err, idList) {
+    idList = redisNews.expandWithScores(idList);
+    var promiseList = [];
+    var contentList = [];
+    for(var index in idList) {
+      promiseList[index] = (function(index) {
+        return redisNews.getAsync("item:" + idList[index][1]).then(function(content) {
+          contentList[index] = exports.render(JSON.parse(content));
+        });
+      })(index);
     }
-    callback(result);
+    Promise.all(promiseList)
+    .then(function() {
+      callback(contentList);
+    })
+    .catch(function(err) {
+      log.error("news-db: list() " + err);
+      callback({});
+    });
   });
 };
 
 exports.put = function(news, callback) {
   redisNews.multi()
-    .set("item:" + news.slug, news.timestamp)
-    .zadd("items", news.timestamp, JSON.stringify(news))
+    .set("item:" + news.timestamp, JSON.stringify(news))
+    .zadd("items", news.timestamp, news.slug)
     .exec(callback);
 };
 
@@ -79,21 +127,21 @@ exports.post = function(news, callback) {
 };
 
 exports.getRaw = function(slug, callback) {
-  redisNews.get("item:" + slug, function(err, result) {
-    if(result == null) {callback(null); return;}
-    redisNews.zrangebyscore(["items", result, result], function(err, result) {
-      if(result == null) {callback(null); return;}
-      callback(result);
+  redisNews.zscore("items", slug, function(err, id) {
+    if(id == null) {callback(null); return;}
+    redisNews.get("item:" + id, function(err, content) {
+      if(content == null) {callback(null); return;}
+      callback(content);
     });
   });
 };
 
 exports.get = function(slug, callback) {
-  exports.getRaw(slug, function(result) {
-    if(result == null)
+  exports.getRaw(slug, function(content) {
+    if(content == null)
       callback(null);
     else
-      callback(exports.render(JSON.parse(result[0])));
+      callback(exports.render(JSON.parse(content)));
   });
 };
 
