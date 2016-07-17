@@ -48,9 +48,9 @@
     "@padding-xs-horizontal": "5px",
     "@line-height-large": "1.3333333",
     "@line-height-small": "1.5",
-    "@border-radius-base": "4px",
-    "@border-radius-large": "6px",
-    "@border-radius-small": "3px",
+    "@border-radius-base": "0",
+    "@border-radius-large": "0",
+    "@border-radius-small": "0",
     "@component-active-color": "#fff",
     "@component-active-bg": "@brand-primary",
     "@caret-width-base": "4px",
@@ -430,5 +430,5 @@
     "scrollspy.js",
     "transition.js"
   ],
-  "customizerUrl": "http://v3.bootcss.com/customize/?id=184224e17337574e38e0"
+  "customizerUrl": "http://v3.bootcss.com/customize/?id=a541c76c818b0101bc363c6b2668602c"
 }
