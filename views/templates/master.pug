@@ -1,19 +1,19 @@
 //-
   This is a template for all pages
-  
+
   My blocks for extending:
-    
+
     head-custom (extended from base)
       Usage: OVERRIDE
       * You MUST override this block to explicitly define what the title is
       * and what the keywords are.
-    
+
     navbar
       Usage: li
-    
+
     banner
       Usage: .row
-    
+
     content
       Usage: .row
 
@@ -27,7 +27,7 @@ block head-custom
   +meta-description("What a pity...", "So Keywords, Such Do")
 
 block body
-  
+
   //fixed navbar
   header
     nav.navbar.navbar-default.navbar-fixed-top.afe-nav
@@ -41,7 +41,7 @@ block body
             li: a(href="/projects") PROJECTS
             li: a(href="/about") ABOUT
             li.afe-highlight: a(href="/os-download") GET AOSC OS
-  
+
   //banner
   .afe-banner
     .afe-static-banner
@@ -56,7 +56,7 @@ block body
               p.
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
                 do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    
+
     //floating-banner, immediate child of .afe-banner
     .afe-floating-banner
       .container
@@ -67,7 +67,7 @@ block body
               small.
                 Most good programmers do programming not because they expect to get paid
                 or get adulation by the public, but because it is fun to program. -- Linus Torvalds
-  
+
   //content
   .afe-body
     block content-without-container
@@ -136,13 +136,13 @@ block body
                 reprehenderit in voluptate velit esse cillum dolore eu fugiat
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
-    
+
   //fixed footer
   footer.afe-footer.navbar-fixed-bottom.text-center
     span Copyleft 2011–2015, members of the community.
     span AOSC "Safe" Web Team, 2015. Bootstrap.
     span 粤 ICP 备 14040623 号
-    
+
 
 append javascript
   +include-js("/assets/js/floatingbanner.js")
