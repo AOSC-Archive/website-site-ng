@@ -10,26 +10,87 @@ append stylesheet
 
 block banner
   .row
-    .col-md-12
+    .col-md-6
       h1 GET AOSC OS
       h2 /* I don't know how it works, it just works. */
-    .col-md-8
+    .col-md-6
       p.
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 block content
-  .row
+  -
+    // input params
+    params.allDEs = ['KDE', 'GNOME', 'headless'];
+    params.currentDE = {};
+    params.currentDE.name = 'KDE';
+    params.currentDE.imagePaths = ['/assets/i/de-preview/KDE/1.png',
+                            '/assets/i/de-preview/KDE/2.png',
+                            '/assets/i/de-preview/KDE/3.png'];
+
+
+  #wrapper.row
     .col-md-12
       ul.nav.nav-tabs(role="tablist")
-        li(role="presentation")
-          a(href="#home", aria-controls="home", role="tab", data-toggle="tab") link
-        li(role="presentation")
-          a(href="#home", aria-controls="home", role="tab", data-toggle="tab") link
-        li.active(role="presentation")
-          a(href="#home", aria-controls="home", role="tab", data-toggle="tab") link
-        li(role="presentation")
-          a(href="#home", aria-controls="home", role="tab", data-toggle="tab") link
+        each DE in params.allDEs
+          if DE == params.currentDE.name
+            li.active(role="presentation")
+              a(href="#home", role="tab", data-toggle="tab")=DE
+          else
+            li(role="presentation")
+              a(href="#home", role="tab", data-toggle="tab")=DE
     .col-md-8
-      img.afe-mainframe(src="assets/i/de-preview/" + param.targetImage, alt=param.DEName)
+      #carousel.carousel.slide(data-ride="carousel")
+        ol.carousel-indicators
+          each dummy, index in params.currentDE.imagePaths
+            if index == 0
+              li.active(data-target="#carousel", data-slide-to=index)
+            else
+              li(data-target="#carousel", data-slide-to=index)
+        .carousel-inner(role="listbox")
+          each path, index in params.currentDE.imagePaths
+            if index == 0
+              .item.active
+                img.afe-mainframe(src=path, alt=params.currentDE.name + ` preview (${index+1})`)
+            else
+              .item
+                img.afe-mainframe(src=path, alt=params.currentDE.name + ` preview (${index+1})`)
+        a.carousel-control.left(data-slide="prev", role="button", href="#carousel")
+          span.glyphicon.glyphicon-chevron-left
+        a.carousel-control.right(data-slide="next", role="button", href="#carousel")
+          span.glyphicon.glyphicon-chevron-right
     .col-md-4
-      // 右侧栏
+      h1 KDE
+      p zzzzzzzzzzzz zzzzzzzzzz zzzzzzzzzzzzzzzz zzzzzzzzzzzzzzzz zzzz  zzzzz  zzzzz zzz zzzzzzz
+
+      form#control-panel.form-horizontal
+        .form-group
+          label.control-label.col-md-6(for="architecture") Architecture
+          .dropdown.col-md-6
+            button.btn.btn-default.dropdown-toggle(type="button", data-toggle="dropdown")
+              | amd64 &nbsp;
+              span.caret
+            ul.dropdown-menu
+              li: a(href="#") amd64
+              li: a(href="#") ARMv7
+              li: a(href="#") MIPS
+        .form-group
+          label.control-label.col-md-6(for="architecture") Package Manager
+          .dropdown.col-md-6
+            button.btn.btn-default.dropdown-toggle(type="button", data-toggle="dropdown")
+              | DPKG &nbsp;
+              span.caret
+            ul.dropdown-menu
+              li: a(href="#") DPKG (recommanded)
+              li: a(href="#") RPM
+              li: a(href="#") Pacman
+        //a.tip.text-center(data-toggle="popover", data-container="body"
+          data-placement="top", data-content="And here's some amazing content. It's very engaging. Right?") 为什么会这样呢？
+      #download-panel
+        button.btn.btn-default.col-md-12.disabled Download Live CD (recommanded)
+        button.btn.btn-default.col-md-12 Download tarball
+
+append javascript
+  script.
+    $(function () {
+      $('[data-toggle="popover"]').popover();
+    });
