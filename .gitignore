@@ -8,31 +8,14 @@ Thumbs.db
 */archive/
 
 __MACOSX
-.DS_Store
-
-.project
-.settings
-.classpath
-.sass-cache/
 
 /node_modules/
 
-# OS generated files #
-######################
 */.DS_Store
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
 Icon?
 ehthumbs.db
 Thumbs.db
 
-# Packages #
-############
-# it's better to unpack these files and commit the raw source
-# git has its own built in compression methods
 *.7z
 *.dmg
 *.gz
@@ -41,3 +24,6 @@ Thumbs.db
 *.rar
 *.tar
 *.zip
+
+.*
+.*/
