@@ -1,4 +1,4 @@
-extend templates/master.jade
+extend templates/master
 
 block head-custom
   +meta-title("Community Portal")
@@ -41,7 +41,7 @@ block content
         li: a.image-popup-no-margins(href="/assets/i/test.png"): img(src="/assets/i/test.png")
       li: a(href="/community") More...
   .afe-sub-banner-padding.hidden-sm.hidden-xs
-  
+
   #wrapper.row
     .col-md-8
       h1.afe-small-captions LATEST NEWS
@@ -67,7 +67,7 @@ block content
           li
             h1=project.fullname
             p=project.description
-            
+
 append stylesheet
   +include-css("/assets/css/magnific-popup.css")
 append javascript

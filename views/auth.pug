@@ -1,13 +1,13 @@
-extend templates/master.jade
+extend templates/master
 
 block head-custom
   +meta-title("Authenticate")
   +meta-description("Anthon Open Source Community")
-  
+
 append stylesheet
   style.
     .afe-static-banner {
-      min-height: 0
+      min-height: 0;
     }
     .afe-banner .afe-static-banner h1 {
       font-size: 30px;
@@ -52,11 +52,11 @@ append javascript
         cb();
       }
     }
-    
+
     countDown($("#accept-countdown"), function() {
       window.location.reload();
     });
-    
+
     function pendingTicket() {
       $.ajax({
         url:"/admin/api/wait-auth?timestamp=" + new Date().getTime(),

@@ -28,7 +28,7 @@ var log = require('./controllers/log.js');
 '"Plz read the fine manual" says the Jeff'
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.set('view engine', 'jade'); // Use Lion and Jade
+app.set('view engine', 'pug'); // Use Lion and Pug (and Jade)
 app.set('views', './views');    // your truly personal digital
 app.set('trust proxy', 'loopback');
 // assistant
