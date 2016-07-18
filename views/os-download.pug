@@ -10,12 +10,9 @@ append stylesheet
 
 block banner
   .row
-    .col-md-6
+    .col-md-12
       h1 GET AOSC OS
       h2 /* I don't know how it works, it just works. */
-    .col-md-6
-      p.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 block content
   -
@@ -27,7 +24,6 @@ block content
                             '/assets/i/de-preview/KDE/2.png',
                             '/assets/i/de-preview/KDE/3.png'];
 
-
   #wrapper.row
     .col-md-12
       ul.nav.nav-tabs(role="tablist")
@@ -38,9 +34,9 @@ block content
           else
             li(role="presentation")
               a(href="#home", role="tab", data-toggle="tab")=DE
-    .col-md-8
+    .col-md-8.pull-right
       #carousel.carousel.slide(data-ride="carousel")
-        ol.carousel-indicators
+        //ol.carousel-indicators
           each dummy, index in params.currentDE.imagePaths
             if index == 0
               li.active(data-target="#carousel", data-slide-to=index)
@@ -50,27 +46,27 @@ block content
           each path, index in params.currentDE.imagePaths
             if index == 0
               .item.active
-                img.afe-mainframe(src=path, alt=params.currentDE.name + ` preview (${index+1})`)
+                a.image-popup-no-margins(href=path)
+                  img.afe-mainframe(src=path, alt=params.currentDE.name + ` preview (${index+1})`)
             else
               .item
-                img.afe-mainframe(src=path, alt=params.currentDE.name + ` preview (${index+1})`)
-        a.carousel-control.left(data-slide="prev", role="button", href="#carousel")
-          span.glyphicon.glyphicon-chevron-left
-        a.carousel-control.right(data-slide="next", role="button", href="#carousel")
-          span.glyphicon.glyphicon-chevron-right
+                a.image-popup-no-margins(href=path)
+                  img.afe-mainframe(src=path, alt=params.currentDE.name + ` preview (${index+1})`)
+        a.carousel-control.left(data-slide="prev", role="button", href="#carousel").afe-arrow.afe-arrow-left
+        a.carousel-control.right(data-slide="next", role="button", href="#carousel").afe-arrow.afe-arrow-right
     .col-md-4
       h1 KDE
-      p zzzzzzzzzzzz zzzzzzzzzz zzzzzzzzzzzzzzzz zzzzzzzzzzzzzzzz zzzz  zzzzz  zzzzz zzz zzzzzzz
+      p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
       form#control-panel.form-horizontal
         .form-group
           label.control-label.col-md-6(for="architecture") Architecture
           .dropdown.col-md-6
             button.btn.btn-default.dropdown-toggle(type="button", data-toggle="dropdown")
-              | amd64 &nbsp;
+              | AMD64 &nbsp;
               span.caret
             ul.dropdown-menu
-              li: a(href="#") amd64
+              li: a(href="#") AMD64
               li: a(href="#") ARMv7
               li: a(href="#") MIPS
         .form-group
@@ -89,8 +85,27 @@ block content
         button.btn.btn-default.col-md-12.disabled Download Live CD (recommanded)
         button.btn.btn-default.col-md-12 Download tarball
 
+append stylesheet
+  +include-css("/assets/css/magnific-popup.css")
 append javascript
   script.
     $(function () {
       $('[data-toggle="popover"]').popover();
+    });
+  +include-js("/assets/js/jquery.magnific-popup.min.js")
+  script.
+    $(function() {
+      $(".image-popup-no-margins").magnificPopup({
+        type: "image",
+        closeOnContentClick: true,
+        closeBtnInside: false,
+        fixedContentPos: true,
+        image: {
+          verticalFit: true
+        },
+        zoom: {
+          enabled: true,
+          duration: 300 // don't foget to change the duration also in CSS
+        }
+      });
     });

@@ -17,15 +17,53 @@ body
   color: white
 
 .nav-tabs
-  a
-    background-color: $gray-darker
-    opacity: 0.5
+  margin-left: -15px
+  margin-right: -15px
+  >li
+    border: none
+    border-left: white 1px solid
+    &:first-of-type
+      border-left: none !important
+    &.active
+      >a
+        opacity: 1
+    >a
+      font-size: 16px
+      border: none !important
+      background-color: transparent !important
+      opacity: 0.5
+      color: white !important
+      &:hover, &:focus
+        opacity: 0.8
+
+#carousel
+  margin-top: 20px
+  .afe-arrow
+    background-repeat: no-repeat
+    background-position: center center
+    opacity: 0
+    transition: 0.25s opacity
+    &:hover
+      opacity: 0.5
+  .afe-arrow-left
+    background-image: url("/assets/i/arrow-left.svg")
+  .afe-arrow-right
+    background-image: url("/assets/i/arrow-right.svg")
+
+wireframe-button()
+  background-color: $color-primary
+  color: white
+  &:hover, &:focus
+    background-color: white
+    color: $color-secondary
+    opacity: 0.7
 
 #control-panel
   margin-top: 30px
   .dropdown
     button
       width: 100%
+      wireframe-button()
   .dropdown-menu
     margin-left: 15px // hack for padding in dropdown's container
   a.tip
@@ -40,3 +78,4 @@ body
   margin-top: 20px
   button
     margin-bottom: 15px
+    wireframe-button()
