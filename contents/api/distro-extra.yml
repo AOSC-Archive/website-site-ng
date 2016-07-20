@@ -1,0 +1,22 @@
+generalDistros:
+  # Be carefull, `previewDirPrefix` will be used to read
+  # the directories IN FILE SYSTEM.
+  # That means here should not use `/` at the beginning.
+  previewDirPrefix: static/assets/i/de-preview
+  previewDirURLPrefix: /assets/i/de-preview
+  thumbsPrefix: thumbs/
+  thumbsSuffix: .jpg
+  list:
+    - name: KDE
+      previewDir: /kde
+    - name: GNOME
+      previewDir: /gnome
+    - name: MATE
+      previewDir: /mate
+    - name: XFCE
+      previewDir: /xfce
+    - name: Base
+      previewDir: /base
+dockers:
+
+buildkits:

@@ -21,25 +21,11 @@ block banner
       h2 /* I don't know how it works, it just works. */
 
 block content
-  -
-    // input params
-    params.allDEs = ['KDE', 'GNOME', 'headless'];
-    params.currentDE = {};
-    params.currentDE.name = 'KDE';
-    params.currentDE.imagePaths = ['/assets/i/de-preview/KDE/1.png',
-                            '/assets/i/de-preview/KDE/2.png',
-                            '/assets/i/de-preview/KDE/3.png'];
-
   #wrapper.row
     .col-md-12
-      ul.nav.nav-tabs(role="tablist")
-        each DE in params.allDEs
-          if DE == params.currentDE.name
-            li.active(role="presentation")
-              a(href="#", role="tab", data-toggle="tab")=DE
-          else
-            li(role="presentation")
-              a(href="#", role="tab", data-toggle="tab")=DE
+      ul#distro-list.nav.nav-tabs(role="tablist")
+        li(role="presentation")
+          a(href="#", role="tab", data-toggle="tab") &nbsp;
     .col-md-8.pull-right
       #carousel.carousel.slide(data-ride="carousel")
         //ol.carousel-indicators
@@ -48,26 +34,22 @@ block content
               li.active(data-target="#carousel", data-slide-to=index)
             else
               li(data-target="#carousel", data-slide-to=index)
-        .carousel-inner(role="listbox")
-          each path, index in params.currentDE.imagePaths
-            if index == 0
-              .item.active
-                a.image-popup-no-margins(href=path)
-                  img.afe-mainframe(src=path, alt=params.currentDE.name + ` preview (${index+1})`)
-            else
-              .item
-                a.image-popup-no-margins(href=path)
-                  img.afe-mainframe(src=path, alt=params.currentDE.name + ` preview (${index+1})`)
+        #preview.carousel-inner(role="listbox")
+          .item
+            a.image-popup-no-margins
+              //- (href=path)
+              img.afe-mainframe
+                //- (src=path, alt=params.currentDE.name + ` preview (${index+1})`)
         a.carousel-control.left(data-slide="prev", role="button", href="#carousel").afe-arrow.afe-arrow-left
         a.carousel-control.right(data-slide="next", role="button", href="#carousel").afe-arrow.afe-arrow-right
     .col-md-4
-      h1 KDE
-      p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      h1#distro-name &nbsp;
+      p#distro-description &nbsp;
 
       form#control-panel.form-horizontal
         .form-group
           label.control-label.col-md-6(for="architecture") Architecture
-          .dropdown.col-md-6
+          #arch-selector.dropdown.col-md-6
             button.btn.btn-default.dropdown-toggle(type="button", data-toggle="dropdown")
               | AMD64 &nbsp;
               span.caret
@@ -77,7 +59,7 @@ block content
               li: a(href="#") MIPS
         .form-group
           label.control-label.col-md-6(for="architecture") Package Manager
-          .dropdown.col-md-6
+          #pm-selector.dropdown.col-md-6
             button.btn.btn-default.dropdown-toggle(type="button", data-toggle="dropdown")
               | DPKG &nbsp;
               span.caret
@@ -88,30 +70,96 @@ block content
         //a.tip.text-center(data-toggle="popover", data-container="body"
           data-placement="top", data-content="And here's some amazing content. It's very engaging. Right?") 为什么会这样呢？
       #download-panel
-        button.btn.btn-default.col-md-12.disabled Download Live CD (recommended)
-        button.btn.btn-default.col-md-12 Download tarball
+        a.btn.btn-default.col-md-12.disabled Download Live CD (recommended)
+        a.btn.btn-default.col-md-12 Download tarball
 
 append stylesheet
   +include-css("/assets/css/magnific-popup.css")
 append javascript
-  script.
-    $(function () {
-      $('[data-toggle="popover"]').popover();
-    });
   +include-js("/assets/js/jquery.magnific-popup.min.js")
   script.
-    $(function() {
-      $(".image-popup-no-margins").magnificPopup({
-        type: "image",
-        closeOnContentClick: true,
-        closeBtnInside: false,
-        fixedContentPos: true,
-        image: {
-          verticalFit: true
-        },
-        zoom: {
-          enabled: true,
-          duration: 300 // don't foget to change the duration also in CSS
-        }
+    var jsonDistros = null;
+    $(function () {
+      $.getJSON('/api/distro', function(json) {
+        jsonDistros = json;
+        initTabs();
       });
+
+      function initTabs() {
+        var distroList = $('ul#distro-list');
+        var DistroTab = distroList.children().first().removeClass('active').detach();
+        distroList.empty();
+        for(distroIndex in jsonDistros.generalDistros.list) {
+          var distro = jsonDistros.generalDistros.list[distroIndex];
+          var distroTab = DistroTab.clone();
+          distroTab.data('distro-name', distro.name);
+          distroTab.children('a').text(distro.name);
+          distroTab.appendTo(distroList);
+        }
+        distroList.children().first().addClass('active');
+        distroList.children().click(function() {
+          initTab($(this).data('distro-name'));
+        });
+        initTab(jsonDistros.generalDistros.list[0].name);
+        // FIXME: dockers, buildkits, etc.
+      }
+
+      function initTab(distroName) {
+        var distro;
+        for(distroIndex in jsonDistros.generalDistros.list) {
+          distro = jsonDistros.generalDistros.list[distroIndex];
+          if(distro.name == distroName) break;
+        }
+        var distroList = $('ul#distro-list');
+        distroList.children().removeClass('active');
+        var distroTab = distroList.children('[data-distro-name="' + distroName + '"]');
+        distroTab.addClass('active');
+        $('#distro-name').text(distro.name);
+        $('#distro-description').text(distro.description);
+
+        $.getJSON('/api/distro-extra?name=' + encodeURIComponent(distroName), function(xdistro) {
+          var imageList = $('#preview');
+          if(xdistro.previewList.length != 0) {
+            $('#preview').show();
+            var ImageItem = imageList.children().first().removeClass('active').detach();
+            imageList.empty();
+            for(imageIndex in xdistro.previewList) {
+              var image = xdistro.previewList[imageIndex];
+              var imageItem = ImageItem.clone();
+              imageItem.find('a').attr('href', image.thumbPath);
+              imageItem.find('img').attr('src', image.path);
+              imageItem.appendTo(imageList);
+            }
+            imageList.children().first().addClass('active');
+            $('.image-popup-no-margins').magnificPopup({
+              type: "image",
+              closeOnContentClick: true,
+              closeBtnInside: false,
+              fixedContentPos: true,
+              image: {
+                verticalFit: true
+              },
+              zoom: {
+                enabled: true,
+                duration: 300 // don't foget to change the duration also in CSS
+              }
+            });
+          } else {
+            $('#preview').hide();
+          }
+          var downloadItemList = $('#download-panel');
+          var DownloadItem = downloadItemList.children().first().detach();
+          downloadItemList.empty();
+          for(downloadIndex in xdistro.downloadList) {
+            var download = xdistro.downloadList[downloadIndex];
+            var downloadItem = DownloadItem.clone();
+            downloadItem.children('a')
+              .text(download.text)
+              .attr('href', download.url)
+              .toggleClass('disabled', !download.available);
+            downloadItem.appendTo(downloadItemList);
+          }
+        });
+      }
+      //$('[data-toggle="popover"]').popover();
     });

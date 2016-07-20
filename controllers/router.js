@@ -93,25 +93,51 @@ router.get( '/about' , function(req, res) {
 });
 
 router.get( '/os-download', function(req, res) {
-  // var dto = readYAML('distro');
-  // var nws = readYAML('news').slice(0,9);
-  // res.render('osdownload', {'params' : {
-  //   'distro' : dto,
-  //   'news' : nws
-  // }});
   res.render('os-download', {'params' : {}});
 });
-
-router.get( '/api/distro', function(req, res) {
-  var params = {};
-  res.send({'distro': params});
-});
-
 
 // APIs
 router.get( '/api/splashes', function(req, res) {
   var splashes = readYAML('api/splashes');
   res.send({'splashes': splashes[Math.floor(Math.random() * splashes.length)]});
+});
+
+router.get( '/api/distro', function(req, res) {
+  var params = readYAML('api/distro');
+  res.send(params);
+});
+
+router.get( '/api/distro-extra', function(req, res) {
+  var distros = readYAML('api/distro-extra');
+  var distro;
+  for(distroIndex in distros.generalDistros.list) {
+    var tmpDistro = distros.generalDistros.list[distroIndex];
+    if(tmpDistro.name == req.query.name) {
+      distro = tmpDistro;
+      break;
+    }
+  }
+  var params = {'previewList': [], 'downloadList': []};
+  var path = distros.generalDistros.previewDirPrefix + distro.previewDir;
+  var URLpath = distros.generalDistros.previewDirURLPrefix + distro.previewDir;
+  try {
+    var childrenInDir = fs.readdirSync(path);
+  } catch (e) {
+    log.error('distro-extra: failed to read directory: ' + path);
+    res.send(params);
+    return;
+  }
+  for (var c in childrenInDir) {
+    if (fs.statSync(path + '/' + childrenInDir[c]).isFile()) {
+      params.previewList.push(
+        {'thumbPath': URLpath + '/' +
+          distros.generalDistros.thumbsPrefix
+          + childrenInDir[c] +
+          distros.generalDistros.thumbsSuffix,
+        'path': URLpath + '/' + childrenInDir[c]});
+    }
+  }
+  res.send(params);
 });
 
 module.exports = router;
