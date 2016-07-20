@@ -60,14 +60,26 @@ router.get('/community' , function(req, res) {
   }});
 });
 
+// FIXME: to be a projects list, but not only aosc-os
 router.get( '/projects' , function(req, res) {
   var prj = readYAML('projects');
-  var dto = readYAML('distro');
+  var aoscos = readYAML('projects/aosc-os');
   res.render('projects', {'params' : {
-    'distro' : dto,
+    'distro' : aoscos,
     'project' : prj
   }});
 });
+
+// FIXME: to be a sub-page, and linked with /projects
+router.get( '/projects/aosc-os' , function(req, res) {
+  var prj = readYAML('projects');
+  var aoscos = readYAML('projects/aosc-os');
+  res.render('projects', {'params' : {
+    'distro' : aoscos,
+    'project' : prj
+  }});
+});
+
 
 router.get( '/about' , function(req, res) {
   var abt = readYAML('about');
@@ -75,13 +87,6 @@ router.get( '/about' , function(req, res) {
   res.render('about', {'params' : {
     'about' : abt,
     'contacts' : ct
-  }});
-});
-
-router.get( '/distro' , function(req, res) {
-  var dto = readYAML('distro');
-  res.render('distro', {'params' : {
-    'distro' : dto
   }});
 });
 
