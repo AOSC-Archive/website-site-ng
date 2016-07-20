@@ -67,6 +67,13 @@ block content
           li
             h1=project.fullname
             p=project.description
+      h1.afe-small-captions COMMON SERVICES
+      ul.afe-hoverpanel
+        each service in params.services
+          li
+            a(href=service.link)
+              h1=service.srvtype
+            p=service.description
 
 append stylesheet
   +include-css("/assets/css/magnific-popup.css")

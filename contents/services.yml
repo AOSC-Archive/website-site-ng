@@ -1,0 +1,20 @@
+-
+  srvtype: Public Clipboard
+  link: https://pastebin.aosc.io
+  description:
+    - >
+      Our public clipboard service (or pastebin) that you can use for all your
+      clippy needs.
+-
+  srvtype: Community Repository
+  link: https://repo.aosc.io
+  description:
+    - >
+      Our community repository server, where AOSC OS installation medias,
+      tarballs, packages, project documentation, etc. are stored.
+-
+  srvtype: IRC Logs
+  link: https://irclog.anthonos.org
+  description:
+    - >
+      Have a look at our chatter room!

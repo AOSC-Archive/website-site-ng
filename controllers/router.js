@@ -25,10 +25,12 @@ function writeYAML(yamlfile, data) {
 // - / or /index
 router.get( /(^\/index$|^\/$)/ , function(req, res) {
   var pj = readYAML('projects');
+  var srv = readYAML('services');
   newsdb.list(0, 8, function(result) {
     res.render('index', {'params' : {
       'items' : result,
-      'projects' : pj
+      'projects' : pj,
+      'services' : srv
     }});
   })
 });
