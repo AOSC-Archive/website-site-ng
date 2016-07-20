@@ -95,6 +95,12 @@ router.get( '/os-download', function(req, res) {
   res.render('os-download', {'params' : {}});
 });
 
+router.get( '/api/distro', function(req, res) {
+  var params = {};
+  res.send({'distro': params});
+});
+
+
 // APIs
 router.get( '/api/splashes', function(req, res) {
   var splashes = readYAML('api/splashes');
