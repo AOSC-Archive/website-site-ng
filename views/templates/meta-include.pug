@@ -19,10 +19,10 @@
 mixin meta-charset(charset)
   meta(charset=charset)
 
-mixin meta-scalable(scalable)
-  if scalable == "no"
+mixin meta-resetscale(flag)
+  if flag == true
     meta(name="viewport",
-      content="width=device-width, initial-scale=1, user-scalable=no")
+      content="width=device-width, initial-scale=1")
 
 mixin meta-compatibility()
   meta(http-equiv="X-UA-Compatible", content="IE=edge")
