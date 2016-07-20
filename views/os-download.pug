@@ -126,8 +126,8 @@ append javascript
             for(imageIndex in xdistro.previewList) {
               var image = xdistro.previewList[imageIndex];
               var imageItem = ImageItem.clone();
-              imageItem.find('a').attr('href', image.thumbPath);
-              imageItem.find('img').attr('src', image.path);
+              imageItem.find('a').attr('href', image.path);
+              imageItem.find('img').attr('src', image.thumbPath);
               imageItem.appendTo(imageList);
             }
             imageList.children().first().addClass('active');
