@@ -3,6 +3,12 @@ extend templates/master
 block head-custom
   +meta-title("Projects")
   +meta-description("Anthon Open Source Community")
+  style.
+    .afe-static-banner {
+      background-image: url("/assets/i/banner.min.svg");
+      background-size: cover;
+      background-position: center;
+    }
 
 block banner
   .row
