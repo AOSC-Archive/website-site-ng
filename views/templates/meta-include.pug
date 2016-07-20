@@ -36,6 +36,7 @@ mixin meta-compatibility()
 mixin meta-icon-and-color(icon, mime, sizes, lagacyicon, color)
   link(rel="icon", href=lagacyicon)
   //- Homescreen icon for Chrome on Android
+  link(rel="theme-color", content=color)
   link(rel="icon", sizes=sizes, type=mime, href=icon)
   link(rel="apple-touch-icon-precomposed", href=icon)
   //- System status bar's style for iOS
