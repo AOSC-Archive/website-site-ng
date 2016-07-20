@@ -36,10 +36,10 @@ block content
         each DE in params.allDEs
           if DE == params.currentDE.name
             li.active(role="presentation")
-              a(href="#home", role="tab", data-toggle="tab")=DE
+              a(href="#", role="tab", data-toggle="tab")=DE
           else
             li(role="presentation")
-              a(href="#home", role="tab", data-toggle="tab")=DE
+              a(href="#", role="tab", data-toggle="tab")=DE
     .col-md-8.pull-right
       #carousel.carousel.slide(data-ride="carousel")
         //ol.carousel-indicators
