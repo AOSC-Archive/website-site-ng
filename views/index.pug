@@ -65,7 +65,8 @@ block content
       ul.afe-hoverpanel
         each project in params.projects
           li
-            h1=project.fullname
+            a(href=project.gitlink)
+              h1=project.fullname
             p=project.description
       h1.afe-small-captions COMMON SERVICES
       ul.afe-hoverpanel
