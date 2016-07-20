@@ -9,9 +9,8 @@
       is offered across multiple platforms and it runs on a variety of devices.
   logo: "assets/i/aosc-os.svg"
   gitlink: https://github.com/AOSC-Dev/aosc-os-abbs
-  url: /osdownload
 -
-  fullname: Anthon Starter
+  fullname: AST's Startup Toolkit
   mininame: ast
   description: Install AOSC OS on your Windows machine.
   long:
@@ -19,7 +18,6 @@
       Anthon Starter is a HDD installation helper for AOSC OS. This project focuses
       on making installation of AOSC OS from Windows easier.
   gitlink: https://github.com/AOSC-Dev/Anthon-Starter/
-  url: https://github.com/AOSC-Dev/Anthon-Starter/releases/
 -
   fullname: Localization
   mininame: localization
@@ -28,15 +26,4 @@
     - >
       A large-scaled community project to contribute/maintain localization work
       for multiple F/OSS (free, and/or open source software) projects.
-  gitlink: http://l10n.anthonos.org/
-  url: http://l10n.anthonos.org/download/project/aosc.zip
--
-  fullname: LinkC
-  mininame: linkc
-  description: A JSON based, XMPP-like instant messaging server and client.
-  long:
-    - >
-      LinkC is a XMPP-like instant (while being relayed) messenger for your Linux
-      desktop (possibly more OS platforms too).
-  gitlink: https://github.com/AOSC-Dev/LinkC/
-  url: https://github.com/AOSC-Dev/LinkC/releases/
+  gitlink: https://github.com/AOSC-Dev/translations/
