@@ -117,7 +117,7 @@ router.get( '/api/distro-extra', function(req, res) {
       break;
     }
   }
-  var params = {'previewList': [], 'downloadList': []};
+  var params = {'previewList': [], 'downloadTree': undefined, 'repoBaseDir': undefined};
   var path = distros.generalDistros.previewDirPrefix + distro.previewDir;
   var URLpath = distros.generalDistros.previewDirURLPrefix + distro.previewDir;
   try {
@@ -137,6 +137,8 @@ router.get( '/api/distro-extra', function(req, res) {
         'path': URLpath + '/' + childrenInDir[c]});
     }
   }
+  params.downloadTree = distro.downloadTree;
+  params.repoBaseDir = distros.generalDistros.repoBaseDir;
   res.send(params);
 });
 
