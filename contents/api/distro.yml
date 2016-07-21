@@ -38,6 +38,15 @@ generalDistros:
         started. Base is still a pre-configured variant - like AOSC OS should
         be - this is also suitable for performance constrained devices like say,
         a Raspberry Pi board; or simply drop it on your server and go from there.
+        Base is also available as a Docker image.
+    - name: BuildKit
+      description: |
+        BuildKit is essentially a non-bootable AOSC OS Base with full
+        development support. This particular variant of AOSC OS comes with
+        Autobuild3 and ABBS so you can jump right into AOSC OS packaging,
+        whether it be a contribution to our official ABBS tree, or something
+        you have decided to build on your own. BuildKit is also available as
+        a Docker image.
 
 dockers:
 

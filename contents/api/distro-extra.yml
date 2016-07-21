@@ -17,6 +17,8 @@ generalDistros:
       previewDir: /xfce
     - name: Base
       previewDir: /base
+    - name: BuildKit
+      previewDir: /buildkit
 dockers:
 
 buildkits:
