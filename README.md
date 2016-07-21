@@ -34,7 +34,6 @@ what's left to do.
   - [x] News
   - [ ] Community
   - [ ] Project
-  - [ ] Service
   - [ ] About
   - [ ] Download
   - [x] News 长消息二级页面模板
