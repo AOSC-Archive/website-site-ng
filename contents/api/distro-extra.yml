@@ -135,11 +135,16 @@ generalDistros:
           - caseName: ARMv8 (Experimental)
             nodeName: Device
             cases:
-              - casename: Generic
+              - caseName: Generic
                 nodeName: ~
                 list:
                   - caption: Download tarball
                     url: /os-arm64/test_tarball/aosc-os-arm64-test_20160505.tar.xz
+              - caseName: Jetson TX1
+                nodeName: ~
+                list:
+                  - caption: Download tarball
+                    available: false
           - caseName: MIPS
             nodeName: Device
             cases:
