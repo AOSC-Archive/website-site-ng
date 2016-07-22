@@ -167,7 +167,7 @@ append javascript
       }
 
       function clearNode(index) {
-        $('#control-panel>.form-group').eq(index).nextAll().andSelf().remove();
+        $('#control-panel>.form-group').eq(index).nextAll().addBack().remove();
       }
 
       function selectNode(index, childIndex) {
