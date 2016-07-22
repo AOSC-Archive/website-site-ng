@@ -124,8 +124,7 @@ router.get( '/api/distro-extra', function(req, res) {
     var childrenInDir = fs.readdirSync(path);
   } catch (e) {
     log.error('distro-extra: failed to read directory: ' + path);
-    res.send(params);
-    return;
+    childrenInDir = null;
   }
   for (var c in childrenInDir) {
     if (fs.statSync(path + '/' + childrenInDir[c]).isFile()) {
