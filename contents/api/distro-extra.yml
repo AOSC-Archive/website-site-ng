@@ -117,23 +117,70 @@ generalDistros:
                     available: false
                   - caption: Download tarball
                     available: false
+          - caseName: ARMv7
+            nodeName: Device
+            cases:
+              - caseName: Generic
+                nodeName: ~
+                list:
+                  - caption: Download tarball
+                    url: /os-armel/generic/aosc-os_base_armel_20160628.tar.xz
+              - caseName: Raspberry Pi 2/3
+                nodeName: ~
+                list:
+                  - caption: Download tarball
+                    url: /os-armel/rpi/aosc-os_base_rpi_20160628.1.tar.xz
+                  - caption: Download image
+                    available: false
+          - caseName: ARMv8 (Experimental)
+            nodeName: Device
+            cases:
+              - casename: Generic
+                nodeName: ~
+                list:
+                  - caption: Download tarball
+                    url: /os-arm64/test_tarball/aosc-os-arm64-test_20160505.tar.xz
+          - caseName: MIPS
+            nodeName: Device
+            cases:
+              - caseName: Generic
+                nodeName: ~
+                list:
+                  - caption: Download tarball
+                    url: /os-mipsel/base/aosc-os_base_mipsel_20160607.tar.xz
+              - caseName: Malta
+                nodeName: ~
+                list:
+                  - caption: Download tarball
+                    available: false
+                  - caption: Download Qemu image
+                    url: /os-mipsel/malta/aosc-os_base_malta_20160629.qcow2.xz
+                  - caption: Download kernel image
+                    url: /os-mipsel/malta/vmlinux-3.16.0-4-5kc-malta
     - name: BuildKit
       downloadTree:
         nodeName: Architecture
         cases:
           - caseName: AMD64
-            nodeName: Package Manager
-            cases:
-              - caseName: DPKG
-                nodeName: ~
-                list:
-                  - caption: Download tarball
-                    url: /os-amd64/buildkit/aosc-os_buildkit_20160713.tar.xz
-              - caseName: RPM
-                nodeName: ~
-                list:
-                  - caption: Download tarball
-                    available: false
+            nodeName: ~
+            list:
+              - caption: Download tarball
+                url: /os-amd64/buildkit/aosc-os_buildkit_20160713.tar.xz
+          - caseName: ARMv7
+            nodeName: ~
+            list:
+              - caption: Download tarball
+                url: /os-armel/buildkit/aosc-os-buildkit_armel_20160628.tar.xz
+          - caseName: ARMv8 (Experimental)
+            nodeName: ~
+            list:
+              - caption: Download tarball
+                available: false
+          - caseName: MIPS
+            nodeName: ~
+            list:
+              - caption: Download tarball
+                url: /os-mipsel/buildkit/aosc-os-buildkit_mipsel_20160607.tar.xz
 
 dockers:
 
