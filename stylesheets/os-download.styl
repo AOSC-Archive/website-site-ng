@@ -5,25 +5,14 @@ ol, ul
   padding: 0
   list-style-type: none
 
-body
-  background-color: $color-primary
-  // .popover
-    // color: $color-primary
-
 .afe-static-banner
   min-height: initial
-
-#wrapper
-  color: white
 
 .nav-tabs
   margin-left: -15px
   margin-right: -15px
   >li
     border: none
-    border-left: white 1px solid
-    &:first-of-type
-      border-left: none !important
     &.active
       >a
         opacity: 1
@@ -32,7 +21,7 @@ body
       border: none !important
       background-color: transparent !important
       opacity: 0.5
-      color: white !important
+      color: $color-primary !important
       &:hover, &:focus
         opacity: 1
 
@@ -52,7 +41,7 @@ body
 
 wireframe-button()
   background-color: transparent
-  color: white
+  color: $color-primary
   &:hover, &:focus
     background-color: white
     color: $color-secondary
