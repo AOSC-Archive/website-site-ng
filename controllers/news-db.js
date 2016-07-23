@@ -85,16 +85,21 @@ exports.render = function(news) {
   return anews;
 };
 
-exports.list = function(begin, maxcount, callback) {
+exports.list = function(begin, maxcount, callback, filterCallback) {
   begin = begin? begin : 0;
   maxcount = maxcount? maxcount : 10;
-  maxcount = maxcount > 100? 100 : maxcount;
+  maxcount = maxcount > 15? 15 : maxcount;
   maxcount = maxcount < 1? 1 : maxcount;
+  filterCallback = filterCallback? filterCallback : function(){return true;};
   redisNews.zrevrange(["items", begin, -1, 'withscores'], function(err, idList) {
     idList = redisNews.expandWithScores(idList);
     var promiseList = [];
     var contentList = [];
+    var renderTargetCount = 0;
     for(var index in idList) {
+      if(!filterCallback(idList[index], index, renderTargetCount)) continue;
+      renderTargetCount++;
+      if(renderTargetCount > maxcount) break;
       promiseList[index] = (function(index) {
         return redisNews.getAsync("item:" + idList[index][1]).then(function(content) {
           contentList[index] = exports.render(JSON.parse(content));
