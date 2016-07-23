@@ -93,7 +93,9 @@ router.get( '/about' , function(req, res) {
 });
 
 router.get( '/os-download', function(req, res) {
-  res.render('os-download', {'params' : {}});
+  var mdText = fs.readFileSync(CONTENTS_DIR + '/os-download.md', 'utf8');
+  mdHtml = mdText == undefined? "" : md.toHTML(mdText);
+  res.render('os-download', {'params' : {'guideHtml': mdHtml}});
 });
 
 // APIs
