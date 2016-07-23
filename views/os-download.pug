@@ -26,25 +26,9 @@ block content
       ul#distro-list.nav.nav-tabs(role="tablist")
       li.afe-flag-template(role="presentation")
         a(href="", role="tab", data-toggle="tab") &nbsp;
-    .col-md-8.pull-right
-      #carousel.carousel.slide(data-ride="carousel")
-        //ol.carousel-indicators
-          each dummy, index in params.currentDE.imagePaths
-            if index == 0
-              li.active(data-target="#carousel", data-slide-to=index)
-            else
-              li(data-target="#carousel", data-slide-to=index)
-        #preview.carousel-inner(role="listbox")
-        .item.afe-flag-template
-          //- with .item
-          a.image-popup-no-margins
-            //- (href=path)
-            img.afe-mainframe
-              //- (src=path, alt=params.currentDE.name + ` preview (${index+1})`)
-        a.carousel-control.left(data-slide="prev", role="button", href="#carousel").afe-arrow.afe-arrow-left
-        a.carousel-control.right(data-slide="next", role="button", href="#carousel").afe-arrow.afe-arrow-right
-    .col-md-4
+    .col-md-12
       h1#distro-name &nbsp;
+    .col-md-4
       p#distro-description &nbsp;
 
       form#control-panel.form-horizontal
@@ -61,6 +45,23 @@ block content
           data-placement="top", data-content="And here's some amazing content. It's very engaging. Right?") 为什么会这样呢？
       #download-panel
         a.btn.btn-default.col-md-12.afe-flag-template(target="_blank") &nbsp;
+    .col-md-8
+      #carousel.carousel.slide(data-ride="carousel")
+        //ol.carousel-indicators
+          each dummy, index in params.currentDE.imagePaths
+            if index == 0
+              li.active(data-target="#carousel", data-slide-to=index)
+            else
+              li(data-target="#carousel", data-slide-to=index)
+        #preview.carousel-inner(role="listbox")
+        .item.afe-flag-template
+          //- with .item
+          a.image-popup-no-margins
+            //- (href=path)
+            img.afe-mainframe
+              //- (src=path, alt=params.currentDE.name + ` preview (${index+1})`)
+        a.carousel-control.left(data-slide="prev", role="button", href="#carousel").afe-arrow.afe-arrow-left
+        a.carousel-control.right(data-slide="next", role="button", href="#carousel").afe-arrow.afe-arrow-right
 
 append stylesheet
   +include-css("/assets/css/magnific-popup.css")
