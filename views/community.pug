@@ -27,86 +27,21 @@ block banner
         talk about the past and the coming year, and having fun hacking,
         or... not hacking.
 
+include templates/flow-include
 block content
   #wrapper.row
     .col-md-8
       .clearfix
         h1.afe-small-captions RECENT ACTIVITIES
-        ul.afe-flow
-          //
-          li.clearfix
-            h1.afe-title AOSC Conference 2015
-            .afe-content
-              p.
-                Lorem
-          //
-          li.clearfix
-            h1.afe-title AOSC Conference 2015
-            a.image-popup-no-margins(href="/assets/i/test.png"): img.afe-cover(src="/assets/i/test.png")
-            .afe-content
-              p.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          //
-          li.clearfix
-            h1.afe-title AOSC Conference 2015
-            .afe-content
-              p.
-                Lorem
-          //
-          li.clearfix
-            h1.afe-title AOSC Conference 2015
-            a.image-popup-no-margins(href="/assets/i/test.png"): img.afe-cover(src="/assets/i/test.png")
-            .afe-content
-              p.
-                Lorem
-      p.h5
-        a prev
-        | &nbsp;
-        a 1
-        | &nbsp;
-        a 2
-        | &nbsp;...&nbsp;
-        a 5
-        | &nbsp;
-        a next
+        +flow(params.items)
     .col-md-4
       h1.afe-small-captions PHOTOGRAPHS
       each val, index in [1, 2, 3, 4, 5, 6, 7, 8]
         a.pullleft.image-popup-no-margins(href="/assets/i/test.png"): img.afe-cover(src="/assets/i/test.png", width=100, height=100)
       a &nbsp; I need more...
-    //.col-md-12
-      hr
-      each val, index in [1, 2]
-        .clearfix
-          h1.afe-small-captions CORE TEAM
-          ul.afe-members
-            each val, index in [1, 2, 3]
-              li.col-sm-4
-                img.pullleft(src="/assets/i/test.png")
-                .pullleft
-                  .clearfix
-                    h1 Leonardo da Vinci
-                      small Artist
-                    p: a lorem@aosc.xyz
+
+include templates/lightbox-include
 append stylesheet
-  +include-css("/assets/css/magnific-popup.css")
+  +lightbox-css()
 append javascript
-  +include-js("/assets/js/jquery.magnific-popup.min.js")
-  script.
-    $(function() {
-      $(".image-popup-no-margins").magnificPopup({
-        type: "image",
-        closeOnContentClick: true,
-        closeBtnInside: false,
-        fixedContentPos: true,
-        image: {
-          verticalFit: true
-        },
-        zoom: {
-          enabled: true,
-          duration: 300 // don't foget to change the duration also in CSS
-        }
-      });
-    });
+  +lightbox-js()
