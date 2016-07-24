@@ -38,6 +38,8 @@ block content
       form(method="post", action="#")
         p: input(name="title", type="text", placeholder="Title", required, value=params.title)
         p: input(name="type", type="text", placeholder="Type: news, bug, etc.", required, value=params.type)
+        p: input(name="imgThumb", type="text", placeholder="(Optional) Image URL of thumbnail", value=params.imgThumb)
+        p: input(name="imgOrig", type="text", placeholder="(Optional) Image URL of origin", value=params.imgOrig)
         if params.content
           p: textarea(name="content", required)
             =params.content

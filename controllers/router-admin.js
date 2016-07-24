@@ -75,6 +75,8 @@ router.all('/news-post' , function(req, res) {
     newsdb.post({
       "title" : req.body.title,
       "type" : req.body.type,
+      "imgThumb" : req.body.imgThumb,
+      "imgOrig" : req.body.imgOrig,
       "content" : req.body.content,
       "timestamp" : new Date().getTime(),
       "slug" : newsdb.slug(req.body.title),
@@ -83,8 +85,10 @@ router.all('/news-post' , function(req, res) {
     });
   } else {
     var news = {
-      "title" : (req.body.title? req.body.title : "Lovely Title"),
-      "type" : (req.body.type? req.body.type : "news"),
+      "title" : req.body.title,
+      "type" : req.body.type,
+      "imgThumb" : req.body.imgThumb,
+      "imgOrig" : req.body.imgOrig,
       "content" : req.body.content,
       "timestamp" : new Date().getTime(),
       "previewed" : (req.body.action == "preview"? true : false),
