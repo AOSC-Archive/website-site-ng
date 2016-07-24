@@ -71,13 +71,13 @@ append javascript
   +lightbox-js()
   script.
     $(function() {
-      var pre_splash = "";
+      var pre_splash = '';
       function refreshSplash(){
-        $.getJSON("/api/splashes", function(json) {
+        $.getJSON('/api/splashes', function(json) {
           if(json.splashes != pre_splash) {
-            $(".afe-banner h2").fadeOut(function(){
-              $(".afe-banner h2").text(json.splashes);
-              $(".afe-banner h2").fadeIn();
+            $('.afe-banner h2').fadeOut(function(){
+              $('.afe-banner h2').text(json.splashes);
+              $('.afe-banner h2').fadeIn();
             });
             pre_splash = json.splashes;
           }
