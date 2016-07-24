@@ -35,7 +35,7 @@ what's left to do.
   - [ ] Community
   - [ ] Project
   - [ ] About
-  - [ ] Download
+  - [x] Download
   - [x] News 长消息二级页面模板
   - [ ] Project 项目页面模板
 -  [ ] 前端 PC 端代码审查
