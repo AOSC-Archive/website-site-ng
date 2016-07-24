@@ -30,3 +30,9 @@ block content
     .col-md-8
       h1.afe-small-captions ALL NEWS
       +flow(params.items)
+
+include templates/lightbox-include
+append stylesheet
+  +lightbox-css()
+append javascript
+  +lightbox-js()

@@ -86,3 +86,9 @@ block content
             input(type="radio", name="action", value="post", disabled)
           span.afe-radio-caption Post (preview first)
           p: input(type="submit", value="Submit")
+
+include templates/lightbox-include
+append stylesheet
+  +lightbox-css()
+append javascript
+  +lightbox-js()

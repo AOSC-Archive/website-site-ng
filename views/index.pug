@@ -63,26 +63,12 @@ block content
               h1=service.srvtype
             p=service.description
 
+
+include templates/lightbox-include
 append stylesheet
-  +include-css("/assets/css/magnific-popup.css")
+  +lightbox-css()
 append javascript
-  +include-js("/assets/js/jquery.magnific-popup.min.js")
-  script.
-    $(function() {
-      $(".image-popup-no-margins").magnificPopup({
-        type: "image",
-        closeOnContentClick: true,
-        closeBtnInside: false,
-        fixedContentPos: true,
-        image: {
-          verticalFit: true
-        },
-        zoom: {
-          enabled: true,
-          duration: 300 // don't foget to change the duration also in CSS
-        }
-      });
-    });
+  +lightbox-js()
   script.
     $(function() {
       var pre_splash = "";
