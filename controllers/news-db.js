@@ -85,6 +85,7 @@ exports.render = function(stru) {
   return xstru;
 };
 
+// filterCallback(object, index, targetCount)
 exports.list = function(begin, maxcount, callback, filterCallback) {
   begin = begin? begin : 0;
   maxcount = maxcount? maxcount : 10;
@@ -93,26 +94,31 @@ exports.list = function(begin, maxcount, callback, filterCallback) {
   filterCallback = filterCallback? filterCallback : function(){return true;};
   redisNews.zrevrange(["items", begin, -1, 'withscores'], function(err, idList) {
     idList = redisNews.expandWithScores(idList);
+    var objectList = [];
     var promiseList = [];
-    var contentList = [];
-    var renderTargetCount = 0;
     for(var index in idList) {
-      if(!filterCallback(idList[index], index, renderTargetCount)) continue;
-      renderTargetCount++;
-      if(renderTargetCount > maxcount) break;
       promiseList[index] = (function(index) {
         return redisNews.getAsync("item:" + idList[index][1]).then(function(content) {
-          contentList[index] = exports.render(JSON.parse(content));
+          objectList[index] = JSON.parse(content);
         });
       })(index);
     }
     Promise.all(promiseList)
     .then(function() {
+      var promiseList = [];
+      var contentList = [];
+      var renderTargetCount = 0;
+      for(var index in objectList) {
+        if(!filterCallback(objectList[index], index, renderTargetCount)) continue;
+        renderTargetCount++;
+        if(renderTargetCount > maxcount) break;
+        contentList.push(exports.render(objectList[index]));
+      }
       callback(contentList);
     })
     .catch(function(err) {
       log.error("news-db: list() " + err);
-      callback({});
+      callback([]);
     });
   });
 };
@@ -131,28 +137,19 @@ exports.post = function(news, callback) {
   });
 };
 
-exports.getRaw = function(slug, callback) {
+exports.get = function(slug, callback) {
   redisNews.zscore("items", slug, function(err, id) {
     if(id == null) {callback(null); return;}
     redisNews.get("item:" + id, function(err, content) {
       if(content == null) {callback(null); return;}
-      callback(content);
+      callback(exports.render(JSON.parse(content)));
     });
   });
 };
 
-exports.get = function(slug, callback) {
-  exports.getRaw(slug, function(content) {
-    if(content == null)
-      callback(null);
-    else
-      callback(exports.render(JSON.parse(content)));
-  });
-};
-
 exports.has = function(slug, callback) {
-  exports.getRaw(slug, function(result) {
-    callback(result != null);
+  redisNews.zscore("items", slug, function(err, id) {
+    callback(id != null);
   });
 }
 
