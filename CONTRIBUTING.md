@@ -6,12 +6,12 @@ this contributing guideline.
 ## Technical details - 技术细节
 
 - NodeJs is used as the main controller, router, and backend provider;
-- Jade is used as the template engine;
+- Pug (called Jade before) is used as the template engine;
 - Stylus is used as the styling engine;
 - Bootstrap is used as the main styling framework;
 
 - 主控制器、网页路由、后端，使用的是 NodeJs 环境;
-- 网页模版引擎使用 Jade;
+- 网页模版引擎使用 Pug（曾用名 Jade）;
 - 样式表引擎使用 Stylus;
 - 样式主框架为 Bootstrap;
 
@@ -19,7 +19,9 @@ this contributing guideline.
 
 A valid `nodejs` install is all you need.
 
-您只需要安装好 `nodejs` 就行。
+Don't forget `npm update --save`
+
+您只需要安装好 `nodejs` 就行。别忘了执行一次 `npm update --save`。
 
 ## Branches - 分支
 
@@ -36,18 +38,18 @@ may start a branch whenever needed.
 
 - Don't Repeat Yourself;
 - 缩进 2 个空格;
-- 所有代码统一优先使用双引号;
+- Stylus, Pug 使用双引号，Javascript 使用单引号;
 - Javascript 中任何变量必须有明确定义;
 - 自建类名使用 `afe-` 作为前缀;
-- 代码风格（Jade 有一些特例，见下文）;
+- 代码风格（Pug 有一些特例，见下文）;
   ```
   function(x, y) {
     a = b + 1;
   }
   ```
 - 极力避免肮脏的、语义晦涩难懂的代码，如有必要，必须书写清晰的注释说明;
-- Jade 中的开发注释使用 `//-` 避免编译到 HTML 中;
-- 兼容上，不考虑 IE8 及以前版本的浏览器.
+- Pug 中的开发注释使用 `//-` 避免编译到 HTML 中;
+- 兼容上，不考虑 IE9 及以前版本的浏览器。
 
 ### Stylus
 
@@ -64,7 +66,7 @@ may start a branch whenever needed.
     key1: value
 ```
 
-### Jade
+### Pug
 
 - 如果一个节点，有且仅有一个子节点，而且该结构不常更改，那么使用简写：parent: child
 - 代码风格（等号无空格, Javascript 语法的等号有空格，属性之间用逗号）
