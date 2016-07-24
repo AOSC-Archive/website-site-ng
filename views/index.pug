@@ -33,6 +33,7 @@ block banner-floating
         Most good programmers do programming not because they expect to get paid
         or get adulation by the public, but because it is fun to program. -- Linus Torvalds
 
+include templates/flow-include
 block content
   .afe-sub-banner.hidden-sm.hidden-xs
     .container: .row: .col-md-12: ul
@@ -45,21 +46,7 @@ block content
   #wrapper.row
     .col-md-8
       h1.afe-small-captions LATEST NEWS
-      ul.afe-flow
-        each val, index in params.items
-          if index<5
-            li(class="afe-tag-"+val.type)
-                h1.afe-title
-                  a(href="/news/"+val.slug, target="_blank")
-                    =val.title
-                  small=val.date
-                .afe-content
-                  each para in val.htmlcontent
-                    !=para
-          else if index<8
-            li(class="afe-tag-"+val.type): h1.afe-title: a(href="/news#"+val.slug)=val.title
-        h1(style="font-size: 18px; margin-bottom: 50px;")
-          a(href="/news") Read more...
+      +flow(params.items, 5)
     .col-md-4
       h1.afe-small-captions PROJECTS OVERVIEW
       ul.afe-hoverpanel

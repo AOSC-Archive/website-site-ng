@@ -27,19 +27,12 @@ append stylesheet
       background-position: center;
     }
 
+include templates/flow-include
 block content
   #wrapper.row
     .col-md-8
       h2.afe-news-post-title PREVIEW
-      ul.afe-flow
-        li(class="afe-tag-"+params.type)
-          h1.afe-title=params.title
-            small=params.date
-          .afe-content
-            if params.htmlcontent
-              !=params.htmlcontent
-            else
-              p (Content should be written in <strong>Markdown</strong>)
+      +flow([params])
     .col-md-4
       h2.afe-news-post-title EDITOR
       form(method="post", action="#")
