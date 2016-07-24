@@ -16,6 +16,7 @@ var redisAuth = redis.createClient({prefix: "auth:"});
 redisAuth.select("0");
 
 exports.getStatus = function(ticket, callback) {
+  if(!ticket) return callback({status: "INVALID", ttl: -1});
   redisAuth.get(ticket, function(err, result) {
     if(result == null) return callback({status: "INVALID", ttl: -1});
     redisAuth.ttl(ticket, function(err, resultTTL) {
@@ -37,7 +38,7 @@ exports.createListener = function(ticket, resolve, callback) {
         resolve(ticket);
       case 'break':
         session.unsubscribe();
-        session.end();
+        session.quit();
         break;
     }
   });
