@@ -46,7 +46,6 @@ redisNews.expandWithScores = function(arr){
     var result = [];
     for (var i=0, j=0; i < arr.length; i+=2, j++) {
       result[j] = [arr[i], arr[i+1]];
-      log.warn([arr[i], arr[i+1]]);
     }
     return result;
 };
@@ -76,13 +75,14 @@ function formatDate(date) {
 
 exports.slug = slug;
 
-exports.render = function(news) {
+exports.render = function(stru) {
+  if(!stru) return null;
   var date = new Date();
-  var anews = news;
-  date.setTime(anews.timestamp);
-  anews.date = formatDate(date).toUpperCase();
-  anews.htmlcontent = anews.content == undefined? "" : md.toHTML(anews.content);
-  return anews;
+  var xstru = stru;
+  date.setTime(xstru.timestamp);
+  xstru.date = formatDate(date).toUpperCase();
+  xstru.htmlcontent = xstru.content == undefined? "" : md.toHTML(xstru.content);
+  return xstru;
 };
 
 exports.list = function(begin, maxcount, callback, filterCallback) {
