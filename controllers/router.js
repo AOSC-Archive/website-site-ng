@@ -42,6 +42,9 @@ router.get('/news' , function(req, res) {
       "maxcount" : req.query.maxcount,
       "items" : result,
     }});
+  }, function(object, index, targetCount) {
+    if(!(object.type in {'news':0, 'bug':0})) return false;
+    return true;
   });
 });
 
@@ -52,14 +55,16 @@ router.get('/news/:slug' , function(req, res) {
 });
 
 router.get('/community' , function(req, res) {
-  // var bct = readYAML('news');
-  // for(var i_ct in bct) {
-  //   bct[i_ct].date = formatDate(bct[i_ct].date).toUpperCase();
-  //   var _ct = bct[i_ct].content;
-  //   for(var i_para in _ct) _ct[i_para] = md.toHTML(_ct[i_para]);
-  // }
-  res.render('community', {'params' : {
-  }});
+  newsdb.list(req.query.begin, req.query.maxcount, function(result) {
+    res.render("community", {"params" : {
+      "begin" : req.query.begin,
+      "maxcount" : req.query.maxcount,
+      "items" : result,
+    }});
+  }, function(object, index, targetCount) {
+    if(!(object.type=='community')) return false;
+    return true;
+  });
 });
 
 // FIXME: to be a projects list, but not only aosc-os
