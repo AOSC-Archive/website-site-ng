@@ -26,42 +26,31 @@ block content
       ul#distro-list.nav.nav-tabs(role="tablist")
       li.afe-flag-template(role="presentation")
         a(href="", role="tab", data-toggle="tab") &nbsp;
-    .col-md-12
+    #distro-panel.col-md-12
       h1#distro-name &nbsp;
-    .col-md-4
-      p#distro-description &nbsp;
+      .col-md-4
+        p#distro-description &nbsp;
 
-      form#control-panel.form-horizontal
-      .form-group.afe-flag-template
-        label.control-label.col-md-5 &nbsp;
-        .dropdown.col-md-7
-          button.btn.btn-default.dropdown-toggle(type="button", data-toggle="dropdown")
-            span.afe-caption
-            | &nbsp;
-            span.caret
-          ul.dropdown-menu
-          li.afe-flag-template: a.afe-case(href="javascript:;")
-        //-a.tip.text-center(data-toggle="popover", data-container="body"
-          data-placement="top", data-content="And here's some amazing content. It's very engaging. Right?") 为什么会这样呢？
-      #download-panel
-        a.btn.btn-default.col-md-12.afe-flag-template(target="_blank") &nbsp;
-    .col-md-8
-      #carousel.carousel.slide(data-ride="carousel")
-        //ol.carousel-indicators
-          each dummy, index in params.currentDE.imagePaths
-            if index == 0
-              li.active(data-target="#carousel", data-slide-to=index)
-            else
-              li(data-target="#carousel", data-slide-to=index)
-        #preview.carousel-inner(role="listbox")
-        .item.afe-flag-template
-          //- with .item
-          a.image-popup-no-margins
-            //- (href=path)
-            img.afe-mainframe
-              //- (src=path, alt=params.currentDE.name + ` preview (${index+1})`)
-        a.carousel-control.left(data-slide="prev", role="button", href="#carousel").afe-arrow.afe-arrow-left
-        a.carousel-control.right(data-slide="next", role="button", href="#carousel").afe-arrow.afe-arrow-right
+        form#control-panel.form-horizontal
+        .form-group.afe-flag-template
+          label.control-label.col-md-5 &nbsp;
+          .dropdown.col-md-7
+            button.btn.btn-default.dropdown-toggle(type="button", data-toggle="dropdown")
+              span.afe-caption
+              | &nbsp;
+              span.caret
+            ul.dropdown-menu
+            li.afe-flag-template: a.afe-case(href="javascript:;")
+        #download-panel
+          a.btn.btn-default.col-md-12.afe-flag-template(target="_blank") &nbsp;
+      .col-md-8
+        #carousel.carousel.slide(data-ride="carousel")
+          #preview.carousel-inner(role="listbox")
+          .item.afe-flag-template
+            a.image-popup-no-margins
+              img.afe-mainframe
+          a.carousel-control.left(data-slide="prev", role="button", href="#carousel").afe-arrow.afe-arrow-left
+          a.carousel-control.right(data-slide="next", role="button", href="#carousel").afe-arrow.afe-arrow-right
     .col-md-12(style="margin-top: 30px;")
       #guide.afe-content !{params.guideHtml}
 
@@ -96,22 +85,42 @@ append javascript
           initTab($(this).data('distro-name'));
         });
         initTab(globalDistros.generalDistros.list[0].name);
-        // FIXME: dockers, buildkits, etc.
       }
 
       function initTab(distroName) {
-        var distro;
-        for(distroIndex in globalDistros.generalDistros.list) {
-          distro = globalDistros.generalDistros.list[distroIndex];
-          if(distro.name == distroName) break;
-        }
-        var distroList = $('ul#distro-list');
-        $('#distro-name').text(distro.name);
-        $('#distro-description').text(distro.description);
-        initTabExtra(distroName);
+        $('#distro-panel').css('min-height', $('#distro-panel').innerHeight()+'px'); // keep its height
+        $('#distro-panel').css({'left': '0px', 'opacity': '1'}).animate({
+          left: '-100px',
+          opacity: 0
+        },{
+          duration: "fast",
+          easing: "swing",
+          done: function() {
+            var distro;
+            for(distroIndex in globalDistros.generalDistros.list) {
+              distro = globalDistros.generalDistros.list[distroIndex];
+              if(distro.name == distroName) break;
+            }
+            var distroList = $('ul#distro-list');
+            $('#distro-name').text(distro.name);
+            $('#distro-description').text(distro.description);
+            createNode(0, null);
+            $('#preview').empty();
+            initTabExtra(distroName, function() {
+              $('#distro-panel').finish().css({'left': '100px', 'opacity': '0'}).animate({
+                'min-height': '0px', // release its height
+                left: '0px',
+                opacity: 1
+              },{
+                duration: "fast",
+                easing: "swing"
+              });
+            });
+          }
+        });
       }
 
-      function initTabExtra(distroName) {
+      function initTabExtra(distroName, callback) {
         $.getJSON('/api/distro-extra?name=' + encodeURIComponent(distroName), function(xdistro) {
           var imageList = $('#preview');
           var ImageItem = imageList
@@ -128,7 +137,7 @@ append javascript
           imageList.children().first().addClass('active');
 
           $('.image-popup-no-margins').magnificPopup({
-            type: "image",
+            type: 'image',
             closeOnContentClick: true,
             closeBtnInside: false,
             fixedContentPos: true,
@@ -138,11 +147,21 @@ append javascript
             zoom: {
               enabled: true,
               duration: 300 // don't foget to change the duration also in CSS
+            },
+            preloader: true,
+            callbacks: {
+              open: function() {
+                $('#carousel').carousel('pause');
+              },
+              close: function() {
+                $('#carousel').carousel();
+              }
             }
-          }).magnificPopup('updateItemHTML');
+          });
           treeRoot = xdistro.downloadTree;
           repoBaseDir = xdistro.repoBaseDir;
           createNode(0, treeRoot);
+          callback();
         });
       }
 
@@ -203,6 +222,4 @@ append javascript
           item.appendTo(downloadList);
         }
       }
-
-      //$('[data-toggle="popover"]').popover();
     });
