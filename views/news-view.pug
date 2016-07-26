@@ -4,20 +4,8 @@ block head-custom
   +meta-title(params.title + " | AOSC News")
   +meta-description("Anthon Open Source Community")
 
-append stylesheet
-  style.
-    .afe-static-banner {
-      min-height: 0
-    }
-    .afe-banner .afe-static-banner h1 {
-      font-size: 30px;
-    }
-    .afe-banner .afe-static-banner h2 {
-      font-size: 18px;
-    }
-
 block banner
-  .row
+  .row.afe-banner-subpage
     .col-md-12
       h1=params.title.toUpperCase()
       h2=params.date
