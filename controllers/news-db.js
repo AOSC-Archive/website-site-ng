@@ -1,4 +1,4 @@
-(function(){
+(() => {
 
 /*
  * When you modify the prototype of database,
@@ -42,7 +42,7 @@ bluebird.promisifyAll(redis.Multi.prototype);
 var redisNews = redis.createClient({prefix: "news:"});
 redisNews.select("0");
 
-redisNews.expandWithScores = function(arr){
+redisNews.expandWithScores = arr => {
     var result = [];
     for (var i=0, j=0; i < arr.length; i+=2, j++) {
       result[j] = [arr[i], arr[i+1]];
@@ -50,7 +50,7 @@ redisNews.expandWithScores = function(arr){
     return result;
 };
 
-redisNews.get("prototypeVersion", function(err, result) {
+redisNews.get("prototypeVersion", (err, result) => {
   switch(result) {
     case null: // Clear database
       log.info("news-db: set prototypeVersion to " + prototypeVersion);
@@ -75,7 +75,7 @@ function formatDate(date) {
 
 exports.slug = slug;
 
-exports.render = function(stru) {
+exports.render = stru => {
   if(!stru) return null;
   var date = new Date();
   var xstru = stru;
@@ -85,41 +85,37 @@ exports.render = function(stru) {
   return xstru;
 };
 
-// filterCallback(object, index, targetCount)
+// filter(object, index, targetCount)
 // maxCount will be not limited, if it has been set to -1.
 // doRender is a boolean value.
-exports.enum = function(begin, maxCount, doRender, filterCallback, callback) {
+exports.enum = (begin, maxCount, doRender, filter, callback) => {
   begin = begin? begin : 0;
-  filterCallback = filterCallback? filterCallback : function(){return true;};
-  redisNews.zrevrange(["items", begin, -1, 'withscores'], function(err, idList) {
+  filter = filter? filter : () => true;
+  redisNews.zrevrange(["items", begin, -1, 'withscores'], (err, idList) => {
     idList = redisNews.expandWithScores(idList);
     var objectList = [];
     var promiseList = [];
     for(var index in idList) {
-      promiseList[index] = (function(index) {
-        return new Promise(function(resolve, reject) {
-          exports.get(idList[index][1], doRender, resolve);
-        }).then(function(content) {
-          objectList[index] = content;
-        }).catch(function(err) {
-          log.error("news-db: list() " + idList[index][1] + " " + err);
-        });
-      })(index);
+      promiseList[index] = (index =>
+        new Promise(resolve => exports.get(idList[index][1], doRender, resolve))
+        .then(content => objectList[index] = content)
+        .catch(err => log.error("news-db: list() " + idList[index][1] + " " + err))
+      )(index);
     }
     Promise.all(promiseList)
-    .then(function() {
+    .then(() => {
       var promiseList = [];
       var contentList = [];
       var renderTargetCount = 0;
       for(var index in objectList) {
         if(maxCount != -1 && renderTargetCount >= maxCount) break;
-        if(!filterCallback(objectList[index], index, renderTargetCount)) continue;
+        if(!filter(objectList[index], index, renderTargetCount)) continue;
         renderTargetCount++;
         contentList.push(objectList[index]);
       }
       callback(contentList);
     })
-    .catch(function(err) {
+    .catch(err => {
       log.error("news-db: list() " + err);
       callback([]);
     });
@@ -127,85 +123,69 @@ exports.enum = function(begin, maxCount, doRender, filterCallback, callback) {
 };
 
 exports.filters = {
-  type: function(list) {
-    return function(object, index, targetCount) {
-      for (var i in list) {
-        if(object.type == list[i]) {
+  type(list) {
+    return (object, index, targetCount) => {
+      for (var i in list)
+        if(object.type == list[i])
           return true;
-        }
-      }
       return false;
     };
   },
-  hasImage: function() {
-    return function(object, index, targetCount) {
-      return object.imgThumb != undefined && object.imgThumb != '';
-    };
+  hasImage() {
+    return (object, index, targetCount) => object.imgThumb != undefined && object.imgThumb != '';
   },
-  both: function(a, b) {
+  both(a, b) {
     // AND
-    return function(object, index, targetCount) {
-      return a(object, index, targetCount) && b(object, index, targetCount);
-    };
+    return (object, index, targetCount) => a(object, index, targetCount) && b(object, index, targetCount);
   },
-  not: function(a) {
-    return function(object, index, targetCount) {
-      return !a(object, index, targetCount);
-    };
+  not(a) {
+    return (object, index, targetCount) => !a(object, index, targetCount);
   },
-  either: function(a, b) {
+  either(a, b) {
     // OR, A || B := !( !A && !B )
     return not(and(not(a), not(b)));
   },
 };
 
-exports.count = function(filterCallback, callback) {
-  exports.enum(0, -1, false, filterCallback, function(list) {
-    callback(list.length);
-  });
-};
+exports.count = (filter, callback) => exports.enum(0, -1, false, filter, list => callback(list.length));
 
-exports.put = function(news, callback) {
+exports.put = (news, callback) => {
   redisNews.multi()
     .set("item:" + news.timestamp, JSON.stringify(news))
     .zadd("items", news.timestamp, news.slug)
     .exec(callback);
 };
 
-exports.post = function(news, callback) {
-  exports.slugFix(news.slug, function(fixedSlug) {
+exports.post = (news, callback) =>
+  exports.slugFix(news.slug, fixedSlug => {
     news.slug = fixedSlug;
     exports.put(news, callback);
-  });
-};
+  })
+;
 
-exports.get = function(id, doRender, callback) {
-  redisNews.get("item:" + id, function(err, content) {
+exports.get = (id, doRender, callback) =>
+  redisNews.get("item:" + id, (err, content) => {
     if(content == null) {
       log.error("news-db: get() " + err);
       callback(null);
       return;
     }
     callback(doRender? exports.render(JSON.parse(content)) : JSON.parse(content));
-  });
+  })
+;
+
+exports.resolve = (slug, callback) => {
+  redisNews.zscore("items", slug, (err, id) => callback(id));
 };
 
-exports.resolve = function(slug, callback) {
-  redisNews.zscore("items", slug, function(err, id) {
-    callback(id);
-  });
+exports.has = (slug, callback) => {
+  exports.resolve(slug, id => callback(id != null));
 };
 
-exports.has = function(slug, callback) {
-  exports.resolve(slug, function(id) {
-    callback(id != null);
-  });
-};
-
-exports.slugFix = function(slug, callback) {
+exports.slugFix = (slug, callback) => {
   function iterator(slug, suffix, callback){
     fixedSlug = suffix>0? slug + "-" + suffix : slug;
-    exports.has(fixedSlug, function(exist) {
+    exports.has(fixedSlug, exist => {
       log.debug("conflict: " + fixedSlug + " " + exist);
       if(exist)
         iterator(slug, suffix + 1, callback);

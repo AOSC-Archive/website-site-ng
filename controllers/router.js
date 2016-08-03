@@ -1,5 +1,5 @@
 /* ---- Router ---- */
-(function(){
+(() => {
 
 var express = require('express');
 var router = express.Router();
@@ -29,70 +29,71 @@ function writeYAML(yamlfile, data) {
 }
 
 // - / or /index
-router.get( /(^\/index$|^\/$)/ , function(req, res) {
+router.get( /(^\/index$|^\/$)/ , (req, res) => {
   var pj = readYAML('projects');
   var srv = readYAML('services');
-  new Promise(function(resolve, reject) {
-    newsdb.enum(0, HOME_MAXIMAGE, false, newsdb.filters.hasImage(), resolve);
-  }).then(function(imgUrlList) {
-    newsdb.enum(0, HOME_MAXITEM, true, function() {return true;}, function(result) {
-      res.render('index', {'params' : {
+  new Promise(resolve =>
+    newsdb.enum(0, HOME_MAXIMAGE, false, newsdb.filters.hasImage(), resolve)
+  ).then(imgUrlList =>
+    newsdb.enum(0, HOME_MAXITEM, true, null,
+      result => res.render(
+        'index', {'params' : {
         'items' : result,
         "imgs"  : imgUrlList,
         'projects' : pj,
         'services' : srv
-      }});
-    });
-  });
+      }})
+    )
+  );
 });
 
-router.get('/news' , function(req, res) {
+router.get('/news' , (req, res) =>
   newsdb.enum(req.query.begin, NEWS_MAXITEM,
     true,
     newsdb.filters.type(['news', 'bug']),
-    function(result) {
-      res.render("news", {"params" : {
-        "begin" : req.query.begin,
-        "items" : result,
-      }});
-    });
+    result => res.render(
+      "news", {"params" : {
+      "begin" : req.query.begin,
+      "items" : result,
+      }}
+    )
+  )
+);
+
+router.get('/news/:slug' , (req, res) => {
+  new Promise(resolve => newsdb.resolve(req.params.slug, resolve))
+  .then(id =>
+    newsdb.get(id, true, result => res.render("news-view", {"params" : result}))
+  );
 });
 
-router.get('/news/:slug' , function(req, res) {
-  new Promise(function(resolve, reject) {
-    newsdb.resolve(req.params.slug, resolve);
-  }).then(function(id) {
-    newsdb.get(id, true, function(result) {
-      res.render("news-view", {"params" : result});
-    });
-  });
-});
-
-router.get('/community' , function(req, res) {
+router.get('/community' , (req, res) => {
   // Collect images to show gallery
-  new Promise(function(resolve, reject) {
+  new Promise(resolve =>
     newsdb.enum(0, COMMUNITY_MAXIMAGE,
       false,
       newsdb.filters.both(
         newsdb.filters.type(['community']),
         newsdb.filters.hasImage()
-      ), resolve);
-  }).then(function(imgUrlList) {
+      ),
+      resolve
+    )
+  ).then(imgUrlList =>
     newsdb.enum(req.query.begin, COMMUNITY_MAXITEM,
       true,
       newsdb.filters.type(['community']),
-      function(result) {
-        res.render("community", {"params" : {
-          "begin" : req.query.begin,
-          "items" : result,
-          "imgs"  : imgUrlList,
-        }});
-      });
-  });
+      result => res.render("community", {"params" : {
+        "begin" : req.query.begin,
+        "items" : result,
+        "imgs"  : imgUrlList,
+        }}
+      )
+    )
+  );
 });
 
 // FIXME: to be a projects list, but not only aosc-os
-router.get( '/projects' , function(req, res) {
+router.get( '/projects' , (req, res) => {
   var prj = readYAML('projects');
   var aoscos = readYAML('projects/aosc-os');
   res.render('projects', {'params' : {
@@ -102,7 +103,7 @@ router.get( '/projects' , function(req, res) {
 });
 
 // FIXME: to be a sub-page, and linked with /projects
-router.get( '/projects/aosc-os' , function(req, res) {
+router.get( '/projects/aosc-os' , (req, res) => {
   var prj = readYAML('projects');
   var aoscos = readYAML('projects/aosc-os');
   res.render('projects', {'params' : {
@@ -112,7 +113,7 @@ router.get( '/projects/aosc-os' , function(req, res) {
 });
 
 
-router.get( '/about' , function(req, res) {
+router.get( '/about' , (req, res) => {
   var abt = readYAML('about');
   var ct = readYAML('contacts');
   res.render('about', {'params' : {
@@ -121,24 +122,24 @@ router.get( '/about' , function(req, res) {
   }});
 });
 
-router.get( '/os-download', function(req, res) {
+router.get( '/os-download', (req, res) => {
   var mdText = fs.readFileSync(CONTENTS_DIR + '/os-download.md', 'utf8');
   mdHtml = mdText == undefined? "" : md.toHTML(mdText);
   res.render('os-download', {'params' : {'guideHtml': mdHtml}});
 });
 
 // APIs
-router.get( '/api/splashes', function(req, res) {
+router.get( '/api/splashes', (req, res) => {
   var splashes = readYAML('api/splashes');
   res.send({'splashes': splashes[Math.floor(Math.random() * splashes.length)]});
 });
 
-router.get( '/api/distro', function(req, res) {
+router.get( '/api/distro', (req, res) => {
   var params = readYAML('api/distro');
   res.send(params);
 });
 
-router.get( '/api/distro-extra', function(req, res) {
+router.get( '/api/distro-extra', (req, res) => {
   var distros = readYAML('api/distro-extra');
   var distro;
   for(distroIndex in distros.generalDistros.list) {

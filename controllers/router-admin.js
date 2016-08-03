@@ -1,4 +1,4 @@
-(function(){
+(() => {
 
 var express = require('express');
 var router = express.Router();
@@ -9,9 +9,7 @@ var newsdb  = require('./news-db.js');
 
 const SECURE_RESTRICT = true;
 
-function isLocalDebug(req) {
-  return req.hostname=="127.0.0.1" || req.hostname=="localhost";
-}
+var isLocalDebug = req => req.hostname=="127.0.0.1" || req.hostname=="localhost";
 
 function saveTicketCookie(res, ticket, expire) {
   res.cookie('adminTicket', ticket, {
@@ -26,15 +24,15 @@ function clearTicketCookie(res, ticket, expire) {
   });
 }
 
-router.use(function(req, res, next) {
+router.use((req, res, next) => {
   if(SECURE_RESTRICT && !req.secure && !isLocalDebug(req))
     return res.redirect('https://' + req.get('host') + req.originalUrl);
   req.ticket = req.cookies.adminTicket;
   next();
 });
 
-router.get('/auth' , function(req, res) {
-  auth.createTicket(function(ticket) {
+router.get('/auth' , (req, res) => {
+  auth.createTicket(ticket => {
     saveTicketCookie(res, ticket, auth.TICKET_ACCEPT_TIMEOUT);
     res.render("auth", {"params" : {
       "ticket" : ticket,
@@ -45,19 +43,17 @@ router.get('/auth' , function(req, res) {
   });
 });
 
-router.get('/auth-success' , function(req, res) {
+router.get('/auth-success' , (req, res) => {
   saveTicketCookie(res, req.cookies.adminTicket, auth.TICKET_EXPIRE_TIMEOUT);
   res.redirect('/admin/news-post');
 });
 
-router.get('/api/wait-auth' , function(req, res) {
+router.get('/api/wait-auth' , (req, res) => {
   var ticket = req.cookies.adminTicket;
-  auth.getStatus(ticket, function(status) {
+  auth.getStatus(ticket, status => {
     if(status.status == "ACCEPTED") res.send("accepted");
     if(status.status == "INVALID") res.send("noooooo");
-    auth.createListener(ticket, function() {
-      res.send("accepted");
-    }, function() {});
+    auth.createListener(ticket, () => res.send("accepted"), () => {});
   });
 });
 
@@ -69,7 +65,7 @@ router.use(function(req, res, next) {
   });
 });
 
-router.all('/news-post' , function(req, res) {
+router.all('/news-post' , (req, res) => {
   if(req.body.action == "post") {
     log.debug("redis: post news " + req.body.title);
     newsdb.post({
