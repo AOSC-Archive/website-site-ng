@@ -115,7 +115,7 @@ exports.enum = function(begin, maxCount, doRender, callback, filterCallback) {
         if(maxCount != -1 && renderTargetCount >= maxCount) break;
         if(!filterCallback(objectList[index], index, renderTargetCount)) continue;
         renderTargetCount++;
-        contentList.push(doRender? exports.render(objectList[index]) : objectList[index]);
+        contentList.push(objectList[index]);
       }
       callback(contentList);
     })
