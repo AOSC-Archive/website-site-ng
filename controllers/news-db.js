@@ -159,6 +159,12 @@ exports.filters = {
   },
 };
 
+exports.count = function(filterCallback, callback) {
+  exports.enum(0, -1, false, filterCallback, function(list) {
+    callback(list.length);
+  });
+};
+
 exports.put = function(news, callback) {
   redisNews.multi()
     .set("item:" + news.timestamp, JSON.stringify(news))
