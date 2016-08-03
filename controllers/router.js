@@ -26,7 +26,7 @@ function writeYAML(yamlfile, data) {
 router.get( /(^\/index$|^\/$)/ , function(req, res) {
   var pj = readYAML('projects');
   var srv = readYAML('services');
-  newsdb.list(0, 8, function(result) {
+  newsdb.enum(0, 8, true, function(result) {
     res.render('index', {'params' : {
       'items' : result,
       'projects' : pj,
@@ -36,7 +36,7 @@ router.get( /(^\/index$|^\/$)/ , function(req, res) {
 });
 
 router.get('/news' , function(req, res) {
-  newsdb.list(req.query.begin, req.query.maxcount, function(result) {
+  newsdb.enum(req.query.begin, req.query.maxcount, true, function(result) {
     res.render("news", {"params" : {
       "begin" : req.query.begin,
       "maxcount" : req.query.maxcount,
@@ -55,7 +55,7 @@ router.get('/news/:slug' , function(req, res) {
 });
 
 router.get('/community' , function(req, res) {
-  newsdb.list(req.query.begin, req.query.maxcount, function(result) {
+  newsdb.enum(req.query.begin, req.query.maxcount, true, function(result) {
     res.render("community", {"params" : {
       "begin" : req.query.begin,
       "maxcount" : req.query.maxcount,

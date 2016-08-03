@@ -86,7 +86,7 @@ exports.render = function(stru) {
 };
 
 // filterCallback(object, index, targetCount)
-exports.list = function(begin, maxcount, callback, filterCallback) {
+exports.enum = function(begin, maxcount, doRender, callback, filterCallback) {
   begin = begin? begin : 0;
   maxcount = maxcount? maxcount : 10;
   maxcount = maxcount > 15? 15 : maxcount;
@@ -112,7 +112,7 @@ exports.list = function(begin, maxcount, callback, filterCallback) {
         if(!filterCallback(objectList[index], index, renderTargetCount)) continue;
         renderTargetCount++;
         if(renderTargetCount > maxcount) break;
-        contentList.push(exports.render(objectList[index]));
+        contentList.push(doRender? exports.render(objectList[index]) : objectList[index]);
       }
       callback(contentList);
     })
