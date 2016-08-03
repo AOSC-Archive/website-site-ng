@@ -56,8 +56,12 @@ router.get('/news' , function(req, res) {
 });
 
 router.get('/news/:slug' , function(req, res) {
-  newsdb.get(req.params.slug, function(result) {
-    res.render("news-view", {"params" : result});
+  new Promise(function(resolve, reject) {
+    newsdb.resolve(req.params.slug, resolve);
+  }).then(function(id) {
+    newsdb.get(id, true, function(result) {
+      res.render("news-view", {"params" : result});
+    });
   });
 });
 

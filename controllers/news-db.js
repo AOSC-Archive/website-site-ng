@@ -97,8 +97,12 @@ exports.enum = function(begin, maxCount, doRender, callback, filterCallback) {
     var promiseList = [];
     for(var index in idList) {
       promiseList[index] = (function(index) {
-        return redisNews.getAsync("item:" + idList[index][1]).then(function(content) {
-          objectList[index] = JSON.parse(content);
+        return new Promise(function(resolve, reject) {
+          exports.get(idList[index][1], doRender, resolve);
+        }).then(function(content) {
+          objectList[index] = content;
+        }).catch(function(err) {
+          log.error("news-db: list() " + idList[index][1] + " " + err);
         });
       })(index);
     }
@@ -169,21 +173,28 @@ exports.post = function(news, callback) {
   });
 };
 
-exports.get = function(slug, callback) {
+exports.get = function(id, doRender, callback) {
+  redisNews.get("item:" + id, function(err, content) {
+    if(content == null) {
+      log.error("news-db: get() " + err);
+      callback(null);
+      return;
+    }
+    callback(doRender? exports.render(JSON.parse(content)) : JSON.parse(content));
+  });
+};
+
+exports.resolve = function(slug, callback) {
   redisNews.zscore("items", slug, function(err, id) {
-    if(id == null) {callback(null); return;}
-    redisNews.get("item:" + id, function(err, content) {
-      if(content == null) {callback(null); return;}
-      callback(exports.render(JSON.parse(content)));
-    });
+    callback(id);
   });
 };
 
 exports.has = function(slug, callback) {
-  redisNews.zscore("items", slug, function(err, id) {
+  exports.resolve(slug, function(id) {
     callback(id != null);
   });
-}
+};
 
 exports.slugFix = function(slug, callback) {
   function iterator(slug, suffix, callback){
