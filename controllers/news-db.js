@@ -88,7 +88,7 @@ exports.render = function(stru) {
 // filterCallback(object, index, targetCount)
 // maxCount will be not limited, if it has been set to -1.
 // doRender is a boolean value.
-exports.enum = function(begin, maxCount, doRender, callback, filterCallback) {
+exports.enum = function(begin, maxCount, doRender, filterCallback, callback) {
   begin = begin? begin : 0;
   filterCallback = filterCallback? filterCallback : function(){return true;};
   redisNews.zrevrange(["items", begin, -1, 'withscores'], function(err, idList) {
