@@ -28,11 +28,12 @@ block content
       .clearfix
         h1.afe-small-captions RECENT ACTIVITIES
         +flow(params.items)
-    .col-md-4
+    #side-gallery.col-md-4
       h1.afe-small-captions PHOTOGRAPHS
-      each val, index in [1, 2, 3, 4, 5, 6, 7, 8]
-        a.pullleft.image-popup-no-margins(href="/assets/i/test.png"): img.afe-cover(src="/assets/i/test.png", width=100, height=100)
-      a &nbsp; I need more...
+      ul
+        each val in params.imgs
+          li: a.image-popup-no-margins(href=val.imgOrig): img.afe-cover(src=val.imgThumb)
+        a &nbsp; TODO
 
 include templates/lightbox-include
 append stylesheet

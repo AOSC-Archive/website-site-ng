@@ -86,11 +86,10 @@ exports.render = function(stru) {
 };
 
 // filterCallback(object, index, targetCount)
-exports.enum = function(begin, maxcount, doRender, callback, filterCallback) {
+// maxCount will be not limited, if it has been set to -1.
+// doRender is a boolean value.
+exports.enum = function(begin, maxCount, doRender, callback, filterCallback) {
   begin = begin? begin : 0;
-  maxcount = maxcount? maxcount : 10;
-  maxcount = maxcount > 15? 15 : maxcount;
-  maxcount = maxcount < 1? 1 : maxcount;
   filterCallback = filterCallback? filterCallback : function(){return true;};
   redisNews.zrevrange(["items", begin, -1, 'withscores'], function(err, idList) {
     idList = redisNews.expandWithScores(idList);
@@ -109,9 +108,9 @@ exports.enum = function(begin, maxcount, doRender, callback, filterCallback) {
       var contentList = [];
       var renderTargetCount = 0;
       for(var index in objectList) {
+        if(maxCount != -1 && renderTargetCount >= maxCount) break;
         if(!filterCallback(objectList[index], index, renderTargetCount)) continue;
         renderTargetCount++;
-        if(renderTargetCount > maxcount) break;
         contentList.push(doRender? exports.render(objectList[index]) : objectList[index]);
       }
       callback(contentList);
@@ -121,6 +120,39 @@ exports.enum = function(begin, maxcount, doRender, callback, filterCallback) {
       callback([]);
     });
   });
+};
+
+exports.filters = {
+  type: function(list) {
+    return function(object, index, targetCount) {
+      for (var i in list) {
+        if(object.type == list[i]) {
+          return true;
+        }
+      }
+      return false;
+    };
+  },
+  hasImage: function() {
+    return function(object, index, targetCount) {
+      return object.imgThumb != undefined && object.imgThumb != '';
+    };
+  },
+  both: function(a, b) {
+    // AND
+    return function(object, index, targetCount) {
+      return a(object, index, targetCount) && b(object, index, targetCount);
+    };
+  },
+  not: function(a) {
+    return function(object, index, targetCount) {
+      return !a(object, index, targetCount);
+    };
+  },
+  either: function(a, b) {
+    // OR, A || B := !( !A && !B )
+    return not(and(not(a), not(b)));
+  },
 };
 
 exports.put = function(news, callback) {

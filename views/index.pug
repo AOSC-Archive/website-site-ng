@@ -31,10 +31,9 @@ include templates/flow-include
 block content
   .afe-banner-tail.hidden-sm.hidden-xs
     .container: .row: .col-md-12: ul
-      // FIXME: PROTOTYPE
-      each val in [1, 2, 3, 4, 5]
-        li: a.image-popup-no-margins(href="/assets/i/test.png"): img(src="/assets/i/test.png")
-      li: a(href="/community") More...
+      each val in params.imgs
+        li: a.image-popup-no-margins(href=val.imgOrig): img.afe-cover(src=val.imgThumb)
+      li: a(href="/community") More...(TODO: ICON)
   .afe-banner-tail-padding.hidden-sm.hidden-xs
 
   #wrapper.row

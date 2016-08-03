@@ -14,6 +14,11 @@ slug.defaults.mode = "rfc3986";
 
 const CONTENTS_DIR    = 'contents';
 
+const HOME_MAXITEM    = 8;
+const NEWS_MAXITEM    = 10;
+const COMMUNITY_MAXITEM = 10;
+const COMMUNITY_MAXIMAGE  = 24;
+
 function readYAML(yamlfile) {
   return yaml.safeLoad(fs.readFileSync(CONTENTS_DIR + '/' + yamlfile + '.yml', 'utf8'));
 }
@@ -26,26 +31,27 @@ function writeYAML(yamlfile, data) {
 router.get( /(^\/index$|^\/$)/ , function(req, res) {
   var pj = readYAML('projects');
   var srv = readYAML('services');
-  newsdb.enum(0, 8, true, function(result) {
-    res.render('index', {'params' : {
-      'items' : result,
-      'projects' : pj,
-      'services' : srv
-    }});
-  })
+  new Promise(function(resolve, reject) {
+    newsdb.enum(0, COMMUNITY_MAXIMAGE, false, resolve, newsdb.filters.hasImage());
+  }).then(function(imgUrlList) {
+    newsdb.enum(0, HOME_MAXITEM, true, function(result) {
+      res.render('index', {'params' : {
+        'items' : result,
+        "imgs"  : imgUrlList,
+        'projects' : pj,
+        'services' : srv
+      }});
+    });
+  });
 });
 
 router.get('/news' , function(req, res) {
-  newsdb.enum(req.query.begin, req.query.maxcount, true, function(result) {
+  newsdb.enum(req.query.begin, NEWS_MAXITEM, true, function(result) {
     res.render("news", {"params" : {
       "begin" : req.query.begin,
-      "maxcount" : req.query.maxcount,
       "items" : result,
     }});
-  }, function(object, index, targetCount) {
-    if(!(object.type in {'news':0, 'bug':0})) return false;
-    return true;
-  });
+  }, newsdb.filters.type(['news', 'bug']));
 });
 
 router.get('/news/:slug' , function(req, res) {
@@ -55,15 +61,22 @@ router.get('/news/:slug' , function(req, res) {
 });
 
 router.get('/community' , function(req, res) {
-  newsdb.enum(req.query.begin, req.query.maxcount, true, function(result) {
-    res.render("community", {"params" : {
-      "begin" : req.query.begin,
-      "maxcount" : req.query.maxcount,
-      "items" : result,
-    }});
-  }, function(object, index, targetCount) {
-    if(!(object.type=='community')) return false;
-    return true;
+  // Collect images to show gallery
+  new Promise(function(resolve, reject) {
+    newsdb.enum(0, COMMUNITY_MAXIMAGE, false, resolve,
+      newsdb.filters.both(
+        newsdb.filters.type(['community']),
+        newsdb.filters.hasImage()
+      )
+    );
+  }).then(function(imgUrlList) {
+    newsdb.enum(req.query.begin, COMMUNITY_MAXITEM, true, function(result) {
+      res.render("community", {"params" : {
+        "begin" : req.query.begin,
+        "items" : result,
+        "imgs"  : imgUrlList,
+      }});
+    }, newsdb.filters.type(['community']));
   });
 });
 
