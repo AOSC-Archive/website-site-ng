@@ -2,7 +2,7 @@ mixin flow(list, limit)
   ul.afe-flow
     each val, index in list
       if limit==undefined || index<limit
-        li(class="afe-tag-"+val.type)
+        li(class="clearfix afe-tag-"+val.type)
           h1.afe-title
             a(href="/news/"+val.slug, target="_blank")=val.title
             a.afe-anchor(name=val.slug)
