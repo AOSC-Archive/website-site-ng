@@ -15,6 +15,7 @@ slug.defaults.mode = "rfc3986";
 const CONTENTS_DIR    = 'contents';
 
 const HOME_MAXITEM    = 8;
+const HOME_MAXIMAGE   = 6;
 const NEWS_MAXITEM    = 10;
 const COMMUNITY_MAXITEM = 10;
 const COMMUNITY_MAXIMAGE  = 24;
@@ -32,7 +33,7 @@ router.get( /(^\/index$|^\/$)/ , function(req, res) {
   var pj = readYAML('projects');
   var srv = readYAML('services');
   new Promise(function(resolve, reject) {
-    newsdb.enum(0, COMMUNITY_MAXIMAGE, false, resolve, newsdb.filters.hasImage());
+    newsdb.enum(0, HOME_MAXIMAGE, false, resolve, newsdb.filters.hasImage());
   }).then(function(imgUrlList) {
     newsdb.enum(0, HOME_MAXITEM, true, function(result) {
       res.render('index', {'params' : {
