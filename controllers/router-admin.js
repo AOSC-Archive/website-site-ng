@@ -39,7 +39,7 @@ router.use((req, res, next) => {
 function requirePermission(callback) {
   return (req, res, next) => {
     auth.getStatus(req.ticket, status => {
-      if(status.status == "ACCEPTED" || true) {
+      if(status.status == "ACCEPTED") {
         req.ttl = status.ttl;
         saveTicketCookie(res, req.ticket, req.ttl);
         return callback(req, res, next);
