@@ -29,7 +29,7 @@ function writeYAML(yamlfile, data) {
 }
 
 // - / or /index
-router.get( /(^\/index$|^\/$)/ , (req, res) => {
+router.get('/' , (req, res) => {
   var pj = readYAML('projects');
   var srv = readYAML('services');
   new Promise(resolve =>
@@ -124,7 +124,7 @@ router.get( '/about' , (req, res) => {
 
 router.get( '/os-download', (req, res) => {
   var mdText = fs.readFileSync(CONTENTS_DIR + '/os-download.md', 'utf8');
-  mdHtml = mdText == undefined? "" : md.toHTML(mdText);
+  var mdHtml = mdText == undefined? "" : md.toHTML(mdText);
   res.render('os-download', {'params' : {'guideHtml': mdHtml}});
 });
 

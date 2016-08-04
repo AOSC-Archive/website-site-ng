@@ -1,4 +1,4 @@
-(function() {
+(() => {
 
 var redis   = require('redis');
 var bluebird= require('bluebird');
@@ -51,6 +51,8 @@ exports.createListener = (ticket, resolve, callback) => {
 };
 
 exports.destroyTicket = (ticket, callback) => redisAuth.del(ticket, (err, result) => callback(result));
+
+exports.renewTicket = (ticket, callback) => redisAuth.setex(ticket, TICKET_EXPIRE_TIMEOUT, 'ACCEPTED', (err, result) => callback(result));
 
 exports.createTicket = callback => {
   function createRandomString(callback) {

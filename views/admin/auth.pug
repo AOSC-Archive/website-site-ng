@@ -1,4 +1,4 @@
-extend templates/master
+extend ../templates/master
 
 block head-custom
   +meta-title("Authenticate")
@@ -7,7 +7,7 @@ block head-custom
 block banner
   .row.afe-banner-subpage
     .col-md-12
-      h1 Authenticate
+      h1 # Authenticate
       h2 " DID YOU REALLY NAME YOUR SON Robert'); DROP TABLE Students;--? "
 
 block content
@@ -47,7 +47,7 @@ append javascript
 
     function pendingTicket() {
       $.ajax({
-        url:"/admin/api/wait-auth?timestamp=" + new Date().getTime(),
+        url:"/admin/api/wait-ticket?timestamp=" + new Date().getTime(),
         success: function(result) {
           if(result == "accepted") {
             $("#div-success").css("display", "block");

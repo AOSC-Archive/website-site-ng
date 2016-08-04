@@ -149,6 +149,15 @@ exports.filters = {
 
 exports.count = (filter, callback) => exports.enum(0, -1, false, filter, list => callback(list.length));
 
+exports.delete = (id, callback) => {
+  exports.revResolve(id, slug =>
+    redisNews.multi()
+      .del("item:" + id)
+      .zrem("items", slug)
+      .exec(callback)
+  )
+};
+
 exports.put = (news, callback) => {
   redisNews.multi()
     .set("item:" + news.timestamp, JSON.stringify(news))
@@ -156,12 +165,16 @@ exports.put = (news, callback) => {
     .exec(callback);
 };
 
-exports.post = (news, callback) =>
-  exports.slugFix(news.slug, fixedSlug => {
-    news.slug = fixedSlug;
-    exports.put(news, callback);
-  })
-;
+exports.post = (news, callback) => {
+  if(news.title == "") {
+    exports.delete(news.timestamp, callback);
+  } else {
+    exports.slugFix(news.slug, fixedSlug => {
+      news.slug = fixedSlug;
+      exports.put(news, callback);
+    });
+  }
+};
 
 exports.get = (id, doRender, callback) =>
   redisNews.get("item:" + id, (err, content) => {
@@ -176,6 +189,10 @@ exports.get = (id, doRender, callback) =>
 
 exports.resolve = (slug, callback) => {
   redisNews.zscore("items", slug, (err, id) => callback(id));
+};
+
+exports.revResolve = (id, callback) => {
+  exports.get(id, false, content => callback(content.slug));
 };
 
 exports.has = (slug, callback) => {

@@ -1,11 +1,14 @@
 (() => {
 
+var fs      = require('fs');
 var express = require('express');
-var router = express.Router();
+var router  = express.Router();
 
-var log    = require('./log.js');
+var log     = require('./log.js');
 var auth    = require('./auth.js');
 var newsdb  = require('./news-db.js');
+
+const CONTENTS_DIR    = 'contents';
 
 const SECURE_RESTRICT = true;
 
@@ -15,9 +18,11 @@ function saveTicketCookie(res, ticket, expire) {
   res.cookie('adminTicket', ticket, {
     path: '/admin',
     httpOnly: true,
-    maxAge: expire * 1000
+    maxAge: expire * 1000,
+    signed: true
   });
 }
+
 function clearTicketCookie(res, ticket, expire) {
   res.clearCookie('adminTicket', {
     path: '/admin',
@@ -27,45 +32,70 @@ function clearTicketCookie(res, ticket, expire) {
 router.use((req, res, next) => {
   if(SECURE_RESTRICT && !req.secure && !isLocalDebug(req))
     return res.redirect('https://' + req.get('host') + req.originalUrl);
-  req.ticket = req.cookies.adminTicket;
+  req.ticket = req.signedCookies.adminTicket;
   next();
 });
 
+function requirePermission(callback) {
+  return (req, res, next) => {
+    auth.getStatus(req.ticket, status => {
+      if(status.status == "ACCEPTED" || true) {
+        req.ttl = status.ttl;
+        saveTicketCookie(res, req.ticket, req.ttl);
+        return callback(req, res, next);
+      }
+      return res.redirect('/admin/auth');
+    });
+  }
+}
+
 router.get('/auth' , (req, res) => {
-  auth.createTicket(ticket => {
+  new Promise((resolve, reject) =>
+    auth.getStatus(req.ticket, status => {
+      if(status.status == "ACCEPTED") {
+        res.redirect('/');
+        reject();
+      } else {
+        resolve();
+      }
+    })
+  ).then(
+    () => new Promise(resolve => auth.createTicket(resolve))
+  ).then(ticket => {
     saveTicketCookie(res, ticket, auth.TICKET_ACCEPT_TIMEOUT);
-    res.render("auth", {"params" : {
+    res.render("admin/auth", {"params" : {
       "ticket" : ticket,
       "timeout" : auth.TICKET_ACCEPT_TIMEOUT,
       "expire" : auth.TICKET_EXPIRE_TIMEOUT,
-      "redirect" : "/admin/auth-success",
+      "redirect" : "/admin/",
     }});
   });
 });
 
-router.get('/auth-success' , (req, res) => {
-  saveTicketCookie(res, req.cookies.adminTicket, auth.TICKET_EXPIRE_TIMEOUT);
-  res.redirect('/admin/news-post');
-});
-
-router.get('/api/wait-auth' , (req, res) => {
-  var ticket = req.cookies.adminTicket;
-  auth.getStatus(ticket, status => {
+router.get('/api/wait-ticket' , (req, res) =>
+  auth.getStatus(req.ticket, status => {
     if(status.status == "ACCEPTED") res.send("accepted");
     if(status.status == "INVALID") res.send("noooooo");
-    auth.createListener(ticket, () => res.send("accepted"), () => {});
-  });
-});
+    auth.createListener(req.ticket, () => res.send("accepted"), () => {});
+  })
+);
 
-router.use(function(req, res, next) {
-  auth.getStatus(req.ticket, function(status) {
-    if(status.status != "ACCEPTED") return res.redirect('/admin/auth');
-    req.ttl = status.ttl;
-    next();
-  });
-});
+router.get('/api/renew-ticket' , requirePermission((req, res) =>
+  auth.renewTicket(req.ticket, () => res.send('done'))
+));
 
-router.all('/news-post' , (req, res) => {
+router.get('/bye' , requirePermission((req, res) =>
+  auth.destroyTicket(req.ticket, () => res.redirect('/'))
+));
+
+router.get('/' , requirePermission((req, res) =>
+  res.render("admin/index", {"params" : {
+    "ticket" : req.ticket,
+    "expire" : req.ttl,
+  }})
+));
+
+router.all('/news-post' , requirePermission((req, res) => {
   if(req.body.action == "post") {
     log.debug("redis: post news " + req.body.title);
     newsdb.post({
@@ -74,24 +104,25 @@ router.all('/news-post' , (req, res) => {
       "imgThumb" : req.body.imgThumb,
       "imgOrig" : req.body.imgOrig,
       "content" : req.body.content,
-      "timestamp" : new Date().getTime(),
+      "timestamp" : req.body.timestamp,
       "slug" : newsdb.slug(req.body.title),
-    }, function() {
-      res.redirect('/news');
-    });
+    }, () => res.redirect('/'));
+  } else if(req.query.timestamp) {
+    newsdb.get(req.query.timestamp, true, result => res.render("admin/news-post", {"params" : result}))
   } else {
+    var mdText = fs.readFileSync(CONTENTS_DIR + '/news-example.md', 'utf8');
     var news = {
       "title" : req.body.title,
       "type" : req.body.type,
       "imgThumb" : req.body.imgThumb,
       "imgOrig" : req.body.imgOrig,
-      "content" : req.body.content,
-      "timestamp" : new Date().getTime(),
+      "content" : req.body.content? req.body.content : mdText,
+      "timestamp" : req.body.timestamp? req.body.timestamp : new Date().getTime(),
       "previewed" : (req.body.action == "preview"? true : false),
     };
-    res.render('news-post', {'params' : newsdb.render(news)});
+    res.render('admin/news-post', {'params' : newsdb.render(news)});
   }
-});
+}));
 
 module.exports = router;
 

@@ -27,7 +27,9 @@ var log = require('./controllers/log.js');
 // to-do things
 '"Plz read the fine manual" says the Jeff'
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+var crypto  = require('crypto');
+const COOKIE_SIGN_KEY_LENGTH = 256;
+app.use(cookieParser(crypto.randomBytes(COOKIE_SIGN_KEY_LENGTH).toString('binary')));
 app.set('view engine', 'pug'); // Use Lion and Pug (and Jade)
 app.set('views', './views');    // your truly personal digital
 app.set('trust proxy', 'loopback');

@@ -1,0 +1,39 @@
+extend ../news
+
+block head-custom
+  +meta-title("News Flow")
+  +meta-description("Anthon Open Source Community")
+
+append stylesheet
+  +include-css("/assets/css/admin-news-post.css")
+
+include ../templates/flow-include
+block content
+  #wrapper.row
+    .col-md-8
+      h2.afe-news-post-title PREVIEW
+      +flow([params])
+    .col-md-4
+      h2.afe-news-post-title EDITOR
+      form(method="post", action="#")
+        p: input(name="title", type="text", placeholder="(Leave here empty to delete news) Title", value=params.title)
+        p: input(name="type", type="text", placeholder="Type: news, bug, etc.", required, value=params.type)
+        p: textarea(name="content", required)=params.content
+        p: input(name="imgOrig", type="text", placeholder="(Optional) URL of Image", value=params.imgOrig)
+        p: input(name="imgThumb", type="text", placeholder="(Required if the former is not empty) Thumbnail", value=params.imgThumb)
+        p: input(name="timestamp", type="text", placeholder="(Unique, Key) Timestamp", required, value=params.timestamp)
+        p
+          input(type="radio", name="action", value="preview", checked="checked")
+          span.afe-radio-caption Preview
+          if params.previewed
+            input(type="radio", name="action", value="post")
+          else
+            input(type="radio", name="action", value="post", disabled)
+          span.afe-radio-caption Post (preview first)
+          p: input(type="submit", value="Submit")
+
+include ../templates/lightbox-include
+append stylesheet
+  +lightbox-css()
+append javascript
+  +lightbox-js()
