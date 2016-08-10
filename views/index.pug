@@ -33,7 +33,7 @@ block content
     .container: .row: .col-md-12: ul
       each val in params.imgs
         li: a.image-popup-no-margins(href=val.imgOrig): img.afe-cover(src=val.imgThumb)
-      li: a(href="/community") More...(TODO: ICON)
+      li: a#button-more(href="/community"): img(src="/assets/i/button-more.svg")
   .afe-banner-tail-padding.hidden-sm.hidden-xs
 
   #wrapper.row
