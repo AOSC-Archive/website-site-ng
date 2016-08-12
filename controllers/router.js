@@ -1,15 +1,16 @@
 /* ---- Router ---- */
 (() => {
+'use strict';
 
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 
-var yaml    = require('js-yaml');
-var fs      = require('fs');
-var md      = require('markdown').markdown;
-var log     = require('./log.js');
-var newsdb  = require('./news-db.js');
-var slug    = require('slug');
+let yaml    = require('js-yaml');
+let fs      = require('fs');
+let md      = require('markdown').markdown;
+let log     = require('./log.js');
+let newsdb  = require('./news-db.js');
+let slug    = require('slug');
 slug.defaults.mode = "rfc3986";
 
 const CONTENTS_DIR    = 'contents';
@@ -30,8 +31,8 @@ function writeYAML(yamlfile, data) {
 
 // - / or /index
 router.get('/' , (req, res) => {
-  var pj = readYAML('projects');
-  var srv = readYAML('services');
+  const pj = readYAML('projects');
+  const srv = readYAML('services');
   new Promise(resolve =>
     newsdb.enum(1, HOME_MAXIMAGE, false, newsdb.filters.hasImage(), resolve)
   ).then(imgUrlList =>
@@ -51,7 +52,7 @@ router.get('/news' , (req, res) => {
   const filter = newsdb.filters.type(['news', 'bug']);
   new Promise(resolve => newsdb.count(filter, resolve))
   .then(count => {
-    let page = req.query.page? req.query.page : 1;
+    const page = req.query.page? req.query.page : 1;
     newsdb.enum((page - 1) * NEWS_MAXITEM, NEWS_MAXITEM, true, filter,
       result => res.render(
         "news", {"params" : {
@@ -98,8 +99,8 @@ router.get('/community' , (req, res) => {
 
 // FIXME: to be a projects list, but not only aosc-os
 router.get( '/projects' , (req, res) => {
-  var prj = readYAML('projects');
-  var aoscos = readYAML('projects/aosc-os');
+  const prj = readYAML('projects');
+  const aoscos = readYAML('projects/aosc-os');
   res.render('projects', {'params' : {
     'distro' : aoscos,
     'project' : prj
@@ -108,8 +109,8 @@ router.get( '/projects' , (req, res) => {
 
 // FIXME: to be a sub-page, and linked with /projects
 router.get( '/projects/aosc-os' , (req, res) => {
-  var prj = readYAML('projects');
-  var aoscos = readYAML('projects/aosc-os');
+  const prj = readYAML('projects');
+  const aoscos = readYAML('projects/aosc-os');
   res.render('projects', {'params' : {
     'distro' : aoscos,
     'project' : prj
@@ -118,8 +119,8 @@ router.get( '/projects/aosc-os' , (req, res) => {
 
 
 router.get( '/about' , (req, res) => {
-  var abt = readYAML('about');
-  var ct = readYAML('contacts');
+  const abt = readYAML('about');
+  const ct = readYAML('contacts');
   res.render('about', {'params' : {
     'about' : abt,
     'contacts' : ct
@@ -127,49 +128,48 @@ router.get( '/about' , (req, res) => {
 });
 
 router.get( '/os-download', (req, res) => {
-  var mdText = fs.readFileSync(CONTENTS_DIR + '/os-download.md', 'utf8');
-  var mdHtml = mdText == undefined? "" : md.toHTML(mdText);
+  const mdText = fs.readFileSync(CONTENTS_DIR + '/os-download.md', 'utf8');
+  const mdHtml = mdText == undefined? "" : md.toHTML(mdText);
   res.render('os-download', {'params' : {'guideHtml': mdHtml}});
 });
 
 // APIs
 router.get( '/api/splashes', (req, res) => {
-  var splashes = readYAML('api/splashes');
+  const splashes = readYAML('api/splashes');
   res.send({'splashes': splashes[Math.floor(Math.random() * splashes.length)]});
 });
 
 router.get( '/api/distro', (req, res) => {
-  var params = readYAML('api/distro');
+  const params = readYAML('api/distro');
   res.send(params);
 });
 
 router.get( '/api/distro-extra', (req, res) => {
-  var distros = readYAML('api/distro-extra');
-  var distro;
-  for(distroIndex in distros.generalDistros.list) {
-    var tmpDistro = distros.generalDistros.list[distroIndex];
-    if(tmpDistro.name == req.query.name) {
-      distro = tmpDistro;
+  const distros = readYAML('api/distro-extra');
+  let distro;
+  for(let d of distros.generalDistros.list) {
+    if(d.name == req.query.name) {
+      distro = d;
       break;
     }
   }
-  var params = {'previewList': [], 'downloadTree': undefined, 'repoBaseDir': undefined};
-  var path = distros.generalDistros.previewDirPrefix + distro.previewDir;
-  var URLpath = distros.generalDistros.previewDirURLPrefix + distro.previewDir;
+  let params = {'previewList': [], 'downloadTree': undefined, 'repoBaseDir': undefined};
+  let path = distros.generalDistros.previewDirPrefix + distro.previewDir;
+  let URLpath = distros.generalDistros.previewDirURLPrefix + distro.previewDir;
+  let childrenInDir;
   try {
-    var childrenInDir = fs.readdirSync(path);
+    childrenInDir = fs.readdirSync(path);
   } catch (e) {
     log.error('distro-extra: failed to read directory: ' + path);
-    childrenInDir = null;
   }
-  for (var c in childrenInDir) {
-    if (fs.statSync(path + '/' + childrenInDir[c]).isFile()) {
+  for (let c of childrenInDir) {
+    if (fs.statSync(path + '/' + c).isFile()) {
       params.previewList.push(
         {'thumbPath': URLpath + '/' +
           distros.generalDistros.thumbsPrefix
-          + childrenInDir[c] +
+          + c +
           distros.generalDistros.thumbsSuffix,
-        'path': URLpath + '/' + childrenInDir[c]});
+        'path': URLpath + '/' + c});
     }
   }
   params.downloadTree = distro.downloadTree;

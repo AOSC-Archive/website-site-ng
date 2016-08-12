@@ -1,18 +1,19 @@
 (() => {
+'use strict';
 
-var fs      = require('fs');
-var express = require('express');
-var router  = express.Router();
+let fs      = require('fs');
+let express = require('express');
+let router  = express.Router();
 
-var log     = require('./log.js');
-var auth    = require('./auth.js');
-var newsdb  = require('./news-db.js');
+let log     = require('./log.js');
+let auth    = require('./auth.js');
+let newsdb  = require('./news-db.js');
 
 const CONTENTS_DIR    = 'contents';
 
 const SECURE_RESTRICT = true;
 
-var isLocalDebug = req => req.hostname=="127.0.0.1" || req.hostname=="localhost";
+const isLocalDebug = req => req.hostname=='127.0.0.1' || req.hostname=='localhost';
 
 function saveTicketCookie(res, ticket, expire) {
   res.cookie('adminTicket', ticket, {
@@ -39,7 +40,7 @@ router.use((req, res, next) => {
 function requirePermission(callback) {
   return (req, res, next) => {
     auth.getStatus(req.ticket, status => {
-      if(status.status == "ACCEPTED") {
+      if(status.status == 'ACCEPTED') {
         req.ttl = status.ttl;
         saveTicketCookie(res, req.ticket, req.ttl);
         return callback(req, res, next);
@@ -52,7 +53,7 @@ function requirePermission(callback) {
 router.get('/auth' , (req, res) => {
   new Promise((resolve, reject) =>
     auth.getStatus(req.ticket, status => {
-      if(status.status == "ACCEPTED") {
+      if(status.status == 'ACCEPTED') {
         res.redirect('/');
         reject();
       } else {
@@ -63,20 +64,20 @@ router.get('/auth' , (req, res) => {
     () => new Promise(resolve => auth.createTicket(resolve))
   ).then(ticket => {
     saveTicketCookie(res, ticket, auth.TICKET_ACCEPT_TIMEOUT);
-    res.render("admin/auth", {"params" : {
-      "ticket" : ticket,
-      "timeout" : auth.TICKET_ACCEPT_TIMEOUT,
-      "expire" : auth.TICKET_EXPIRE_TIMEOUT,
-      "redirect" : "/admin/",
+    res.render('admin/auth', {'params' : {
+      'ticket' : ticket,
+      'timeout' : auth.TICKET_ACCEPT_TIMEOUT,
+      'expire' : auth.TICKET_EXPIRE_TIMEOUT,
+      'redirect' : '/admin/',
     }});
   });
 });
 
 router.get('/api/wait-ticket' , (req, res) =>
   auth.getStatus(req.ticket, status => {
-    if(status.status == "ACCEPTED") res.send("accepted");
-    if(status.status == "INVALID") res.send("noooooo");
-    auth.createListener(req.ticket, () => res.send("accepted"), () => {});
+    if(status.status == 'ACCEPTED') res.send('accepted');
+    if(status.status == 'INVALID') res.send('noooooo');
+    auth.createListener(req.ticket, () => res.send('accepted'), () => {});
   })
 );
 
@@ -89,36 +90,36 @@ router.get('/bye' , requirePermission((req, res) =>
 ));
 
 router.get('/' , requirePermission((req, res) =>
-  res.render("admin/index", {"params" : {
-    "ticket" : req.ticket,
-    "expire" : req.ttl,
+  res.render('admin/index', {'params' : {
+    'ticket' : req.ticket,
+    'expire' : req.ttl,
   }})
 ));
 
 router.all('/news-post' , requirePermission((req, res) => {
-  if(req.body.action == "post") {
-    log.debug("redis: post news " + req.body.title);
+  if(req.body.action == 'post') {
+    log.debug('redis: post news ' + req.body.title);
     newsdb.post({
-      "title" : req.body.title,
-      "type" : req.body.type,
-      "imgThumb" : req.body.imgThumb,
-      "imgOrig" : req.body.imgOrig,
-      "content" : req.body.content,
-      "timestamp" : req.body.timestamp,
-      "slug" : newsdb.slug(req.body.title),
+      'title' : req.body.title,
+      'type' : req.body.type,
+      'imgThumb' : req.body.imgThumb,
+      'imgOrig' : req.body.imgOrig,
+      'content' : req.body.content,
+      'timestamp' : req.body.timestamp,
+      'slug' : newsdb.slug(req.body.title),
     }, () => res.redirect('/'));
   } else if(req.query.timestamp) {
-    newsdb.get(req.query.timestamp, true, result => res.render("admin/news-post", {"params" : result}))
+    newsdb.get(req.query.timestamp, true, result => res.render('admin/news-post', {'params' : result}))
   } else {
-    var mdText = fs.readFileSync(CONTENTS_DIR + '/news-example.md', 'utf8');
-    var news = {
-      "title" : req.body.title,
-      "type" : req.body.type,
-      "imgThumb" : req.body.imgThumb,
-      "imgOrig" : req.body.imgOrig,
-      "content" : req.body.content? req.body.content : mdText,
-      "timestamp" : req.body.timestamp? req.body.timestamp : new Date().getTime(),
-      "previewed" : (req.body.action == "preview"? true : false),
+    const mdText = fs.readFileSync(CONTENTS_DIR + '/news-example.md', 'utf8');
+    const news = {
+      'title' : req.body.title,
+      'type' : req.body.type,
+      'imgThumb' : req.body.imgThumb,
+      'imgOrig' : req.body.imgOrig,
+      'content' : req.body.content? req.body.content : mdText,
+      'timestamp' : req.body.timestamp? req.body.timestamp : new Date().getTime(),
+      'previewed' : (req.body.action == 'preview'? true : false),
     };
     res.render('admin/news-post', {'params' : newsdb.render(news)});
   }

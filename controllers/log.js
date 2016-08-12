@@ -1,3 +1,4 @@
+'use strict';
 exports.isDebug = true;
 exports.debug = function(s) {if(exports.isDebug) console.info('\x1b[0;37m' + s + '\x1b[0m');};
 exports.info = function(s) {console.info('\x1b[1;37m' + s + '\x1b[0m');};

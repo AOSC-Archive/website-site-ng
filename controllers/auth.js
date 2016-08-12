@@ -1,9 +1,10 @@
 (() => {
+'use strict';
 
-var redis   = require('redis');
-var bluebird= require('bluebird');
-var crypto  = require('crypto');
-var log     = require('./log.js');
+let redis   = require('redis');
+let bluebird= require('bluebird');
+let crypto  = require('crypto');
+let log     = require('./log.js');
 
 const TICKET_LENGTH = 6;
 const TICKET_ACCEPT_TIMEOUT = 60 * 5;
@@ -12,13 +13,13 @@ const TICKET_EXPIRE_TIMEOUT = 60 * 15;
 bluebird.promisifyAll(redis.RedisClient.prototype);
 bluebird.promisifyAll(redis.Multi.prototype);
 
-var redisAuth = redis.createClient({prefix: "auth:"});
-redisAuth.select("0");
+let redisAuth = redis.createClient({prefix: 'auth:'});
+redisAuth.select('0');
 
 exports.getStatus = (ticket, callback) => {
-  if(!ticket) return callback({status: "INVALID", ttl: -1});
+  if(!ticket) return callback({status: 'INVALID', ttl: -1});
   redisAuth.get(ticket, (err, result) => {
-    if(result == null) return callback({status: "INVALID", ttl: -1});
+    if(result == null) return callback({status: 'INVALID', ttl: -1});
     redisAuth.ttl(ticket, (err, resultTTL) => callback({status: result, ttl: resultTTL}));
   });
 };
@@ -28,9 +29,9 @@ exports.TICKET_ACCEPT_TIMEOUT = TICKET_ACCEPT_TIMEOUT;
 exports.TICKET_EXPIRE_TIMEOUT = TICKET_EXPIRE_TIMEOUT;
 
 exports.createListener = (ticket, resolve, callback) => {
-  var session = redis.createClient();
-  session.on("message", (channel, message) => {
-    log.debug("ticket: received " + channel + ": " + message);
+  let session = redis.createClient();
+  session.on('message', (channel, message) => {
+    log.debug('ticket: received ' + channel + ': ' + message);
     switch(message.toLowerCase()) {
       case 'accept':
         resolve(ticket);
@@ -40,12 +41,12 @@ exports.createListener = (ticket, resolve, callback) => {
         break;
     }
   });
-  session.on("subscribe", (channel, count) => {
-    log.debug("ticket: pending for " + channel + "...");
+  session.on('subscribe', (channel, count) => {
+    log.debug('ticket: pending for ' + channel + '...');
     callback(ticket);
   });
-  session.subscribe("auth:" + ticket);
-  setTimeout(() => redisAuth.publish("auth:" + ticket, "break"),
+  session.subscribe('auth:' + ticket);
+  setTimeout(() => redisAuth.publish('auth:' + ticket, 'break'),
     TICKET_ACCEPT_TIMEOUT * 1000
   );
 };
@@ -83,7 +84,7 @@ exports.createTicket = callback => {
     redisAuth.setex(ticket, TICKET_ACCEPT_TIMEOUT, 'PENDING');
     exports.createListener(ticket, () => {
       redisAuth.setex(ticket, TICKET_EXPIRE_TIMEOUT, 'ACCEPTED');
-      log.info("ticket: accept " + ticket);
+      log.info('ticket: accept ' + ticket);
     }, () => callback(ticket));
   });
 };

@@ -1,4 +1,5 @@
 (() => {
+'use strict';
 
 /*
  * When you modify the prototype of database,
@@ -29,44 +30,44 @@ const prototypeVersion = 3;
 */
 
 
-var redis   = require('redis');
-var bluebird= require('bluebird');
-var slug    = require('slug');
-var md      = require('markdown').markdown;
-var log     = require('./log.js');
+let redis   = require('redis');
+let bluebird= require('bluebird');
+let slug    = require('slug');
+let md      = require('markdown').markdown;
+let log     = require('./log.js');
 
-slug.defaults.mode = "rfc3986";
+slug.defaults.mode = 'rfc3986';
 bluebird.promisifyAll(redis.RedisClient.prototype);
 bluebird.promisifyAll(redis.Multi.prototype);
 
-var redisNews = redis.createClient({prefix: "news:"});
-redisNews.select("0");
+let redisNews = redis.createClient({prefix: 'news:'});
+redisNews.select('0');
 
 redisNews.expandWithScores = arr => {
-    var result = [];
-    for (var i=0, j=0; i < arr.length; i+=2, j++) {
+    let result = [];
+    for (let i=0, j=0; i < arr.length; i+=2, j++) {
       result[j] = [arr[i], arr[i+1]];
     }
     return result;
 };
 
-redisNews.get("prototypeVersion", (err, result) => {
+redisNews.get('prototypeVersion', (err, result) => {
   switch(result) {
     case null: // Clear database
-      log.info("news-db: set prototypeVersion to " + prototypeVersion);
-      redisNews.set("prototypeVersion", prototypeVersion);
+      log.info('news-db: set prototypeVersion to ' + prototypeVersion);
+      redisNews.set('prototypeVersion', prototypeVersion);
       break;
     case prototypeVersion.toString(): // Bingo
-      log.debug("news-db: prototypeVersion = " + result);
+      log.debug('news-db: prototypeVersion = ' + result);
       break;
     default:
-      log.error("news-db: not compatible, prototypeVersion = " + result);
-      throw "Fatal Error: Database's prototype version is not compatible.";
+      log.error('news-db: not compatible, prototypeVersion = ' + result);
+      throw 'Fatal Error: Database\'s prototype version is not compatible.';
   }
 });
 
 function formatDate(date) {
-  var month = ['January', 'February', 'March', 'April', 'May',
+  const month = ['January', 'February', 'March', 'April', 'May',
     'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   return month[date.getUTCMonth()] + ' '
                + date.getUTCDate() + ', '
@@ -77,11 +78,11 @@ exports.slug = slug;
 
 exports.render = stru => {
   if(!stru) return null;
-  var date = new Date();
-  var xstru = stru;
+  let date = new Date();
+  let xstru = stru;
   date.setTime(xstru.timestamp);
   xstru.date = formatDate(date).toUpperCase();
-  xstru.htmlcontent = xstru.content == undefined? "" : md.toHTML(xstru.content);
+  xstru.htmlcontent = xstru.content == undefined? '' : md.toHTML(xstru.content);
   return xstru;
 };
 
@@ -92,32 +93,33 @@ exports.render = stru => {
 exports.enum = (begin, maxCount, doRender, filter, callback) => {
   begin = begin? begin : 1;
   filter = filter? filter : () => true;
-  redisNews.zrevrange(["items", 0, -1, 'withscores'], (err, idList) => {
+  redisNews.zrevrange(['items', 0, -1, 'withscores'], (err, idList) => {
     idList = redisNews.expandWithScores(idList);
-    var objectList = [];
-    var promiseList = [];
-    for(var index in idList) {
-      promiseList[index] = (index =>
-        new Promise(resolve => exports.get(idList[index][1], doRender, resolve))
-        .then(content => objectList[index] = content)
-        .catch(err => log.error("news-db: list() " + idList[index][1] + " " + err))
-      )(index);
+    let objectList = [];
+    let promiseList = [];
+    for(let id of idList) {
+      promiseList.push((id =>
+        new Promise(resolve => exports.get(id[1], doRender, resolve))
+        .then(content => objectList.push(content))
+        .catch(err => log.error('news-db: list() ' + id[1] + ' ' + err))
+      )(id));
     }
     Promise.all(promiseList)
     .then(() => {
-      var promiseList = [];
-      var contentList = [];
-      var positiveCount = 0;
-      for(var index in objectList) {
+      let promiseList = [];
+      let contentList = [];
+      let positiveCount = 0;
+      let index = 0;
+      for(let obj of objectList) {
         if(maxCount != -1 && positiveCount >= maxCount) break;
-        if(!filter(objectList[index], index, positiveCount)) continue;
+        if(!filter(obj, index++, positiveCount)) continue;
         positiveCount++;
-        if(positiveCount >= begin) contentList.push(objectList[index]);
+        if(positiveCount >= begin) contentList.push(obj);
       }
       callback(contentList);
     })
     .catch(err => {
-      log.error("news-db: list() " + err);
+      log.error('news-db: list() ' + err);
       callback([]);
     });
   });
@@ -126,9 +128,7 @@ exports.enum = (begin, maxCount, doRender, filter, callback) => {
 exports.filters = {
   type(list) {
     return (object, index, positiveCount) => {
-      for (var i in list)
-        if(object.type == list[i])
-          return true;
+      for (let i of list) if(object.type == i) return true;
       return false;
     };
   },
@@ -153,21 +153,21 @@ exports.count = (filter, callback) => exports.enum(1, -1, false, filter, list =>
 exports.delete = (id, callback) => {
   exports.revResolve(id, slug =>
     redisNews.multi()
-      .del("item:" + id)
-      .zrem("items", slug)
+      .del('item:' + id)
+      .zrem('items', slug)
       .exec(callback)
   )
 };
 
 exports.put = (news, callback) => {
   redisNews.multi()
-    .set("item:" + news.timestamp, JSON.stringify(news))
-    .zadd("items", news.timestamp, news.slug)
+    .set('item:' + news.timestamp, JSON.stringify(news))
+    .zadd('items', news.timestamp, news.slug)
     .exec(callback);
 };
 
 exports.post = (news, callback) => {
-  if(news.title == "") {
+  if(news.title == '') {
     exports.delete(news.timestamp, callback);
   } else {
     exports.slugFix(news.slug, fixedSlug => {
@@ -178,9 +178,9 @@ exports.post = (news, callback) => {
 };
 
 exports.get = (id, doRender, callback) =>
-  redisNews.get("item:" + id, (err, content) => {
+  redisNews.get('item:' + id, (err, content) => {
     if(content == null) {
-      log.error("news-db: get() " + err);
+      log.error('news-db: get() ' + err);
       callback(null);
       return;
     }
@@ -189,7 +189,7 @@ exports.get = (id, doRender, callback) =>
 ;
 
 exports.resolve = (slug, callback) => {
-  redisNews.zscore("items", slug, (err, id) => callback(id));
+  redisNews.zscore('items', slug, (err, id) => callback(id));
 };
 
 exports.revResolve = (id, callback) => {
@@ -202,9 +202,9 @@ exports.has = (slug, callback) => {
 
 exports.slugFix = (slug, callback) => {
   function iterator(slug, suffix, callback){
-    fixedSlug = suffix>0? slug + "-" + suffix : slug;
+    fixedSlug = suffix>0? slug + '-' + suffix : slug;
     exports.has(fixedSlug, exist => {
-      log.debug("conflict: " + fixedSlug + " " + exist);
+      log.debug('conflict: ' + fixedSlug + ' ' + exist);
       if(exist)
         iterator(slug, suffix + 1, callback);
       else
