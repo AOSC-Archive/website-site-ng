@@ -22,12 +22,14 @@ block banner
         or... not hacking.
 
 include templates/flow-include
+include templates/pagination-include
 block content
   #wrapper.row
     .col-md-8
       .clearfix
         h1.afe-small-captions RECENT ACTIVITIES
         +flow(params.items)
+        +pagination(params.pages)
     #side-gallery.col-md-4
       h1.afe-small-captions PHOTOGRAPHS
       ul

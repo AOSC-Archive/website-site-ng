@@ -19,11 +19,13 @@ block banner
         course, latest information for you to better enjoy AOSC OS.
 
 include templates/flow-include
+include templates/pagination-include
 block content
   #wrapper.row
     .col-md-8
       h1.afe-small-captions ALL NEWS
       +flow(params.items)
+      +pagination(params.pages)
 
 include templates/lightbox-include
 append stylesheet
