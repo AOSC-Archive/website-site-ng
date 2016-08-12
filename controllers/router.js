@@ -21,12 +21,40 @@ const NEWS_MAXITEM    = 10;
 const COMMUNITY_MAXITEM = 10;
 const COMMUNITY_MAXIMAGE  = 24;
 
+const PAGINATION_SIZE = 5;
+
 function readYAML(yamlfile) {
   return yaml.safeLoad(fs.readFileSync(CONTENTS_DIR + '/' + yamlfile + '.yml', 'utf8'));
 }
 
 function writeYAML(yamlfile, data) {
   return fs.writeFileSync(CONTENTS_DIR + '/' + yamlfile + '.yml', yaml.safeDump(data));
+}
+
+function trimNumber(min, i, d, max) {
+  let n = i;
+  if(min > max) {
+    log.error('trimNumber: min > max.');
+    return d;
+  };
+  if(!n) n = d;
+  if(n < min) n = min;
+  if(n > max) n = max;
+  return n;
+}
+
+function createPageInfo(request, total, size, pagesPerList) {
+  const totalPages = Math.ceil( total / size );
+  const currentPage = trimNumber(1, request, 1, totalPages);
+  const pages = {
+    'currentPage' : currentPage,
+    'totalPages'  : totalPages,
+    'pageSize' : size,
+    'paginationSize'  : pagesPerList,
+    'totalItems' : total,
+    'currentItem' : (currentPage - 1) * size + 1,
+  };
+  return pages;
 }
 
 // - / or /index
@@ -52,15 +80,19 @@ router.get('/news' , (req, res) => {
   const filter = newsdb.filters.type(['news', 'bug']);
   new Promise(resolve => newsdb.count(filter, resolve))
   .then(count => {
-    const page = req.query.page? req.query.page : 1;
-    newsdb.enum((page - 1) * NEWS_MAXITEM, NEWS_MAXITEM, true, filter,
-      result => res.render(
-        "news", {"params" : {
-        "page" : page,
-        "count" : Math.ceil( count / NEWS_MAXITEM ),
-        "items" : result,
-        }}
-      )
+    const pages = createPageInfo(
+      parseInt(req.query.page),
+      count,
+      NEWS_MAXITEM,
+      PAGINATION_SIZE
+    );
+    console.log(require('util').inspect(pages, { depth: null }));
+    newsdb.enum(pages.currentItem, pages.pageSize, true, filter,
+      items => res.render(
+        'news', {'params' : {
+        'pages' : pages,
+        'items' : items,
+      }})
     );
   });
 });
@@ -68,33 +100,40 @@ router.get('/news' , (req, res) => {
 router.get('/news/:slug' , (req, res) => {
   new Promise(resolve => newsdb.resolve(req.params.slug, resolve))
   .then(id =>
-    newsdb.get(id, true, result => res.render("news-view", {"params" : result}))
+    newsdb.get(id, true, result => res.render('news-view', {'params' : result}))
   );
 });
 
 router.get('/community' , (req, res) => {
   // Collect images to show gallery
+  const filter = newsdb.filters.type(['community']);
+  let imgUrlList;
   new Promise(resolve =>
     newsdb.enum(1, COMMUNITY_MAXIMAGE,
       false,
-      newsdb.filters.both(
-        newsdb.filters.type(['community']),
-        newsdb.filters.hasImage()
-      ),
-      resolve
+      newsdb.filters.both(filter, newsdb.filters.hasImage()),
+      l => {
+        imgUrlList = l;
+        resolve();
+      }
     )
-  ).then(imgUrlList =>
-    newsdb.enum(req.query.begin, COMMUNITY_MAXITEM,
-      true,
-      newsdb.filters.type(['community']),
-      result => res.render("community", {"params" : {
-        "begin" : req.query.begin,
-        "items" : result,
-        "imgs"  : imgUrlList,
-        }}
-      )
-    )
-  );
+  ).then(
+    () => new Promise(resolve => newsdb.count(filter, resolve))
+  ).then(count => {
+    const pages = createPageInfo(
+      parseInt(req.query.page),
+      count,
+      COMMUNITY_MAXITEM,
+      PAGINATION_SIZE
+    );
+    newsdb.enum(pages.currentItem, pages.pageSize, true, filter,
+      result => res.render('community', {'params' : {
+        'pages' : pages,
+        'items' : result,
+        'imgs'  : imgUrlList,
+      }})
+    );
+  });
 });
 
 // FIXME: to be a projects list, but not only aosc-os
