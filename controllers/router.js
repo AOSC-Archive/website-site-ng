@@ -47,18 +47,22 @@ router.get('/' , (req, res) => {
   );
 });
 
-router.get('/news' , (req, res) =>
-  newsdb.enum(req.query.begin, NEWS_MAXITEM,
-    true,
-    newsdb.filters.type(['news', 'bug']),
-    result => res.render(
-      "news", {"params" : {
-      "begin" : req.query.begin,
-      "items" : result,
-      }}
-    )
-  )
-);
+router.get('/news' , (req, res) => {
+  const filter = newsdb.filters.type(['news', 'bug']);
+  new Promise(resolve => newsdb.count(filter, resolve))
+  .then(count => {
+    let page = req.query.page? req.query.page : 1;
+    newsdb.enum((page - 1) * NEWS_MAXITEM, NEWS_MAXITEM, true, filter,
+      result => res.render(
+        "news", {"params" : {
+        "page" : page,
+        "count" : Math.ceil( count / NEWS_MAXITEM ),
+        "items" : result,
+        }}
+      )
+    );
+  });
+});
 
 router.get('/news/:slug' , (req, res) => {
   new Promise(resolve => newsdb.resolve(req.params.slug, resolve))
