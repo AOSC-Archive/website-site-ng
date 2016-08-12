@@ -111,7 +111,7 @@ exports.enum = (begin, maxCount, doRender, filter, callback) => {
       let positiveCount = 0;
       let index = 0;
       for(let obj of objectList) {
-        if(maxCount != -1 && positiveCount >= maxCount) break;
+        if(maxCount != -1 && positiveCount-begin+1 >= maxCount) break;
         if(!filter(obj, index++, positiveCount)) continue;
         positiveCount++;
         if(positiveCount >= begin) contentList.push(obj);
