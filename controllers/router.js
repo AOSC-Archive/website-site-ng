@@ -11,7 +11,7 @@ let md      = require('markdown').markdown;
 let log     = require('./log.js');
 let newsdb  = require('./news-db.js');
 let slug    = require('slug');
-slug.defaults.mode = "rfc3986";
+slug.defaults.mode = 'rfc3986';
 
 const CONTENTS_DIR    = 'contents';
 
@@ -40,7 +40,7 @@ router.get('/' , (req, res) => {
       result => res.render(
         'index', {'params' : {
         'items' : result,
-        "imgs"  : imgUrlList,
+        'imgs'  : imgUrlList,
         'projects' : pj,
         'services' : srv
       }})
@@ -102,7 +102,7 @@ router.get( '/projects' , (req, res) => {
   const prj = readYAML('projects');
   const aoscos = readYAML('projects/aosc-os');
   res.render('projects', {'params' : {
-    'distro' : aoscos,
+    'distro'  : aoscos,
     'project' : prj
   }});
 });
@@ -112,7 +112,7 @@ router.get( '/projects/aosc-os' , (req, res) => {
   const prj = readYAML('projects');
   const aoscos = readYAML('projects/aosc-os');
   res.render('projects', {'params' : {
-    'distro' : aoscos,
+    'distro'  : aoscos,
     'project' : prj
   }});
 });
@@ -123,13 +123,13 @@ router.get( '/about' , (req, res) => {
   const ct = readYAML('contacts');
   res.render('about', {'params' : {
     'about' : abt,
-    'contacts' : ct
+    'contacts'  : ct
   }});
 });
 
 router.get( '/os-download', (req, res) => {
   const mdText = fs.readFileSync(CONTENTS_DIR + '/os-download.md', 'utf8');
-  const mdHtml = mdText == undefined? "" : md.toHTML(mdText);
+  const mdHtml = mdText == undefined? '' : md.toHTML(mdText);
   res.render('os-download', {'params' : {'guideHtml': mdHtml}});
 });
 
