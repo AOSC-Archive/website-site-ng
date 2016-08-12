@@ -85,13 +85,14 @@ exports.render = stru => {
   return xstru;
 };
 
-// filter(object, index, targetCount)
+// filter(object, index, positiveCount)
+// begin start from 1, and undefined will be set to 1.
 // maxCount will be not limited, if it has been set to -1.
 // doRender is a boolean value.
 exports.enum = (begin, maxCount, doRender, filter, callback) => {
-  begin = begin? begin : 0;
+  begin = begin? begin : 1;
   filter = filter? filter : () => true;
-  redisNews.zrevrange(["items", begin, -1, 'withscores'], (err, idList) => {
+  redisNews.zrevrange(["items", 0, -1, 'withscores'], (err, idList) => {
     idList = redisNews.expandWithScores(idList);
     var objectList = [];
     var promiseList = [];
@@ -106,12 +107,12 @@ exports.enum = (begin, maxCount, doRender, filter, callback) => {
     .then(() => {
       var promiseList = [];
       var contentList = [];
-      var renderTargetCount = 0;
+      var positiveCount = 0;
       for(var index in objectList) {
-        if(maxCount != -1 && renderTargetCount >= maxCount) break;
-        if(!filter(objectList[index], index, renderTargetCount)) continue;
-        renderTargetCount++;
-        contentList.push(objectList[index]);
+        if(maxCount != -1 && positiveCount >= maxCount) break;
+        if(!filter(objectList[index], index, positiveCount)) continue;
+        positiveCount++;
+        if(positiveCount >= begin) contentList.push(objectList[index]);
       }
       callback(contentList);
     })
@@ -124,7 +125,7 @@ exports.enum = (begin, maxCount, doRender, filter, callback) => {
 
 exports.filters = {
   type(list) {
-    return (object, index, targetCount) => {
+    return (object, index, positiveCount) => {
       for (var i in list)
         if(object.type == list[i])
           return true;
@@ -132,14 +133,14 @@ exports.filters = {
     };
   },
   hasImage() {
-    return (object, index, targetCount) => object.imgThumb != undefined && object.imgThumb != '';
+    return (object, index, positiveCount) => object.imgThumb != undefined && object.imgThumb != '';
   },
   both(a, b) {
     // AND
-    return (object, index, targetCount) => a(object, index, targetCount) && b(object, index, targetCount);
+    return (object, index, positiveCount) => a(object, index, positiveCount) && b(object, index, positiveCount);
   },
   not(a) {
-    return (object, index, targetCount) => !a(object, index, targetCount);
+    return (object, index, positiveCount) => !a(object, index, positiveCount);
   },
   either(a, b) {
     // OR, A || B := !( !A && !B )
@@ -147,7 +148,7 @@ exports.filters = {
   },
 };
 
-exports.count = (filter, callback) => exports.enum(0, -1, false, filter, list => callback(list.length));
+exports.count = (filter, callback) => exports.enum(1, -1, false, filter, list => callback(list.length));
 
 exports.delete = (id, callback) => {
   exports.revResolve(id, slug =>

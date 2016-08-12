@@ -33,9 +33,9 @@ router.get('/' , (req, res) => {
   var pj = readYAML('projects');
   var srv = readYAML('services');
   new Promise(resolve =>
-    newsdb.enum(0, HOME_MAXIMAGE, false, newsdb.filters.hasImage(), resolve)
+    newsdb.enum(1, HOME_MAXIMAGE, false, newsdb.filters.hasImage(), resolve)
   ).then(imgUrlList =>
-    newsdb.enum(0, HOME_MAXITEM, true, null,
+    newsdb.enum(1, HOME_MAXITEM, true, null,
       result => res.render(
         'index', {'params' : {
         'items' : result,
@@ -70,7 +70,7 @@ router.get('/news/:slug' , (req, res) => {
 router.get('/community' , (req, res) => {
   // Collect images to show gallery
   new Promise(resolve =>
-    newsdb.enum(0, COMMUNITY_MAXIMAGE,
+    newsdb.enum(1, COMMUNITY_MAXIMAGE,
       false,
       newsdb.filters.both(
         newsdb.filters.type(['community']),
