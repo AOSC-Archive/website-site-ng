@@ -86,7 +86,6 @@ router.get('/news' , (req, res) => {
       NEWS_MAXITEM,
       PAGINATION_SIZE
     );
-    console.log(require('util').inspect(pages, { depth: null }));
     newsdb.enum(pages.currentItem, pages.pageSize, true, filter,
       items => res.render(
         'news', {'params' : {
