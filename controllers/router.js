@@ -194,7 +194,7 @@ router.get( '/api/distro-extra', (req, res) => {
   let params = {'previewList': [], 'downloadTree': undefined, 'repoBaseDir': undefined};
   let path = distros.generalDistros.previewDirPrefix + distro.previewDir;
   let URLpath = distros.generalDistros.previewDirURLPrefix + distro.previewDir;
-  let childrenInDir;
+  let childrenInDir = [];
   try {
     childrenInDir = fs.readdirSync(path);
   } catch (e) {
