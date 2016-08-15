@@ -22,29 +22,30 @@ block content
         a(href="", role="tab", data-toggle="tab") &nbsp;
     #distro-panel.col-md-12
       h1#distro-name &nbsp;
-      .col-md-4
-        p#distro-description &nbsp;
+      .row
+        .col-md-4
+          p#distro-description &nbsp;
 
-        form#control-panel.form-horizontal
-        .form-group.afe-flag-template
-          label.control-label.col-md-5 &nbsp;
-          .dropdown.col-md-7
-            button.btn.btn-default.dropdown-toggle(type="button", data-toggle="dropdown")
-              span.afe-caption
-              | &nbsp;
-              span.caret
-            ul.dropdown-menu
-            li.afe-flag-template: a.afe-case(href="javascript:;")
-        #download-panel
-          a.btn.btn-default.col-md-12.afe-flag-template(target="_blank") &nbsp;
-      .col-md-8
-        #carousel.carousel.slide(data-ride="carousel")
-          #preview.carousel-inner(role="listbox")
-          .item.afe-flag-template
-            a.image-popup-no-margins
-              img.afe-mainframe
-          a.carousel-control.left(data-slide="prev", role="button", href="#carousel").afe-arrow.afe-arrow-left
-          a.carousel-control.right(data-slide="next", role="button", href="#carousel").afe-arrow.afe-arrow-right
+          form#control-panel.form-horizontal
+          .form-group.afe-flag-template
+            label.control-label.col-md-5 &nbsp;
+            .dropdown.col-md-7
+              button.btn.btn-default.dropdown-toggle(type="button", data-toggle="dropdown")
+                span.afe-caption
+                | &nbsp;
+                span.caret
+              ul.dropdown-menu
+              li.afe-flag-template: a.afe-case(href="javascript:;")
+          #download-panel
+            a.btn.btn-default.col-md-12.afe-flag-template(target="_blank") &nbsp;
+        .col-md-8
+          #carousel.carousel.slide(data-ride="carousel")
+            #preview.carousel-inner(role="listbox")
+            .item.afe-flag-template
+              a.image-popup-no-margins
+                img.afe-mainframe
+            a.carousel-control.left(data-slide="prev", role="button", href="#carousel").afe-arrow.afe-arrow-left
+            a.carousel-control.right(data-slide="next", role="button", href="#carousel").afe-arrow.afe-arrow-right
     .col-md-12(style="margin-top: 30px;")
       #guide.afe-content !{params.guideHtml}
 
