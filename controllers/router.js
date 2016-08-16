@@ -137,21 +137,19 @@ router.get('/community' , (req, res) => {
 
 // FIXME: to be a projects list, but not only aosc-os
 router.get( '/projects' , (req, res) => {
-  const prj = readYAML('projects');
-  const aoscos = readYAML('projects/aosc-os');
+  const projects = readYAML('projects');
   res.render('projects', {'params' : {
-    'distro'  : aoscos,
-    'project' : prj
+    'projects' : projects
   }});
 });
 
 // FIXME: to be a sub-page, and linked with /projects
-router.get( '/projects/aosc-os' , (req, res) => {
-  const prj = readYAML('projects');
-  const aoscos = readYAML('projects/aosc-os');
-  res.render('projects', {'params' : {
-    'distro'  : aoscos,
-    'project' : prj
+router.get( '/projects/:project' , (req, res) => {
+  const projects = readYAML('projects');
+  const project = readYAML('projects/' + req.params.slug);
+  res.render('projects/' + req.params.slug, {'params' : {
+    'projects'  : projects,
+    'project' : project
   }});
 });
 
