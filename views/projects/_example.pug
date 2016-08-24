@@ -1,0 +1,46 @@
+extend _template
+
+//-
+  "extend _template" at the first line is always nessesary.
+
+  Use ":markdown" to start a block in Markdown language.
+  Note:
+    Button is "[[Text]](Link)", additional style
+    can do in this way: "[[Text].class1.class2.class3](Link)"
+
+  Block "content" is under a ".container". You may use
+  ".row" and ".col-*-*" to layout them in a gird system.
+  See more: http://getbootstrap.com/css/#grid
+
+  Stylesheets(global, appended): $WORKDIR/stylesheets/project.styl
+  Stylesheets(optional): $WORKDIR/stylesheets/projects-$MININAME.styl
+
+  Database variables mapping:
+    params.projects --> $WORKDIR/contents/projects.yml
+    params.project --> $WORKDIR/contents/projects.yml (the one of this project)
+    params.custom --> $WORKDIR/contents/projects/$MININAME.yml (optional)
+
+
+block content
+  :markdown
+    # Test
+
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.
+
+    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+    occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+    anim id est laborum.
+
+    [[Test].btn-danger.btn-lg](https://example.org/)
+
+    ![www](/assets/i/test.png)
+
+        #include <stddisclaim.h>
+
+    - List Item
+    - List Item
+    - List Item
+    - List Item

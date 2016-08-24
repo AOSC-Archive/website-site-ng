@@ -4,6 +4,9 @@ block head-custom
   +meta-title("Projects")
   +meta-description("Anthon Open Source Community")
 
+append stylesheet
+  +include-css("/assets/css/projects.css")
+
 block banner
   .row
     .col-md-12
@@ -19,16 +22,14 @@ block banner
 block content
   #wrapper.row
     .col-md-8
-      h4(style="padding-left: 4rem;").afe-small-captions.afe-important AOSC OS
-      .afe-main(style="padding-left: 0;")
-        .col-md-10.col-md-offset-1.col-sm-12.col-xs-12
-        each feature, index in params.distro.features
-          .row(style="padding: 10px 0px;")
-            .col-md-3.hidden-xs.hidden-sm
-              img(src=feature.image style="width: 150px; height: 150px;")
-            .col-md-8.col-xs-12.col-sm-12
-              h2=feature.name
-              p=feature.why
-              small=feature.ps
+      h1.afe-small-captions.afe-important COMMUNITY PROJECTS
+      each project in params.projects
+        .media
+          .media-left
+            a(href="/projects/" + project.mininame): img(src=project.logo style="width: 120px; height: 120px;")
+          .media-body
+            a(href="/projects/" + project.mininame): h2(style="margin-top: 0;")=project.fullname
+            p=project.description
+            small=project.ps
     .col-md-4
-      h4(style="padding-left: 4rem;").afe-small-captions OTHER PROJECTS
+      h4.afe-small-captions OTHER PROJECTS

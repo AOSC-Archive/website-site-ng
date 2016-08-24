@@ -135,7 +135,6 @@ router.get('/community' , (req, res) => {
   });
 });
 
-// FIXME: to be a projects list, but not only aosc-os
 router.get( '/projects' , (req, res) => {
   const projects = readYAML('projects');
   res.render('projects', {'params' : {
@@ -143,13 +142,30 @@ router.get( '/projects' , (req, res) => {
   }});
 });
 
-// FIXME: to be a sub-page, and linked with /projects
-router.get( '/projects/:project' , (req, res) => {
+router.get( '/projects/:project' , (req, res, next) => {
   const projects = readYAML('projects');
-  const project = readYAML('projects/' + req.params.slug);
-  res.render('projects/' + req.params.slug, {'params' : {
+  let custom;
+  try {
+    custom = readYAML('projects/' + req.params.project);
+  } catch(e) {}
+  let project;
+  for(project of projects)
+    if(project.mininame == req.params.project) break;
+  if(project.mininame != req.params.project) {
+    next();
+    return;
+  }
+  let hasStylesheet = true;
+  try {
+    fs.accessSync('stylesheets/projects-' + project.mininame + '.styl');
+  } catch (e) {
+    if(e.code == 'ENOENT') hasStylesheet = false; else throw e;
+  }
+  res.render('projects/' + req.params.project, {'params' : {
+    'hasStylesheet' : hasStylesheet,
     'projects'  : projects,
-    'project' : project
+    'project' : project,
+    'custom' : custom
   }});
 });
 

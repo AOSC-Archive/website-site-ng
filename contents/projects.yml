@@ -7,8 +7,7 @@
       AOSC OS is a semi-rolling Linux distribution that tries to offer a simplified
       user experience, while keeping it hackable and standardized. AOSC OS (will)
       is offered across multiple platforms and it runs on a variety of devices.
-  logo: "assets/i/aosc-os.svg"
-  gitlink: https://github.com/AOSC-Dev/aosc-os-abbs
+  logo: "/assets/i/aosc-os.svg"
 -
   fullname: AST's Startup Toolkit
   mininame: ast
@@ -17,7 +16,6 @@
     - >
       Anthon Starter is a HDD installation helper for AOSC OS. This project focuses
       on making installation of AOSC OS from Windows easier.
-  gitlink: https://github.com/AOSC-Dev/Anthon-Starter/
 -
   fullname: Localization
   mininame: localization
@@ -26,4 +24,3 @@
     - >
       A large-scaled community project to contribute/maintain localization work
       for multiple F/OSS (free, and/or open source software) projects.
-  gitlink: https://github.com/AOSC-Dev/translations/
