@@ -44,7 +44,9 @@ function trimNumber(min, i, d, max) {
 }
 
 function createPageInfo(request, total, size, pagesPerList) {
-  const totalPages = Math.ceil( total / size );
+  let _totalPages = Math.ceil( total / size );
+  if(_totalPages == 0) _totalPages = 1;
+  const totalPages = _totalPages;
   const currentPage = trimNumber(1, request, 1, totalPages);
   const pages = {
     'currentPage' : currentPage,
