@@ -175,9 +175,11 @@ router.get( '/projects/:project' , (req, res, next) => {
 router.get( '/about' , (req, res) => {
   const abt = readYAML('about');
   const ct = readYAML('contacts');
+  const srv = readYAML('services');
   res.render('about', {'params' : {
     'about' : abt,
-    'contacts'  : ct
+    'contacts' : ct,
+    'services' : srv,
   }});
 });
 

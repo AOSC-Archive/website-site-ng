@@ -1,49 +1,40 @@
 -
-  section: The Community
-  subtitle: Mr. Obvious on AOSC
-  type: info
-  text:
-    - >
-      Anthon Open Source Community - or AOSC - is a community that puts major
-      attention on F/OSS software projects, our work focuses on making them
-      easier to get, more enjoyable to use, and more suitable for international users.
-    - >
-      AOSC is a community in which everyone works volunteeringly. The majority of
-      developers, contributors of the community are students.
+  sponsor: QingCloud
+  homepage: https://www.qingcloud.com/
+  gratitude: Host of our community portal.
 -
-  section: The Projects
-  subtitle: Not just a distribution
-  type: info
-  text:
-    - >
-      AOSC's most extensive project is the Linux distribution project, "AOSC OS".
-      However, the community is not merely just a group of people working on the
-      distribution project. We have many other projects, big or small, hosted and
-      contributed by members of the community.
-    - >
-      A good example would be the L10n - or "localization" - project, the AOSC L10n
-      projects holds localization improvements, bug fixes for various F/OSS projects.
-      These fixes will not just benefit AOSC OS itself, all the contributed or improved
-      localization work will be pushed back onto the upstream, making every user of
-      the software easier when using with his/her first language.
+  sponsor: OSSPlanet
+  homepage: http://ossplanet.net/
+  gratitude: Host of our repository server and build server.
 -
-  section: The Law
-  subtitle: Respect the rules, gain more freedom
-  type: warning
-  text:
-    - >
-      The registered trademark Linux(R) is used pursuant to a sublicense from
-      LMI, the exclusive licensee of Linus Torvalds, owner of the mark on a
-      world-wide basis.
-    - >
-      This distribution is built up, based on, or linked against various
-      (free and open source) projects, any licence information can be obtained
-      from its original distribution package.
-    - >
-      AOSC OS is an open source Linux distribution with a different way source
-      code distributing: when not included in autobuild archives (or abbs tree
-      manifests), look for upstream source package.
-    - >
-      The AOSC OS logo, as seen above is the mutual creation of AOSC-Dev,
-      licenced under Apache 2.0 licence, any usage outside of distribution
-      building is prohibited without permission from AOSC-Dev.
+  sponsor: TUNA Association
+  homepage: https://tuna.moe/
+  gratitude: Fast and stable mirror for our repository.
+-
+  sponsor: LUG@USTC
+  homepage: https://lug.ustc.edu.cn/
+  gratitude: Fast and stable mirror for our repository.
+-
+  sponsor: Geekpie Association
+  homepage: https://geekpie.org/zh/
+  gratitude: Mirror for our repository.
+-
+  sponsor: CQUPT LUG
+  homepage: https://mirrors.cqupt.edu.cn/anthon/
+  gratitude: Mirror for our repository.
+-
+  sponsor: NLUUG
+  homepage: https://www.nluug.nl/
+  gratitude: European mirror for our repository (and ftp.vim.org).
+-
+  sponsor: Capital Online Data Services
+  homepage: https://yun-idc.com/en/
+  gratitude: CDN-based mirror for our repository.
+-
+  sponsor: Fastly CDN
+  homepage: https://www.fastly.com/
+  gratitude: CDN mirroring host for our overseas repository.
+-
+  sponsor: GlobalSign
+  homepage: https://www.globalsign.com/en/
+  gratitude: SSL certificates for our community sites.
