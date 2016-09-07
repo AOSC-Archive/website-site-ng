@@ -16,6 +16,7 @@
     - >
       Anthon Starter is a HDD installation helper for AOSC OS. This project focuses
       on making installation of AOSC OS from Windows easier.
+  logo: "/assets/i/ast.svg"
 -
   fullname: Localization
   mininame: localization
@@ -24,3 +25,4 @@
     - >
       A large-scaled community project to contribute/maintain localization work
       for multiple F/OSS (free, and/or open source software) projects.
+  logo: "/assets/i/l10n.svg"
