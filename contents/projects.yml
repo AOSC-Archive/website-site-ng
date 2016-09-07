@@ -19,7 +19,7 @@
   logo: "/assets/i/ast.svg"
 -
   fullname: Localization
-  mininame: localization
+  mininame: l10n
   description: Localization improvements made by the community.
   long:
     - >

@@ -1,0 +1,19 @@
+extend _template
+
+//-
+  "extend _template" at the first line is always nessesary.
+
+  Use ":markdown" to start a block in Markdown language.
+  Note:
+    Button is "[[Text]](Link)", additional style
+    can do in this way: "[[Text].class1.class2.class3](Link)"
+
+  Block "content" is under a ".container". You may use
+  ".row" and ".col-*-*" to layout them in a gird system.
+  See more: http://getbootstrap.com/css/#grid
+
+block content
+  :markdown
+    [[Download AOSC OS].btn.btn-default](/os-download)
+    [[AOSC OS Core].btn.btn-default](https://github.com/AOSC-Dev/aosc-os-core/)
+    [[AOSC OS Package Tree].btn.btn-default](https://github.com/AOSC-Dev/aosc-os-abbs/)
