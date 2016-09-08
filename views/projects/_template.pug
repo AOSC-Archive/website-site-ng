@@ -10,9 +10,12 @@ append stylesheet
     +include-css("/assets/css/projects-" + params.project.mininame + ".css")
 
 block banner
-  .row.afe-banner-subpage
+  .row
     .col-md-12
-      h1=params.project.fullname
+      h1
+        a#link-to-projects(href="/projects") PROJECTS
+        |&nbsp;/&nbsp;
+        =params.project.fullname
       h2=params.project.description
     .col-md-6
       p=params.project.long
