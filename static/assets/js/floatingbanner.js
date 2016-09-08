@@ -7,7 +7,7 @@ $(function() {
     $(".afe-floating-banner").hide();
 
     $(window).resize(function() {
-      navHeight = $(".afe-nav").height();
+      navHeight = $("#nav").height();
       floatBannerTop = $(".afe-banner").offset().top + $(".afe-static-banner").height() - $(".afe-floating-banner").height();
       $(document).scroll();
     }); $(window).resize();
