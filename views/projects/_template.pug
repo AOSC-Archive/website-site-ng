@@ -17,6 +17,19 @@ block banner
     .col-md-6
       p=params.project.long
 
+mixin project-wrapper
+  .row
+    block
+
+mixin project-main
+  .col-sm-8
+    block
+
+mixin project-side-panel
+  .col-sm-4
+    #side-panel.affix-top
+      block
+
 append javascript
   script.
     $(function() {
@@ -30,6 +43,11 @@ append javascript
             var classes = kernel[2].replace(/\./g, ' ');
             that.removeClass('btn-default').addClass(classes);
           }
+        }
+      });
+      $('#side-panel').affix({
+        offset: {
+          top: $('#side-panel').offset().top - $('#nav').outerHeight() - 25
         }
       });
     });
