@@ -1,76 +1,64 @@
 extend _template
 
-//-
-  "extend _template" at the first line is always nessesary.
-
-  Use ":markdown" to start a block in Markdown language.
-  Note:
-    Button is "[[Text]](Link)", additional style
-    can do in this way: "[[Text].class1.class2.class3](Link)"
-
-  Block "content" is under a ".container". You may use
-  ".row" and ".col-*-*" to layout them in a gird system.
-  See more: http://getbootstrap.com/css/#grid
-
 block content
-  .col-sm-8
-    :markdown-it
-      # What?
+  +project-wrapper
+    +project-main
+      :markdown-it
+        # What?
 
-      AOSC OS is a semi-rolling Linux distribution maintained by members of the
-      community - with simplicity and ease of use in mind. AOSC OS is provided
-      as a multi-architectural Linux distribution, while we try to provide the
-      same experience and features on all supported architectures.
+        AOSC OS is a semi-rolling Linux distribution maintained by members of the
+        community - with simplicity and ease of use in mind. AOSC OS is provided
+        as a multi-architectural Linux distribution, while we try to provide the
+        same experience and features on all supported architectures.
 
-      # Choices
+        # Choices
 
-      We value choices with the development of AOSC OS, for instance, there are
-      loads of desktop environments available in our repository (and are shipped
-      as pre-configured tarballs). Here below is a screenshot of AOSC OS running
-      the GNOME desktop environment.
+        We value choices with the development of AOSC OS, for instance, there are
+        loads of desktop environments available in our repository (and are shipped
+        as pre-configured tarballs). Here below is a screenshot of AOSC OS running
+        the GNOME desktop environment.
 
-      ![GNOME](/assets/i/de-preview/gnome/1.png)
+        ![GNOME](/assets/i/de-preview/gnome/1.png)
 
-      # Optimized
+        # Optimized
 
-      We highly respect optimization and security equally when developing AOSC OS,
-      each port of AOSC OS is optimized with SIMD optimization options native to
-      the architectures, providing the most out of the architecture's potentials.
-      AOSC OS hardens each of its packages in the repository with read-only
-      relocations, position-independent code and executables, and more, as
-      provided by our development toolchain.
+        We highly respect optimization and security equally when developing AOSC OS,
+        each port of AOSC OS is optimized with SIMD optimization options native to
+        the architectures, providing the most out of the architecture's potentials.
+        AOSC OS hardens each of its packages in the repository with read-only
+        relocations, position-independent code and executables, and more, as
+        provided by our development toolchain.
 
-      # Refined
+        # Refined
 
-      As distribution developers, we work closely with the upstream to make sure
-      that our users gets the most out of each packages, the upstream gets our
-      suggestions and contributions (as provided by our users, loop-a-loop).
+        As distribution developers, we work closely with the upstream to make sure
+        that our users gets the most out of each packages, the upstream gets our
+        suggestions and contributions (as provided by our users, loop-a-loop).
 
-      Our community is also home to a pro-active localization effort for both
-      Simplified Chinese (China) and Traditional Chinese (Taiwan), to provide a
-      better localized operating environment for users using those languages.
+        Our community is also home to a pro-active localization effort for both
+        Simplified Chinese (China) and Traditional Chinese (Taiwan), to provide a
+        better localized operating environment for users using those languages.
 
-      # Multilingual
+        # Multilingual
 
-      AOSC OS provides full multilingual support out of the box, with all locales
-      available on first run. With aid from Google's Noto font family, we are
-      able to provide a unified style of typefaces across multiple languages.
+        AOSC OS provides full multilingual support out of the box, with all locales
+        available on first run. With aid from Google's Noto font family, we are
+        able to provide a unified style of typefaces across multiple languages.
 
-      AOSC OS follows the latest Unicode standards in all packages.
+        AOSC OS follows the latest Unicode standards in all packages.
 
-      # Final Notes
+        # Final Notes
 
-      As usual...
+        As usual...
 
-          #include <stddisclaim.h>
+            #include <stddisclaim.h>
 
-      AOSC OS is provided in expectation that you might find it to be useful or
-      enjoyable to use, while we provide **ABSOLUTELY WARRANTY** on its stability
-      and reliability, our community will try and provide help and fixes at our
-      closest availability at **ABSOLUTELY NO EXTRA COST**.
+        AOSC OS is provided in expectation that you might find it to be useful or
+        enjoyable to use, while we provide **ABSOLUTELY WARRANTY** on its stability
+        and reliability, our community will try and provide help and fixes at our
+        closest availability at **ABSOLUTELY NO EXTRA COST**.
 
-  .col-sm-4
-    #side-panel(data-spy="affix")
+    +project-side-panel
       h1 Links
 
       h2 For users
@@ -79,11 +67,3 @@ block content
       h2 For developers
       p: a.btn.btn-warning(href="https://github.com/AOSC-Dev/aosc-os-core/") AOSC OS Core
       p: a.btn.btn-warning(href="https://github.com/AOSC-Dev/aosc-os-abbs/") AOSC OS Package Tree
-
-append javascript
-  script.
-    $('#side-panel').affix({
-      offset: {
-        top: $('#side-panel').offset().top - $('#nav').outerHeight() - 25
-      }
-    });
