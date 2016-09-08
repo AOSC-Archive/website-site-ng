@@ -10,12 +10,28 @@ append stylesheet
     +include-css("/assets/css/projects-" + params.project.mininame + ".css")
 
 block banner
-  .row.afe-banner-subpage
+  .row
     .col-md-12
-      h1=params.project.fullname
+      h1
+        a#link-to-projects(href="/projects") PROJECTS
+        |&nbsp;/&nbsp;
+        =params.project.fullname
       h2=params.project.description
     .col-md-6
       p=params.project.long
+
+mixin project-wrapper
+  .row
+    block
+
+mixin project-main
+  .col-sm-8
+    block
+
+mixin project-side-panel
+  .col-sm-4
+    #side-panel.affix-top
+      block
 
 append javascript
   script.
@@ -30,6 +46,11 @@ append javascript
             var classes = kernel[2].replace(/\./g, ' ');
             that.removeClass('btn-default').addClass(classes);
           }
+        }
+      });
+      $('#side-panel').affix({
+        offset: {
+          top: $('#side-panel').offset().top - $('#nav').outerHeight() - 25
         }
       });
     });
