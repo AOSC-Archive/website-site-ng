@@ -124,12 +124,12 @@ generalDistros:
                 nodeName: ~
                 list:
                   - caption: Download tarball
-                    url: /os-armel/generic/aosc-os_base_armel_20160628.tar.xz
+                    url: /os-armel/generic/aosc-os_base_armel_20160911.tar.xz
               - caseName: Raspberry Pi 2/3
                 nodeName: ~
                 list:
                   - caption: Download tarball
-                    url: /os-armel/rpi/aosc-os_base_rpi_20160628.1.tar.xz
+                    url: /os-armel/rpi/aosc-os_base_rpi_20160911.tar.xz
                   - caption: Download image
                     available: false
           - caseName: ARMv8 (Experimental)
@@ -170,12 +170,12 @@ generalDistros:
             nodeName: ~
             list:
               - caption: Download tarball
-                url: /os-amd64/buildkit/aosc-os_buildkit_20160713.tar.xz
+                url: /os-amd64/buildkit/aosc-os_buildkit_20160901.tar.xz
           - caseName: ARMv7
             nodeName: ~
             list:
               - caption: Download tarball
-                url: /os-armel/buildkit/aosc-os-buildkit_armel_20160628.tar.xz
+                url: /os-armel/buildkit/aosc-os-buildkit_armel_20160911.tar.xz
           - caseName: ARMv8 (Experimental)
             nodeName: ~
             list:
