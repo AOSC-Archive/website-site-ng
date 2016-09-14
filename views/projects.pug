@@ -27,9 +27,9 @@ block content
       each project in params.projects
         .media
           .media-left
-            a(href="/projects/" + project.mininame): img(src=project.logo style="width: 120px; height: 120px;")
+            a(href=`/projects/${project.mininame}`): img(src=project.logo style="width: 120px; height: 120px;")
           .media-body
-            a(href="/projects/" + project.mininame): h2(style="margin-top: 0;")=project.fullname
+            a(href=`/projects/${project.mininame}`): h2(style="margin-top: 0;")=project.fullname
             p=project.long
             small=project.ps
     .col-md-4

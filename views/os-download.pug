@@ -5,7 +5,6 @@ block head-custom
   +meta-description("Anthon Open Source Community")
 
 append stylesheet
-  //+include-css("/assets/css/flow.css")
   +include-css("/assets/css/os-download.css")
 
 block banner
@@ -116,7 +115,7 @@ append javascript
       }
 
       function initTabExtra(distroName, callback) {
-        $.getJSON('/api/distro-extra?name=' + encodeURIComponent(distroName), function(xdistro) {
+        $.getJSON(`/api/distro-extra?name=${encodeURIComponent(distroName)}`, function(xdistro) {
           var imageList = $('#preview');
           var ImageItem = imageList
             .siblings('.afe-flag-template').clone()

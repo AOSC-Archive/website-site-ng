@@ -45,7 +45,7 @@ block content
       ul.afe-hoverpanel
         each project in params.projects
           li
-            a(href="/projects/" + project.mininame)
+            a(href=`/projects/${project.mininame}`)
               h1=project.fullname
             p=project.description
       h1.afe-small-captions COMMON SERVICES

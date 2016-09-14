@@ -1,7 +1,7 @@
 extend news
 
 block head-custom
-  +meta-title(params.title + " | AOSC News")
+  +meta-title(`${params.title} | AOSC News`)
   +meta-description("Anthon Open Source Community")
 
 append stylesheet
