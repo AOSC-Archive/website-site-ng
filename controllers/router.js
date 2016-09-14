@@ -139,8 +139,10 @@ router.get('/community' , (req, res) => {
 
 router.get( '/projects' , (req, res) => {
   const projects = readYAML('projects');
+  const otherProjects = readYAML('other-projects');
   res.render('projects', {'params' : {
-    'projects' : projects
+    'projects' : projects,
+    'otherProjects' : otherProjects
   }});
 });
 

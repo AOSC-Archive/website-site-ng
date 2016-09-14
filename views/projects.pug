@@ -5,6 +5,7 @@ block head-custom
   +meta-description("Anthon Open Source Community")
 
 append stylesheet
+  +include-css("/assets/css/hoverpanel.css")
   +include-css("/assets/css/projects.css")
 
 block banner
@@ -33,3 +34,9 @@ block content
             small=project.ps
     .col-md-4
       h4.afe-small-captions OTHER PROJECTS
+      ul.afe-hoverpanel
+        each project in params.otherProjects
+          li
+            a(href=`https://github.com/AOSC-Dev/${project.proj}/`)
+              h1=project.name
+            p=project.desc
