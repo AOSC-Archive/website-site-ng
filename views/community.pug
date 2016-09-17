@@ -32,13 +32,16 @@ block content
         +pagination(params.pages)
     #side-gallery.col-md-4
       h1.afe-small-captions PHOTOGRAPHS
-      ul
+      ul.popup-gallery
         each val in params.imgs
-          li: a.image-popup-no-margins(href=val.imgOrig): img.afe-cover(src=val.imgThumb)
+          li
+            a(href=val.imgOrig, desc=val.desc, subdesc=val.date)
+              img.afe-cover(src=val.imgThumb)
         // TODO: Make a gallery page
 
 include templates/lightbox-include
 append stylesheet
   +lightbox-css()
 append javascript
-  +lightbox-js()
+  +lightbox-js-gallery()
+    +lightbox-js-gallery()

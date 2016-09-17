@@ -30,10 +30,13 @@ block banner-floating
 include templates/flow-include
 block content
   .afe-banner-tail.hidden-sm.hidden-xs
-    .container: .row: .col-md-12: ul
-      each val in params.imgs
-        li: a.image-popup-no-margins(href=val.imgOrig): img.afe-cover(src=val.imgThumb)
-      li: a#button-more(href="/community"): img(src="/assets/i/button-more.svg")
+    .container: .row: .col-md-12
+      ul.popup-gallery
+        each val in params.imgs
+          li
+            a(href=val.imgOrig, desc=val.desc, subdesc=val.date)
+              img.afe-cover(src=val.imgThumb)
+      a#button-more(href="/community"): img(src="/assets/i/button-more.svg")
   .afe-banner-tail-padding.hidden-sm.hidden-xs
 
   #wrapper.row
@@ -61,7 +64,8 @@ include templates/lightbox-include
 append stylesheet
   +lightbox-css()
 append javascript
-  +lightbox-js()
+  +lightbox-js-flow()
+  +lightbox-js-gallery()
   script.
     $(function() {
       var pre_splash = '';

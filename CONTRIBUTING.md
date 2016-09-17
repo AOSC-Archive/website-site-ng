@@ -9,19 +9,23 @@ this contributing guideline.
 - Pug (called Jade before) is used as the template engine;
 - Stylus is used as the styling engine;
 - Bootstrap is used as the main styling framework;
+- ImageMagick is used as the images processor;
 
 - 主控制器、网页路由、后端，使用的是 NodeJs 环境;
 - 网页模版引擎使用 Pug（曾用名 Jade）;
 - 样式表引擎使用 Stylus;
 - 样式主框架为 Bootstrap;
+- 调用 ImageMagick 处理图像.
 
 ### Development environment - 开发环境
 
-A valid `nodejs` install is all you need.
+A valid `nodejs` install is the first one you need.
 
-Don't forget `npm update --save`
+Don't forget `npm update --save` and (for example,) `apt install imagemagick`
 
-您只需要安装好 `nodejs` 就行。别忘了执行一次 `npm update --save`。
+您只需要安装好 `nodejs` 就行。
+
+别忘了执行一次 `npm update --save` 以及（比如）`apt install imagemagick`。
 
 ## Branches - 分支
 

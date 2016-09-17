@@ -1,4 +1,5 @@
-Thumbs.db
+/static/assets/i/gallery/thumbs/*
+/static/assets/css/*
 /static/assets/css/*
 !/static/assets/css/font-awesome*
 !/static/assets/css/bootstrap*
@@ -27,3 +28,5 @@ Thumbs.db
 
 .*
 .*/
+
+!DO-NOT-DELETE

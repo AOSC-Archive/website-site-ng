@@ -63,8 +63,7 @@ function createPageInfo(request, total, size, pagesPerList) {
 router.get('/' , (req, res) => {
   const pj = readYAML('projects');
   const srv = readYAML('services');
-  new Promise(resolve =>
-    newsdb.enum(1, HOME_MAXIMAGE, false, newsdb.filters.hasImage(), resolve)
+  new Promise(resolve => resolve(getGallery().slice(0, HOME_MAXIMAGE))
   ).then(imgUrlList =>
     newsdb.enum(1, HOME_MAXITEM, true, null,
       result => res.render(
@@ -105,20 +104,63 @@ router.get('/news/:slug' , (req, res) => {
   );
 });
 
+function getThumbPath(input) {
+  let p = input.lastIndexOf('/');
+  let lv = input.substring(0, p);
+  let rv = input.substring(p + 1);
+  return lv + '/thumbs/' + rv + '.jpg';
+}
+
+function thumb(input) {
+  log.info(`imagemagick: generate thumbnail for ${input}`);
+  require('imagemagick').resize({
+    srcPath: input,
+    dstPath: getThumbPath(input),
+    width:  256
+  }, (err, stdout, stderr) => {
+    if (err) throw err;
+  });
+}
+
+(function thumbs() {
+  const path = 'static/assets/i/gallery';
+  let childrenInDir = [];
+  try {
+    childrenInDir = fs.readdirSync(path);
+  } catch (e) {
+    log.error('thumbs: failed to read directory: ' + path);
+  }
+  for(let c of childrenInDir) {
+    let p = path + '/' + c;
+    if(fs.statSync(p).isFile()) {
+      // try {
+      //   fs.accessSync(getThumbPath(p));
+      // } catch (e) {
+      //   thumb(p);
+      // }
+      thumb(p);
+    }
+  }
+})()
+
+function getGallery() {
+  let imgUrlList = readYAML('gallery');
+  const path = '/assets/i/gallery';
+  for (let img of imgUrlList) {
+    img.imgOrig = path + '/' + img.file;
+    img.imgThumb = getThumbPath(path + '/' + img.file);
+  }
+  return imgUrlList;
+}
+
 router.get('/community' , (req, res) => {
   // Collect images to show gallery
   const filter = newsdb.filters.type(['community']);
   let imgUrlList;
-  new Promise(resolve =>
-    newsdb.enum(1, COMMUNITY_MAXIMAGE,
-      false,
-      newsdb.filters.both(filter, newsdb.filters.hasImage()),
-      l => {
-        imgUrlList = l;
-        resolve();
-      }
-    )
-  ).then(
+  new Promise(resolve => {
+    imgUrlList = getGallery();
+    resolve();
+  }).then(
     () => new Promise(resolve => newsdb.count(filter, resolve))
   ).then(count => {
     const pages = createPageInfo(
