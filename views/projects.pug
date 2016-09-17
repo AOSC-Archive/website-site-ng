@@ -1,0 +1,42 @@
+extend templates/master
+
+block head-custom
+  +meta-title("Projects")
+  +meta-description("Anthon Open Source Community")
+
+append stylesheet
+  +include-css("/assets/css/hoverpanel.css")
+  +include-css("/assets/css/projects.css")
+
+block banner
+  .row
+    .col-md-12
+      h1 PROJECTS
+      h2 Not just another brick in the wall.
+    .col-md-6
+      p.
+        AOSC is not just a community for a Linux distribution, our community
+        holds a bucketful of F/OSS goodness developed by us, and maintained
+        for you. Here you will find information regarding using, hacking, or
+        even ways to contribute to our community's finest.
+
+block content
+  #wrapper.row
+    .col-md-8
+      h1.afe-small-captions.afe-important COMMUNITY PROJECTS
+      each project in params.projects
+        .media
+          .media-left
+            a(href=`/projects/${project.mininame}`): img(src=project.logo style="width: 120px; height: 120px;")
+          .media-body
+            a(href=`/projects/${project.mininame}`): h2(style="margin-top: 0;")=project.fullname
+            p=project.long
+            small=project.ps
+    .col-md-4
+      h4.afe-small-captions OTHER PROJECTS
+      ul.afe-hoverpanel
+        each project in params.otherProjects
+          li
+            a(href=`https://github.com/AOSC-Dev/${project.proj}/`)
+              h1=project.name
+            p=project.desc

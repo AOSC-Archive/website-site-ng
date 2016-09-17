@@ -1,59 +1,49 @@
-var express = require('express');
-var yaml    = require('js-yaml');
-var fs      = require('fs');
-var md      = require('markdown').markdown;
-var app     = express();
+const express = require('express');
+const log = require('./controllers/log.js');
 
-function formatDate(date) {
-  var month = ['January', 'February', 'March', 'April', 'May',
-    'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  return month[date.getUTCMonth()] + ' '
-               + date.getUTCDate() + ', '
-               + date.getUTCFullYear();
-}
+// Express - Create The Instance
+  const app = express();
 
-function readYAML(yamlfile) {
-  try {
-    return yaml.safeLoad(fs.readFileSync('text/' + yamlfile + '.yml', 'utf8'));
-  } catch (e) { console.log(e); }
-}
+// Parsing - Middlewares
+  app.use(require('body-parser').urlencoded({ extended: false }));
+  const crypto  = require('crypto');
+  const COOKIE_SIGN_KEY_LEN = 256;
+  const COOKIE_SIGN_KEY = crypto.randomBytes(COOKIE_SIGN_KEY_LEN).toString('binary');
+  app.use(require('cookie-parser')(COOKIE_SIGN_KEY));
 
-function router(req, res) {
-  try {
-    switch(req.params.resource) {
-      case undefined :
-      case 'index.html' :
-        var bc = readYAML('news');
-        var pj = readYAML('projects');
-        for(var i_ct in bc) {
-          bc[i_ct].date = formatDate(bc[i_ct].date).toUpperCase();
-          var _ct = bc[i_ct].content;
-          for(var i_para in _ct) _ct[i_para] = md.toHTML(_ct[i_para]);
-        }
-        res.render('index',
-          {'params' : {
-              'title' : 'Community Portal - AOSC',
-              'broadcast' : bc,
-              'projects' : pj
-            }
-          });
-        break;
-      case 'distro.html' :
-        var doc = readYAML('distro');
-        res.render('distro', {'param' : doc});
-        break;
-      default:
-        res.status(404).render('err/404');
-    }
-  } catch (e) { console.log(e); res.status(500).render('err/500'); }
-}
+// Rendering - Engine
+  app.set('view engine', 'pug');
+  app.set('views', './views');
 
-app.set('view engine', 'jade');     // use *Jade* to render templates
-app.set('views', './views');        // and here is the templates
-app.use(express.static('public'));  // mount this directory to *web root*
-app.get('/', router);
-app.get('/:resource', router);
+// Routing - Filters
+  app.use(express.static('static'));
+  app.use('/', require('./controllers/router.js'));
+  app.use('/admin', require('./controllers/router-admin.js'));
+  app.get( '*' , (req, res) => {
+    log.debug('router: Client requested a unreachable URI ' + req.originalUrl);
+    res.status(404).render('err/404', {'params' : {
+      'url' : req.path
+    }});
+  });
+  app.all( '*' , (req, res) => {
+    log.debug('router: Bad Request ' + req.originalUrl);
+    res.sendStatus(400);
+  });
 
-var server = app.listen(3000, function () {
-  console.log('Listening at port %s', server.address().port);
-});
+// Network
+  app.set('trust proxy', 'loopback');
+  const server = app.listen(3000, function () {
+    log.debug('server: Listening at port ' + server.address().port);
+  });
+
+// Watcher - Stylus Compiler
+  require('child_process').fork('./controllers/watcher.js');
+  log.debug('server: Fork watcher');
+
+/*
+
+              AOSC
+          Web Team 2016
+           "Cauldron"
+
+                              */

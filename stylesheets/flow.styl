@@ -1,0 +1,75 @@
+/*
+ * I implement the style of the "flow".
+ *
+ * Usage:
+
+  ul.afe-flow
+    li
+      h1=TITLE-1
+        small=SUB-TITLE-1
+      .afe-content
+        p Some paragraphs.
+        p Some paragraphs.
+
+ */
+
+@import "variables.include.styl"
+
+ul.afe-flow
+  padding-left: 0
+  list-style-type: none
+  >li
+    position: relative
+    margin: 30px 0
+    border-left-style: solid
+    border-left-width: 12px
+    border-left-color: $color-primary
+    &.afe-tag-bug
+      border-left-color: $color-contrastive
+      h1.afe-title, h1.afe-title a
+        color: $color-contrastive
+    padding-left: 26px
+    h1.afe-title
+      border-left-style: solid
+      border-left-width: 12px
+      border-left-color: $color-contrastive
+      font-size: 20px
+      font-weight: bold
+      padding-left: 26px
+      margin-left: -(26px+12px)
+      margin-top: 0
+      position: relative
+
+      small
+        display: block
+        color: $gray-darker
+        margin-top: 10px
+    .afe-cover
+      float: left
+      margin: 0 20px 20px 0
+      width: 200px
+    .afe-anchor
+      display: block
+      position: absolute
+      top: -1 * ($navbar-height + 20px)
+      visiblity: hidden
+
+  .afe-content
+    h1
+      font-size: 20px
+      font-weight: bold
+    h2
+      font-size: 18px
+      font-weight: bold
+    h3
+      font-size: 16px
+      font-weight: bold
+    h4
+      font-size: 16px
+      font-weight: normal
+    h5
+      font-size: 14px
+      font-weight: bold
+    h6
+      font-size: 14px
+      font-weight: normal

@@ -1,0 +1,22 @@
+extend news
+
+block head-custom
+  +meta-title(`${params.title} | AOSC News`)
+  +meta-description("Anthon Open Source Community")
+
+append stylesheet
+  +include-css("/assets/css/news-view.css")
+
+block banner
+  .row.afe-banner-subpage
+    .col-md-12
+      h1=params.title.toUpperCase()
+      h2=params.date
+
+block content
+  #wrapper.row
+    //- FIXME: show image (imgOrig)
+    .col-md-8
+      .afe-content
+        !=params.htmlcontent
+      p#timestamp=params.timestamp

@@ -1,0 +1,148 @@
+//-
+  This is a template for all pages
+
+  My blocks for extending:
+
+    head-custom (extended from base)
+      Usage: OVERRIDE
+      * You MUST override this block to explicitly define what the title is
+      * and what the keywords are.
+
+    navbar
+      Usage: li
+
+    banner
+      Usage: .row
+
+    content
+      Usage: .row
+
+extend basic-html
+
+append stylesheet
+  +include-css("/assets/css/master.css")
+
+block head-custom
+  +meta-title("Interesting")
+  +meta-description("What a pity...", "So Keywords, Such Do")
+
+block body
+
+  //fixed navbar
+  header
+    nav#nav.navbar.navbar-default.navbar-fixed-top
+      .container
+        ul.navbar-nav.nav
+          block navbar
+            // Example for block "navbar"
+            li.afe-primary: a(href="/") AOSC
+            li: a(href="/community") COMMUNITY
+            li: a(href="/news") NEWS
+            li: a(href="/projects") PROJECTS
+            li: a(href="/about") ABOUT
+            li.afe-highlight: a(href="/os-download") GET AOSC OS
+
+  //banner
+  .afe-banner
+    .afe-static-banner
+      .container
+        block banner
+          // Example for block "banner"
+          .row
+            .col-md-12.text-center
+              h1 Do
+              h2 Something new
+            .col-md-offset-3.col-md-6.text-center
+              p.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+    //floating-banner, immediate child of .afe-banner
+    .afe-floating-banner
+      .container
+        block banner-floating
+          #flag-not-extend-banner-floating
+          .row
+            .col-md-12.text-center
+              small.
+                Most good programmers do programming not because they expect to get paid
+                or get adulation by the public, but because it is fun to program. -- Linus Torvalds
+
+  //content
+  .afe-body
+    block content-without-container
+      #afe-container-main.container
+        block content
+          // Example for block "content"
+          .row
+            .col-md-8
+              h1.
+                h1 tag
+              p.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              h2.
+                h2 tag
+              p.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              h3.
+                h3 tag
+              p.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              hr
+              h4.
+                h4 tag
+              p.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim <em>veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint</em> occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              p.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, <strong>quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur</strong> sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+            .col-md-4
+              p.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              p.
+                Duis aute irure dolor in
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+  //fixed footer
+  footer.afe-footer.navbar-fixed-bottom.text-center
+    span Copyleft 2011–2016, members of the community.
+    span AOSC "Cauldron" Web Team, 2016. Bootstrap.
+    span 粤 ICP 备 14040623 号
+
+
+append javascript
+  +include-js("/assets/js/floatingbanner.js")

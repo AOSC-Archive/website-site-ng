@@ -1,0 +1,80 @@
+doctype html
+//-
+  I am the HTML framework for the whole website.
+
+  My blocks for extending:
+
+    variables (optional)
+      Usage: append
+      * This block helps extender to change some variables in this template,
+      * and also to define some constants in a elegant way.
+
+    head-global (protected)
+      Usage: any
+      * This may be HARDLY changed. It defined global characteristics
+      * with meta mixins.
+
+    head-custom
+      Usage: OVERRIDE
+      * You MUST override this block to explicitly define what the title is
+      * and what the keywords are.
+
+    stylesheet (optional)
+      Usage: append
+      * This defined CSS to load by default. You SHOULD only place (append)
+      * stylesheets in here.
+
+    javascript-prior (optional)
+      Usage: append
+      * This defined Javascript to run prior. Generally, it SHOULD be
+      * lightweight so that page content can be loaded and shown as early
+      * as possible.
+
+    body
+      Usage: OVERRIDE
+      * You've known.
+
+    javascript (optional)
+      Usage: append
+      * This defined most of the Javascript, so that you SHOULD place (append)
+      * Javascript in here normally.
+
+include variables
+include meta-include
+include tag-include
+
+block variables
+
+- var __tmp_lang = LANGUAGE_CURRENT ? LANGUAGE_CURRENT : LANGUAGE_DEFAULT;
+html(lang=__tmp_lang)
+  head
+
+    //- METAs
+    block head-global
+      +meta-charset("utf-8")
+      +meta-compatibility()
+      +meta-resetscale(false)
+      +meta-icon-and-color("/assets/i/aosc.svg", "image/svg+xml",
+        "any", "/assets/i/aosc.png", "#2489c9")
+    block head-custom
+      +meta-title("如果你看到这个就告诉狮子")
+      +meta-description("狮子尝试初步描述自己，尽管这是不对的。", "狮子卖萌中")
+
+    //- Global CSS
+    block stylesheet
+      +include-css("/assets/css/bootstrap.min.css")
+      +include-css("/assets/css/font-awesome.min.css")
+      +include-css("/assets/css/common.css")
+
+    //- JS which run prior
+    block javascript-prior
+      +include-js("/assets/js/jquery-3.1.0.min.js")
+
+  body
+
+    //- Content
+    block body
+
+    //- JS
+    block javascript
+      +include-js("/assets/js/bootstrap.min.js")

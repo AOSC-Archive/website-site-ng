@@ -1,0 +1,49 @@
+mixin lightbox-css()
+  +include-css("/assets/css/magnific-popup.css")
+mixin lightbox-js-flow()
+  if !INCLUDE_JS_LIGHTBOX
+    - var INCLUDE_JS_LIGHTBOX = true;
+    +include-js("/assets/js/jquery.magnific-popup.min.js")
+  script.
+    $(function() {
+      $('.image-popup-no-margins').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        closeBtnInside: false,
+        fixedContentPos: true,
+        image: {
+          verticalFit: true
+        },
+        zoom: {
+          enabled: true,
+          duration: 300 // don't foget to change the duration also in CSS
+        },
+        preloader: true
+      });
+    });
+mixin lightbox-js-gallery()
+  if !INCLUDE_JS_LIGHTBOX
+    - var INCLUDE_JS_LIGHTBOX = true;
+    +include-js("/assets/js/jquery.magnific-popup.min.js")
+  script.
+    $(function() {
+      $('.popup-gallery').magnificPopup({
+    		delegate: 'a',
+    		type: 'image',
+    		tLoading: 'Loading image #%curr%...',
+    		mainClass: 'mfp-img-mobile',
+    		gallery: {
+    			enabled: true,
+    			navigateByImgClick: true,
+    			preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+    		},
+        zoom: {
+          enabled: true,
+          duration: 300 // don't foget to change the duration also in CSS
+        },
+    		image: {
+    			tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+    			titleSrc: item => `${item.el.attr('desc')}<small>${item.el.attr('subdesc')}</small>`
+    		}
+    	});
+    });

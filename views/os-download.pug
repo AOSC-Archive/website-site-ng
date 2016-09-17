@@ -1,0 +1,219 @@
+extend templates/master
+
+block head-custom
+  +meta-title("AOSC OS Downloads")
+  +meta-description("Anthon Open Source Community")
+
+append stylesheet
+  +include-css("/assets/css/os-download.css")
+
+block banner
+  .row
+    .col-md-12.text-center
+      h1 GET AOSC OS
+      h2 /* I don't know how it works, it just works. */
+
+block content
+  #wrapper.row
+    .col-md-12
+      ul#distro-list.nav.nav-tabs(role="tablist")
+      li.afe-flag-template(role="presentation")
+        a(href="", role="tab", data-toggle="tab") &nbsp;
+    #distro-panel.col-md-12
+      h1#distro-name &nbsp;
+      .row
+        .col-md-4
+          p#distro-description &nbsp;
+
+          form#control-panel.form-horizontal
+          .form-group.afe-flag-template
+            label.control-label.col-md-5 &nbsp;
+            .dropdown.col-md-7
+              button.btn.btn-default.dropdown-toggle(type="button", data-toggle="dropdown")
+                span.afe-caption
+                | &nbsp;
+                span.caret
+              ul.dropdown-menu
+              li.afe-flag-template: a.afe-case(href="javascript:;")
+          #download-panel
+            a.btn.btn-default.col-md-12.afe-flag-template(target="_blank") &nbsp;
+        .col-md-8
+          #carousel.carousel.slide(data-ride="carousel")
+            #preview.carousel-inner(role="listbox")
+            .item.afe-flag-template
+              a.image-popup-no-margins
+                img.afe-mainframe
+            a.carousel-control.left(data-slide="prev", role="button", href="#carousel").afe-arrow.afe-arrow-left
+            a.carousel-control.right(data-slide="next", role="button", href="#carousel").afe-arrow.afe-arrow-right
+    .col-md-12(style="margin-top: 30px;")
+      #guide.afe-content !{params.guideHtml}
+
+append stylesheet
+  +include-css("/assets/css/magnific-popup.css")
+append javascript
+  +include-js("/assets/js/jquery.magnific-popup.min.js")
+  script.
+    var globalDistros = null;
+    var treeRoot = null;
+    var repoBaseDir = null;
+
+    $(function () {
+      $.getJSON('/api/distro', function(json) {
+        globalDistros = json;
+        initTabs();
+      });
+
+      function initTabs() {
+        var distroList = $('ul#distro-list');
+        var DistroTab = distroList.siblings('.afe-flag-template').clone().removeClass('afe-flag-template');
+        distroList.empty();
+        for(distroIndex in globalDistros.generalDistros.list) {
+          var distro = globalDistros.generalDistros.list[distroIndex];
+          var distroTab = DistroTab.clone();
+          distroTab.data('distro-name', distro.name);
+          distroTab.children('a').text(distro.name);
+          distroTab.appendTo(distroList);
+        }
+        distroList.children().first().addClass('active');
+        distroList.children().click(function() {
+          initTab($(this).data('distro-name'));
+        });
+        initTab(globalDistros.generalDistros.list[0].name);
+      }
+
+      function initTab(distroName) {
+        $('#distro-panel').css('min-height', $('#distro-panel').innerHeight()+'px'); // keep its height
+        $('#distro-panel').css({'left': '0px', 'opacity': '1'}).animate({
+          left: '-100px',
+          opacity: 0
+        },{
+          duration: "fast",
+          easing: "swing",
+          done: function() {
+            var distro;
+            for(distroIndex in globalDistros.generalDistros.list) {
+              distro = globalDistros.generalDistros.list[distroIndex];
+              if(distro.name == distroName) break;
+            }
+            var distroList = $('ul#distro-list');
+            $('#distro-name').text(distro.name);
+            $('#distro-description').text(distro.description);
+            createNode(0, null);
+            $('#preview').empty();
+            initTabExtra(distroName, function() {
+              $('#distro-panel').finish().css({'left': '100px', 'opacity': '0'}).animate({
+                'min-height': '0px', // release its height
+                left: '0px',
+                opacity: 1
+              },{
+                duration: "fast",
+                easing: "swing"
+              });
+            });
+          }
+        });
+      }
+
+      function initTabExtra(distroName, callback) {
+        $.getJSON(`/api/distro-extra?name=${encodeURIComponent(distroName)}`, function(xdistro) {
+          var imageList = $('#preview');
+          var ImageItem = imageList
+            .siblings('.afe-flag-template').clone()
+            .removeClass('afe-flag-template');
+          imageList.empty();
+          for(imageIndex in xdistro.previewList) {
+            var image = xdistro.previewList[imageIndex];
+            var imageItem = ImageItem.clone();
+            imageItem.find('a').attr('href', image.path);
+            imageItem.find('img').attr('src', image.thumbPath);
+            imageItem.appendTo(imageList);
+          }
+          imageList.children().first().addClass('active');
+
+          $('.image-popup-no-margins').magnificPopup({
+            type: 'image',
+            closeOnContentClick: true,
+            closeBtnInside: false,
+            fixedContentPos: true,
+            image: {
+              verticalFit: true
+            },
+            zoom: {
+              enabled: true,
+              duration: 300 // don't foget to change the duration also in CSS
+            },
+            preloader: true,
+            callbacks: {
+              open: function() {
+                $('#carousel').carousel('pause');
+              },
+              close: function() {
+                $('#carousel').carousel();
+              }
+            }
+          });
+          treeRoot = xdistro.downloadTree;
+          repoBaseDir = xdistro.repoBaseDir;
+          createNode(0, treeRoot);
+          callback();
+        });
+      }
+
+      function createNode(index, data) {
+        clearNode(index);
+        if(!data) {createDownloads(null); return};
+        var panel = $('#control-panel');
+        var group = panel.siblings('.afe-flag-template').clone().removeClass('afe-flag-template');
+        group.find('.control-label').text(data.nodeName);
+        group.find('.afe-caption').text(data.cases[0].caseName);
+        var menu = group.find('.dropdown-menu');
+        var MenuItem = menu.siblings('.afe-flag-template').clone().removeClass('afe-flag-template');
+        for(caseIndex in data.cases) {
+          var menuItem = MenuItem.clone();
+          menuItem.find('.afe-case').text(data.cases[caseIndex].caseName);
+          menuItem
+            .data('tree-node', data.cases[caseIndex])
+            .click(function() {
+              selectNode(index, $(this).index());
+            });
+          menuItem.appendTo(menu);
+        }
+        group.appendTo(panel);
+        selectNode(index, 0);
+      }
+
+      function clearNode(index) {
+        $('#control-panel>.form-group').eq(index).nextAll().addBack().remove();
+      }
+
+      function selectNode(index, childIndex) {
+        var panel = $('#control-panel');
+        var group = panel.children().eq(index);
+        var item = group.find('.dropdown-menu').children().eq(childIndex);
+        group.find('.afe-caption').text(item.find('.afe-case').text());
+        var node = item.data('tree-node');
+        if(node == undefined) {
+          createDownloads(null);
+        } else if(node.nodeName == null) {
+          createDownloads(node.list);
+        } else {
+          createNode(index + 1, node);
+        }
+      }
+
+      function createDownloads(list) {
+        var downloadList = $('#download-panel');
+        var Item = downloadList.children('.afe-flag-template').clone().removeClass('afe-flag-template');
+        downloadList.children().not('.afe-flag-template').remove();
+        for(i in list) {
+          var item = Item.clone();
+          item.text(list[i].caption);
+          if(list[i].href)
+            item.attr('href', list[i].href);
+          if(list[i].url)
+            item.attr('href', repoBaseDir + list[i].url);
+          item.toggleClass('disabled', list[i].available !== undefined && !list[i].available);
+          item.appendTo(downloadList);
+        }
+      }
+    });

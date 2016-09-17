@@ -1,0 +1,34 @@
+extend templates/master
+
+block head-custom
+  +meta-title("News Flow")
+  +meta-description("Anthon Open Source Community")
+
+append stylesheet
+  +include-css("/assets/css/flow.css")
+
+block banner
+  .row
+    .col-md-12
+      h1 NEWS
+      h2 Read hard, get it all caught up :-D
+    .col-md-6
+      p.
+        Things are (actually) going on around the community (surprise!), you may
+        find latest news and happenings in and around the community, and of
+        course, latest information for you to better enjoy AOSC OS.
+
+include templates/flow-include
+include templates/pagination-include
+block content
+  #wrapper.row
+    .col-md-8
+      h1.afe-small-captions ALL NEWS
+      +flow(params.items)
+      +pagination(params.pages)
+
+include templates/lightbox-include
+append stylesheet
+  +lightbox-css()
+append javascript
+  +lightbox-js-flow()

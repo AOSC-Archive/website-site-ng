@@ -1,0 +1,28 @@
+-
+  fullname: AOSC OS
+  mininame: aosc-os
+  description: Brutally simplified rolling Linux distribution.
+  long:
+    - >
+      AOSC OS is a semi-rolling Linux distribution that tries to offer a simplified
+      user experience, while keeping it hackable and standardized. AOSC OS (will)
+      is offered across multiple platforms and it runs on a variety of devices.
+  logo: "/assets/i/aosc-os.svg"
+-
+  fullname: AST's Startup Toolkit
+  mininame: ast
+  description: Install AOSC OS on your Windows machine.
+  long:
+    - >
+      Anthon Starter is a HDD installation helper for AOSC OS. This project focuses
+      on making installation of AOSC OS from Windows easier.
+  logo: "/assets/i/ast.svg"
+-
+  fullname: Localization
+  mininame: l10n
+  description: Localization improvements made by the community.
+  long:
+    - >
+      A large-scaled community project to contribute/maintain localization work
+      for multiple F/OSS (free, and/or open source software) projects.
+  logo: "/assets/i/l10n.svg"

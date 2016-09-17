@@ -1,0 +1,56 @@
+extend ../templates/master
+
+block head-custom
+  +meta-title(params.project.fullname + " | Projects")
+  +meta-description("Anthon Open Source Community")
+
+append stylesheet
+  +include-css("/assets/css/project.css")
+  if params.hasStylesheet
+    +include-css("/assets/css/projects-" + params.project.mininame + ".css")
+
+block banner
+  .row
+    .col-md-12
+      h1
+        a#link-to-projects(href="/projects") PROJECTS
+        |&nbsp;/&nbsp;
+        =params.project.fullname
+      h2=params.project.description
+    .col-md-6
+      p=params.project.long
+
+mixin project-wrapper
+  .row
+    block
+
+mixin project-main
+  .col-sm-8
+    block
+
+mixin project-side-panel
+  .col-sm-4
+    #side-panel.affix-top
+      block
+
+append javascript
+  script.
+    $(function() {
+      var wrapper = $('#afe-container-main');
+      wrapper.find('a').each(function() {
+        var that = $(this);
+        var kernel = /^\[(.*)\](\.\S+)*$/.exec(that.html());
+        if(kernel) {
+          that.html(kernel[1]).addClass('btn btn-default');
+          if(kernel[2]) {
+            var classes = kernel[2].replace(/\./g, ' ');
+            that.removeClass('btn-default').addClass(classes);
+          }
+        }
+      });
+      $('#side-panel').affix({
+        offset: {
+          top: $('#side-panel').offset().top - $('#nav').outerHeight() - 25
+        }
+      });
+    });

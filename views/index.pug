@@ -1,0 +1,85 @@
+extend templates/master
+
+block head-custom
+  +meta-title("AOSC Portal")
+  +meta-description("Anthon Open Source Community")
+
+append stylesheet
+  +include-css("/assets/css/flow.css")
+  +include-css("/assets/css/hoverpanel.css")
+  +include-css("/assets/css/index.css")
+
+block banner
+  .row
+    .col-md-12.text-center
+      h1.afe-index-title AOSC
+      // HERE IS AN IDEA, RANDOM SUB-TITLE EACH VISIT?
+      // GOOD IDEA
+      h2 &nbsp;
+    .col-md-offset-3.col-md-6.text-center
+      p.
+        Welcome to Anthon Open Source Community! We are a group of free and open technology enthusiasts working hard for improvements.
+
+block banner-floating
+  .row
+    .col-md-12.text-center
+      small.
+        Most good programmers do programming not because they expect to get paid
+        or get adulation by the public, but because it is fun to program. -- Linus Torvalds
+
+include templates/flow-include
+block content
+  .afe-banner-tail.hidden-sm.hidden-xs
+    .container: .row: .col-md-12
+      ul.popup-gallery
+        each val in params.imgs
+          li
+            a(href=val.imgOrig, desc=val.desc, subdesc=val.date)
+              img.afe-cover(src=val.imgThumb)
+      a#button-more(href="/community"): img(src="/assets/i/button-more.svg")
+  .afe-banner-tail-padding.hidden-sm.hidden-xs
+
+  #wrapper.row
+    .col-md-8
+      h1.afe-small-captions LATEST NEWS
+      +flow(params.items, 5)
+    .col-md-4
+      h1.afe-small-captions PROJECTS OVERVIEW
+      ul.afe-hoverpanel
+        each project in params.projects
+          li
+            a(href=`/projects/${project.mininame}`)
+              h1=project.fullname
+            p=project.description
+      h1.afe-small-captions COMMON SERVICES
+      ul.afe-hoverpanel
+        each service in params.services
+          li
+            a(href=service.link)
+              h1=service.srvtype
+            p=service.description
+
+
+include templates/lightbox-include
+append stylesheet
+  +lightbox-css()
+append javascript
+  +lightbox-js-flow()
+  +lightbox-js-gallery()
+  script.
+    $(function() {
+      var pre_splash = '';
+      function refreshSplash(){
+        $.getJSON('/api/splashes', function(json) {
+          if(json.splashes != pre_splash) {
+            $('.afe-banner h2').fadeOut(function(){
+              $('.afe-banner h2').text(json.splashes);
+              $('.afe-banner h2').fadeIn();
+            });
+            pre_splash = json.splashes;
+          }
+        });
+        setTimeout(refreshSplash, 10000);
+      }
+      refreshSplash();
+    });

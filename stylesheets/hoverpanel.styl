@@ -1,0 +1,38 @@
+/*
+ * I implement the style of the "flow".
+ *
+ * Usage:
+
+  ul.afe-flow
+    li
+      h1=TITLE-1
+        small=SUB-TITLE-1
+      .afe-content
+        p Some paragraphs.
+        p Some paragraphs.
+
+ */
+
+@import "variables.include.styl"
+
+ul.afe-hoverpanel
+  margin: 20px 0
+  padding-left: 0
+  li
+    margin: 10px 0
+    list-style-type: none
+    h1
+      margin: 0 0 3px
+      font-size: 18px
+      font-weight: normal
+      &:before
+        content: " "
+        display: inline-block
+        width: 1em
+        height: 1em
+        margin-right: 1em
+        background-color: $color-secondary
+    p
+      padding-left: 18px * 2
+      font-size: small
+      margin: 0 0 0.5rem 0

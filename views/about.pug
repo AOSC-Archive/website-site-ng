@@ -1,0 +1,85 @@
+extend news
+
+append stylesheet
+  +include-css("/assets/css/flow.css")
+  +include-css("/assets/css/hoverpanel.css")
+  +include-css("/assets/css/index.css")
+
+block head-custom
+  +meta-title("About Us")
+  +meta-description("Anthon Open Source Community")
+
+block banner
+  .row
+    .col-md-12
+      h1 ABOUT
+      h2 GET TO KNOW ABOUT US AND THOSE TO THANK FOR
+    .col-md-6
+      p Believe it or not, AOSC has been around for quite some time now, we do
+        want more people to know about us, and those who we are grateful to.
+        AOSC will never take its shape today without the support from our lovely
+        community and our generous sponsors.
+
+block content
+  #wrapper.row
+    .col-md-8
+      h1.afe-small-captions.afe-important ABOUT AOSC
+      :markdown-it
+        ## Early Days
+
+        AOSC, short for Anthon Open Source Community, is a F/OSS focused
+        community first established by Mingcong (Jeff) Bai and his classmates
+        in 2011, initially with an intention to create a more easy-to-use Linux
+        distribution with better CJK language support, they started the AnthonOS
+        (later known as AOSC OS) project - the first, and still the largest
+        project of the community.
+
+        The community was never in its structure like what it is today before
+        the end of year 2012, when the community was structured like a corporate
+        development team. The community was formed from the nearly schattered
+        team named "Anthon.Dev", due to lack of a common goal and severely
+        bureaucratic system of members.
+
+        Forming a community, AOSC began to include projects other than AOSC OS
+        itself - started and maintained by community members. First of which
+        being the Anthon Starter (later AST's Startup Toolkit) for installing
+        AOSC OS from Windows.
+
+        ## Our common goal
+
+        AOSC's one and only pursuit is for the advancement of open technologies
+        that benefits technology users like us who work for the community, and
+        you who enjoys results from our effort.
+
+        ## How we work
+
+        We do not endorse or suggest any form of physical or finanical income
+        or reward for our own work. We believe that volunteered work and
+        deliberate contribution is the most effective form for our community's
+        sustainability.
+
+        ## What we disapprove
+
+        As a technology-based community, we disapprove any form of:
+
+        - Unscientific or unprofessional behaviors in development work;
+        - Unethical use of other's work, including those protected under terms
+        of commercial licenses;
+        - Political discussion in any of our mailing list and chatting groups;
+        - Discrimination of any kind against individuals of different political,
+        social, and racial standpoints;
+    .col-md-4
+      h1.afe-small-captions SPONSORS
+      ul.afe-hoverpanel
+        each sponsor in params.about
+          li
+            a(href=sponsor.homepage)
+              h1=sponsor.sponsor
+            p=sponsor.gratitude
+      h1.afe-small-captions COMMON SERVICES
+      ul.afe-hoverpanel
+        each service in params.services
+          li
+            a(href=service.link)
+              h1=service.srvtype
+            p=service.description

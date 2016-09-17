@@ -1,0 +1,35 @@
+mixin pagination(params)
+  nav.text-center
+    ul.pagination
+      -
+        let list = [params.currentPage];
+        {
+          let direction = 1;
+          let fail = 0;
+          while(list.length != params.paginationSize && fail != 2) {
+            let target;
+            direction *= -1;
+            if(direction == -1) {
+              target = list[0] - 1;
+              if(target < 1) {fail++; continue;}
+              list.unshift(target);
+            } else if(direction == 1) {
+              target = list[list.length - 1] + 1;
+              if(target > params.totalPages) {fail++; continue;}
+              list.push(target);
+            }
+            fail = 0;
+          }
+        }
+        const isFirstPage = params.currentPage == 1;
+        const isLastPage = params.currentPage == params.totalPages;
+      if !isFirstPage
+        li: a(href="?page="+(params.currentPage-1)) &laquo;
+      else
+        li.invisible: a(href="javascript:;") &laquo;
+      each l in list
+        li(class=(l==params.currentPage? "active" : undefined)): a(href="?page="+l)=l
+      if !isLastPage
+        li: a(href="?page="+(params.currentPage+1)) &raquo;
+      else
+        li.invisible: a(href="javascript:;") &raquo;

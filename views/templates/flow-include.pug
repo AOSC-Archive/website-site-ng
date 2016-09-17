@@ -1,0 +1,18 @@
+mixin flow(list, limit)
+  ul.afe-flow
+    each val, index in list
+      if limit==undefined || index<limit
+        li(class="clearfix afe-tag-"+val.type)
+          h1.afe-title
+            a(href="/news/"+val.slug, target="_blank")=val.title
+            a.afe-anchor(name=val.slug)
+            small=val.date
+          if val.imgThumb
+            a.image-popup-no-margins(href=val.imgOrig): img.afe-cover(src=val.imgThumb)
+          .afe-content
+            !=val.htmlcontent
+      else
+        li(class="afe-tag-"+val.type): h1.afe-title: a(href="/news#"+val.slug)=val.title
+    if limit!=undefined
+      h1(style="font-size: 18px; margin-bottom: 50px;")
+        a(href="/news") Read more...
