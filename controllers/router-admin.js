@@ -31,8 +31,10 @@ function clearTicketCookie(res, ticket, expire) {
 }
 
 router.use((req, res, next) => {
-  if(SECURE_RESTRICT && !req.secure && !isLocalDebug(req))
+  if(SECURE_RESTRICT && !isLocalDebug(req) && !req.secure) {
+    log.debug(`https: detected an insecure request, redirecting...`);
     return res.redirect('https://' + req.get('host') + req.originalUrl);
+  }
   req.ticket = req.signedCookies.adminTicket;
   next();
 });
