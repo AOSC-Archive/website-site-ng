@@ -202,7 +202,7 @@ exports.has = (slug, callback) => {
 
 exports.slugFix = (slug, callback) => {
   function iterator(slug, suffix, callback){
-    fixedSlug = suffix>0? slug + '-' + suffix : slug;
+    let fixedSlug = suffix>0? slug + '-' + suffix : slug;
     exports.has(fixedSlug, exist => {
       log.debug('conflict: ' + fixedSlug + ' ' + exist);
       if(exist)
