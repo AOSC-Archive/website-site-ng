@@ -150,7 +150,7 @@ function getGallery() {
     img.imgOrig = path + '/' + img.file;
     img.imgThumb = getThumbPath(path + '/' + img.file);
   }
-  return imgUrlList;
+  return imgUrlList.reverse();
 }
 
 router.get('/community' , (req, res) => {
