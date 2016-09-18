@@ -1,16 +1,56 @@
 -
-  desc: A lion walks on the beach.
-  date: AOSCC 2016 Day 1
-  file: 2016-aoscc-day1-lion-walks.png
+  desc: A warm note from the Geekpie Association.
+  date: July 16th, 2016 (AOSCC 2016 Day 1)
+  file: 2016-aoscc-day1-a-warm-note-from-geekpie.jpg
 -
-  desc: Another lion walks on the fox. (What???)
-  date: AOSCC 2016 Day 1
-  file: 2016-aoscc-day1-lion-walks-again.png
+  desc: Random hack-around before the conference began.
+  date: July 16th, 2016 (AOSCC 2016 Day 1)
+  file: 2016-aoscc-day1-goofing-around.jpg
 -
-  desc: A big lion walks on the jeff. (...)
-  date: AOSCC 2016 Day 2
-  file: 2016-aoscc-day2-lion-walks.png
+  desc: Junde Yhi's concept presentation for AST's Startup Toolkit development reboot.
+  date: July 17th, 2016 (AOSCC 2016 Day 2)
+  file: 2016-aoscc-day2-ast-startup-toolkit-lmy441900.jpg
 -
-  desc: Tiny lions walks on the wall.
-  date: AOSCC 2016 Day 3
-  file: 2016-aoscc-day3-lion-walks.png
+  desc: Icenowy Zheng's presentation on the history of GNU/Linux on ARM devices.
+  date: July 17th, 2016 (AOSCC 2016 Day 2)
+  file: 2016-aoscc-day2-gnu-linux-on-arm-icenowy.jpg
+-
+  desc: Lion Yang plays around Android's buggy Skia library.
+  date: July 17th, 2016 (AOSCC 2016 Day 2)
+  file: 2016-aoscc-day2-goofing-around-buggy-skia.jpg
+-
+  desc: HD Remake using Inkscape with Dingyuan Wang (gumblex)
+  date: July 17th, 2016 (AOSCC 2016 Day 2)
+  file: 2016-aoscc-day2-hd-remake-with-inkscape-gumblex.jpg
+-
+  desc: Our lovely audience watching gumblex's demonstration.
+  date: July 17th, 2016 (AOSCC 2016 Day 2)
+  file: 2016-aoscc-day2-hd-remake-with-inkscape-audience.jpg
+-
+  desc: Icenowy having fun with his ARM devices.
+  date: July 18th, 2016 (AOSCC 2016 Day 3)
+  file: 2016-aoscc-day3-arm-boards-hack-around-icenowy.jpg
+-
+  desc: Introduction to AOSC OS packaging with Jeff Bai.
+  date: July 18th, 2016 (AOSCC 2016 Day 3)
+  file: 2016-aoscc-day3-introduction-to-packaging-jeffbai.jpg
+-
+  desc: Introduction to AOSC OS packaging (demonstration using VBA-M)
+  date: July 18th, 2016 (AOSCC 2016 Day 3)
+  file: 2016-aoscc-day3-introduction-to-packaging-vbam-jeffbai.jpg
+-
+  desc: Shanghai Surface User Group!
+  date: July 18th, 2016 (AOSCC 2016 Day 3)
+  file: 2016-aoscc-day3-shanghai-surface-user-group.jpg
+-
+  desc: Putting the AOSC 2016 sticker pack into good use (idea 1).
+  date: August 23rd, 2016
+  file: 2016-aoscc-stickers-1.jpg
+-
+  desc: Putting the AOSC 2016 sticker pack into good use (idea 2).
+  date: August 23rd, 2016
+  file: 2016-aoscc-stickers-2.jpg
+-
+  desc: Putting the AOSC 2016 sticker pack into good use (idea 3).
+  date: August 23rd, 2016
+  file: 2016-aoscc-stickers-3.jpg
