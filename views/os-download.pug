@@ -56,6 +56,7 @@ append javascript
     var globalDistros = null;
     var treeRoot = null;
     var repoBaseDir = null;
+    var curDistroName = null;
 
     $(function () {
       $.getJSON('/api/distro', function(json) {
@@ -82,6 +83,8 @@ append javascript
       }
 
       function initTab(distroName) {
+        if(curDistroName == distroName) return;
+        curDistroName = distroName;
         $('#distro-panel').css('min-height', $('#distro-panel').innerHeight()+'px'); // keep its height
         $('#distro-panel').css({'left': '0px', 'opacity': '1'}).animate({
           left: '-100px',
