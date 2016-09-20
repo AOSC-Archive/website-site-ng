@@ -58,4 +58,4 @@ Here's what's left to do.
 -  [ ] 多语言支持
 -  [x] 选用横幅背景图
 -  [ ] 自动切换的夜间模式
--  [ ] (d)ABBS 对接
+-  [ ] ABBS 对接
