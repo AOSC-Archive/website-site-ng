@@ -1,0 +1,19 @@
+mixin affix-js(target, widthref, offsetref)
+  script.
+    $(function() {
+      var affixTarget = $('!{target}');
+      var nav = $('#nav');
+      var offset = $('!{offsetref}');
+      function getOffset() {
+        return '#{offsetref}'==''? 0 : offset.outerHeight();
+      }
+      $(window).resize(function() {
+        affixTarget.width($('!{widthref}').width());
+        affixTarget.css('top', `${nav.outerHeight()+getOffset()}px`);
+        affixTarget.affix({
+          offset: {
+            top: affixTarget.offset().top - nav.outerHeight() - getOffset() - 25
+          }
+        });
+      }); $(window).resize();
+    });

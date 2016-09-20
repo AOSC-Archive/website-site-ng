@@ -22,6 +22,14 @@
   background-color: $color-primary
   color: $gray-lighter
 
+.affix
+  position: static
+
+@media (min-width: 768px)
+  .affix
+    position: fixed
+    top: $navbar-height
+
 #nav
   border: none
   ul

@@ -2,6 +2,7 @@ extend templates/master
 
 include templates/flow-include
 include templates/lightbox-include
+include templates/affix-include
 
 block head-custom
   +meta-title("AOSC Portal")
@@ -60,12 +61,14 @@ block content
             a(href=service.link)
               h1=service.srvtype
             p=service.description
+    .col-md-4.invisible#side-panel-width
 
 append stylesheet
   +lightbox-css()
 append javascript
   +lightbox-js-flow()
   +lightbox-js-gallery()
+  +affix-js('#side-panel', '#side-panel-width', '.afe-floating-banner')
   script.
     $(function() {
       var pre_splash = '';

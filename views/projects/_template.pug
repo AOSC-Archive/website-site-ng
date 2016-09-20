@@ -1,5 +1,7 @@
 extend ../templates/master
 
+include ../templates/affix-include
+
 block head-custom
   +meta-title(params.project.fullname + " | Projects")
   +meta-description("Anthon Open Source Community")
@@ -29,11 +31,12 @@ mixin project-main
     block
 
 mixin project-side-panel
-  .col-sm-4
-    #side-panel.affix-top
-      block
+  .col-sm-4: #side-panel.affix-top
+    block
+  .col-sm-4.invisible#side-panel-width
 
 append javascript
+  +affix-js('#side-panel', '#side-panel-width')
   script.
     $(function() {
       var wrapper = $('#afe-container-main');
@@ -46,11 +49,6 @@ append javascript
             var classes = kernel[2].replace(/\./g, ' ');
             that.removeClass('btn-default').addClass(classes);
           }
-        }
-      });
-      $('#side-panel').affix({
-        offset: {
-          top: $('#side-panel').offset().top - $('#nav').outerHeight() - 25
         }
       });
     });
