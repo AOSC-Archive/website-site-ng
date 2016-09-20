@@ -13,13 +13,13 @@ append stylesheet
 
 block banner
   .row
-    .col-md-12
+    .col-sm-12
       h1
         a#link-to-projects(href="/projects") PROJECTS
         |&nbsp;/&nbsp;
         =params.project.fullname
       h2=params.project.description
-    .col-md-6
+    .col-sm-6
       p=params.project.long
 
 mixin project-wrapper

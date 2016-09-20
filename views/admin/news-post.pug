@@ -10,10 +10,10 @@ append stylesheet
 include ../templates/flow-include
 block content
   #wrapper.row
-    .col-md-8
+    .col-sm-8
       h2.afe-news-post-title PREVIEW
       +flow([params])
-    .col-md-4
+    .col-sm-4
       h2.afe-news-post-title EDITOR
       form(method="post", action="#")
         p: input(name="title", type="text", placeholder="(Leave here empty to delete news) Title", value=params.title)

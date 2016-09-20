@@ -15,25 +15,25 @@ append stylesheet
 
 block banner
   .row
-    .col-md-12.text-center
+    .col-sm-12.text-center
       h1.afe-index-title AOSC
       // HERE IS AN IDEA, RANDOM SUB-TITLE EACH VISIT?
       // GOOD IDEA
       h2 &nbsp;
-    .col-md-offset-3.col-md-6.text-center
+    .col-sm-offset-3.col-sm-6.text-center
       p.
         Welcome to Anthon Open Source Community! We are a group of free and open technology enthusiasts working hard for improvements.
 
 block banner-floating
   .row
-    .col-md-12.text-center
+    .col-sm-12.text-center
       small.
         Most good programmers do programming not because they expect to get paid
         or get adulation by the public, but because it is fun to program. -- Linus Torvalds
 
 block content
   .afe-banner-tail.hidden-sm.hidden-xs
-    .container: .row: .col-md-12
+    .container: .row: .col-sm-12
       ul.popup-gallery
         each val in params.imgs
           li
@@ -43,10 +43,10 @@ block content
   .afe-banner-tail-padding.hidden-sm.hidden-xs
 
   #wrapper.row
-    .col-md-8
+    .col-sm-8
       h1.afe-small-captions LATEST NEWS
       +flow(params.items, 5)
-    .col-md-4: #side-panel.affix-top
+    .col-sm-4: #side-panel.affix-top
       h1.afe-small-captions PROJECTS OVERVIEW
       ul.afe-hoverpanel
         each project in params.projects
@@ -61,7 +61,7 @@ block content
             a(href=service.link)
               h1=service.srvtype
             p=service.description
-    .col-md-4.invisible#side-panel-width
+    .col-sm-4.invisible#side-panel-width
 
 append stylesheet
   +lightbox-css()

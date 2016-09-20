@@ -9,14 +9,14 @@ append stylesheet
 
 block banner
   .row.afe-banner-subpage
-    .col-md-12
+    .col-sm-12
       h1=params.title.toUpperCase()
       h2=params.date
 
 block content
   #wrapper.row
     //- FIXME: show image (imgOrig)
-    .col-md-8
+    .col-sm-8
       .afe-content
         !=params.htmlcontent
       p#timestamp=params.timestamp

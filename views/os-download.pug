@@ -9,26 +9,26 @@ append stylesheet
 
 block banner
   .row
-    .col-md-12.text-center
+    .col-sm-12.text-center
       h1 GET AOSC OS
       h2 /* I don't know how it works, it just works. */
 
 block content
   #wrapper.row
-    .col-md-12
+    .col-sm-12
       ul#distro-list.nav.nav-tabs(role="tablist")
       li.afe-flag-template(role="presentation")
         a(href="", role="tab", data-toggle="tab") &nbsp;
-    #distro-panel.col-md-12
+    #distro-panel.col-sm-12
       h1#distro-name &nbsp;
       .row
-        .col-md-4
+        .col-sm-4
           p#distro-description &nbsp;
 
           form#control-panel.form-horizontal
           .form-group.afe-flag-template
-            label.control-label.col-md-5 &nbsp;
-            .dropdown.col-md-7
+            label.control-label.col-sm-5 &nbsp;
+            .dropdown.col-sm-7
               button.btn.btn-default.dropdown-toggle(type="button", data-toggle="dropdown")
                 span.afe-caption
                 | &nbsp;
@@ -36,8 +36,8 @@ block content
               ul.dropdown-menu
               li.afe-flag-template: a.afe-case(href="javascript:;")
           #download-panel
-            a.btn.btn-default.col-md-12.afe-flag-template(target="_blank") &nbsp;
-        .col-md-8
+            a.btn.btn-default.col-sm-12.afe-flag-template(target="_blank") &nbsp;
+        .col-sm-8
           #carousel.carousel.slide(data-ride="carousel")
             #preview.carousel-inner(role="listbox")
             .item.afe-flag-template
@@ -45,7 +45,7 @@ block content
                 img.afe-mainframe
             a.carousel-control.left(data-slide="prev", role="button", href="#carousel").afe-arrow.afe-arrow-left
             a.carousel-control.right(data-slide="next", role="button", href="#carousel").afe-arrow.afe-arrow-right
-    .col-md-12(style="margin-top: 30px;")
+    .col-sm-12(style="margin-top: 30px;")
       #guide.afe-content !{params.guideHtml}
 
 append stylesheet
