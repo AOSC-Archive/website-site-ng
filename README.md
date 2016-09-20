@@ -1,8 +1,8 @@
 # website-site-ng
 
-This is the next generation Community Portal of AOSC.
+This is the Community Portal of AOSC.
 
-这是下一代的 AOSC 社区门户网站项目。
+这是 AOSC 社区门户网站项目。
 
 ## To new developers - 对新的参与者
 
@@ -16,10 +16,9 @@ on joining the project.
 
 **TODO: Translate this section to English.**
 
-The website is far from being finished and ready to put in production. Here's
-what's left to do.
+Here's what's left to do.
 
-目前该站距离完成和上线还有很远。以下是一些我们要做的事情。
+以下是一些我们要做的事情。
 
 ### Higher priority - 优先事项
 
@@ -29,15 +28,15 @@ what's left to do.
 -  [x] 代码规范 [CONTRIBUTING.md](CONTRIBUTING.md)
 -  [x] 后端构建 `app.js & /controller/*`
 -  [x] 前端母版框架构建
--  [ ] 前端单独页面实现
+-  [X] 前端单独页面实现
   - [x] Home
   - [x] News
-  - [ ] Community
-  - [ ] Project
-  - [ ] About
+  - [X] Community
+  - [X] Project
+  - [X] About
   - [x] Download
   - [x] News 长消息二级页面模板
-  - [ ] Project 项目页面模板
+  - [X] Project 项目页面模板
 -  [ ] 前端 PC 端代码审查
 -  [ ] 移动端响应式处理
   - [ ] 母版
@@ -54,6 +53,9 @@ what's left to do.
 
 ### Lower priority - 次要事项
 
+-  [ ] RSS 订阅
+-  [ ] GitHub Webhook 对接
 -  [ ] 多语言支持
 -  [x] 选用横幅背景图
 -  [ ] 自动切换的夜间模式
+-  [ ] (d)ABBS 对接
