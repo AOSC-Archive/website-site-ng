@@ -12,7 +12,10 @@ mixin affix-js(target, widthref, offsetref)
         affixTarget.css('top', `${nav.outerHeight()+getOffset()}px`);
         affixTarget.affix({
           offset: {
-            top: affixTarget.offset().top - nav.outerHeight() - getOffset() - 25
+            top: affixTarget.offset().top - nav.outerHeight() - getOffset() - 25,
+            bottom: function() {
+              return (this.bottom = $('footer').outerHeight(true) + 25);
+            }
           }
         });
       }); $(window).resize();
