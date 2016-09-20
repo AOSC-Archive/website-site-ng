@@ -21,11 +21,11 @@ this contributing guideline.
 
 A valid `nodejs` install is the first one you need.
 
-Don't forget `npm update --save` and (for example,) `apt install imagemagick`
+Don't forget `npm install` and (for example,) `apt install imagemagick`
 
 您只需要安装好 `nodejs` 就行。
 
-别忘了执行一次 `npm update --save` 以及（比如）`apt install imagemagick`。
+别忘了执行一次 `npm install` 以及（比如）`apt install imagemagick`。
 
 ## Branches - 分支
 
