@@ -116,7 +116,7 @@ generalDistros:
             nodeName: ~
             list:
               - caption: Download tarball (20160901)
-                url: /os-amd64/buildkit/aosc-os_buildkit_20160901.tar.xz
+                url: /os-amd64/buildkit/aosc-os-buildkit_20160901.tar.xz
           - caseName: ARMv7
             nodeName: ~
             list:
