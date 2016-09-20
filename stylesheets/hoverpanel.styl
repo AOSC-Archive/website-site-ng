@@ -15,24 +15,31 @@
 
 @import "variables.include.styl"
 
+$hoverpanel-title-size = 18px
+
 ul.afe-hoverpanel
   margin: 20px 0
   padding-left: 0
   li
     margin: 10px 0
     list-style-type: none
+    position: relative
+    &:before
+      content: " "
+      display: block
+      position: absolute
+      left: 0
+      top: 0
+      width: $hoverpanel-title-size
+      height: $hoverpanel-title-size
+      margin-right: $hoverpanel-title-size
+      background-color: $color-secondary
     h1
-      margin: 0 0 3px
+      margin: 0 0 3px $hoverpanel-title-size * 2
       font-size: 18px
       font-weight: normal
-      &:before
-        content: " "
-        display: inline-block
-        width: 1em
-        height: 1em
-        margin-right: 1em
-        background-color: $color-secondary
+      display: inline-block
     p
-      padding-left: 18px * 2
+      padding-left: $hoverpanel-title-size * 2
       font-size: small
       margin: 0 0 0.5rem 0
