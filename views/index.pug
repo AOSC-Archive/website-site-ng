@@ -1,5 +1,8 @@
 extend templates/master
 
+include templates/flow-include
+include templates/lightbox-include
+
 block head-custom
   +meta-title("AOSC Portal")
   +meta-description("Anthon Open Source Community")
@@ -27,7 +30,6 @@ block banner-floating
         Most good programmers do programming not because they expect to get paid
         or get adulation by the public, but because it is fun to program. -- Linus Torvalds
 
-include templates/flow-include
 block content
   .afe-banner-tail.hidden-sm.hidden-xs
     .container: .row: .col-md-12
@@ -43,7 +45,7 @@ block content
     .col-md-8
       h1.afe-small-captions LATEST NEWS
       +flow(params.items, 5)
-    .col-md-4
+    .col-md-4: #side-panel.affix-top
       h1.afe-small-captions PROJECTS OVERVIEW
       ul.afe-hoverpanel
         each project in params.projects
@@ -59,8 +61,6 @@ block content
               h1=service.srvtype
             p=service.description
 
-
-include templates/lightbox-include
 append stylesheet
   +lightbox-css()
 append javascript

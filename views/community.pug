@@ -1,5 +1,9 @@
 extend templates/master
 
+include templates/flow-include
+include templates/pagination-include
+include templates/lightbox-include
+
 block head-custom
   +meta-title("Community")
   +meta-description("Anthon Open Source Community")
@@ -21,8 +25,6 @@ block banner
         talk about the past and the coming year, and having fun hacking,
         or... not hacking.
 
-include templates/flow-include
-include templates/pagination-include
 block content
   #wrapper.row
     .col-md-8
@@ -39,7 +41,6 @@ block content
               img.afe-cover(src=val.imgThumb)
         // TODO: Make a gallery page
 
-include templates/lightbox-include
 append stylesheet
   +lightbox-css()
 append javascript
