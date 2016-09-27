@@ -53,6 +53,7 @@ generalDistros:
               - caption: Download tarball (20160713)
                 url: /os-amd64/xfce/aosc-os_xfce_20160713_dpkg.tar.xz
     - name: Base
+      previewDir: /base
       downloadTree:
         nodeName: Architecture
         cases:
@@ -104,6 +105,7 @@ generalDistros:
                   - caption: Download kernel image
                     url: /os-mipsel/malta/vmlinux-3.16.0-4-5kc-malta
     - name: BuildKit
+      previewDir: /buildkit
       downloadTree:
         nodeName: Architecture
         cases:
