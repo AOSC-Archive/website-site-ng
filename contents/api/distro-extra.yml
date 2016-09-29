@@ -53,6 +53,7 @@ generalDistros:
               - caption: Download tarball (20160713)
                 url: /os-amd64/xfce/aosc-os_xfce_20160713_dpkg.tar.xz
     - name: Base
+      previewDir: /base
       downloadTree:
         nodeName: Architecture
         cases:
@@ -61,44 +62,39 @@ generalDistros:
             list:
               - caption: Download Live CD Image (coming soon)
                 available: false
-              - caption: Download tarball (20160713)
-                url: /os-amd64/base/aosc-os_base_20160713_dpkg.tar.xz
+              - caption: Download tarball (20160926)
+                url: /os-amd64/base/aosc-os_base_20160926.tar.xz
           - caseName: ARMv7
             nodeName: Device
             cases:
               - caseName: Generic
                 nodeName: ~
                 list:
-                  - caption: Download tarball (20160911)
-                    url: /os-armel/generic/aosc-os_base_armel_20160911.tar.xz
+                  - caption: Download tarball (20160926)
+                    url: /os-armel/generic/aosc-os_base_20160926.tar.xz
               - caseName: Raspberry Pi 2/3
                 nodeName: ~
                 list:
-                  - caption: Download tarball (20160911)
-                    url: /os-armel/rpi/aosc-os_base_rpi_20160911.tar.xz
+                  - caption: Download tarball (20160926)
+                    url: /os-armel/rpi/aosc-os_base_rpi_20160926.tar.xz
                   - caption: Download image (coming soon)
                     available: false
-          - caseName: ARMv8 (Experimental)
+          - caseName: ARMv8
             nodeName: Device
             cases:
               - caseName: Generic
                 nodeName: ~
                 list:
-                  - caption: Download tarball (20160505)
-                    url: /os-arm64/test_tarball/aosc-os-arm64-test_20160505.tar.xz
-              - caseName: Jetson TX1
-                nodeName: ~
-                list:
-                  - caption: Download tarball (coming soon)
-                    available: false
-          - caseName: MIPS
+                  - caption: Download tarball (20160926)
+                    url: /os-arm64/generic/aosc-os_base_20160926.tar.xz
+          - caseName: MIPS32
             nodeName: Device
             cases:
               - caseName: Generic
                 nodeName: ~
                 list:
-                  - caption: Download tarball (20160607)
-                    url: /os-mipsel/base/aosc-os_base_mipsel_20160607.tar.xz
+                  - caption: Download tarball (20160926)
+                    url: /os-mipsel/base/aosc-os_base_20160926.tar.xz
               - caseName: Malta
                 nodeName: ~
                 list:
@@ -109,29 +105,30 @@ generalDistros:
                   - caption: Download kernel image
                     url: /os-mipsel/malta/vmlinux-3.16.0-4-5kc-malta
     - name: BuildKit
+      previewDir: /buildkit
       downloadTree:
         nodeName: Architecture
         cases:
           - caseName: AMD64
             nodeName: ~
             list:
-              - caption: Download tarball (20160901)
-                url: /os-amd64/buildkit/aosc-os-buildkit_20160901.tar.xz
+              - caption: Download tarball (20160926)
+                url: /os-amd64/buildkit/aosc-os-buildkit_20160926.tar.xz
           - caseName: ARMv7
             nodeName: ~
             list:
-              - caption: Download tarball (20160911)
-                url: /os-armel/buildkit/aosc-os-buildkit_armel_20160911.tar.xz
-          - caseName: ARMv8 (Experimental)
+              - caption: Download tarball (20160926)
+                url: /os-armel/buildkit/aosc-os-buildkit_armel_20160926.tar.xz
+          - caseName: ARMv8
             nodeName: ~
             list:
-              - caption: Download tarball (coming soon)
-                available: false
-          - caseName: MIPS
+              - caption: Download tarball (20160926)
+                url: /os-arm64/buildkit/aosc-os-buildkit_arm64_20160926.tar.xz
+          - caseName: MIPS32
             nodeName: ~
             list:
-              - caption: Download tarball (20160607)
-                url: /os-mipsel/buildkit/aosc-os-buildkit_mipsel_20160607.tar.xz
+              - caption: Download tarball (20160926)
+                url: /os-mipsel/buildkit/aosc-os-buildkit_mipsel_20160926.tar.xz
 
 dockers:
 
