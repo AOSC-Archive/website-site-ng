@@ -1,7 +1,7 @@
 extend ../news
 
 block head-custom
-  +meta-title("News Flow")
+  +meta-title("Post, Modify or Remove News")
   +meta-description("Anthon Open Source Community")
 
 append stylesheet
@@ -17,19 +17,23 @@ block content
       h2.afe-news-post-title EDITOR
       form(method="post", action="#")
         p: input(name="title", type="text", placeholder="(Leave here empty to delete news) Title", value=params.title)
-        p: input(name="type", type="text", placeholder="Type: news, bug, etc.", required, value=params.type)
-        p: textarea(name="content", required)=params.content
+        p: input(name="type", type="text", placeholder="(Required except fetching) Type: news, bug, etc.", value=params.type)
+        p: textarea(name="content")=params.content
         p: input(name="imgOrig", type="text", placeholder="(Optional) URL of Image", value=params.imgOrig)
         p: input(name="imgThumb", type="text", placeholder="(Required if the former is not empty) Thumbnail", value=params.imgThumb)
         p: input(name="timestamp", type="text", placeholder="(Unique, Key) Timestamp", required, value=params.timestamp)
         p
-          input(type="radio", name="action", value="preview", checked="checked")
-          span.afe-radio-caption Preview
+          input#radio-preview(type="radio", name="action", value="preview", checked="checked")
+          label.afe-radio-caption(for="radio-preview") Preview
+
           if params.previewed
-            input(type="radio", name="action", value="post")
+            input#radio-post(type="radio", name="action", value="post")
           else
             input(type="radio", name="action", value="post", disabled)
-          span.afe-radio-caption Post (preview first)
+          label.afe-radio-caption(for="radio-post") Post (preview first)
+
+          input#radio-fetch(type="radio", name="action", value="fetch")
+          label.afe-radio-caption(for="radio-fetch") Fetch
           p: input(type="submit", value="Submit")
 
 include ../templates/lightbox-include
