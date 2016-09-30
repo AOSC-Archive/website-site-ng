@@ -1,4 +1,10 @@
 -
+  srvtype: Google+
+  link: https://plus.google.com/u/2/106669966380206498641
+  description:
+    - >
+      A portal that syncs the newest news and happenings in and around AOSC.
+-
   srvtype: Public Clipboard
   link: https://pastebin.aosc.io
   description:
