@@ -110,8 +110,10 @@ router.all('/news-post' , requirePermission((req, res) => {
       'timestamp' : req.body.timestamp,
       'slug' : newsdb.slug(req.body.title),
     }, () => res.redirect('/'));
-  } else if(req.query.timestamp) {
-    newsdb.get(req.query.timestamp, true, result => res.render('admin/news-post', {'params' : result}))
+  } else if(req.body.action == 'fetch') {
+    newsdb.get(req.body.timestamp, true, result =>
+      res.render('admin/news-post', {'params' : result})
+    );
   } else {
     const mdText = fs.readFileSync(CONTENTS_DIR + '/news-example.md', 'utf8');
     const news = {
