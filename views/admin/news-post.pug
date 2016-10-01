@@ -23,22 +23,25 @@ block content
         p: input(name="imgThumb", type="text", placeholder="(Required if the former is not empty) Thumbnail", value=params.imgThumb)
         p: input(name="timestamp", type="text", placeholder="(Unique, Key) Timestamp", required, value=params.timestamp)
         p
+          input#radio-fetch(type="radio", name="action", value="fetch")
+          label.afe-radio-caption(for="radio-fetch") Fetch
+
           input#radio-preview(type="radio", name="action", value="preview", checked="checked")
           label.afe-radio-caption(for="radio-preview") Preview
+
+          br
 
           if params.previewed
             input#radio-post(type="radio", name="action", value="post")
           else
-            input(type="radio", name="action", value="post", disabled)
+            input#radio-post(type="radio", name="action", value="post", disabled)
           label.afe-radio-caption(for="radio-post") Post (preview first)
 
-          br
-
-          input#radio-put(type="radio", name="action", value="put")
+          if params.previewed
+            input#radio-put(type="radio", name="action", value="put")
+          else
+            input#radio-put(type="radio", name="action", value="put", disabled)
           label.afe-radio-caption(for="radio-fetch") Put (override)
-
-          input#radio-fetch(type="radio", name="action", value="fetch")
-          label.afe-radio-caption(for="radio-fetch") Fetch
 
         p: input(type="submit", value="Submit")
 
