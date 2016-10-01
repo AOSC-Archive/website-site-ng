@@ -110,6 +110,17 @@ router.all('/news-post' , requirePermission((req, res) => {
       'timestamp' : req.body.timestamp,
       'slug' : newsdb.slug(req.body.title),
     }, () => res.redirect('/'));
+  } else if(req.body.action == 'put') {
+    log.debug('redis: put news ' + req.body.title);
+    newsdb.put({
+      'title' : req.body.title,
+      'type' : req.body.type,
+      'imgThumb' : req.body.imgThumb,
+      'imgOrig' : req.body.imgOrig,
+      'content' : req.body.content,
+      'timestamp' : req.body.timestamp,
+      'slug' : newsdb.slug(req.body.title),
+    }, () => res.redirect('/'));
   } else if(req.body.action == 'fetch') {
     newsdb.get(req.body.timestamp, true, result =>
       res.render('admin/news-post', {'params' : result})

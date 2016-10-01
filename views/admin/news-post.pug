@@ -32,9 +32,15 @@ block content
             input(type="radio", name="action", value="post", disabled)
           label.afe-radio-caption(for="radio-post") Post (preview first)
 
+          br
+
+          input#radio-put(type="radio", name="action", value="put")
+          label.afe-radio-caption(for="radio-fetch") Put (override)
+
           input#radio-fetch(type="radio", name="action", value="fetch")
           label.afe-radio-caption(for="radio-fetch") Fetch
-          p: input(type="submit", value="Submit")
+
+        p: input(type="submit", value="Submit")
 
 include ../templates/lightbox-include
 append stylesheet
