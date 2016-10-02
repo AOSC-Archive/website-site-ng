@@ -31,6 +31,10 @@
   homepage: https://yun-idc.com/en/
   gratitude: CDN-based mirror for our repository.
 -
+  sponsor: LZUOSS
+  homepage: https://github.com/lzuoss
+  gratitude: Mirror for our repository.
+-
   sponsor: Fastly CDN
   homepage: https://www.fastly.com/
   gratitude: CDN mirroring host for our overseas repository.
