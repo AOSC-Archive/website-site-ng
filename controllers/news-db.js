@@ -160,10 +160,12 @@ exports.delete = (id, callback) => {
 };
 
 exports.put = (news, callback) => {
-  redisNews.multi()
-    .set('item:' + news.timestamp, JSON.stringify(news))
-    .zadd('items', news.timestamp, news.slug)
-    .exec(callback);
+  exports.delete(news.timestamp, () => {
+    redisNews.multi()
+      .set('item:' + news.timestamp, JSON.stringify(news))
+      .zadd('items', news.timestamp, news.slug)
+      .exec(callback);
+  });
 };
 
 exports.post = (news, callback) => {
