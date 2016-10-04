@@ -4,7 +4,7 @@ $(function() {
     var navHeight, floatBannerTop, floatBannerStatus;
 
     floatBannerStatus = false;
-    $(".afe-floating-banner").hide();
+    $(".afe-floating-banner").css("opacity", "0");
 
     var nav = $("#nav");
     var banner = $(".afe-banner");
@@ -19,14 +19,15 @@ $(function() {
     }); $(window).resize();
 
     $(document).scroll(function() {
-      if(!floatBannerStatus && $(document).scrollTop() + navHeight >  floatBannerTop) {
+      var offset = 10;
+      if(!floatBannerStatus && $(document).scrollTop() + navHeight >  floatBannerTop - offset) {
         floatBannerStatus = true;
-        staticBannerContainer.addClass("invisible");
-        floatingBanner.show().addClass("afe-fixed").css("top", navHeight + "px");
-      }else if(floatBannerStatus && $(document).scrollTop() + navHeight <= floatBannerTop) {
+        //staticBannerContainer.addClass("invisible");
+        floatingBanner.css("opacity", "0.6").addClass("afe-fixed").css("top", navHeight + "px");
+      }else if(floatBannerStatus && $(document).scrollTop() + navHeight <= floatBannerTop -offset) {
         floatBannerStatus = false;
-        staticBannerContainer.removeClass("invisible");
-        floatingBanner.hide().removeClass("afe-fixed").css("top", "auto");
+        //staticBannerContainer.removeClass("invisible");
+        floatingBanner.css("opacity", "0").removeClass("afe-fixed").css("top", "auto");
       }
     });
   }
