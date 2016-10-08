@@ -151,12 +151,15 @@ exports.filters = {
 exports.count = (filter, callback) => exports.enum(1, -1, false, filter, list => callback(list.length));
 
 exports.delete = (id, callback) => {
-  exports.revResolve(id, slug =>
-    redisNews.multi()
-      .del('item:' + id)
-      .zrem('items', slug)
-      .exec(callback)
-  )
+  exports.revResolve(id, slug => {
+    if(!slug)
+      callback(false);
+    else
+      redisNews.multi()
+        .del('item:' + id)
+        .zrem('items', slug)
+        .exec(() => callback(true));
+  })
 };
 
 exports.put = (news, callback) => {
@@ -164,7 +167,7 @@ exports.put = (news, callback) => {
     redisNews.multi()
       .set('item:' + news.timestamp, JSON.stringify(news))
       .zadd('items', news.timestamp, news.slug)
-      .exec(callback);
+      .exec(() => callback(true));
   });
 };
 
@@ -195,7 +198,12 @@ exports.resolve = (slug, callback) => {
 };
 
 exports.revResolve = (id, callback) => {
-  exports.get(id, false, content => callback(content.slug));
+  exports.get(id, false, content => {
+    if(!content)
+      callback(null);
+    else
+      callback(content.slug);
+  });
 };
 
 exports.has = (slug, callback) => {
