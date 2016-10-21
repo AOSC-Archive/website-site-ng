@@ -17,8 +17,8 @@ generalDistros:
             list:
               - caption: Download Live CD Image (coming soon)
                 available: false
-              - caption: Download tarball (20160713)
-                url: /os-amd64/kde/aosc-os_kde_20160713_dpkg.tar.xz
+              - caption: Download tarball (20161021)
+                url: /os-amd64/kde/aosc-os_kde_20161021.tar.xz
     - name: GNOME
       previewDir: /gnome
       downloadTree:
@@ -28,8 +28,8 @@ generalDistros:
             list:
               - caption: Download Live CD Image (coming soon)
                 available: false
-              - caption: Download tarball (20160713)
-                url: /os-amd64/gnome/aosc-os_gnome_20160713_dpkg.tar.xz
+              - caption: Download tarball (20161021)
+                url: /os-amd64/gnome/aosc-os_gnome_20161021.tar.xz
     - name: MATE
       previewDir: /mate
       downloadTree:
@@ -39,8 +39,8 @@ generalDistros:
             list:
               - caption: Download Live CD Image (coming soon)
                 available: false
-              - caption: Download tarball (20160713)
-                url: /os-amd64/mate/aosc-os_mate_20160713_dpkg.tar.xz
+              - caption: Download tarball (20161021)
+                url: /os-amd64/mate/aosc-os_mate_20161021.tar.xz
     - name: XFCE
       previewDir: /xfce
       downloadTree:
@@ -50,20 +50,28 @@ generalDistros:
             list:
               - caption: Download Live CD Image (coming soon)
                 available: false
-              - caption: Download tarball (20160713)
-                url: /os-amd64/xfce/aosc-os_xfce_20160713_dpkg.tar.xz
+              - caption: Download tarball (20161021)
+                url: /os-amd64/xfce/aosc-os_xfce_20161021.tar.xz
     - name: Base
       previewDir: /base
       downloadTree:
         nodeName: Architecture
         cases:
           - caseName: AMD64
-            nodeName: ~
-            list:
-              - caption: Download Live CD Image (coming soon)
-                available: false
-              - caption: Download tarball (20160926)
-                url: /os-amd64/base/aosc-os_base_20160926.tar.xz
+            nodeName: Variants
+            cases:
+              - caseName: Generic
+                nodeName: ~
+                list:
+                  - caption: Download Live CD Image (coming soon)
+                    available: false
+                  - caption: Download tarball (20161021)
+                    url: /os-amd64/base/aosc-os_base_20161021.tar.xz
+              - caseName: No Kernel/Container
+                nodeName: ~
+                list:
+                  - caption: Download tarball (20161021)
+                    url: /os-amd64/container/aosc-os_container_20161021.tar.xz
           - caseName: ARMv7
             nodeName: Device
             cases:
@@ -112,8 +120,8 @@ generalDistros:
           - caseName: AMD64
             nodeName: ~
             list:
-              - caption: Download tarball (20160926)
-                url: /os-amd64/buildkit/aosc-os-buildkit_20160926.tar.xz
+              - caption: Download tarball (20161021)
+                url: /os-amd64/buildkit/aosc-os-buildkit_20161021.tar.xz
           - caseName: ARMv7
             nodeName: ~
             list:
