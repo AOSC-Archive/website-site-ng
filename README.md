@@ -1,4 +1,6 @@
 # website-site-ng
+[![David](https://img.shields.io/david/AOSC-dev/website-site-ng.svg?style=flat)](https://david-dm.org/AOSC-dev/website-site-ng)
+[![Known Vulnerabilities](https://snyk.io/test/github/AOSC-Dev/website-site-ng/badge.svg)](https://snyk.io/test/github/AOSC-Dev/website-site-ng)
 
 This is the Community Portal of AOSC.
 
