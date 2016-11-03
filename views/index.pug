@@ -5,8 +5,8 @@ include templates/lightbox-include
 include templates/affix-include
 
 block head-custom
-  +meta-title("AOSC Portal")
-  +meta-description("Anthon Open Source Community")
+  +meta-title(t("index.title"))
+  +meta-description(t("common.aosc_full_name"))
 
 append stylesheet
   +include-css("/assets/css/flow.css")
@@ -22,14 +22,13 @@ block banner
       h2 &nbsp;
     .col-sm-offset-3.col-sm-6.text-center
       p.
-        Welcome to Anthon Open Source Community! We are a group of free and open technology enthusiasts working hard for improvements.
+        #{t("index.welcome")}
 
 block banner-floating
   .row
     .col-sm-12.text-center
       small.
-        Most good programmers do programming not because they expect to get paid
-        or get adulation by the public, but because it is fun to program. -- Linus Torvalds
+        #{t("index.float_banner")}
 
 block content
   .afe-banner-tail.hidden-sm.hidden-xs
@@ -44,17 +43,17 @@ block content
 
   #wrapper.row
     .col-sm-8
-      h1.afe-small-captions LATEST NEWS
+      h1.afe-small-captions #{t("index.latest_news")}
       +flow(params.items, 5)
     .col-sm-4: #side-panel.affix-top
-      h1.afe-small-captions PROJECTS OVERVIEW
+      h1.afe-small-captions #{t("index.project_overview")}
       ul.afe-hoverpanel
         each project in params.projects
           li
             a(href=`/projects/${project.mininame}`)
               h1=project.fullname
             p=project.description
-      h1.afe-small-captions COMMON SERVICES
+      h1.afe-small-captions #{t("about_page.common_services")}
       ul.afe-hoverpanel
         each service in params.services
           li

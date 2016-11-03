@@ -3,8 +3,8 @@ extend ../templates/master
 include ../templates/affix-include
 
 block head-custom
-  +meta-title(params.project.fullname + " | Projects")
-  +meta-description("Anthon Open Source Community")
+  +meta-title(t("projects_page.template_title", {postProcess: 'sprintf', sprintf: [params.project.fullname]}))
+  +meta-description(t("aosc_full_name"))
 
 append stylesheet
   +include-css("/assets/css/project.css")
@@ -15,7 +15,7 @@ block banner
   .row
     .col-sm-12
       h1
-        a#link-to-projects(href="/projects") PROJECTS
+        a#link-to-projects(href="/projects") #{t("projects")}
         |&nbsp;/&nbsp;
         =params.project.fullname
       h2=params.project.description

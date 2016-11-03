@@ -6,24 +6,21 @@ append stylesheet
   +include-css("/assets/css/index.css")
 
 block head-custom
-  +meta-title("About Us")
-  +meta-description("Anthon Open Source Community")
+  +meta-title(t("about_page.about_us"))
+  +meta-description(t("common.aosc_full_name"))
 
 block banner
   .row
     .col-sm-12
-      h1 ABOUT
-      h2 GET TO KNOW ABOUT US AND THOSE TO THANK FOR
+      h1 #{t("about")}
+      h2 #{t("about_page.credits_h2")}
     .col-sm-6
-      p Believe it or not, AOSC has been around for quite some time now, we do
-        want more people to know about us, and those who we are grateful to.
-        AOSC will never take its shape today without the support from our lovely
-        community and our generous sponsors.
+      p #{t("about_page.col-sm-6")}
 
 block content
   #wrapper.row
     .col-sm-8
-      h1.afe-small-captions.afe-important ABOUT AOSC
+      h1.afe-small-captions.afe-important #{t("about_page.about_aosc")}
       :markdown-it
         ## Early Days
 
@@ -69,14 +66,14 @@ block content
         - Discrimination of any kind against individuals of different political,
         social, and racial standpoints;
     .col-sm-4
-      h1.afe-small-captions SPONSORS
+      h1.afe-small-captions #{t("about_page.sponsors")}
       ul.afe-hoverpanel
         each sponsor in params.about
           li
             a(href=sponsor.homepage)
               h1=sponsor.sponsor
             p=sponsor.gratitude
-      h1.afe-small-captions COMMON SERVICES
+      h1.afe-small-captions #{t("about_page.common_services")}
       ul.afe-hoverpanel
         each service in params.services
           li

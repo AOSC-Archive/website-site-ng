@@ -36,11 +36,11 @@ block body
           block navbar
             // Example for block "navbar"
             li.afe-primary: a(href="/") AOSC
-            li: a(href="/community") COMMUNITY
-            li: a(href="/news") NEWS
-            li: a(href="/projects") PROJECTS
-            li: a(href="/about") ABOUT
-            li.afe-highlight: a(href="/os-download") GET AOSC OS
+            li: a(href="/community") #{t("community")}
+            li: a(href="/news") #{t("news")}
+            li: a(href="/projects") #{t("projects")}
+            li: a(href="/about") #{t("about")}
+            li.afe-highlight: a(href="/os-download") #{t("get_aosc_os")}
 
   //banner
   .afe-banner
@@ -139,8 +139,8 @@ block body
 
   //fixed footer
   footer.afe-footer.navbar-fixed-bottom.text-center
-    span Copyleft 2011–2016, members of the community.
-    span AOSC "Cauldron" Web Team, 2016. Bootstrap.
+    span #{t("copyright")}
+    span #{t("copyright_2")}
     span 粤 ICP 备 14040623 号
 
 

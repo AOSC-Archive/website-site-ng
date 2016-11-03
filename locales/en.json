@@ -1,0 +1,111 @@
+{
+  "common": {
+    "aosc_full_name": "$t(aosc_full_name)"
+  },
+  "index": {
+    "title": "AOSC Portal",
+    "latest_news": "LATEST NEWS",
+    "project_overview": "PROJECTS OVERVIEW",
+    "float_banner": "Most of the good programmers do programming not because they expect to get paid\nor get adulation by the public, but because it is fun to program -- Linus Torvalds",
+    "welcome": "Welcome to Anthon Open Source Community! We are a group of free and open technology enthusiasts working hard for improvements."
+  },
+  "about_page": {
+    "about_us": "About Us",
+    "about_aosc": "About AOSC",
+    "credits_h2": "GET TO KNOW ABOUT US AND THOSE TO THANK FOR",
+    "col-sm-6": "Believe it or not, AOSC has been around for quite some time now, we do\nwant more people to know about us, and those who we are grateful to.\nAOSC will never take its shape today without the support from our lovely\ncommunity and our generous sponsors.",
+    "sponsors": "SPONSORS",
+    "common_services": "COMMON SERVICES"
+  },
+  "admin": {
+    "title": "Authenticate",
+    "prompt_a": "You may connect the server via SSH to accept the following ticket in",
+    "prompt_b": "Then it will be available in about",
+    "prompt_c": "Whenever you want to destroy the ticket immediately, just execute the following command via SSH.",
+    "prompt_redirect": "It will redirect to",
+    "fake_in": "in",
+    "h1": "# Authenticate",
+    "h2": " DID YOU REALLY NAME YOUR SON Robert'); DROP TABLE Students;--? ",
+    "ticket_accepted": "Ticket accepted.",
+    "control_panel": "Control Panel",
+    "index_h2": "Your Majesty.",
+    "news_post_act": "Post, Modify or Remove News",
+    "logout": "Logout Safely",
+    "ttl": "Time To Live",
+    "news_editor": {
+      "editor": "EDITOR",
+      "preview": "PREVIEW",
+      "preview_2": "Preview",
+      "fetch": "Fetch",
+      "action_post": "Post (preview first)",
+      "action_put": "Put (override)",
+      "edit_title": "(Leave here empty to delete news) Title",
+      "edit_type": "(Required except fetching) Type: news, bug, etc.",
+      "edit_img": "(Optional) URL of Image",
+      "edit_tmb_img": "(Required if the former is not empty) Thumbnail",
+      "edit_ts": "(Unique, Key) Timestamp"
+    }
+  },
+  "404": {
+    "title": "Not Found | AOSC Portal",
+    "h1": "Page not found",
+    "easter": {
+      "title": "If you see this, plz tell @Lion",
+      "tag_a": "@Lion is trying to describe himself, although it shouldn't be done in this way.",
+      "tag_b": "Moe @Lion"
+    }
+  },
+  "projects_page": {
+    "subtitle": "Not just another brick in the wall.",
+    "community_projects": "COMMUNITY PROJECTS",
+    "other_projects": "OTHER PROJECTS",
+    "template_title": "%s | $t(Projects)",
+    "desc": "AOSC is not just a community for a Linux distribution, our community\nholds a bucketful of F/OSS goodness developed by us, and maintained\nfor you. Here you will find information regarding using, hacking, or\neven ways to contribute to our community's finest."
+  },
+  "news_page": {
+    "news": "NEWS",
+    "all_news": "ALL NEWS",
+    "news_flow": "News Flow",
+    "subtitle": "Read hard, get it all caught up :-D",
+    "desc": "Things are (actually) going on around the community (surprise!), you may\nfind latest news and happenings in and around the community, and of\ncourse, latest information for you to better enjoy AOSC OS."
+  },
+  "community_page": {
+    "subtitle": "Some latest intelligence about this group of Homo sapiens.",
+    "desc": "Here you will find information about our latest and future community\nactivities. AOSCC (Anthon Open Source Community Conference) for example,\nis our annual get-together where developers and friends of the community\ntalk about the past and the coming year, and having fun hacking,\nor... not hacking.",
+    "recent": "RECENT ACTIVITIES",
+    "photographs": "PHOTOGRAPHS"
+  },
+  "downloads": {
+    "subtitle": "/* I don't know how it works, it just works. */",
+    "for_users": "For users",
+    "for_developers": "For developers",
+    "package_tree": "Package Tree"
+  },
+  "lightbox": {
+    "tLoading": "Loading image #%s..."
+  },
+  "news-view-head": "%s | AOSC News",
+  "download": "Download",
+  "second_plural": "seconds",
+  "second": "second",
+  "minute_plural": "minutes",
+  "minute": "minute",
+  "here": "here",
+  "about": "ABOUT",
+  "core": "Core",
+  "test": "test",
+  "read_more": "Read more...",
+  "community": "COMMUNITY",
+  "news": "NEWS",
+  "projects": "PROJECTS",
+  "Projects": "Projects",
+  "get_aosc_os": "GET AOSC OS",
+  "copyright": "Copyleft 2011–2016, members of the community.",
+  "copyright_2": "AOSC \"Cauldron\" Web Team, 2016. Bootstrap.",
+  "aosc_full_name": "Anthon Open Source Community",
+  "links": "Links",
+  "submit": "Submit",
+  "repository": "Repository",
+  "guide": "Guide",
+  "repository_plural": "Repositories"
+}

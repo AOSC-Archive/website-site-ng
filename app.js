@@ -1,5 +1,9 @@
 const express = require('express');
 const log = require('./controllers/log.js');
+const i18n = require('i18next');
+const i18n_middleware = require('i18next-express-middleware');
+const i18n_fsbackend = require('i18next-node-fs-backend');
+const sprintf = require('i18next-sprintf-postprocessor');
 
 // Express - Create The Instance
   const app = express();
@@ -14,6 +18,29 @@ const log = require('./controllers/log.js');
 // Rendering - Engine
   app.set('view engine', 'pug');
   app.set('views', './views');
+
+// Translation - Handler
+  i18n.use(sprintf).use(i18n_fsbackend).use(i18n_middleware.LanguageDetector)
+    .init({
+    "debug": true,  // TODO: Set to false in production
+    "fallbackLng": "en",
+    "backend": {
+    "loadPath": "locales/{{lng}}.json"  // Languages files in (top)/locales/
+  },
+    "load": "all",
+    "detection":
+    {
+      // order and from where user language should be detected
+      order: ['querystring', 'cookie', 'header'],
+      // keys or params to lookup language from
+      lookupQuerystring: 'lng',
+      lookupCookie: 'i18next'
+    }
+  });
+  app.use(i18n_middleware.handle(i18n, {
+  removeLngFromUrl: false
+}));
+
 
 // Routing - Filters
   app.use(express.static('static'));

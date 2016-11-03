@@ -1,0 +1,109 @@
+{
+  "common": {
+    "aosc_full_name": "$t(aosc_full_name)"
+  },
+  "index":{
+    "title": "AOSC 社区门户",
+    "latest_news": "最新新闻",
+    "project_overview": "项目一览",
+    "float_banner": "很多优秀的程序员编写程序并不是因为他们想得到金钱的回报，也不是为了获得公众的认可，\n而是因为编程是一件很有趣的事情。 -- Linus Torvalds",
+    "welcome": "欢迎访问安同开源社区门户！我们是一群致力于推动自由开源技术进步的爱好者！"
+  },
+  "about_page": {
+    "about_us": "关于我们",
+    "about_aosc": "关于 AOSC",
+    "credits_h2": "认识我们，并认识我们所感激的人",
+    "col-sm-6": "您知道吗，其实 AOSC 存在的时间并不短，我们确实希望人们能够认识我们，并且\n认识我们想要感谢的人。如果没有我们可爱的社区和慷慨的赞助商们，AOSC 将无法发展到今天。",
+    "sponsors": "赞助商",
+    "common_services": "常用服务"
+  },
+  "admin": {
+    "title": "身份验证",
+    "prompt_a": "你需要通过 SSH 连接到服务器并执行下面指令。此操作有时间限制，你还有",
+    "prompt_b": "然后会话将会持续约",
+    "prompt_c": "如果你想立刻销毁令牌，请通过 SSH 执行以下指令",
+    "prompt_redirect": "正在重定向到",
+    "fake_in": "还有",
+    "h1": "# 身份验证",
+    "h2": " 你的儿子真的叫 Robert'); DROP TABLE Students;-- 么? ",
+    "ticket_accepted": "身份已确认",
+    "control_panel": "控制面板",
+    "index_h2": "“陛下，请受小臣一拜”",
+    "news_post_act": "发布、修改、删除新闻",
+    "logout": "安全登出",
+    "ttl": "剩余时间",
+    "editor": {
+      "editor": "编辑器",
+      "preview": "预览",
+      "preview_2": "预览",
+      "fetch": "获取",
+      "action_post": "发表 (先预览)",
+      "action_put": "替换 (覆盖)",
+      "edit_title": "(留空以删除新闻) 标题",
+      "edit_type": "(获取时不需填, 必须) 类别: news, bug, 等",
+      "edit_img": "(可选) 图片的 URL",
+      "edit_tmb_img": "(上面一栏不为空就必须填) 缩略图",
+      "edit_ts": "(唯一, 必须, 数字值) 时间戳"
+    }
+  },
+  "projects_page": {
+    "subtitle": "并不是长城上的另一块砖",
+    "community_projects": "社区项目",
+    "other_projects": "其他项目",
+    "template_title": "%s | $t(projects)",
+    "desc": "AOSC 并不只是一个做 Linux 发行版的社区，我们的社区其实还有一大堆由我们的成员参与\n开发的自由开源的项目。在这里你会找到关于使用、修改、甚至参与这些优质项目的方式"
+  },
+  "404": {
+    "title": "未找到该页 | AOSC 社区门户",
+    "h1": "您访问的网页溜冰去了，去看看别的页面怎么样？",
+    "easter": {
+      "title": "如果你看到这个就告诉狮子",
+      "tag_a": "狮子尝试初步描述自己，尽管这是不对的。",
+      "tag_b": "狮子卖萌中"
+    }
+  },
+  "news_page": {
+    "news": "新闻",
+    "all_news": "所有新闻",
+    "news_flow": "新闻流",
+    "subtitle": "你们啊，不要总想搞个大新闻 :-D",
+    "desc": "在这里你可以看到社区中和社区周围发生的各种大新闻，当然也包括能让你更好领略 AOSC OS 的一些新闻"
+  },
+  "community_page": {
+    "subtitle": "一些关于某群奇异同性生命体的最新情报",
+    "desc": "在这里，你可以找到有关我们最新和未来社区活动的信息。比如 AOSCC ($t(aosc_full_name)年会)——我们的年度聚会。在这个聚会中，社区开发者们和各路友人聚集在一起，\n谈古论今，展望未来，并且进行现场编程…… 或者干点别的",
+    "recent": "近期活动",
+    "photographs": "照片"
+  },
+  "lightbox": {
+    "tLoading": "正在加载图像 #%s..."
+  },
+  "downloads": {
+    "subtitle": "/* 我不知道这玩意怎么就能用了，但是它就是能用了 */",
+    "for_users": "面向用户",
+    "for_developers": "面向开发者",
+    "package_tree": "包管理树"
+  },
+  "news-view-head": "%s | AOSC 新闻",
+  "second": "秒",
+  "minute": "分钟",
+  "here": "这里",
+  "about": "关于",
+  "core": "内核",
+  "download": "下载",
+  "test": "测试",
+  "read_more": "更多…",
+  "community": "社区",
+  "news": "新闻",
+  "Project": "$t(projects)",
+  "projects": "项目",
+  "get_aosc_os": "获取 AOSC OS",
+  "copyright": "版权属左 2011–2016, AOSC 社区全体成员",
+  "copyright_2": "AOSC \"Cauldron\" 网络小组, 2016. Bootstrap.",
+  "submit": "提交",
+  "aosc_full_name": "安同开源社区",
+  "links": "链接",
+  "repository": "仓库",
+  "repository_plural": "$t(repository)",
+  "guide": "指南"
+}

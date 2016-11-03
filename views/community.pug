@@ -5,8 +5,8 @@ include templates/pagination-include
 include templates/lightbox-include
 
 block head-custom
-  +meta-title("Community")
-  +meta-description("Anthon Open Source Community")
+  +meta-title(t("community"))
+  +meta-description(t("aosc_full_name"))
 
 append stylesheet
   +include-css("/assets/css/flow.css")
@@ -15,25 +15,21 @@ append stylesheet
 block banner
   .row
     .col-sm-12
-      h1 COMMUNITY
-      h2 Some latest intelligence about this group of Homo sapiens.
+      h1 #{t("community")}
+      h2 #{t("community_page.subtitle")}
     .col-sm-6
       p.
-        Here you will find information about our latest and future community
-        activities. AOSCC (Anthon Open Source Community Conference) for example,
-        is our annual get-together where developers and friends of the community
-        talk about the past and the coming year, and having fun hacking,
-        or... not hacking.
+        #{t("community_page.desc")}
 
 block content
   #wrapper.row
     .col-sm-8
       .clearfix
-        h1.afe-small-captions RECENT ACTIVITIES
+        h1.afe-small-captions #{t("community_page.recent")}
         +flow(params.items)
         +pagination(params.pages)
     #side-gallery.col-sm-4
-      h1.afe-small-captions PHOTOGRAPHS
+      h1.afe-small-captions #{t("community_page.photographs")}
       ul.popup-gallery
         each val in params.imgs
           li
