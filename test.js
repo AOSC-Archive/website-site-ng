@@ -208,9 +208,31 @@ describe('Admin Page', function() {
                         .expect(302, done);
                 });
                 // Test 3-2-4.2: If news could be deleted and not display on the page
-                it('should not be able to see the news again', function(done) {
+                it('should not be able to access the deleted news page', function(done) {
                     request(url).get('/news/aosc-news-mocha-post-test-' + test_news_ext.toLowerCase())
                         .expect(404, done);
+                });
+                // Test 3-2-4.3: If news is no longer on the news board
+                it('should not be able to be seen on news page', function(done) {
+                    request(url).get('/news').end(function(err, res) {
+                        if (err) {
+                            throw err;
+                        }
+                        res.status.should.be.equal(200, 'This may caused by the same reason of one the above tests');
+                        res.text.should.not.match(new RegExp(test_news_ext), 'The deleted news still on the news page!');
+                        done();
+                    });
+                });
+                // Test 3-2-4.4: If news is no longer on the index
+                it('should not be able to be seen on index page', function(done) {
+                    request(url).get('/').end(function(err, res) {
+                        if (err) {
+                            throw err;
+                        }
+                        res.status.should.be.equal(200, 'This may caused by the same reason of one the above tests');
+                        res.text.should.not.match(new RegExp(test_news_ext), 'The deleted news still on the index page!');
+                        done();
+                    });
                 });
             });
         });

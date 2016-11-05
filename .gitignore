@@ -27,6 +27,7 @@ Thumbs.db
 *.zip
 
 .*
+!.travis*
 .*/
 
 !DO-NOT-DELETE
