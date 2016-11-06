@@ -1,8 +1,8 @@
 extend ../news
 
 block head-custom
-  +meta-title("Post, Modify or Remove News")
-  +meta-description("Anthon Open Source Community")
+  +meta-title(t("admin.news_post_act"))
+  +meta-description(t("aosc_full_name"))
 
 append stylesheet
   +include-css("/assets/css/admin-news-post.css")
@@ -11,23 +11,23 @@ include ../templates/flow-include
 block content
   #wrapper.row
     .col-sm-8
-      h2.afe-news-post-title PREVIEW
+      h2.afe-news-post-title #{t("admin.editor.preview")}
       +flow([params])
     .col-sm-4
-      h2.afe-news-post-title EDITOR
+      h2.afe-news-post-title #{t("admin.editor.editor")}
       form(method="post", action="#")
-        p: input(name="title", type="text", placeholder="(Leave here empty to delete news) Title", value=params.title)
-        p: input(name="type", type="text", placeholder="(Required except fetching) Type: news, bug, etc.", value=params.type)
+        p: input(name="title", type="text", placeholder=t("admin.editor.edit_title"), value=params.title)
+        p: input(name="type", type="text", placeholder=t("admin.editor.edit_type"), value=params.type)
         p: textarea(name="content")=params.content
-        p: input(name="imgOrig", type="text", placeholder="(Optional) URL of Image", value=params.imgOrig)
-        p: input(name="imgThumb", type="text", placeholder="(Required if the former is not empty) Thumbnail", value=params.imgThumb)
-        p: input(name="timestamp", type="text", placeholder="(Unique, Key) Timestamp", required, value=params.timestamp)
+        p: input(name="imgOrig", type="text", placeholder=t("admin.editor.edit_img"), value=params.imgOrig)
+        p: input(name="imgThumb", type="text", placeholder=t("admin.editor.edit_tmb_img"), value=params.imgThumb)
+        p: input(name="timestamp", type="text", placeholder=t("admin.editor.edit_ts"), required, value=params.timestamp)
         p
           input#radio-fetch(type="radio", name="action", value="fetch")
-          label.afe-radio-caption(for="radio-fetch") Fetch
+          label.afe-radio-caption(for="radio-fetch") #{t("admin.editor.fetch")}
 
           input#radio-preview(type="radio", name="action", value="preview", checked="checked")
-          label.afe-radio-caption(for="radio-preview") Preview
+          label.afe-radio-caption(for="radio-preview") #{t("admin.editor.preview_2")}
 
           br
 
@@ -35,15 +35,15 @@ block content
             input#radio-post(type="radio", name="action", value="post")
           else
             input#radio-post(type="radio", name="action", value="post", disabled)
-          label.afe-radio-caption(for="radio-post") Post (preview first)
+          label.afe-radio-caption(for="radio-post") #{t("admin.editor.action_post")}
 
           if params.previewed
             input#radio-put(type="radio", name="action", value="put")
           else
             input#radio-put(type="radio", name="action", value="put", disabled)
-          label.afe-radio-caption(for="radio-fetch") Put (override)
+          label.afe-radio-caption(for="radio-fetch") #{t("admin.editor.action_put")}
 
-        p: input(type="submit", value="Submit")
+        p: input(type="submit", value=t("submit"))
 
 include ../templates/lightbox-include
 append stylesheet

@@ -59,11 +59,11 @@ block content
         closest availability at **ABSOLUTELY NO EXTRA COST**.
 
     +project-side-panel
-      h1 Links
+      h1 #{t("links")}
 
-      h2 For users
-      a.btn.btn-primary(href="/os-download") Download AOSC OS
+      h2 #{t("downloads.for_users")}
+      a.btn.btn-primary(href="/os-download") #{t("download")} AOSC OS
 
-      h2 For developers
-      p: a.btn.btn-warning(href="https://github.com/AOSC-Dev/aosc-os-core/") AOSC OS Core
-      p: a.btn.btn-warning(href="https://github.com/AOSC-Dev/aosc-os-abbs/") AOSC OS Package Tree
+      h2 #{t("downloads.for_developers")}
+      p: a.btn.btn-warning(href="https://github.com/AOSC-Dev/aosc-os-core/") AOSC OS #{t("core")}
+      p: a.btn.btn-warning(href="https://github.com/AOSC-Dev/aosc-os-abbs/") AOSC OS #{t("downloads.package_tree")}

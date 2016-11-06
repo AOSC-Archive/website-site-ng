@@ -2,7 +2,7 @@ extend templates/master
 
 block head-custom
   +meta-title("AOSC OS Downloads")
-  +meta-description("Anthon Open Source Community")
+  +meta-description(t("aosc_full_name"))
 
 append stylesheet
   +include-css("/assets/css/os-download.css")
@@ -10,8 +10,8 @@ append stylesheet
 block banner
   .row
     .col-sm-12.text-center
-      h1 GET AOSC OS
-      h2 /* I don't know how it works, it just works. */
+      h1 #{t("get_aosc_os")}
+      h2 #{t("downloads.subtitle")}
 
 block content
   #wrapper.row

@@ -1,27 +1,27 @@
 extend ../templates/master
 
 block head-custom
-  +meta-title("Control Panel")
-  +meta-description("Anthon Open Source Community")
+  +meta-title(t("admin.control_panel"))
+  +meta-description(t("aosc_full_name"))
 
 block banner
   .row
     .col-sm-12
-      h1 # Control Panel
-      h2 Your Majesty.
+      h1 # #{t("admin.control_panel")}
+      h2 #{t("admin.index_h2")}
 
 block content
   #wrapper.row
     .col-sm-8
       ul
-        li: a(href="/admin/news-post") Post, Modify or Remove News
-        li: a(href="/admin/bye") Logout Safely
+        li: a(href="/admin/news-post") #{t("admin.news_post_act")}
+        li: a(href="/admin/bye") #{t("admin.logout")}
     .col-sm-4
       .form-group.clearfix
         .input-group.col-sm-8.pull-left
-          label.input-group-addon Time To Live
+          label.input-group-addon #{t("admin.ttl")}
           input.text-warning(type="text", value=params.expire, disabled)#countDown.form-control
-          label.input-group-addon s
+          label.input-group-addon #{t("second")}
         button#renew.btn.btn-warning.col-sm-3.col-sm-offset-1 +1s
 append javascript
   script.

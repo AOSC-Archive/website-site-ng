@@ -1,34 +1,34 @@
 extend ../templates/master
 
 block head-custom
-  +meta-title("Authenticate")
-  +meta-description("Anthon Open Source Community")
+  +meta-title(t("admin.title"))
+  +meta-description(t("aosc_full_name"))
 
 block banner
   .row.afe-banner-subpage
     .col-sm-12
-      h1 # Authenticate
-      h2 " DID YOU REALLY NAME YOUR SON Robert'); DROP TABLE Students;--? "
+      h1 #{t("admin.h1")}
+      h2 #{t("admin.h2")}
 
 block content
   #wrapper.row
     .col-sm-8.col-sm-offset-2.afe-content
-      p You may connect the server via SSH to accept the following ticket in&nbsp;<strong>
+      p #{t("admin.prompt_a")}&nbsp;<strong>
         span#accept-countdown=params.timeout
-        | &nbsp;second(s)</strong>.
+        | &nbsp;#{t("second")}</strong>
       pre.
         $ accept-ticket #{params.ticket}
-      p Then it will be available in about <strong>#{Math.floor(params.expire/60)} minute(s)</strong>.
-      p Whenever you want to destroy the ticket immediately, just execute the following command via SSH.
+      p #{t("admin.prompt_b")} <strong>#{Math.floor(params.expire/60)} #{t("minute")}</strong>
+      p #{t("admin.prompt_c")}
       pre.
         $ destroy-ticket #{params.ticket}
       div#div-success(style="display: none; margin-top: 40px;")
-        p Ticket accepted.
-        p It will redirect to&nbsp;
-          a(href=params.redirect) here
-          | &nbsp;in&nbsp;
+        p #{t("admin.ticket_accepted")}
+        p #{t("admin.prompt_redirect")}&nbsp;
+          a(href=params.redirect) #{t("here")}
+          | &nbsp;#{t("admin.fake_in")}&nbsp;
           span#redirect-countdown 5
-          | &nbsp;second(s).
+          | &nbsp;#{t("second")}
 
 append javascript
   script.

@@ -5,8 +5,8 @@ include templates/pagination-include
 include templates/lightbox-include
 
 block head-custom
-  +meta-title("News Flow")
-  +meta-description("Anthon Open Source Community")
+  +meta-title(t("news_page.news_flow"))
+  +meta-description(t("aosc_full_name"))
 
 append stylesheet
   +include-css("/assets/css/flow.css")
@@ -14,18 +14,16 @@ append stylesheet
 block banner
   .row
     .col-sm-12
-      h1 NEWS
-      h2 Read hard, get it all caught up :-D
+      h1 #{t("news_page.news")}
+      h2 #{t("news_page.subtitle")}
     .col-sm-6
       p.
-        Things are (actually) going on around the community (surprise!), you may
-        find latest news and happenings in and around the community, and of
-        course, latest information for you to better enjoy AOSC OS.
+        #{t("news_page.desc")}
 
 block content
   #wrapper.row
     .col-sm-8
-      h1.afe-small-captions ALL NEWS
+      h1.afe-small-captions #{t("news_page.all_news")}
       +flow(params.items)
       +pagination(params.pages)
 

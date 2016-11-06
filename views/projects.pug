@@ -1,8 +1,8 @@
 extend templates/master
 
 block head-custom
-  +meta-title("Projects")
-  +meta-description("Anthon Open Source Community")
+  +meta-title(t("Project"))
+  +meta-description(t("aosc_full_name"))
 
 append stylesheet
   +include-css("/assets/css/hoverpanel.css")
@@ -11,19 +11,16 @@ append stylesheet
 block banner
   .row
     .col-sm-12
-      h1 PROJECTS
-      h2 Not just another brick in the wall.
+      h1 #{t("projects")}
+      h2 #{t("projects_page.subtitle")}
     .col-sm-6
       p.
-        AOSC is not just a community for a Linux distribution, our community
-        holds a bucketful of F/OSS goodness developed by us, and maintained
-        for you. Here you will find information regarding using, hacking, or
-        even ways to contribute to our community's finest.
+        #{t("projects_page.desc")}
 
 block content
   #wrapper.row
     .col-sm-8
-      h1.afe-small-captions.afe-important COMMUNITY PROJECTS
+      h1.afe-small-captions.afe-important #{t("projects_page.community_projects")}
       each project in params.projects
         .media
           .media-left
@@ -33,7 +30,7 @@ block content
             p=project.long
             small=project.ps
     .col-sm-4
-      h4.afe-small-captions OTHER PROJECTS
+      h4.afe-small-captions #{t("projects_page.other_projects")}
       ul.afe-hoverpanel
         each project in params.otherProjects
           li

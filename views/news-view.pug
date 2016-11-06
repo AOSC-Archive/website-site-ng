@@ -1,8 +1,8 @@
 extend news
 
 block head-custom
-  +meta-title(`${params.title} | AOSC News`)
-  +meta-description("Anthon Open Source Community")
+  +meta-title(t("news-view-head", {postProcess: 'sprintf', sprintf: [params.title]}))
+  +meta-description(t("aosc_full_name"))
 
 append stylesheet
   +include-css("/assets/css/news-view.css")

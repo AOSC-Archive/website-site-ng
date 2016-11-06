@@ -1,0 +1,395 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"POT-Creation-Date: 2016-11-03T07:58:50.143Z\n"
+"PO-Revision-Date: 2016-11-03T07:58:50.143Z\n"
+"Language: en\n"
+
+#: 404##title
+msgid "Not Found | AOSC Portal"
+msgstr ""
+
+#: 404##h1
+msgid "Page not found"
+msgstr ""
+
+#: 404##easter##title
+msgid "If you see this, plz tell @Lion"
+msgstr ""
+
+#: index##title
+msgid "AOSC Portal"
+msgstr ""
+
+#: index##welcome
+msgid ""
+"Welcome to Anthon Open Source Community! We are a group of free and open "
+"technology enthusiasts working hard for improvements."
+msgstr ""
+
+#: about##col-sm-6
+msgid ""
+"Believe it or not, AOSC has been around for quite some time now, we do\n"
+"want more people to know about us, and those who we are grateful to.\n"
+"AOSC will never take its shape today without the support from our lovely\n"
+"community and our generous sponsors."
+msgstr ""
+
+#: about##sponsors
+msgid "SPONSORS"
+msgstr ""
+
+#: admin##title
+msgid "Authenticate"
+msgstr ""
+
+#: admin##h1
+msgid "# Authenticate"
+msgstr ""
+
+#: admin##h2
+msgid " DID YOU REALLY NAME YOUR SON Robert'); DROP TABLE Students;--? "
+msgstr ""
+
+#: admin##logout
+msgid "Logout Safely"
+msgstr ""
+
+#: admin##ttl
+msgid "Time To Live"
+msgstr ""
+
+#: admin##news##editor
+msgid "EDITOR"
+msgstr ""
+
+#: admin##news##preview
+msgid "PREVIEW"
+msgid_plural "Preview"
+msgstr[0] ""
+
+#: admin##news##fetch
+msgid "Fetch"
+msgstr ""
+
+#: projects##subtitle
+msgid "Not just another brick in the wall."
+msgstr ""
+
+#: projects##desc
+msgid ""
+"AOSC is not just a community for a Linux distribution, our community\n"
+"holds a bucketful of F/OSS goodness developed by us, and maintained\n"
+"for you. Here you will find information regarding using, hacking, or\n"
+"even ways to contribute to our community's finest."
+msgstr ""
+
+#: news##news
+#: news
+msgid "NEWS"
+msgstr ""
+
+#: news##subtitle
+msgid "Read hard, get it all caught up :-D"
+msgstr ""
+
+#: news##desc
+msgid ""
+"Things are (actually) going on around the community (surprise!), you may\n"
+"find latest news and happenings in and around the community, and of\n"
+"course, latest information for you to better enjoy AOSC OS."
+msgstr ""
+
+#: community##subtitle
+msgid "Some latest intelligence about this group of Homo sapiens."
+msgstr ""
+
+#: community##desc
+msgid ""
+"Here you will find information about our latest and future community\n"
+"activities. AOSCC (Anthon Open Source Community Conference) for example,\n"
+"is our annual get-together where developers and friends of the community\n"
+"talk about the past and the coming year, and having fun hacking,\n"
+"or... not hacking."
+msgstr ""
+
+#: community##recent
+msgid "RECENT ACTIVITIES"
+msgstr ""
+
+#: community##photographs
+msgid "PHOTOGRAPHS"
+msgstr ""
+
+#: downloads##subtitle
+msgid "/* I don't know how it works, it just works. */"
+msgstr ""
+
+#: lightbox##tLoading
+msgid "Loading image #%s..."
+msgstr ""
+
+#: news-view-head
+msgid "%s | AOSC News"
+msgstr ""
+
+#: download
+msgid "Download"
+msgstr ""
+
+#: second
+msgid "second"
+msgid_plural "seconds"
+msgstr[0] ""
+
+#: minute
+msgid "minute"
+msgid_plural "minutes"
+msgstr[0] ""
+
+#: here
+msgid "here"
+msgstr ""
+
+#: about
+msgid "ABOUT"
+msgstr ""
+
+#: core
+msgid "Core"
+msgstr ""
+
+#: test
+msgid "test"
+msgstr ""
+
+#: community
+msgid "COMMUNITY"
+msgstr ""
+
+#: projects
+msgid "PROJECTS"
+msgstr ""
+
+#: Projects
+msgid "Projects"
+msgstr ""
+
+#: copyright
+msgid "Copyleft 2011–2016, members of the community."
+msgid_plural "AOSC \"Cauldron\" Web Team, 2016. Bootstrap."
+msgstr[0] ""
+
+#: links
+msgid "Links"
+msgstr ""
+
+#: submit
+msgid "Submit"
+msgstr ""
+
+#: repository
+msgid "Repository"
+msgid_plural "Repositories"
+msgstr[0] ""
+
+#: guide
+msgid "Guide"
+msgstr ""
+
+#: 404##easter##tag
+msgctxt "a"
+msgid ""
+"@Lion is trying to describe himself, although it shouldn't be done in this "
+"way."
+msgstr ""
+
+#: admin##prompt
+msgctxt "a"
+msgid "You may connect the server via SSH to accept the following ticket in"
+msgstr ""
+
+#: 404##easter##tag
+msgctxt "b"
+msgid "Moe @Lion"
+msgstr ""
+
+#: admin##prompt
+msgctxt "b"
+msgid "Then it will be available in about"
+msgstr ""
+
+#: common##aosc_full
+msgctxt "name"
+msgid "$t(aosc_full_name)"
+msgstr ""
+
+#: aosc_full
+msgctxt "name"
+msgid "Anthon Open Source Community"
+msgstr ""
+
+#: index##latest
+msgctxt "news"
+msgid "LATEST NEWS"
+msgstr ""
+
+#: news##all
+msgctxt "news"
+msgid "ALL NEWS"
+msgstr ""
+
+#: index##project
+msgctxt "overview"
+msgid "PROJECTS OVERVIEW"
+msgstr ""
+
+#: index##float
+msgctxt "banner"
+msgid ""
+"Most of the good programmers do programming not because they expect to get "
+"paid\n"
+"or get adulation by the public, but because it is fun to program -- Linus "
+"Torvalds"
+msgstr ""
+
+#: about##about
+msgctxt "us"
+msgid "About Us"
+msgstr ""
+
+#: about##about
+msgctxt "aosc"
+msgid "About AOSC"
+msgstr ""
+
+#: about##credits
+msgctxt "h2"
+msgid "GET TO KNOW ABOUT US AND THOSE TO THANK FOR"
+msgstr ""
+
+#: admin##index
+msgctxt "h2"
+msgid "Your Majesty."
+msgstr ""
+
+#: about##common
+msgctxt "services"
+msgid "COMMON SERVICES"
+msgstr ""
+
+#: admin##prompt
+msgctxt "c"
+msgid ""
+"Whenever you want to destroy the ticket immediately, just execute the "
+"following command via SSH."
+msgstr ""
+
+#: admin##prompt
+msgctxt "redirect"
+msgid "It will redirect to"
+msgstr ""
+
+#: admin##fake
+msgctxt "in"
+msgid "in"
+msgstr ""
+
+#: admin##ticket
+msgctxt "accepted"
+msgid "Ticket accepted."
+msgstr ""
+
+#: admin##control
+msgctxt "panel"
+msgid "Control Panel"
+msgstr ""
+
+#: admin##news_post
+msgctxt "act"
+msgid "Post, Modify or Remove News"
+msgstr ""
+
+#: admin##news##action
+msgctxt "post"
+msgid "Post (preview first)"
+msgstr ""
+
+#: admin##news##action
+msgctxt "put"
+msgid "Put (override)"
+msgstr ""
+
+#: admin##news##edit
+msgctxt "title"
+msgid "(Leave here empty to delete news) Title"
+msgstr ""
+
+#: projects##template
+msgctxt "title"
+msgid "%s | $t(Projects)"
+msgstr ""
+
+#: admin##news##edit
+msgctxt "type"
+msgid "(Required except fetching) Type: news, bug, etc."
+msgstr ""
+
+#: admin##news##edit
+msgctxt "img"
+msgid "(Optional) URL of Image"
+msgstr ""
+
+#: admin##news##edit_tmb
+msgctxt "img"
+msgid "(Required if the former is not empty) Thumbnail"
+msgstr ""
+
+#: admin##news##edit
+msgctxt "ts"
+msgid "(Unique, Key) Timestamp"
+msgstr ""
+
+#: projects##community
+msgctxt "projects"
+msgid "COMMUNITY PROJECTS"
+msgstr ""
+
+#: projects##other
+msgctxt "projects"
+msgid "OTHER PROJECTS"
+msgstr ""
+
+#: news##news
+msgctxt "flow"
+msgid "News Flow"
+msgstr ""
+
+#: downloads##for
+msgctxt "users"
+msgid "For users"
+msgstr ""
+
+#: downloads##for
+msgctxt "developers"
+msgid "For developers"
+msgstr ""
+
+#: downloads##package
+msgctxt "tree"
+msgid "Package Tree"
+msgstr ""
+
+#: read
+msgctxt "more"
+msgid "Read more..."
+msgstr ""
+
+#: get_aosc
+msgctxt "os"
+msgid "GET AOSC OS"
+msgstr ""
