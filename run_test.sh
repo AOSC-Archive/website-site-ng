@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 redis_pid=$(pidof redis-server)
 if [[ ${redis_pid} -gt 0 ]]; then
   echo "Using existing redis server (PID: ${redis_pid})"
@@ -8,4 +8,4 @@ else
   echo "Redis Server PID: $!"
 fi
 
-mocha
+mocha "$@"
