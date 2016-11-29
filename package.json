@@ -16,7 +16,7 @@
     "pug": "^2.0.0-beta6",
     "redis": "^2.6.2",
     "slug": "^0.9.1",
-    "stylus": "^0.51.1"
+    "stylus": "^0.54.3"
   },
   "devDependencies": {},
   "scripts": {
