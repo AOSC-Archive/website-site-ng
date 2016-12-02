@@ -15,4 +15,4 @@ mixin flow(list, limit)
         li(class="afe-tag-"+val.type): h1.afe-title.afe-oneline: a(href="/news#"+val.slug)=val.title
     if limit!=undefined
       h1(style="font-size: 18px; margin-bottom: 50px;")
-        a(href="/news") Read more...
+        a(href="/news") #{t("read_more")}
