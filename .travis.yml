@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+   - "6"
+   - "6.1"
+   - "node"
+addons:
+  apt:
+    packages:
+      - redis
+before_script:
+  - npm update
+  - npm install -g mocha
+script:
+  - npm run test
