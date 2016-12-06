@@ -162,7 +162,7 @@ generalDistros:
                         nodeName: ~
                         list:
                           - caption: Download image (20161206)
-                            url: /os-armel/sunxi/rawimage/sun8i-h3-nanopi-neo_sunxi-base_2016-12-06.img.xz
+                            url: /os-armel/sunxi/rawimage/sun8i-h3-nanopi-neo_sunxi-base_2016-12-06-B.img.xz
                   - caseName: LeMaker
                     nodeName: Device
                     cases:
