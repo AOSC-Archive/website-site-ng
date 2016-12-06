@@ -15,10 +15,8 @@ generalDistros:
         cases:
           - caseName: AMD64
             list:
-              - caption: Download Live CD Image (coming soon)
-                available: false
-              - caption: Download tarball (20161021)
-                url: /os-amd64/kde/aosc-os_kde_20161021.tar.xz
+              - caption: Download tarball (20161204)
+                url: /os-amd64/kde/aosc-os_kde_20161204.tar.xz
     - name: GNOME
       previewDir: /gnome
       downloadTree:
@@ -26,21 +24,16 @@ generalDistros:
         cases:
           - caseName: AMD64
             list:
-              - caption: Download Live CD Image (coming soon)
-                available: false
-              - caption: Download tarball (20161021)
-                url: /os-amd64/gnome/aosc-os_gnome_20161021.tar.xz
-    - name: MATE
-      previewDir: /mate
-      downloadTree:
-        nodeName: Architecture
-        cases:
-          - caseName: AMD64
-            list:
-              - caption: Download Live CD Image (coming soon)
-                available: false
-              - caption: Download tarball (20161021)
-                url: /os-amd64/mate/aosc-os_mate_20161021.tar.xz
+              - caption: Download tarball (20161204)
+                url: /os-amd64/gnome/aosc-os_gnome_20161204.tar.xz
+          - caseName: ARMv7
+            nodeName: SoC
+            cases:
+              - caseName: Generic
+                nodeName: ~
+                list:
+                  - caption: Download tarball (20161205)
+                    url: /os-armel/gnome/aosc-os_gnome_20161205.tar.xz
     - name: XFCE
       previewDir: /xfce
       downloadTree:
@@ -48,38 +41,81 @@ generalDistros:
         cases:
           - caseName: AMD64
             list:
-              - caption: Download Live CD Image (coming soon)
-                available: false
-              - caption: Download tarball (20161021)
-                url: /os-amd64/xfce/aosc-os_xfce_20161021.tar.xz
-    - name: Base
-      previewDir: /base
-      downloadTree:
-        nodeName: Architecture
-        cases:
-          - caseName: AMD64
-            nodeName: Variant
-            cases:
-              - caseName: Generic
-                nodeName: ~
-                list:
-                  - caption: Download Live CD Image (coming soon)
-                    available: false
-                  - caption: Download tarball (20161021)
-                    url: /os-amd64/base/aosc-os_base_20161021.tar.xz
-              - caseName: No Kernel/Container
-                nodeName: ~
-                list:
-                  - caption: Download tarball (20161021)
-                    url: /os-amd64/container/aosc-os_container_20161021.tar.xz
+              - caption: Download tarball (20161204)
+                url: /os-amd64/xfce/aosc-os_xfce_20161204.tar.xz
           - caseName: ARMv7
             nodeName: SoC
             cases:
               - caseName: Generic
                 nodeName: ~
                 list:
-                  - caption: Download tarball (20160926)
-                    url: /os-armel/generic/aosc-os_base_20160926.tar.xz
+                  - caption: Download tarball (20161205)
+                    url: /os-armel/xfce/aosc-os_xfce_20161205.tar.xz
+    - name: MATE
+      previewDir: /mate
+      downloadTree:
+        nodeName: Architecture
+        cases:
+          - caseName: AMD64
+            list:
+              - caption: Download tarball (20161204)
+                url: /os-amd64/mate/aosc-os_mate_20161204.tar.xz
+          - caseName: ARMv7
+            nodeName: SoC
+            cases:
+              - caseName: Generic
+                nodeName: ~
+                list:
+                  - caption: Download tarball (20161206)
+                    url: /os-armel/mate/aosc-os_mate_20161206.tar.xz
+    - name: Cinnamon
+      previewDir: /cinnamon
+      downloadTree:
+        nodeName: Architecture
+        cases:
+          - caseName: AMD64
+            list:
+              - caption: Download tarball (20161204)
+                url: /os-amd64/xfce/aosc-os_xfce_20161204.tar.xz
+    - name: LXDE
+      previewDir: /lxde
+      downloadTree:
+        nodeName: Architecture
+        cases:
+          - caseName: AMD64
+            list:
+              - caption: Download tarball (20161204)
+                url: /os-amd64/xfce/aosc-os_xfce_20161204.tar.xz
+          - caseName: ARMv7
+            nodeName: SoC
+            cases:
+              - caseName: Generic
+                nodeName: ~
+                list:
+                  - caption: Download tarball (20161206)
+                    url: /os-armel/lxde/aosc-os_lxde_20161206.tar.xz
+    - name: Base
+      previewDir: /base
+      downloadTree:
+        nodeName: Architecture
+        cases:
+          - caseName: AMD64
+            nodeName: ~
+            list:
+              - caption: Download tarball (20161202)
+                url: /os-amd64/base/aosc-os_base_20161202.tar.xz
+              - caption: Download kernel-less tarball (20161202)
+                url: /os-amd64/container/aosc-os_container_20161202.tar.xz
+          - caseName: ARMv7
+            nodeName: SoC
+            cases:
+              - caseName: Generic
+                nodeName: ~
+                list:
+                  - caption: Download tarball (20161204)
+                    url: /os-armel/generic/aosc-os_base_20161204.tar.xz
+                  - caption: Download kernel-less tarball (20161204)
+                    url: /os-armel/container/aosc-os_container_20161204.tar.xz
               - caseName: Broadcom
                 nodeName: Device
                 cases:
@@ -294,8 +330,8 @@ generalDistros:
               - caseName: Generic
                 nodeName: ~
                 list:
-                  - caption: Download tarball (20160926)
-                    url: /os-mipsel/base/aosc-os_base_20160926.tar.xz
+                  - caption: Download kernel-less tarball (20161206)
+                    url: /os-mipsel/base/aosc-os_base_20161206.tar.xz
               - caseName: Malta
                 nodeName: ~
                 list:
@@ -305,6 +341,20 @@ generalDistros:
                     url: /os-mipsel/malta/aosc-os_base_malta_20160629.qcow2.xz
                   - caption: Download kernel image
                     url: /os-mipsel/malta/vmlinux-3.16.0-4-5kc-malta
+          - caseName: PowerPC 32-bit (BE)
+            nodeName: ~
+            list:
+              - caption: Download tarball (20161205)
+                url: /os-powerpc/base/aosc-os_base_20161205.tar.xz
+              - caption: Download kernel-less tarball (20161205)
+                url: /os-powerpc/container/aosc-os_container_20161205.tar.xz
+          - caseName: PowerPC 64-bit (BE)
+            nodeName: ~
+            list:
+              - caption: Download tarball (20161205)
+                url: /os-ppc64/base/aosc-os_base_20161205.tar.xz
+              - caption: Download kernel-less tarball (20161205)
+                url: /os-ppc64/container/aosc-os_container_20161205.tar.xz
     - name: BuildKit
       previewDir: /buildkit
       downloadTree:
@@ -313,13 +363,13 @@ generalDistros:
           - caseName: AMD64
             nodeName: ~
             list:
-              - caption: Download tarball (20161021)
-                url: /os-amd64/buildkit/aosc-os-buildkit_20161021.tar.xz
+              - caption: Download tarball (20161202)
+                url: /os-amd64/buildkit/aosc-os-buildkit_20161202.tar.xz
           - caseName: ARMv7
             nodeName: ~
             list:
-              - caption: Download tarball (20160926)
-                url: /os-armel/buildkit/aosc-os-buildkit_armel_20160926.tar.xz
+              - caption: Download tarball (20161204)
+                url: /os-armel/buildkit/aosc-os-buildkit_armel_20161204.tar.xz
           - caseName: ARMv8
             nodeName: ~
             list:
@@ -328,9 +378,18 @@ generalDistros:
           - caseName: MIPS32
             nodeName: ~
             list:
-              - caption: Download tarball (20160926)
-                url: /os-mipsel/buildkit/aosc-os-buildkit_mipsel_20160926.tar.xz
-
+              - caption: Download tarball (20161206)
+                url: /os-mipsel/buildkit/aosc-os-buildkit_mipsel_20161206.tar.xz
+          - caseName: PowerPC 32-bit (BE)
+            nodeName: ~
+            list:
+              - caption: Download tarball (20161205)
+                url: /os-powerpc/buildkit/aosc-os-buildkit_20161015.tar.xz
+          - caseName: PowerPC 64-bit (BE)
+            nodeName: ~
+            list:
+              - caption: Download tarball (20161205)
+                url: /os-ppc64/buildkit/aosc-os-buildkit_ppc64_20161205.tar.xz
 dockers:
 
 buildkits:
