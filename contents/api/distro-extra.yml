@@ -169,8 +169,8 @@ generalDistros:
                   - caseName: Raspberry Pi 2/3
                     nodeName: ~
                     list:
-                      - caption: Download image (20161207)
-                        url: /os-armel/rpi/bcm_rpi_2016-12-07.img.xz
+                      - caption: Download image (20161207A)
+                        url: /os-armel/rpi/bcm_rpi_2016-12-07-A.img.xz
               - caseName: Allwinner
                 nodeName: Manufacturer
                 cases:
