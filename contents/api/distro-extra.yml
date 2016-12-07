@@ -122,10 +122,8 @@ generalDistros:
                   - caseName: Raspberry Pi 2/3
                     nodeName: ~
                     list:
-                      - caption: Download tarball (20160926)
-                        url: /os-armel/rpi/aosc-os_base_rpi_20160926.tar.xz
-                      - caption: Download image (coming soon)
-                        available: false
+                      - caption: Download image (20161207)
+                        available: /os-armel/rpi/bcm_rpi_2016-12-07.img.xz
               - caseName: Allwinner
                 nodeName: Manufacturer
                 cases:
