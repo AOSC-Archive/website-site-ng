@@ -34,6 +34,14 @@ generalDistros:
                 list:
                   - caption: Download tarball (20161205)
                     url: /os-armel/gnome/aosc-os_gnome_20161205.tar.xz
+          - caseName: ARMv8
+            nodeName: SoC
+            cases:
+              - caseName: Generic
+                nodeName: ~
+                list:
+                  - caption: Download tarball (20161206)
+                    url: /os-arm64/gnome/aosc-os_gnome_20161206.tar.xz
     - name: XFCE
       previewDir: /xfce
       downloadTree:
@@ -51,6 +59,19 @@ generalDistros:
                 list:
                   - caption: Download tarball (20161205)
                     url: /os-armel/xfce/aosc-os_xfce_20161205.tar.xz
+          - caseName: ARMv8
+            nodeName: SoC
+            cases:
+              - caseName: Generic
+                nodeName: ~
+                list:
+                  - caption: Download tarball (20161206)
+                    url: /os-arm64/xfce/aosc-os_xfce_20161206.tar.xz
+          - caseName: PowerPC 64-bit (BE)
+            nodeName: ~
+            list:
+              - caption: Download tarball (20161206)
+                url: /os-ppc64/xfce/aosc-os_xfce_20161206.tar.xz
     - name: MATE
       previewDir: /mate
       downloadTree:
@@ -68,6 +89,19 @@ generalDistros:
                 list:
                   - caption: Download tarball (20161206)
                     url: /os-armel/mate/aosc-os_mate_20161206.tar.xz
+          - caseName: ARMv8
+            nodeName: SoC
+            cases:
+              - caseName: Generic
+                nodeName: ~
+                list:
+                  - caption: Download tarball (20161206)
+                    url: /os-arm64/mate/aosc-os_mate_20161206.tar.xz
+          - caseName: PowerPC 64-bit (BE)
+            nodeName: ~
+            list:
+              - caption: Download tarball (20161206)
+                url: /os-ppc64/mate/aosc-os_mate_20161206.tar.xz
     - name: Cinnamon
       previewDir: /cinnamon
       downloadTree:
@@ -94,6 +128,19 @@ generalDistros:
                 list:
                   - caption: Download tarball (20161206)
                     url: /os-armel/lxde/aosc-os_lxde_20161206.tar.xz
+          - caseName: ARMv8
+            nodeName: SoC
+            cases:
+              - caseName: Generic
+                nodeName: ~
+                list:
+                  - caption: Download tarball (20161206)
+                    url: /os-arm64/lxde/aosc-os_lxde_20161206.tar.xz
+          - caseName: PowerPC 64-bit (BE)
+            nodeName: ~
+            list:
+              - caption: Download tarball (20161206)
+                url: /os-ppc64/lxde/aosc-os_lxde_20161206.tar.xz
     - name: Base
       previewDir: /base
       downloadTree:
@@ -315,13 +362,13 @@ generalDistros:
                           - caption: Download image (20161206)
                             url: /os-armel/sunxi/rawimage/sun8i-h3-orangepi-plus2e_sunxi-base_2016-12-06.img.xz
           - caseName: ARMv8
-            nodeName: Device
+            nodeName: SoC
             cases:
               - caseName: Generic
                 nodeName: ~
                 list:
-                  - caption: Download tarball (20160926)
-                    url: /os-arm64/generic/aosc-os_base_20160926.tar.xz
+                  - caption: Download tarball (20161206)
+                    url: /os-arm64/generic/aosc-os_base_20161206.tar.xz
           - caseName: MIPS32
             nodeName: Device
             cases:
@@ -371,8 +418,8 @@ generalDistros:
           - caseName: ARMv8
             nodeName: ~
             list:
-              - caption: Download tarball (20160926)
-                url: /os-arm64/buildkit/aosc-os-buildkit_arm64_20160926.tar.xz
+              - caption: Download tarball (20161206)
+                url: /os-arm64/buildkit/aosc-os-buildkit_arm64_20161206.tar.xz
           - caseName: MIPS32
             nodeName: ~
             list:
