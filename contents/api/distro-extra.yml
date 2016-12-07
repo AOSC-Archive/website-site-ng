@@ -123,7 +123,7 @@ generalDistros:
                     nodeName: ~
                     list:
                       - caption: Download image (20161207)
-                        available: /os-armel/rpi/bcm_rpi_2016-12-07.img.xz
+                        url: /os-armel/rpi/bcm_rpi_2016-12-07.img.xz
               - caseName: Allwinner
                 nodeName: Manufacturer
                 cases:
