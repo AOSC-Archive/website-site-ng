@@ -67,6 +67,11 @@ generalDistros:
                 list:
                   - caption: Download tarball (20161206)
                     url: /os-arm64/xfce/aosc-os_xfce_20161206.tar.xz
+          - caseName: PowerPC 32-bit (BE)
+            nodeName: ~
+            list:
+              - caption: Download tarball (20161207)
+                url: /os-powerpc/xfce/aosc-os_xfce_20161207.tar.xz
           - caseName: PowerPC 64-bit (BE)
             nodeName: ~
             list:
@@ -97,6 +102,11 @@ generalDistros:
                 list:
                   - caption: Download tarball (20161206)
                     url: /os-arm64/mate/aosc-os_mate_20161206.tar.xz
+          - caseName: PowerPC 32-bit (BE)
+            nodeName: ~
+            list:
+              - caption: Download tarball (20161207)
+                url: /os-powerpc/mate/aosc-os_mate_20161207.tar.xz
           - caseName: PowerPC 64-bit (BE)
             nodeName: ~
             list:
@@ -110,7 +120,7 @@ generalDistros:
           - caseName: AMD64
             list:
               - caption: Download tarball (20161204)
-                url: /os-amd64/xfce/aosc-os_xfce_20161204.tar.xz
+                url: /os-amd64/cinnamon/aosc-os_cinnamon_20161204.tar.xz
     - name: LXDE
       previewDir: /lxde
       downloadTree:
@@ -136,6 +146,11 @@ generalDistros:
                 list:
                   - caption: Download tarball (20161206)
                     url: /os-arm64/lxde/aosc-os_lxde_20161206.tar.xz
+          - caseName: PowerPC 32-bit (BE)
+            nodeName: ~
+            list:
+              - caption: Download tarball (20161207)
+                url: /os-powerpc/lxde/aosc-os_lxde_20161207.tar.xz
           - caseName: PowerPC 64-bit (BE)
             nodeName: ~
             list:
