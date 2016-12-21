@@ -200,187 +200,192 @@ generalDistros:
                       - caseName: Colorfly E708 Q1
                         nodeName: ~
                         list:
-                          - caption: Download image (20161212)
-                            url: /os-armel/sunxi/rawimage/sun6i-a31s-colorfly-e708-q1_sunxi-base_2016-12-12.img.xz
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun6i-a31s-colorfly-e708-q1_sunxi-base_2016-12-20.img.xz
                   - caseName: CubieTech
                     nodeName: Device
                     cases:
                       - caseName: Cubieboard1
                         nodeName: ~
                         list:
-                          - caption: Download image (20161212)
-                            url: /os-armel/sunxi/rawimage/sun4i-a10-cubieboard_sunxi-base_2016-12-12.img.xz
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun4i-a10-cubieboard_sunxi-base_2016-12-20.img.xz
                       - caseName: Cubieboard2
                         nodeName: ~
                         list:
-                          - caption: Download image (20161212)
-                            url: /os-armel/sunxi/rawimage/sun7i-a20-cubieboard2_sunxi-base_2016-12-12.img.xz
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-cubieboard2_sunxi-base_2016-12-20.img.xz
                       - caseName: Cubietruck
                         nodeName: ~
                         list:
-                          - caption: Download image (20161212)
-                            url: /os-armel/sunxi/rawimage/sun7i-a20-cubietruck_sunxi-base_2016-12-12.img.xz
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-cubietruck_sunxi-base_2016-12-20.img.xz
                   - caseName: FriendlyARM
                     nodeName: Device
                     cases:
                       - caseName: NanoPi NEO
                         nodeName: ~
                         list:
-                          - caption: Download image (20161213)
-                            url: /os-armel/sunxi/rawimage/sun8i-h3-nanopi-neo_sunxi-base_2016-12-13.img.xz
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun8i-h3-nanopi-neo_sunxi-base_2016-12-21.img.xz
                   - caseName: LeMaker
                     nodeName: Device
                     cases:
                       - caseName: Banana Pi
                         nodeName: ~
                         list:
-                          - caption: Download image (20161212)
-                            url: /os-armel/sunxi/rawimage/sun7i-a20-bananapi_sunxi-base_2016-12-12.img.xz
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-bananapi_sunxi-base_2016-12-20.img.xz
                       - caseName: Banana Pro
                         nodeName: ~
                         list:
-                          - caption: Download image (20161212)
-                            url: /os-armel/sunxi/rawimage/sun7i-a20-bananapro_sunxi-base_2016-12-12.img.xz
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-bananapro_sunxi-base_2016-12-20.img.xz
                   - caseName: LinkSprite
                     nodeName: Device
                     cases:
                       - caseName: pcDuino
                         nodeName: ~
                         list:
-                          - caption: Download image (20161212)
-                            url: /os-armel/sunxi/rawimage/sun4i-a10-pcduino_sunxi-base_2016-12-12.img.xz
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun4i-a10-pcduino_sunxi-base_2016-12-20.img.xz
                       - caseName: pcDuino2
                         nodeName: ~
                         list:
-                          - caption: Download image (20161212)
-                            url: /os-armel/sunxi/rawimage/sun4i-a10-pcduino2_sunxi-base_2016-12-12.img.xz
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun4i-a10-pcduino2_sunxi-base_2016-12-20.img.xz
                       - caseName: pcDuino3
                         nodeName: ~
                         list:
-                          - caption: Download image (20161213)
-                            url: /os-armel/sunxi/rawimage/sun7i-a20-pcduino3_sunxi-base_2016-12-13.img.xz
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-pcduino3_sunxi-base_2016-12-21.img.xz
                       - caseName: pcDuino3 Nano
                         nodeName: ~
                         list:
-                          - caption: Download image (20161213)
-                            url: /os-armel/sunxi/rawimage/sun7i-a20-pcduino3-nano_sunxi-base_2016-12-13.img.xz
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-pcduino3-nano_sunxi-base_2016-12-21.img.xz
                   - caseName: Olimex
                     nodeName: Device
                     cases:
                       - caseName: A10-OLinuXino-LIME
                         nodeName: ~
                         list:
-                          - caption: Download image (20161212)
-                            url: /os-armel/sunxi/rawimage/sun4i-a10-olinuxino-lime_sunxi-base_2016-12-12.img.xz
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun4i-a10-olinuxino-lime_sunxi-base_2016-12-20.img.xz
                       - caseName: A10S-OLinuXino-MICRO
                         nodeName: ~
                         list:
-                          - caption: Download image (20161212)
-                            url: /os-armel/sunxi/rawimage/sun5i-a10s-olinuxino-micro_sunxi-base_2016-12-12.img.xz
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun5i-a10s-olinuxino-micro_sunxi-base_2016-12-20.img.xz
                       - caseName: A13-OLinuXino
                         nodeName: ~
                         list:
-                          - caption: Download image (20161212)
-                            url: /os-armel/sunxi/rawimage/sun5i-a13-olinuxino_sunxi-base_2016-12-12.img.xz
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun5i-a13-olinuxino_sunxi-base_2016-12-20.img.xz
                       - caseName: A13-OLinuXino-MICRO
                         nodeName: ~
                         list:
-                          - caption: Download image (20161212)
-                            url: /os-armel/sunxi/rawimage/sun5i-a13-olinuxino-micro_sunxi-base_2016-12-12.img.xz
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun5i-a13-olinuxino-micro_sunxi-base_2016-12-20.img.xz
                       - caseName: A20-SOM-EVB
                         nodeName: ~
                         list:
-                          - caption: Download image (20161212)
-                            url: /os-armel/sunxi/rawimage/sun7i-a20-olimex-som-evb_sunxi-base_2016-12-12.img.xz
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-olimex-som-evb_sunxi-base_2016-12-20.img.xz
                       - caseName: A20-OLinuXino-LIME
                         nodeName: ~
                         list:
-                          - caption: Download image (20161212)
-                            url: /os-armel/sunxi/rawimage/sun7i-a20-olinuxino-lime_sunxi-base_2016-12-12.img.xz
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-olinuxino-lime_sunxi-base_2016-12-21.img.xz
                       - caseName: A20-OLinuXino-LIME2
                         nodeName: ~
                         list:
-                          - caption: Download image (20161212)
-                            url: /os-armel/sunxi/rawimage/sun7i-a20-olinuxino-lime2_sunxi-base_2016-12-12.img.xz
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-olinuxino-lime2_sunxi-base_2016-12-21.img.xz
                       - caseName: A20-OLinuXino-LIME2-eMMC
                         nodeName: ~
                         list:
-                          - caption: Download image (20161212)
-                            url: /os-armel/sunxi/rawimage/sun7i-a20-olinuxino-lime2-emmc_sunxi-base_2016-12-12.img.xz
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-olinuxino-lime2-emmc_sunxi-base_2016-12-21.img.xz
                       - caseName: A20-OLinuXino-MICRO
                         nodeName: ~
                         list:
-                          - caption: Download image (20161212)
-                            url: /os-armel/sunxi/rawimage/sun7i-a20-olinuxino-micro_sunxi-base_2016-12-12.img.xz
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-olinuxino-micro_sunxi-base_2016-12-21.img.xz
                   - caseName: Sinlinx
                     nodeName: Device
                     cases:
                       - caseName: SinA31s
                         nodeName: ~
                         list:
-                          - caption: Download image (20161212)
-                            url: /os-armel/sunxi/rawimage/sun6i-a31s-sina31s_sunxi-base_2016-12-12.img.xz
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun6i-a31s-sina31s_sunxi-base_2016-12-20.img.xz
                       - caseName: SinA33
                         nodeName: ~
                         list:
-                          - caption: Download image (20161213)
-                            url: /os-armel/sunxi/rawimage/sun8i-a33-sinlinx-sina33_sunxi-base_2016-12-13.img.xz
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun8i-a33-sinlinx-sina33_sunxi-base_2016-12-21.img.xz
                   - caseName: Sinovoip
                     nodeName: Device
                     cases:
                       - caseName: Banana Pi M1+
                         nodeName: ~
                         list:
-                          - caption: Download image (20161212)
-                            url: /os-armel/sunxi/rawimage/sun7i-a20-bananapi-m1-plus_sunxi-base_2016-12-12.img.xz
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-bananapi-m1-plus_sunxi-base_2016-12-20.img.xz
                       - caseName: Banana Pi M2
                         nodeName: ~
                         list:
-                          - caption: Download image (20161212)
-                            url: /os-armel/sunxi/rawimage/sun6i-a31s-sinovoip-bpi-m2_sunxi-base_2016-12-12.img.xz
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun6i-a31s-sinovoip-bpi-m2_sunxi-base_2016-12-20.img.xz
                       - caseName: Banana Pi M2+
                         nodeName: ~
                         list:
-                          - caption: Download image (20161213)
-                            url: /os-armel/sunxi/rawimage/sun8i-h3-bananapi-m2-plus_sunxi-base_2016-12-13.img.xz
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun8i-h3-bananapi-m2-plus_sunxi-base_2016-12-21.img.xz
                   - caseName: Xunlong
                     nodeName: Device
                     cases:
                       - caseName: Orange Pi 2
                         nodeName: ~
                         list:
-                          - caption: Download image (20161213)
-                            url: /os-armel/sunxi/rawimage/sun8i-h3-orangepi-2_sunxi-base_2016-12-13.img.xz
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun8i-h3-orangepi-2_sunxi-base_2016-12-21.img.xz
                       - caseName: Orange Pi Lite
                         nodeName: ~
                         list:
-                          - caption: Download image (20161213)
-                            url: /os-armel/sunxi/rawimage/sun8i-h3-orangepi-lite_sunxi-base_2016-12-13.img.xz
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun8i-h3-orangepi-lite_sunxi-base_2016-12-21.img.xz
                       - caseName: Orange Pi One
                         nodeName: ~
                         list:
-                          - caption: Download image (20161213)
-                            url: /os-armel/sunxi/rawimage/suni-h3-orangepi-one_sunxi-base_2016-12-13.img.xz
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun8i-h3-orangepi-one_sunxi-base_2016-12-21.img.xz
                       - caseName: Orange Pi PC
                         nodeName: ~
                         list:
-                          - caption: Download image (20161213)
-                            url: /os-armel/sunxi/rawimage/sun8i-h3-orangepi-pc_sunxi-base_2016-12-13.img.xz
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun8i-h3-orangepi-pc_sunxi-base_2016-12-21.img.xz
                       - caseName: Orange Pi PC Plus
                         nodeName: ~
                         list:
-                          - caption: Download image (20161213)
-                            url: /os-armel/sunxi/rawimage/sun8i-h3-orangepi-pc-plus_sunxi-base_2016-12-13.img.xz
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun8i-h3-orangepi-pc-plus_sunxi-base_2016-12-21.img.xz
                       - caseName: Orange Pi Plus
                         nodeName: ~
                         list:
-                          - caption: Download image (20161213)
-                            url: /os-armel/sunxi/rawimage/sun8i-h3-orangepi-plus_sunxi-base_2016-12-13.img.xz
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun8i-h3-orangepi-plus_sunxi-base_2016-12-21.img.xz
                       - caseName: Orange Pi Plus 2E
                         nodeName: ~
                         list:
-                          - caption: Download image (20161213)
-                            url: /os-armel/sunxi/rawimage/sun8i-h3-orangepi-plus2e_sunxi-base_2016-12-13.img.xz
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun8i-h3-orangepi-plus2e_sunxi-base_2016-12-21.img.xz
+                      - caseName: Orange Pi Zero
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun8i-h2-plus-orangepi-zero_sunxi-base_2016-12-21.img.xz
           - caseName: ARMv8
             nodeName: SoC
             cases:
