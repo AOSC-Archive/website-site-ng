@@ -11,7 +11,7 @@ let md      = require('markdown').markdown;
 let log     = require('./log.js');
 let newsdb  = require('./news-db.js');
 let slug    = require('slug');
-slug.defaults.mode = 'rfc3986';
+slug.defaults.mode = 'pretty';
 
 const CONTENTS_DIR    = 'contents';
 
