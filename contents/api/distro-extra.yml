@@ -15,10 +15,8 @@ generalDistros:
         cases:
           - caseName: AMD64
             list:
-              - caption: Download Live CD Image (coming soon)
-                available: false
-              - caption: Download tarball (20161021)
-                url: /os-amd64/kde/aosc-os_kde_20161021.tar.xz
+              - caption: Download tarball (20161204)
+                url: /os-amd64/kde/aosc-os_kde_20161204.tar.xz
     - name: GNOME
       previewDir: /gnome
       downloadTree:
@@ -26,21 +24,24 @@ generalDistros:
         cases:
           - caseName: AMD64
             list:
-              - caption: Download Live CD Image (coming soon)
-                available: false
-              - caption: Download tarball (20161021)
-                url: /os-amd64/gnome/aosc-os_gnome_20161021.tar.xz
-    - name: MATE
-      previewDir: /mate
-      downloadTree:
-        nodeName: Architecture
-        cases:
-          - caseName: AMD64
-            list:
-              - caption: Download Live CD Image (coming soon)
-                available: false
-              - caption: Download tarball (20161021)
-                url: /os-amd64/mate/aosc-os_mate_20161021.tar.xz
+              - caption: Download tarball (20161204)
+                url: /os-amd64/gnome/aosc-os_gnome_20161204.tar.xz
+          - caseName: ARMv7
+            nodeName: SoC
+            cases:
+              - caseName: Generic
+                nodeName: ~
+                list:
+                  - caption: Download tarball (20161205)
+                    url: /os-armel/gnome/aosc-os_gnome_20161205.tar.xz
+          - caseName: ARMv8
+            nodeName: SoC
+            cases:
+              - caseName: Generic
+                nodeName: ~
+                list:
+                  - caption: Download tarball (20161206)
+                    url: /os-arm64/gnome/aosc-os_gnome_20161206.tar.xz
     - name: XFCE
       previewDir: /xfce
       downloadTree:
@@ -48,61 +49,359 @@ generalDistros:
         cases:
           - caseName: AMD64
             list:
-              - caption: Download Live CD Image (coming soon)
-                available: false
-              - caption: Download tarball (20161021)
-                url: /os-amd64/xfce/aosc-os_xfce_20161021.tar.xz
+              - caption: Download tarball (20161204)
+                url: /os-amd64/xfce/aosc-os_xfce_20161204.tar.xz
+          - caseName: ARMv7
+            nodeName: SoC
+            cases:
+              - caseName: Generic
+                nodeName: ~
+                list:
+                  - caption: Download tarball (20161205)
+                    url: /os-armel/xfce/aosc-os_xfce_20161205.tar.xz
+          - caseName: ARMv8
+            nodeName: SoC
+            cases:
+              - caseName: Generic
+                nodeName: ~
+                list:
+                  - caption: Download tarball (20161206)
+                    url: /os-arm64/xfce/aosc-os_xfce_20161206.tar.xz
+          - caseName: PowerPC 32-bit (BE)
+            nodeName: ~
+            list:
+              - caption: Download tarball (20161207)
+                url: /os-powerpc/xfce/aosc-os_xfce_20161207.tar.xz
+          - caseName: PowerPC 64-bit (BE)
+            nodeName: ~
+            list:
+              - caption: Download tarball (20161206)
+                url: /os-ppc64/xfce/aosc-os_xfce_20161206.tar.xz
+    - name: MATE
+      previewDir: /mate
+      downloadTree:
+        nodeName: Architecture
+        cases:
+          - caseName: AMD64
+            list:
+              - caption: Download tarball (20161204)
+                url: /os-amd64/mate/aosc-os_mate_20161204.tar.xz
+          - caseName: ARMv7
+            nodeName: SoC
+            cases:
+              - caseName: Generic
+                nodeName: ~
+                list:
+                  - caption: Download tarball (20161206)
+                    url: /os-armel/mate/aosc-os_mate_20161206.tar.xz
+          - caseName: ARMv8
+            nodeName: SoC
+            cases:
+              - caseName: Generic
+                nodeName: ~
+                list:
+                  - caption: Download tarball (20161206)
+                    url: /os-arm64/mate/aosc-os_mate_20161206.tar.xz
+          - caseName: PowerPC 32-bit (BE)
+            nodeName: ~
+            list:
+              - caption: Download tarball (20161207)
+                url: /os-powerpc/mate/aosc-os_mate_20161207.tar.xz
+          - caseName: PowerPC 64-bit (BE)
+            nodeName: ~
+            list:
+              - caption: Download tarball (20161206)
+                url: /os-ppc64/mate/aosc-os_mate_20161206.tar.xz
+    - name: Cinnamon
+      previewDir: /cinnamon
+      downloadTree:
+        nodeName: Architecture
+        cases:
+          - caseName: AMD64
+            list:
+              - caption: Download tarball (20161204)
+                url: /os-amd64/cinnamon/aosc-os_cinnamon_20161204.tar.xz
+    - name: LXDE
+      previewDir: /lxde
+      downloadTree:
+        nodeName: Architecture
+        cases:
+          - caseName: AMD64
+            list:
+              - caption: Download tarball (20161204)
+                url: /os-amd64/xfce/aosc-os_xfce_20161204.tar.xz
+          - caseName: ARMv7
+            nodeName: SoC
+            cases:
+              - caseName: Generic
+                nodeName: ~
+                list:
+                  - caption: Download tarball (20161206)
+                    url: /os-armel/lxde/aosc-os_lxde_20161206.tar.xz
+          - caseName: ARMv8
+            nodeName: SoC
+            cases:
+              - caseName: Generic
+                nodeName: ~
+                list:
+                  - caption: Download tarball (20161206)
+                    url: /os-arm64/lxde/aosc-os_lxde_20161206.tar.xz
+          - caseName: PowerPC 32-bit (BE)
+            nodeName: ~
+            list:
+              - caption: Download tarball (20161207)
+                url: /os-powerpc/lxde/aosc-os_lxde_20161207.tar.xz
+          - caseName: PowerPC 64-bit (BE)
+            nodeName: ~
+            list:
+              - caption: Download tarball (20161206)
+                url: /os-ppc64/lxde/aosc-os_lxde_20161206.tar.xz
     - name: Base
       previewDir: /base
       downloadTree:
         nodeName: Architecture
         cases:
           - caseName: AMD64
-            nodeName: Variants
-            cases:
-              - caseName: Generic
-                nodeName: ~
-                list:
-                  - caption: Download Live CD Image (coming soon)
-                    available: false
-                  - caption: Download tarball (20161021)
-                    url: /os-amd64/base/aosc-os_base_20161021.tar.xz
-              - caseName: No Kernel/Container
-                nodeName: ~
-                list:
-                  - caption: Download tarball (20161021)
-                    url: /os-amd64/container/aosc-os_container_20161021.tar.xz
+            nodeName: ~
+            list:
+              - caption: Download tarball (20161202)
+                url: /os-amd64/base/aosc-os_base_20161202.tar.xz
+              - caption: Download kernel-less tarball (20161202)
+                url: /os-amd64/container/aosc-os_container_20161202.tar.xz
           - caseName: ARMv7
-            nodeName: Device
+            nodeName: SoC
             cases:
               - caseName: Generic
                 nodeName: ~
                 list:
-                  - caption: Download tarball (20160926)
-                    url: /os-armel/generic/aosc-os_base_20160926.tar.xz
-              - caseName: Raspberry Pi 2/3
-                nodeName: ~
-                list:
-                  - caption: Download tarball (20160926)
-                    url: /os-armel/rpi/aosc-os_base_rpi_20160926.tar.xz
-                  - caption: Download image (coming soon)
-                    available: false
+                  - caption: Download tarball (20161204)
+                    url: /os-armel/generic/aosc-os_base_20161204.tar.xz
+                  - caption: Download kernel-less tarball (20161204)
+                    url: /os-armel/container/aosc-os_container_20161204.tar.xz
+              - caseName: Broadcom
+                nodeName: Device
+                cases:
+                  - caseName: Raspberry Pi 2/3
+                    nodeName: ~
+                    list:
+                      - caption: Download image (20161207A)
+                        url: /os-armel/rpi/bcm_rpi_2016-12-07-A.img.xz
+              - caseName: Allwinner
+                nodeName: Manufacturer
+                cases:
+                  - caseName: Generic
+                    nodeName: ~
+                    list:
+                      - caption: Download tarball (20161213)
+                        url: /os-armel/sunxi/tarballs/aosc-os_base_20161212_sunxi.tar.xz
+                  - caseName: Colorfly
+                    nodeName: Device
+                    cases:
+                      - caseName: Colorfly E708 Q1
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun6i-a31s-colorfly-e708-q1_sunxi-base_2016-12-20.img.xz
+                  - caseName: CubieTech
+                    nodeName: Device
+                    cases:
+                      - caseName: Cubieboard1
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun4i-a10-cubieboard_sunxi-base_2016-12-20.img.xz
+                      - caseName: Cubieboard2
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-cubieboard2_sunxi-base_2016-12-20.img.xz
+                      - caseName: Cubietruck
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-cubietruck_sunxi-base_2016-12-20.img.xz
+                  - caseName: FriendlyARM
+                    nodeName: Device
+                    cases:
+                      - caseName: NanoPi NEO
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun8i-h3-nanopi-neo_sunxi-base_2016-12-21.img.xz
+                  - caseName: LeMaker
+                    nodeName: Device
+                    cases:
+                      - caseName: Banana Pi
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-bananapi_sunxi-base_2016-12-20.img.xz
+                      - caseName: Banana Pro
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-bananapro_sunxi-base_2016-12-20.img.xz
+                  - caseName: LinkSprite
+                    nodeName: Device
+                    cases:
+                      - caseName: pcDuino
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun4i-a10-pcduino_sunxi-base_2016-12-20.img.xz
+                      - caseName: pcDuino2
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun4i-a10-pcduino2_sunxi-base_2016-12-20.img.xz
+                      - caseName: pcDuino3
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-pcduino3_sunxi-base_2016-12-21.img.xz
+                      - caseName: pcDuino3 Nano
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-pcduino3-nano_sunxi-base_2016-12-21.img.xz
+                  - caseName: Olimex
+                    nodeName: Device
+                    cases:
+                      - caseName: A10-OLinuXino-LIME
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun4i-a10-olinuxino-lime_sunxi-base_2016-12-20.img.xz
+                      - caseName: A10S-OLinuXino-MICRO
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun5i-a10s-olinuxino-micro_sunxi-base_2016-12-20.img.xz
+                      - caseName: A13-OLinuXino
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun5i-a13-olinuxino_sunxi-base_2016-12-20.img.xz
+                      - caseName: A13-OLinuXino-MICRO
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun5i-a13-olinuxino-micro_sunxi-base_2016-12-20.img.xz
+                      - caseName: A20-SOM-EVB
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-olimex-som-evb_sunxi-base_2016-12-20.img.xz
+                      - caseName: A20-OLinuXino-LIME
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-olinuxino-lime_sunxi-base_2016-12-21.img.xz
+                      - caseName: A20-OLinuXino-LIME2
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-olinuxino-lime2_sunxi-base_2016-12-21.img.xz
+                      - caseName: A20-OLinuXino-LIME2-eMMC
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-olinuxino-lime2-emmc_sunxi-base_2016-12-21.img.xz
+                      - caseName: A20-OLinuXino-MICRO
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-olinuxino-micro_sunxi-base_2016-12-21.img.xz
+                  - caseName: Sinlinx
+                    nodeName: Device
+                    cases:
+                      - caseName: SinA31s
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun6i-a31s-sina31s_sunxi-base_2016-12-20.img.xz
+                      - caseName: SinA33
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun8i-a33-sinlinx-sina33_sunxi-base_2016-12-21.img.xz
+                  - caseName: Sinovoip
+                    nodeName: Device
+                    cases:
+                      - caseName: Banana Pi M1+
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun7i-a20-bananapi-m1-plus_sunxi-base_2016-12-20.img.xz
+                      - caseName: Banana Pi M2
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161220)
+                            url: /os-armel/sunxi/rawimage/sun6i-a31s-sinovoip-bpi-m2_sunxi-base_2016-12-20.img.xz
+                      - caseName: Banana Pi M2+
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun8i-h3-bananapi-m2-plus_sunxi-base_2016-12-21.img.xz
+                  - caseName: Xunlong
+                    nodeName: Device
+                    cases:
+                      - caseName: Orange Pi 2
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun8i-h3-orangepi-2_sunxi-base_2016-12-21.img.xz
+                      - caseName: Orange Pi Lite
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun8i-h3-orangepi-lite_sunxi-base_2016-12-21.img.xz
+                      - caseName: Orange Pi One
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun8i-h3-orangepi-one_sunxi-base_2016-12-21.img.xz
+                      - caseName: Orange Pi PC
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun8i-h3-orangepi-pc_sunxi-base_2016-12-21.img.xz
+                      - caseName: Orange Pi PC Plus
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun8i-h3-orangepi-pc-plus_sunxi-base_2016-12-21.img.xz
+                      - caseName: Orange Pi Plus
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun8i-h3-orangepi-plus_sunxi-base_2016-12-21.img.xz
+                      - caseName: Orange Pi Plus 2E
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun8i-h3-orangepi-plus2e_sunxi-base_2016-12-21.img.xz
+                      - caseName: Orange Pi Zero
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20161221)
+                            url: /os-armel/sunxi/rawimage/sun8i-h2-plus-orangepi-zero_sunxi-base_2016-12-21.img.xz
           - caseName: ARMv8
-            nodeName: Device
+            nodeName: SoC
             cases:
               - caseName: Generic
                 nodeName: ~
                 list:
-                  - caption: Download tarball (20160926)
-                    url: /os-arm64/generic/aosc-os_base_20160926.tar.xz
+                  - caption: Download tarball (20161206)
+                    url: /os-arm64/generic/aosc-os_base_20161206.tar.xz
           - caseName: MIPS32
             nodeName: Device
             cases:
               - caseName: Generic
                 nodeName: ~
                 list:
-                  - caption: Download tarball (20160926)
-                    url: /os-mipsel/base/aosc-os_base_20160926.tar.xz
+                  - caption: Download kernel-less tarball (20161206)
+                    url: /os-mipsel/base/aosc-os_base_20161206.tar.xz
               - caseName: Malta
                 nodeName: ~
                 list:
@@ -112,6 +411,20 @@ generalDistros:
                     url: /os-mipsel/malta/aosc-os_base_malta_20160629.qcow2.xz
                   - caption: Download kernel image
                     url: /os-mipsel/malta/vmlinux-3.16.0-4-5kc-malta
+          - caseName: PowerPC 32-bit (BE)
+            nodeName: ~
+            list:
+              - caption: Download tarball (20161205)
+                url: /os-powerpc/base/aosc-os_base_20161205.tar.xz
+              - caption: Download kernel-less tarball (20161205)
+                url: /os-powerpc/container/aosc-os_container_20161205.tar.xz
+          - caseName: PowerPC 64-bit (BE)
+            nodeName: ~
+            list:
+              - caption: Download tarball (20161205)
+                url: /os-ppc64/base/aosc-os_base_20161205.tar.xz
+              - caption: Download kernel-less tarball (20161205)
+                url: /os-ppc64/container/aosc-os_container_20161205.tar.xz
     - name: BuildKit
       previewDir: /buildkit
       downloadTree:
@@ -120,24 +433,33 @@ generalDistros:
           - caseName: AMD64
             nodeName: ~
             list:
-              - caption: Download tarball (20161021)
-                url: /os-amd64/buildkit/aosc-os-buildkit_20161021.tar.xz
+              - caption: Download tarball (20161202)
+                url: /os-amd64/buildkit/aosc-os-buildkit_20161202.tar.xz
           - caseName: ARMv7
             nodeName: ~
             list:
-              - caption: Download tarball (20160926)
-                url: /os-armel/buildkit/aosc-os-buildkit_armel_20160926.tar.xz
+              - caption: Download tarball (20161204)
+                url: /os-armel/buildkit/aosc-os-buildkit_armel_20161204.tar.xz
           - caseName: ARMv8
             nodeName: ~
             list:
-              - caption: Download tarball (20160926)
-                url: /os-arm64/buildkit/aosc-os-buildkit_arm64_20160926.tar.xz
+              - caption: Download tarball (20161206)
+                url: /os-arm64/buildkit/aosc-os-buildkit_arm64_20161206.tar.xz
           - caseName: MIPS32
             nodeName: ~
             list:
-              - caption: Download tarball (20160926)
-                url: /os-mipsel/buildkit/aosc-os-buildkit_mipsel_20160926.tar.xz
-
+              - caption: Download tarball (20161206)
+                url: /os-mipsel/buildkit/aosc-os-buildkit_mipsel_20161206.tar.xz
+          - caseName: PowerPC 32-bit (BE)
+            nodeName: ~
+            list:
+              - caption: Download tarball (20161205)
+                url: /os-powerpc/buildkit/aosc-os-buildkit_20161015.tar.xz
+          - caseName: PowerPC 64-bit (BE)
+            nodeName: ~
+            list:
+              - caption: Download tarball (20161205)
+                url: /os-ppc64/buildkit/aosc-os-buildkit_ppc64_20161205.tar.xz
 dockers:
 
 buildkits:
