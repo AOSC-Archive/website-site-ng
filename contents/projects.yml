@@ -14,8 +14,8 @@
   description: Install AOSC OS on your Windows machine.
   long:
     - >
-      Anthon Starter is a HDD installation helper for AOSC OS. This project focuses
-      on making installation of AOSC OS from Windows easier.
+      Anthon Starter is a HDD installation helper for Linux. This project focuses
+      on making installation of Linux OSes (including AOSC OS) from Windows easier.
   logo: "/assets/i/ast.svg"
 -
   fullname: Localization
