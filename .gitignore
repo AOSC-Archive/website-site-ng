@@ -25,7 +25,7 @@ Thumbs.db
 *.rar
 *.tar
 *.zip
-
+*.rdb
 .*
 !.travis*
 .*/
