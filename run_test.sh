@@ -5,7 +5,11 @@ if [[ ${redis_pid} -gt 0 ]]; then
 else
   echo "Starting new redis server instance"
   redis-server &
+  redis_pid=$!
   echo "Redis Server PID: $!"
 fi
 
 mocha "$@"
+mocha_status=$?
+kill -TERM ${redis_pid}
+exit ${mocha_status}
