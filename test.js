@@ -203,7 +203,7 @@ describe('Admin Page', function() {
                 // Test 3-2-4.1: If news could be deleted
                 it('should be able to remove news using empty title', function(done) {
                     news_template.title = '';
-                    news_template.action = 'push';
+                    news_template.action = 'post';
                     request(url).post('/admin/news-post').type('form').set('Cookie', authCookies)
                         .send(news_template)
                         .expect(302, done);
