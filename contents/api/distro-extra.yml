@@ -394,6 +394,25 @@ generalDistros:
                 list:
                   - caption: Download tarball (20161206)
                     url: /os-arm64/generic/aosc-os_base_20161206.tar.xz
+              - caseName: Allwinner
+                nodeName: Manufacturer
+                cases:
+                  - caseName: PINE64
+                    nodeName: Device
+                    cases:
+                      - caseName: Pine64+
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20170127)
+                            url: /os-arm64/sunxi/rawimage/sun50i-a64-pine64-plus_sunxi64-base_2017-01-27.img.xz
+                  - caseName: Xunlong
+                    nodeName: Device
+                    cases:
+                      - caseName: Orange Pi PC2
+                        nodeName: ~
+                        list:
+                          - caption: Download image (20170127)
+                            url: /os-arm64/sunxi/rawimage/sun50i-h5-orangepi-pc2_sunxi64-base_2017-01-27.img.xz
           - caseName: MIPS32
             nodeName: Device
             cases:
