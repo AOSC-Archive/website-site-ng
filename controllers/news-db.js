@@ -221,7 +221,7 @@ exports.has = (slug, callback) => {
 exports.slugFix = (slug, callback) => {
   function iterator(slug, suffix, callback){
     let prefix = getRandomInt(1000, 9999);
-    slug = prefix + '-' + slug;
+    slug = (prefix + '-' + slug).toLowerCase();
     let fixedSlug = suffix > 0 ? slug + '-' + suffix : slug;
     exports.has(fixedSlug, exist => {
       log.debug('conflict: ' + fixedSlug + ' ' + exist);

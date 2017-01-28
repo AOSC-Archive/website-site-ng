@@ -9,11 +9,28 @@ function createRandomString(length, callback) {
     });
 }
 
+function getSlug(url, ext, callback) {
+    request(url).get('/news')
+        .end(function(err, res) {
+            if (err) {
+                throw err;
+            }
+            res.status.should.be.equal(200, 'Wrong HTTP status!');
+            let slug_matcher = new RegExp('<a href=\\"\\/news\\/(\\d+)-.*>.*' + ext + '<\/a>');
+            var slug = slug_matcher.exec(res.text);
+            if (slug) {
+                slug = slug[1];
+                callback(slug);
+            }
+            callback();
+        });
+}
+
 request(url).get('/').end(function(err, res) {
     if (err) {
         require('./app.js').app;
     } else {
-        console.warn('\x1b[0;33m' + 'Using already started instance for test may cause data damage!!!' + '\x1b[0m')
+        console.warn('\x1b[0;33m' + 'Using already started instance for test may cause data damage!!!' + '\x1b[0m');
     }
 });
 
@@ -134,7 +151,7 @@ describe('Admin Page', function() {
     describe('News Editor and Related Things', function() {
         var test_news_ext, test_timestamp, news_template;
         createRandomString(6, function(ext) {
-            test_news_ext = ext.replace(new RegExp('/', 'g'), '');
+            test_news_ext = ext.replace(new RegExp('/|\\+', 'g'), '');
             test_timestamp = new Date().getTime();
             news_template = {
                 'title': 'AOSC News Mocha Post Test ' + test_news_ext,
@@ -151,7 +168,6 @@ describe('Admin Page', function() {
                 .expect(200, done);
         });
         describe('Post news and view the news', function() {
-            console.log(news_template);
             // Test 3-2-1: If preview function is good
             it('should be able to preview news', function(done) {
                 request(url).post('/admin/news-post').type('form').set('Cookie', authCookies)
@@ -165,39 +181,43 @@ describe('Admin Page', function() {
                     .send(news_template)
                     .expect(302, done);
             });
-            // Test 3-2-2.2: If news appears on the page
+            // Test 3-2-2: If news appears on the page
             it('should be able to view the previously posted news', function(done) {
-                request(url).get('/news/aosc-news-mocha-post-test-' + test_news_ext.toLowerCase())
-                    .end(function(err, res) {
-                        if (err) {
-                            throw err;
-                        }
-                        res.status.should.be.equal(200, 'Wrong HTTP status!');
-                        res.text.should.match(/Mocha Test Framework/);
-                        res.text.should.match(new RegExp(test_news_ext));
-                        done();
-                    });
+                getSlug(url, test_news_ext, function(slug) {
+                    request(url).get('/news/' + slug + '-aosc-news-mocha-post-test-' + test_news_ext.toLowerCase())
+                        .end(function(err, res) {
+                            if (err) {
+                                throw err;
+                            }
+                            res.status.should.be.equal(200, 'Wrong HTTP status!');
+                            res.text.should.match(/Mocha Test Framework/);
+                            res.text.should.match(new RegExp(test_news_ext));
+                            done();
+                        });
+                });
             });
             // Test 3-2-3.1: If news could be modified
             it('should be able to modify news', function(done) {
                 news_template.content = 'This is a test.\n\n`Test Identifier: ' + test_news_ext + test_timestamp + '`\n\nCreated By Mocha Test Framework';
-                news_template.action = 'put';
+                news_template.action = 'post';
                 request(url).post('/admin/news-post').type('form').set('Cookie', authCookies)
                     .send(news_template)
                     .expect(302, done);
             });
             // Test 3-2-3.2: If modified news appears
             it('should be able to view modified news', function(done) {
-                request(url).get('/news/aosc-news-mocha-post-test-' + test_news_ext.toLowerCase())
-                    .end(function(err, res) {
-                        if (err) {
-                            throw err;
-                        }
-                        res.status.should.be.equal(200, 'Wrong HTTP status!');
-                        res.text.should.match(/Mocha Test Framework/);
-                        res.text.should.match(new RegExp(test_news_ext + test_timestamp));
-                        done();
-                    });
+                getSlug(url, test_news_ext, function(slug) {
+                    request(url).get('/news/' + slug + '-aosc-news-mocha-post-test-' + test_news_ext.toLowerCase())
+                        .end(function(err, res) {
+                            if (err) {
+                                throw err;
+                            }
+                            res.status.should.be.equal(200, 'Wrong HTTP status!');
+                            res.text.should.match(/Mocha Test Framework/);
+                            res.text.should.match(new RegExp(test_news_ext + test_timestamp));
+                            done();
+                        });
+                });
             });
             describe('should be able to completely wipe news', function() {
                 // Test 3-2-4.1: If news could be deleted
@@ -210,8 +230,10 @@ describe('Admin Page', function() {
                 });
                 // Test 3-2-4.2: If news could be deleted and not display on the page
                 it('should not be able to access the deleted news page', function(done) {
-                    request(url).get('/news/aosc-news-mocha-post-test-' + test_news_ext.toLowerCase())
-                        .expect(404, done);
+                    getSlug(url, test_news_ext, function(slug) {
+                        request(url).get('/news/' + slug + '-aosc-news-mocha-post-test-' + test_news_ext.toLowerCase())
+                            .expect(404, done);
+                    });
                 });
                 // Test 3-2-4.3: If news is no longer on the news board
                 it('should not be able to be seen on news page', function(done) {
