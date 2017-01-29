@@ -36,7 +36,7 @@ let slug    = require('slug');
 let md      = require('markdown').markdown;
 let log     = require('./log.js');
 
-slug.defaults.mode = 'rfc3986';
+slug.defaults.mode = 'pretty';
 bluebird.promisifyAll(redis.RedisClient.prototype);
 bluebird.promisifyAll(redis.Multi.prototype);
 
@@ -85,6 +85,14 @@ exports.render = stru => {
   xstru.htmlcontent = xstru.content == undefined? '' : md.toHTML(xstru.content);
   return xstru;
 };
+
+// Returns a random integer between min (included) and max (excluded)
+// Using Math.round() will give you a non-uniform distribution!
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
 
 // filter(object, index, positiveCount)
 // begin start from 1, and undefined will be set to 1.
@@ -212,7 +220,9 @@ exports.has = (slug, callback) => {
 
 exports.slugFix = (slug, callback) => {
   function iterator(slug, suffix, callback){
-    let fixedSlug = suffix>0? slug + '-' + suffix : slug;
+    let prefix = getRandomInt(1000, 9999);
+    slug = (prefix + '-' + slug).toLowerCase();
+    let fixedSlug = suffix > 0 ? slug + '-' + suffix : slug;
     exports.has(fixedSlug, exist => {
       log.debug('conflict: ' + fixedSlug + ' ' + exist);
       if(exist)

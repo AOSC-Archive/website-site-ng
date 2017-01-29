@@ -11,7 +11,7 @@ let md      = require('markdown').markdown;
 let log     = require('./log.js');
 let newsdb  = require('./news-db.js');
 let slug    = require('slug');
-slug.defaults.mode = 'rfc3986';
+slug.defaults.mode = 'pretty';
 
 const CONTENTS_DIR    = 'contents';
 
@@ -100,7 +100,16 @@ router.get('/news' , (req, res) => {
 router.get('/news/:slug' , (req, res) => {
   new Promise(resolve => newsdb.resolve(req.params.slug, resolve))
   .then(id =>
-    newsdb.get(id, true, result => res.render('news-view', {'params' : result}))
+      newsdb.get(id, true, result => {
+        if (!result) {
+          log.debug('router: Client requested a unreachable URI ' + req.originalUrl);
+          res.status(404).render('err/404', {'params' : {
+            'url' : req.path
+          }});
+          return;
+        }
+        res.render('news-view', {'params' : result});
+      })
   );
 });
 
