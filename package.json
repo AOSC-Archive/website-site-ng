@@ -16,7 +16,9 @@
     "pug": "^2.0.0-beta6",
     "redis": "^2.6.5",
     "slug": "^0.9.1",
-    "stylus": "^0.54.5"
+    "stylus": "^0.54.5",
+    "sitemap": "^1.9.0",
+    "feed": "^0.3.1"
   },
   "devDependencies": {
     "mocha": "^3.2.0",

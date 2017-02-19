@@ -198,10 +198,10 @@ router.get( '/projects' , (req, res) => {
 });
 
 router.get( '/projects/:project' , (req, res, next) => {
-  const projects = readYAML('projects');
+  const projects = readyaml('projects');
   let custom;
   try {
-    custom = readYAML('projects/' + req.params.project);
+    custom = readyaml('projects/' + req.params.project);
   } catch(e) {}
   let project;
   for(project of projects)
@@ -241,6 +241,67 @@ router.get( '/os-download', (req, res) => {
   const mdHtml = mdText == undefined? '' : md.toHTML(mdText);
   res.render('os-download', {'params' : {'guideHtml': mdHtml}});
 });
+
+// SiteMap
+router.get('/sitemap.xml', (req, res) => {
+  var sm = require('sitemap');
+  var sitemap = sm.createSitemap({
+    hostname: 'https://aosc.io',
+    cacheTime: 600000,
+    urls: [
+      { url: '/', changefreq: 'daily', priority: 1.0 },
+      { url: '/news', changefreq: 'daily', priority: 0.8 },
+      { url: '/community', changefreq: 'weekly', priority: 0.6 },
+      { url: '/projects', changefreq: 'weekly', priority: 0.6 },
+      { url: '/about', changefreq: 'weekly', priority: 0.6 },
+      { url: '/os-download', changefreq: 'daily', priority: 0.8 }
+    ]
+  });
+
+  // traverse thru projects
+  const projects = readYAML('projects');
+  let project;
+  for (project of projects)
+    sitemap.add({ url: '/projects/' + project.mininame, changefreq: 'weekly', priority: 0.6 });
+
+  // traverse thru news
+  newsdb.enum(1, -1, true, null, items => {
+      let item;
+      for (item of items) 
+        sitemap.add({ url: '/news/' + item.slug, changefreq: 'daily', priority: 0.7 });
+
+      res.header('Content-Type', 'application/xml');
+      res.send(sitemap.toString());
+    }
+  );
+});
+
+router.get('/feed.rss', (req, res) => {
+  var Feed = require('feed');
+  var feed = new Feed({
+    title: 'AOSC News',
+    description: 'News feed from AOSC',
+    id: 'https://aosc.io',
+    link: 'https://aosc.io',
+    image: 'https://aosc.io/assets/i/aosc.svg',
+    copyright: 'Copyleft 2011–2017, members of the community'
+  });
+
+  newsdb.enum(1, -1, true, null, items => {
+      let item;
+      for (item of items) {
+        feed.addItem({
+          title: item.title,
+          id: item.slug,
+          link: 'https://aosc.io/' + item.URL,
+          description: item.htmlcontent
+        });
+      }
+      res.header('Content-Type', 'application/xml');
+      res.send(feed.render());
+    }
+  );
+})
 
 // APIs
 router.get( '/api/splashes', (req, res) => {
