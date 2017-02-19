@@ -198,10 +198,10 @@ router.get( '/projects' , (req, res) => {
 });
 
 router.get( '/projects/:project' , (req, res, next) => {
-  const projects = readyaml('projects');
+  const projects = readYAML('projects');
   let custom;
   try {
-    custom = readyaml('projects/' + req.params.project);
+    custom = readYAML('projects/' + req.params.project);
   } catch(e) {}
   let project;
   for(project of projects)
@@ -266,14 +266,13 @@ router.get('/sitemap.xml', (req, res) => {
 
   // traverse thru news
   newsdb.enum(1, -1, true, null, items => {
-      let item;
-      for (item of items) 
-        sitemap.add({ url: '/news/' + item.slug, changefreq: 'daily', priority: 0.7 });
+    let item;
+    for (item of items) 
+      sitemap.add({ url: '/news/' + item.slug, changefreq: 'daily', priority: 0.7 });
 
-      res.header('Content-Type', 'application/xml');
-      res.send(sitemap.toString());
-    }
-  );
+    res.header('Content-Type', 'application/xml');
+    res.send(sitemap.toString());
+  });
 });
 
 router.get('/feed.rss', (req, res) => {
@@ -288,19 +287,18 @@ router.get('/feed.rss', (req, res) => {
   });
 
   newsdb.enum(1, -1, true, null, items => {
-      let item;
-      for (item of items) {
-        feed.addItem({
-          title: item.title,
-          id: item.slug,
-          link: 'https://aosc.io/' + item.URL,
-          description: item.htmlcontent
-        });
-      }
-      res.header('Content-Type', 'application/xml');
-      res.send(feed.render());
+    let item;
+    for (item of items) {
+      feed.addItem({
+        title: item.title,
+        id: item.slug,
+        link: 'https://aosc.io/' + item.URL,
+        description: item.htmlcontent
+      });
     }
-  );
+    res.header('Content-Type', 'application/xml');
+    res.send(feed.render());
+  });
 })
 
 // APIs
