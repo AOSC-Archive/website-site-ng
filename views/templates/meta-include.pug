@@ -16,6 +16,8 @@
 
     +meta-description(description, [keywords])
 
+    +meta-robots("[no]index, [no]follow")
+
 mixin meta-charset(charset)
   meta(charset=charset)
 
@@ -57,3 +59,6 @@ mixin meta-description(description, keywords)
   meta(name="description", content=description)
   meta(name="keywords", content=keywords)
   //- FIXME: search XML?
+
+mixin meta-robots(arg)
+  meta(name="robots", content=arg)
