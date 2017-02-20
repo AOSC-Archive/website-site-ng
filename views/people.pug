@@ -1,0 +1,39 @@
+extend templates/master
+
+block head-custom
+  +meta-title("People")
+  +meta-description("Anthon Open Source Community")
+
+append stylesheet
+  +include-css("/assets/css/hoverpanel.css")
+  +include-css("/assets/css/projects.css")
+
+block banner
+  .row
+    .col-sm-12
+      h1 PEOPLE
+      h2 Our valiant and fearless warriors.
+    .col-sm-6
+      p.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+block content
+  #wrapper.row
+    .col-sm-8
+      h1.afe-small-captions.afe-important COMMUNITY CONTRIBUTORS
+      each person in params.people
+        .media
+          .media-left
+            a(href=`/people/~${person.username}`): img(src=`https://github.com/${person.username}.png?size=120` style="width: 120px; height: 120px;")
+          .media-body
+            if person.fullname
+              a(href=`/people/~${person.username}`): h2(style="margin-top: 0;")=`${person.fullname} (${person.username})`
+            else
+              a(href=`/people/~${person.username}`): h2(style="margin-top: 0;")=person.username
+            p=person.description
+            small=person.longdesc
