@@ -36,7 +36,7 @@ request(url).get('/').end(function(err, res) {
 
 describe('Basic Tests', function() {
     // Test 1-1: If pages could be visited with HTTP 200 (OK)
-    const pages = ['/assets/i/aosc.png', '/news', '/community', '/projects', '/about', '/os-download'];
+    const pages = ['/assets/i/aosc.png', '/news', '/community', '/projects', '/about', '/os-download', '/people'];
     describe('Can visit basic pages', function() {
         it('should load index page properly', function(done) {
             request(url).get('/').expect(200, done);
@@ -53,7 +53,7 @@ describe('Basic Tests', function() {
         it('should display 404 page on unreachable master page', function(done) {
             request(url).get('/non-ex').expect(404, done);
         });
-        const subpages = ['/assets', '/news', '/community', '/projects', '/about', '/os-download'];
+        const subpages = ['/assets', '/news', '/community', '/projects', '/about', '/os-download', '/people', '/people/~lionnatsu'];
         for (let subpage of subpages) {
             it('should display 404 page on unreachable ' + subpage.slice(1) + ' sub page(s)',
                 function(done) {
