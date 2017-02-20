@@ -261,6 +261,7 @@ router.get('/people/~:person', (req, res, next) => {
     next();
     return;
   }
+  if (person.rurl) {res.redirect(302, person.rurl); return;}
   let hasStylesheet = true;
   try {
     fs.accessSync('stylesheets/people-' + person.username + '.styl');
@@ -277,7 +278,16 @@ router.get('/people/~:person', (req, res, next) => {
       } catch (e) {
         if (e.code == 'ENOENT') {
           log.debug('router: Client requested a unreachable URI ' + req.originalUrl);
-          res.status(404).render('err/404');
+          res.status(404).render('people/markdown_template', {
+            'params': {
+              'person': {
+                username: person.username,
+                description: 'One does not simply create a page in two seconds.',
+                longdesc: 'One must appreciate the process of writing a personal webpage. It is a notion, a symbol, a signifier of our freedom of speech, freedom of expression, and the freedom of action... Heck, go elsewhere for now, jeez!'
+              },
+              'md': md.toHTML(fs.readFileSync(CONTENTS_DIR + '/people/404.md').toString())
+            }
+          });
           return;
         }
       }
