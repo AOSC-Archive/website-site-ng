@@ -5,8 +5,7 @@ block head-custom
   +meta-description("Anthon Open Source Community")
 
 append stylesheet
-  +include-css("/assets/css/hoverpanel.css")
-  +include-css("/assets/css/projects.css")
+  +include-css("/assets/css/people.css")
 
 block banner
   .row
@@ -24,16 +23,16 @@ block banner
 
 block content
   #wrapper.row
-    .col-sm-8
       h1.afe-small-captions.afe-important COMMUNITY CONTRIBUTORS
       each person in params.people
-        .media
-          .media-left
-            a(href=`/people/~${person.username}`): img(src=`https://github.com/${person.username}.png?size=120` style="width: 120px; height: 120px;")
-          .media-body
-            if person.fullname
-              a(href=`/people/~${person.username}`): h2(style="margin-top: 0;")=`${person.fullname} (${person.username})`
-            else
-              a(href=`/people/~${person.username}`): h2(style="margin-top: 0;")=person.username
-            p=person.description
-            small=person.longdesc
+        .col-lg-6
+          .media
+            .media-left
+              a(href=`/people/~${person.username}`): img(src=`https://github.com/${person.username}.png?size=120` style="width: 120px; height: 120px;")
+            .media-body
+              if person.fullname
+                a(href=`/people/~${person.username}`): h2(style="margin-top: 0;")=`${person.fullname} (${person.username})`
+              else
+                a(href=`/people/~${person.username}`): h2(style="margin-top: 0;")=person.username
+              p=person.description
+              small=person.longdesc

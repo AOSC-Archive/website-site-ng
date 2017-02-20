@@ -3,7 +3,7 @@ extend ../templates/master
 include ../templates/affix-include
 
 block head-custom
-  +meta-title(params.person.fullname + " | People")
+  +meta-title(params.person.username + " | People")
   +meta-description("Anthon Open Source Community")
 
 append stylesheet
@@ -17,7 +17,7 @@ block banner
       h1
         a#link-to-projects(href="/people") PEOPLE
         |&nbsp;/&nbsp;
-        =params.person.fullname
+        =params.person.username
       h2=params.person.description
     .col-sm-6
       p=params.person.longdesc
