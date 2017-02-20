@@ -5,21 +5,21 @@
 let express = require('express');
 let router = express.Router();
 
-let yaml    = require('js-yaml');
-let fs      = require('fs');
-let md      = require('markdown').markdown;
-let log     = require('./log.js');
-let newsdb  = require('./news-db.js');
-let slug    = require('slug');
+let yaml = require('js-yaml');
+let fs = require('fs');
+let md = require('markdown').markdown;
+let log = require('./log.js');
+let newsdb = require('./news-db.js');
+let slug = require('slug');
 slug.defaults.mode = 'pretty';
 
-const CONTENTS_DIR    = 'contents';
+const CONTENTS_DIR = 'contents';
 
-const HOME_MAXITEM    = 8;
-const HOME_MAXIMAGE   = 6;
-const NEWS_MAXITEM    = 10;
+const HOME_MAXITEM = 8;
+const HOME_MAXIMAGE = 6;
+const NEWS_MAXITEM = 10;
 const COMMUNITY_MAXITEM = 10;
-const COMMUNITY_MAXIMAGE  = 24;
+const COMMUNITY_MAXIMAGE = 24;
 
 const PAGINATION_SIZE = 5;
 
@@ -33,84 +33,91 @@ function writeYAML(yamlfile, data) {
 
 function trimNumber(min, i, d, max) {
   let n = i;
-  if(min > max) {
+  if (min > max) {
     log.error('trimNumber: min > max.');
     return d;
   };
-  if(!n) n = d;
-  if(n < min) n = min;
-  if(n > max) n = max;
+  if (!n) n = d;
+  if (n < min) n = min;
+  if (n > max) n = max;
   return n;
 }
 
 function createPageInfo(request, total, size, pagesPerList) {
-  let _totalPages = Math.ceil( total / size );
-  if(_totalPages == 0) _totalPages = 1;
+  let _totalPages = Math.ceil(total / size);
+  if (_totalPages == 0) _totalPages = 1;
   const totalPages = _totalPages;
   const currentPage = trimNumber(1, request, 1, totalPages);
   const pages = {
-    'currentPage' : currentPage,
-    'totalPages'  : totalPages,
-    'pageSize' : size,
-    'paginationSize'  : pagesPerList,
-    'totalItems' : total,
-    'currentItem' : (currentPage - 1) * size + 1,
+    'currentPage': currentPage,
+    'totalPages': totalPages,
+    'pageSize': size,
+    'paginationSize': pagesPerList,
+    'totalItems': total,
+    'currentItem': (currentPage - 1) * size + 1,
   };
   return pages;
 }
 
 // - / or /index
-router.get('/' , (req, res) => {
+router.get('/', (req, res) => {
   const pj = readYAML('projects');
   const srv = readYAML('services');
-  new Promise(resolve => resolve(getGallery().slice(0, HOME_MAXIMAGE))
-  ).then(imgUrlList =>
+  new Promise(resolve => resolve(getGallery().slice(0, HOME_MAXIMAGE))).then(imgUrlList =>
     newsdb.enum(1, HOME_MAXITEM, true, null,
       result => res.render(
-        'index', {'params' : {
-        'items' : result,
-        'imgs'  : imgUrlList,
-        'projects' : pj,
-        'services' : srv
-      }})
+        'index', {
+          'params': {
+            'items': result,
+            'imgs': imgUrlList,
+            'projects': pj,
+            'services': srv
+          }
+        })
     )
   );
 });
 
-router.get('/news' , (req, res) => {
+router.get('/news', (req, res) => {
   const filter = newsdb.filters.type(['news', 'bug']);
   new Promise(resolve => newsdb.count(filter, resolve))
-  .then(count => {
-    const pages = createPageInfo(
-      parseInt(req.query.page),
-      count,
-      NEWS_MAXITEM,
-      PAGINATION_SIZE
-    );
-    newsdb.enum(pages.currentItem, pages.pageSize, true, filter,
-      items => res.render(
-        'news', {'params' : {
-        'pages' : pages,
-        'items' : items,
-      }})
-    );
-  });
+    .then(count => {
+      const pages = createPageInfo(
+        parseInt(req.query.page),
+        count,
+        NEWS_MAXITEM,
+        PAGINATION_SIZE
+      );
+      newsdb.enum(pages.currentItem, pages.pageSize, true, filter,
+        items => res.render(
+          'news', {
+            'params': {
+              'pages': pages,
+              'items': items,
+            }
+          })
+      );
+    });
 });
 
-router.get('/news/:slug' , (req, res) => {
+router.get('/news/:slug', (req, res) => {
   new Promise(resolve => newsdb.resolve(req.params.slug, resolve))
-  .then(id =>
+    .then(id =>
       newsdb.get(id, true, result => {
         if (!result) {
           log.debug('router: Client requested a unreachable URI ' + req.originalUrl);
-          res.status(404).render('err/404', {'params' : {
-            'url' : req.path
-          }});
+          res.status(404).render('err/404', {
+            'params': {
+              'url': req.path
+            }
+          });
           return;
         }
-        res.render('news-view', {'params' : result});
+        res.render('news-view', {
+          'params': result
+        });
       })
-  );
+    );
 });
 
 function getThumbPath(input) {
@@ -125,7 +132,7 @@ function thumb(input) {
   require('imagemagick').resize({
     srcPath: input,
     dstPath: getThumbPath(input),
-    width:  256
+    width: 256
   }, (err, stdout, stderr) => {
     if (err) throw err;
   });
@@ -139,9 +146,9 @@ function thumb(input) {
   } catch (e) {
     log.error('thumbs: failed to read directory: ' + path);
   }
-  for(let c of childrenInDir) {
+  for (let c of childrenInDir) {
     let p = path + '/' + c;
-    if(fs.statSync(p).isFile()) {
+    if (fs.statSync(p).isFile()) {
       // try {
       //   fs.accessSync(getThumbPath(p));
       // } catch (e) {
@@ -162,7 +169,7 @@ function getGallery() {
   return imgUrlList.reverse();
 }
 
-router.get('/community' , (req, res) => {
+router.get('/community', (req, res) => {
   // Collect images to show gallery
   const filter = newsdb.filters.type(['community']);
   let imgUrlList;
@@ -179,34 +186,38 @@ router.get('/community' , (req, res) => {
       PAGINATION_SIZE
     );
     newsdb.enum(pages.currentItem, pages.pageSize, true, filter,
-      result => res.render('community', {'params' : {
-        'pages' : pages,
-        'items' : result,
-        'imgs'  : imgUrlList,
-      }})
+      result => res.render('community', {
+        'params': {
+          'pages': pages,
+          'items': result,
+          'imgs': imgUrlList,
+        }
+      })
     );
   });
 });
 
-router.get( '/projects' , (req, res) => {
+router.get('/projects', (req, res) => {
   const projects = readYAML('projects');
   const otherProjects = readYAML('other-projects');
-  res.render('projects', {'params' : {
-    'projects' : projects,
-    'otherProjects' : otherProjects
-  }});
+  res.render('projects', {
+    'params': {
+      'projects': projects,
+      'otherProjects': otherProjects
+    }
+  });
 });
 
-router.get( '/projects/:project' , (req, res, next) => {
+router.get('/projects/:project', (req, res, next) => {
   const projects = readYAML('projects');
   let custom;
   try {
     custom = readYAML('projects/' + req.params.project);
-  } catch(e) {}
+  } catch (e) {}
   let project;
-  for(project of projects)
-    if(project.mininame == req.params.project) break;
-  if(project.mininame != req.params.project) {
+  for (project of projects)
+    if (project.mininame == req.params.project) break;
+  if (project.mininame != req.params.project) {
     next();
     return;
   }
@@ -214,32 +225,102 @@ router.get( '/projects/:project' , (req, res, next) => {
   try {
     fs.accessSync('stylesheets/projects-' + project.mininame + '.styl');
   } catch (e) {
-    if(e.code == 'ENOENT') hasStylesheet = false; else throw e;
+    if (e.code == 'ENOENT') hasStylesheet = false;
+    else throw e;
   }
-  res.render('projects/' + req.params.project, {'params' : {
-    'hasStylesheet' : hasStylesheet,
-    'projects'  : projects,
-    'project' : project,
-    'custom' : custom
-  }});
+  res.render('projects/' + req.params.project, {
+    'params': {
+      'hasStylesheet': hasStylesheet,
+      'projects': projects,
+      'project': project,
+      'custom': custom
+    }
+  });
 });
 
 
-router.get( '/about' , (req, res) => {
+router.get('/people', (req, res) => {
+  const people = readYAML('people');
+  res.render('people', {
+    'params': {
+      'people': people
+    }
+  });
+});
+
+router.get('/people/~:person', (req, res, next) => {
+  const people = readYAML('people');
+  let custom;
+  try {
+    custom = readYAML('people/' + req.params.person);
+  } catch (e) {}
+  let person;
+  for (person of people)
+    if (person.username == req.params.person) break;
+  if (person.username != req.params.person) {
+    next();
+    return;
+  }
+  let hasStylesheet = true;
+  try {
+    fs.accessSync('stylesheets/people-' + person.username + '.styl');
+  } catch (e) {
+    if (e.code == 'ENOENT') hasStylesheet = false;
+    else throw e;
+  }
+  try {
+    fs.accessSync(CONTENTS_DIR + '/people/' + person.username + '.md');
+  } catch (e) {
+    if (e.code == 'ENOENT') {
+      try {
+        fs.accessSync(CONTENTS_DIR + '/people/' + person.username + '.pug');
+      } catch (e) {
+        if (e.code == 'ENOENT') {
+          log.debug('router: Client requested a unreachable URI ' + req.originalUrl);
+          res.status(404).render('err/404');
+          return;
+        }
+      }
+      res.render(CONTENTS_DIR + '/people/' + person.username, {
+        'params': {
+          'person': person
+        }
+      });
+      return;
+    } else {
+      throw e;
+    }
+  }
+  res.render('people/markdown_template', {
+    'params': {
+      'person': person,
+      'md': md.toHTML(fs.readFileSync(CONTENTS_DIR + '/people/' + person.username + '.md').toString())
+    }
+  });
+});
+
+
+router.get('/about', (req, res) => {
   const abt = readYAML('about');
   const ct = readYAML('contacts');
   const srv = readYAML('services');
-  res.render('about', {'params' : {
-    'about' : abt,
-    'contacts' : ct,
-    'services' : srv,
-  }});
+  res.render('about', {
+    'params': {
+      'about': abt,
+      'contacts': ct,
+      'services': srv,
+    }
+  });
 });
 
-router.get( '/os-download', (req, res) => {
+router.get('/os-download', (req, res) => {
   const mdText = fs.readFileSync(CONTENTS_DIR + '/os-download.md', 'utf8');
-  const mdHtml = mdText == undefined? '' : md.toHTML(mdText);
-  res.render('os-download', {'params' : {'guideHtml': mdHtml}});
+  const mdHtml = mdText == undefined ? '' : md.toHTML(mdText);
+  res.render('os-download', {
+    'params': {
+      'guideHtml': mdHtml
+    }
+  });
 });
 
 // SiteMap
@@ -248,13 +329,36 @@ router.get('/sitemap.xml', (req, res) => {
   var sitemap = sm.createSitemap({
     hostname: 'https://aosc.io',
     cacheTime: 600000,
-    urls: [
-      { url: '/', changefreq: 'daily', priority: 1.0 },
-      { url: '/news', changefreq: 'daily', priority: 0.8 },
-      { url: '/community', changefreq: 'weekly', priority: 0.6 },
-      { url: '/projects', changefreq: 'weekly', priority: 0.6 },
-      { url: '/about', changefreq: 'weekly', priority: 0.6 },
-      { url: '/os-download', changefreq: 'daily', priority: 0.8 }
+    urls: [{
+        url: '/',
+        changefreq: 'daily',
+        priority: 1.0
+      },
+      {
+        url: '/news',
+        changefreq: 'daily',
+        priority: 0.8
+      },
+      {
+        url: '/community',
+        changefreq: 'weekly',
+        priority: 0.6
+      },
+      {
+        url: '/projects',
+        changefreq: 'weekly',
+        priority: 0.6
+      },
+      {
+        url: '/about',
+        changefreq: 'weekly',
+        priority: 0.6
+      },
+      {
+        url: '/os-download',
+        changefreq: 'daily',
+        priority: 0.8
+      }
     ]
   });
 
@@ -262,13 +366,21 @@ router.get('/sitemap.xml', (req, res) => {
   const projects = readYAML('projects');
   let project;
   for (project of projects)
-    sitemap.add({ url: '/projects/' + project.mininame, changefreq: 'weekly', priority: 0.6 });
+    sitemap.add({
+      url: '/projects/' + project.mininame,
+      changefreq: 'weekly',
+      priority: 0.6
+    });
 
   // traverse thru news
   newsdb.enum(1, -1, true, null, items => {
     let item;
-    for (item of items) 
-      sitemap.add({ url: '/news/' + item.slug, changefreq: 'daily', priority: 0.7 });
+    for (item of items)
+      sitemap.add({
+        url: '/news/' + item.slug,
+        changefreq: 'daily',
+        priority: 0.7
+      });
 
     res.header('Content-Type', 'application/xml');
     res.send(sitemap.toString());
@@ -302,26 +414,32 @@ router.get('/feed.rss', (req, res) => {
 })
 
 // APIs
-router.get( '/api/splashes', (req, res) => {
+router.get('/api/splashes', (req, res) => {
   const splashes = readYAML('api/splashes');
-  res.send({'splashes': splashes[Math.floor(Math.random() * splashes.length)]});
+  res.send({
+    'splashes': splashes[Math.floor(Math.random() * splashes.length)]
+  });
 });
 
-router.get( '/api/distro', (req, res) => {
+router.get('/api/distro', (req, res) => {
   const params = readYAML('api/distro');
   res.send(params);
 });
 
-router.get( '/api/distro-extra', (req, res) => {
+router.get('/api/distro-extra', (req, res) => {
   const distros = readYAML('api/distro-extra');
   let distro;
-  for(let d of distros.generalDistros.list) {
-    if(d.name == req.query.name) {
+  for (let d of distros.generalDistros.list) {
+    if (d.name == req.query.name) {
       distro = d;
       break;
     }
   }
-  let params = {'previewList': [], 'downloadTree': undefined, 'repoBaseDir': undefined};
+  let params = {
+    'previewList': [],
+    'downloadTree': undefined,
+    'repoBaseDir': undefined
+  };
   let path = distros.generalDistros.previewDirPrefix + distro.previewDir;
   let URLpath = distros.generalDistros.previewDirURLPrefix + distro.previewDir;
   let childrenInDir = [];
@@ -332,12 +450,13 @@ router.get( '/api/distro-extra', (req, res) => {
   }
   for (let c of childrenInDir) {
     if (fs.statSync(path + '/' + c).isFile()) {
-      params.previewList.push(
-        {'thumbPath': URLpath + '/' +
-          distros.generalDistros.thumbsPrefix
-          + c +
+      params.previewList.push({
+        'thumbPath': URLpath + '/' +
+          distros.generalDistros.thumbsPrefix +
+          c +
           distros.generalDistros.thumbsSuffix,
-        'path': URLpath + '/' + c});
+        'path': URLpath + '/' + c
+      });
     }
   }
   params.downloadTree = distro.downloadTree;
