@@ -261,7 +261,19 @@ router.get('/people/~:person', (req, res, next) => {
     next();
     return;
   }
-  if (person.rurl) {res.redirect(302, person.rurl); return;}
+  if (person.rurl) {
+    res.status(302).render('people/markdown_template', {
+      'params': {
+        'person': {
+          username: person.username,
+          description: 'To another sector of the Internet.',
+          longdesc: 'Watch out! This person volunteered to guide you on a trip to another Internet sector. Be sure to take care and bring all your travel document with you, and we wish you a good trip.'
+        },
+        'md': md.toHTML(fs.readFileSync(CONTENTS_DIR + '/people/302.md').toString().replace('++RURL++', person.rurl))
+      }
+    });
+    return;
+  }
   let hasStylesheet = true;
   try {
     fs.accessSync('stylesheets/people-' + person.username + '.styl');
