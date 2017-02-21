@@ -66,8 +66,10 @@ use Markdown, Jade/PUG is easy, just learn it!**
 ### The Jade/PUG way
 
 This may be a bit more complex, but yields more flexibility in your page design.
-A template could be found in `/views/people/_example.pug`. Here below is a
-simple break down of the file structure:
+A template could be found in `/views/people/_example.pug`. Create your own
+Jade/PUG page in `/views/people` with the filename of `username.pug` - where
+`username` is your GitHub ID. Here below is a simple break down of the file
+structure:
 
 ```
 extend _template
