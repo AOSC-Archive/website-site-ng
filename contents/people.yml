@@ -78,11 +78,11 @@
   longdesc:
   rurl:
 -
-  fullname:
+  fullname: Anonymous Chen
   username: jiegec
-  description:
-  longdesc:
-  rurl:
+  description: Yet another Senior 3 student. Love Emacs more than Vim.
+  longdesc: A typical Chinese student busy preparing for College Entrance Examination. Currently the main maintainer of MacGesture. Few contributions are made to the AOSC project.
+  rurl: https://github.com/jiegec
 -
   fullname:
   username: ler0ever
