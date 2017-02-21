@@ -29,3 +29,26 @@ mixin people-wrapper
 mixin people-main
   .col-sm-8
     block
+
+mixin people-side-panel
+  .col-sm-4: #side-panel.affix-top
+    block
+  .col-sm-4.invisible#side-panel-width
+
+append javascript
+  +affix-js('#side-panel', '#side-panel-width')
+  script.
+    $(function() {
+      var wrapper = $('#afe-container-main');
+      wrapper.find('a').each(function() {
+        var that = $(this);
+        var kernel = /^\[(.*)\](\.\S+)*$/.exec(that.html());
+        if(kernel) {
+          that.html(kernel[1]).addClass('btn btn-default');
+          if(kernel[2]) {
+            var classes = kernel[2].replace(/\./g, ' ');
+            that.removeClass('btn-default').addClass(classes);
+          }
+        }
+      });
+    });
