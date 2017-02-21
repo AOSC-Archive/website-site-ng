@@ -286,7 +286,7 @@ router.get('/people/~:person', (req, res, next) => {
   } catch (e) {
     if (e.code == 'ENOENT') {
       try {
-        fs.accessSync(CONTENTS_DIR + '/people/' + person.username + '.pug');
+        fs.accessSync('views/people/' + person.username + '.pug');
       } catch (e) {
         if (e.code == 'ENOENT') {
           log.debug('router: Client requested a unreachable URI ' + req.originalUrl);
