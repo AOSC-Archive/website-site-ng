@@ -303,7 +303,7 @@ router.get('/people/~:person', (req, res, next) => {
           return;
         }
       }
-      res.render(CONTENTS_DIR + '/people/' + person.username, {
+      res.render('people/' + person.username, {
         'params': {
           'person': person
         }
