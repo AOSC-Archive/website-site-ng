@@ -105,7 +105,7 @@ an example containing a link.
   p: a(href="https://example.org/") Test.
 ```
 
-Or, a series of buttons (stolen from the AOSC OS [project page](/projects/aosc-os)).
+Or, a series of buttons (stolen from the AOSC OS [project page](https://aosc.io/projects/aosc-os)).
 
 ```
 +people-side-panel
