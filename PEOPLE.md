@@ -47,6 +47,9 @@ Where:
  - `rurl` contains the URL you wish to replace your personal page with (filling
  in this field will replace your personal page with your own blog; optional).
 
+**Note: as it currently stands, it is not possible to use paragraphs with
+`longdesc`. We are currently looking into this issue.**
+
 Creating your page (if `rurl` not specified)
 --------------------------------------------
 
