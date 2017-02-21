@@ -122,8 +122,15 @@
 -
   fullname:
   username: netarmy
-  description:
-  longdesc:
+  description: An experimental animal who aspires to think, to work, and to create value.
+  longdesc: >
+    It is this misaka's shame of laziness that
+    hardly did this misaka work for AOSC or other
+    parts of the whole free software community.
+    This misaka now realizes that a parasite of society
+    still has the right to change and start to do three
+    little things for the community. This misaka will
+    begin to fulfill its repo, let us wait and see.
   rurl:
 -
   fullname:
