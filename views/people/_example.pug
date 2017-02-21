@@ -1,31 +1,8 @@
 extend _template
 
-//-
-  "extend _template" at the first line is always nessesary.
-
-  Block "content" is under a ".container". You may use:
-    1. "+project-wrapper" then a "+project-main" and
-    a "+project-side-panel" inside. This is THE STANDARDS LAYOUT.
-
-    2. ".row" and ".col-*-*" to layout them in a gird system.
-    See more: http://getbootstrap.com/css/#grid
-
-  You may use ":markdown-it" to start a block in Markdown language.
-  Note:
-    Button is "[[Text]](Link)", additional style
-    can do in this way: "[[Text].class1.class2.class3](Link)"
-
-  Stylesheets(global, appended): $WORKDIR/stylesheets/project.styl
-  Stylesheets(optional): $WORKDIR/stylesheets/projects-$MININAME.styl
-
-  Database variables mapping:
-    params.projects --> $WORKDIR/contents/projects.yml
-    params.project --> $WORKDIR/contents/projects.yml (the one of this project)
-    params.custom --> $WORKDIR/contents/projects/$MININAME.yml (optional)
-
 block content
-  +project-wrapper
-    +project-main
+  +people-wrapper
+    +people-main
       :markdown-it
         # Test
 
@@ -50,6 +27,6 @@ block content
         - List Item
         - List Item
 
-    +project-side-panel
+    +people-side-panel
       h1 Links
       p: a(href="https://example.org/") Test.
