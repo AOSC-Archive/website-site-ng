@@ -114,10 +114,14 @@
   longdesc:
   rurl:
 -
-  fullname:
+  fullname: Mingcong Bai
   username: mingcongbai
-  description:
-  longdesc:
+  description: Heck, what have I started?
+  longdesc: >
+    Formerly known as Jeff Bai (before I decided to go with my real name).
+    ThinkPad and vintage computer enthusiast. Photography hobbist. Software
+    localization volunteer. "World beyond x86" advocate. Maintainer of AOSC OS
+    package updates, and various ports.
   rurl:
 -
   fullname:
