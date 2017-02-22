@@ -1,0 +1,38 @@
+extend _template
+
+block content
+  +people-wrapper
+    +people-main
+      :markdown-it
+        The father of Little ShunMao.
+        ====================
+
+        Who am I?
+        ---------
+
+          - Leslie (As a fans of Leslie Cheung, I chose "Leslie" as my English 
+            name when I was a High school student in Wisco No.3 Middle School) Zhai.
+          - Senior Software Engineer at iSOFT Infrastructure Software co., Ltd.
+
+        Main areas of work
+        ------------------
+
+          - Linux developer.
+          - LLVM hacker.
+
+        Off-time interests
+        ------------------
+
+          - Badminton/Basketball.
+          - Pop/Rock music.
+          - PC/XBox/PSP/Mobile Game.
+          - Racing.
+          - Outdoor.
+
+    +people-side-panel
+      h1 Links
+
+      p: a.btn.btn-primary(href="http://www.leetcode.cn") Blog
+      p: a.btn.btn-primary(href="https://github.com/xiangzhai") GitHub
+      p: a.btn.btn-primary(href="https://www.transifex.com/user/profile/xiangzhai/") Transifex Profile
+      p: a.btn.btn-primary(href="https://identity.kde.org/index.php?r=people/view&uid=lesliezhai/") KDE Identity

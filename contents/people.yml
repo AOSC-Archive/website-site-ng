@@ -185,10 +185,15 @@
   longdesc:
   rurl:
 -
-  fullname:
+  fullname: Leslie Zhai
   username: xiangzhai
-  description:
-  longdesc:
+  description: The father of Little ShunMao.
+  longdesc: >
+    As a fans of Leslie Cheung, I chose "Leslie" as my English name when I was 
+    a High school student in Wisco No.3 Middle School;
+    As a KDE developer, I am maintaining K3B, also submitted some patches for 
+    KF5 and Plasma;
+    As a LLVM hacker, I taught the analyzer about Glib API to check Memory-leak;
   rurl:
 -
   fullname:
