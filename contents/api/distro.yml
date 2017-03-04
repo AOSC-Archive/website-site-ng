@@ -35,6 +35,12 @@ generalDistros:
         traditional interface suitable for keyboard and mouse. Cinnamon builds
         upon GNOME's technical frameworks and applications, preserving the
         same ease of use in mind, while providing more customizability.
+    - name: Budgie
+      description: |
+        Budgie is built on top of GNOME and focuses on simplicity and elegance.
+        Written from scratch with integration in mind, the Budgie desktop
+        tightly integrates with the GNOME stack, employing underlying
+        technologies to offer an alternative desktop experience.
     - name: LXDE
       description: |
         LXDE, or Lightweight X11 Desktop Environment in full is a lightweight
@@ -43,6 +49,13 @@ generalDistros:
         device. LXDE is extremely customizable, a perfect choice for those
         looking for a full desktop environment while wanting to keep in control
         of every aspect of their desktop.
+    - name: i3wm
+      description: |
+        i3 is a highly customizable tiling window manager, and our customization
+        reflects just how nimble and modular i3 is. Complimented with Conky
+        system monitor and i3blocks, the desktop is highly informational while
+        keeping a (very) small memory footprint and little to none processor
+        overhead - ideal for your geeky needs and older computers.
     - name: Base
       description: |
         While AOSC OS focuses itself in providing complete and refined desktop
