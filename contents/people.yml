@@ -36,11 +36,14 @@
   longdesc:
   rurl:
 -
-  fullname:
+  fullname: Rongwei Lin
   username: colin4124
-  description:
-  longdesc:
-  rurl:
+  description: Fight for freedom of software.Just for fun!
+  longdesc: >
+    Free and Open Source Software enthusiast. "Mastering Emacs is not the goal, it's the path." -- A happy Emacs user.
+    I'm working on Open Source CPU now, although my contribution is quite small. I hope that one day we could build a
+    "open-source" computer both hardware and software.
+  rurl: http://funwo.tk/
 -
   fullname: Tianhao Chai
   username: cthbleachbit
