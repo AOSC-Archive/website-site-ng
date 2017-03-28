@@ -33,7 +33,7 @@ const prototypeVersion = 3;
 let redis   = require('redis');
 let bluebird= require('bluebird');
 let slug    = require('slug');
-let md      = require('markdown').markdown;
+let md      = require('./markdown.js');
 let log     = require('./log.js');
 
 slug.defaults.mode = 'pretty';
@@ -82,7 +82,7 @@ exports.render = stru => {
   let xstru = stru;
   date.setTime(xstru.timestamp);
   xstru.date = formatDate(date).toUpperCase();
-  xstru.htmlcontent = xstru.content == undefined? '' : md.toHTML(xstru.content);
+  xstru.htmlcontent = xstru.content == undefined? '' : md.render(xstru.content);
   return xstru;
 };
 
