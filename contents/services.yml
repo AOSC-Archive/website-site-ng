@@ -3,7 +3,7 @@
   link: https://plus.google.com/u/2/106669966380206498641
   description:
     - >
-      A portal that syncs the newest news and happenings in and around AOSC.
+      Learn about newest news and happenings in and around AOSC.
 -
   srvtype: Public Clipboard
   link: https://pastebin.aosc.io
@@ -11,6 +11,12 @@
     - >
       Our public clipboard service (or pastebin) that you can use for all your
       clippy needs.
+-
+  srvtype: Hermes WebMail
+  link: https://hermes.aosc.io
+  description:
+    - >
+      Our WebMail service for AOSC developers and contributors.
 -
   srvtype: Community Repository
   link: https://repo.aosc.io
