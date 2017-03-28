@@ -7,7 +7,7 @@ let router = express.Router();
 
 let yaml = require('js-yaml');
 let fs = require('fs');
-let md = require('markdown').markdown;
+let md = require('./markdown.js');
 let log = require('./log.js');
 let newsdb = require('./news-db.js');
 let slug = require('slug');
@@ -262,14 +262,14 @@ router.get('/people/~:person', (req, res, next) => {
     return;
   }
   if (person.rurl) {
-    res.status(302).render('people/markdown_template', {
+    res.status(302).render('people/people_302', {
       'params': {
         'person': {
           username: person.username,
           description: 'To another sector of the Internet.',
           longdesc: 'Watch out! This person volunteered to guide you on a trip to another Internet sector. Be sure to take care and bring all your travel document with you, and we wish you a good trip.'
         },
-        'md': md.toHTML(fs.readFileSync(CONTENTS_DIR + '/people/302.md').toString().replace('++RURL++', person.rurl))
+        'rurl': person.rurl
       }
     });
     return;
@@ -282,30 +282,17 @@ router.get('/people/~:person', (req, res, next) => {
     else throw e;
   }
   try {
-    fs.accessSync(CONTENTS_DIR + '/people/' + person.username + '.md');
+    fs.accessSync('views/people/' + person.username + '.pug');
   } catch (e) {
     if (e.code == 'ENOENT') {
-      try {
-        fs.accessSync('views/people/' + person.username + '.pug');
-      } catch (e) {
-        if (e.code == 'ENOENT') {
-          log.debug('router: Client requested a unreachable URI ' + req.originalUrl);
-          res.status(404).render('people/markdown_template', {
-            'params': {
-              'person': {
-                username: person.username,
-                description: 'One does not simply create a page in two seconds.',
-                longdesc: 'One must appreciate the process of writing a personal webpage. It is a notion, a symbol, a signifier of our freedom of speech, freedom of expression, and the freedom of action... Heck, go elsewhere for now, jeez!'
-              },
-              'md': md.toHTML(fs.readFileSync(CONTENTS_DIR + '/people/404.md').toString())
-            }
-          });
-          return;
-        }
-      }
-      res.render('people/' + person.username, {
+      log.debug('router: Client requested a unreachable URI ' + req.originalUrl);
+      res.status(404).render('people/people_404', {
         'params': {
-          'person': person
+          'person': {
+            username: person.username,
+            description: 'One does not simply create a page in two seconds.',
+            longdesc: 'One must appreciate the process of writing a personal webpage. It is a notion, a symbol, a signifier of our freedom of speech, freedom of expression, and the freedom of action... Heck, go elsewhere for now, jeez!'
+          }
         }
       });
       return;
@@ -313,12 +300,12 @@ router.get('/people/~:person', (req, res, next) => {
       throw e;
     }
   }
-  res.render('people/markdown_template', {
+  res.render('people/' + person.username, {
     'params': {
-      'person': person,
-      'md': md.toHTML(fs.readFileSync(CONTENTS_DIR + '/people/' + person.username + '.md').toString())
+      'person': person
     }
   });
+  return;
 });
 
 
@@ -337,7 +324,7 @@ router.get('/about', (req, res) => {
 
 router.get('/os-download', (req, res) => {
   const mdText = fs.readFileSync(CONTENTS_DIR + '/os-download.md', 'utf8');
-  const mdHtml = mdText == undefined ? '' : md.toHTML(mdText);
+  const mdHtml = mdText == undefined ? '' : md.render(mdText);
   res.render('os-download', {
     'params': {
       'guideHtml': mdHtml
