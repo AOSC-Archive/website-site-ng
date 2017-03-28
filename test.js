@@ -39,6 +39,7 @@ describe('Basic Tests', function() {
     const pages = ['/assets/i/aosc.png', '/news', '/community', '/projects', '/about', '/os-download', '/people'];
     describe('Can visit basic pages', function() {
         it('should load index page properly', function(done) {
+            this.timeout(5000);
             request(url).get('/').expect(200, done);
         });
         for (let page of pages) {
