@@ -25,9 +25,8 @@ block content
   #wrapper.row
       .col-sm-8
         h1.afe-small-captions.afe-important COMMUNITY CONTRIBUTORS
-      br
-      each person in params.people
-        .col-lg-6
+      .col-xs-12.afe-multicol
+        each person in params.people
           .media
             .media-left
               a(href=`/people/~${person.username}`): img(src=`https://github.com/${person.username}.png?size=120` style="width: 120px; height: 120px;")
