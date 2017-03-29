@@ -46,4 +46,4 @@ MicroSD cards.
 - Qemu images, for virtual machine installation.
 
 For more detailed installation instructions, please move over to our
-[Wiki](https://github.com/AOSC-Dev/aosc-os/).
+[Wiki](https://github.com/AOSC-Dev/aosc-os/wiki).

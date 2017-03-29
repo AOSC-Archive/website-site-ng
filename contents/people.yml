@@ -38,11 +38,14 @@
   longdesc:
   rurl:
 -
-  fullname:
+  fullname: Rongwei Lin
   username: colin4124
-  description:
-  longdesc:
-  rurl:
+  description: Fight for freedom of software.Just for fun!
+  longdesc: >
+    Free and Open Source Software enthusiast. "Mastering Emacs is not the goal, it's the path." -- A happy Emacs user.
+    I'm working on Open Source CPU now, although my contribution is quite small. I hope that one day we could build a
+    "open-source" computer both hardware and software.
+  rurl: http://funwo.tk/
 -
   fullname: Tianhao Chai
   username: cthbleachbit
@@ -68,6 +71,12 @@
   longdesc:
   rurl:
 -
+  fullname: Jiaxun Yang
+  username: flygoat
+  description: Just a chinese junior 3 student
+  longdesc: Description is cheap, show me your code.
+  rurl: https://flygoat.com
+-
   fullname:
   username: gumblex
   description:
@@ -86,10 +95,10 @@
   longdesc: A typical Chinese student busy preparing for College Entrance Examination. Currently the main maintainer of MacGesture. Few contributions are made to the AOSC project.
   rurl: https://github.com/jiegec
 -
-  fullname:
-  username: ler0ever
-  description:
-  longdesc:
+  fullname: Everette Rong
+  username: LER0ever
+  description: Faithful Listener | Cool-headed Geek | Mind Swimmer | Ever-Loner | THE Software Magician
+  longdesc: Long desc is not necessary for a guy like me who lives in the void.
   rurl:
 -
   fullname:
@@ -157,11 +166,11 @@
   longdesc:
   rurl:
 -
-  fullname:
+  fullname: ZjeuhPiung Liu
   username: sophgn
-  description:
-  longdesc:
-  rurl:
+  description: A finance undergraduate who knows little about programming.
+  longdesc: Corrected a typo for aosc-os-abbs long ago.（
+  rurl: http://sophgn.com
 -
   fullname:
   username: stephdc
@@ -169,10 +178,12 @@
   longdesc:
   rurl:
 -
-  fullname:
+  fullname: Ziqian SUN
   username: sztsian
-  description:
-  longdesc:
+  description: Can I break your software?
+  longdesc: >
+    Also known as Zamir SUN (if you can not speak my real name).
+    Tester and coder sometimes.
   rurl:
 -
   fullname:
@@ -187,10 +198,14 @@
   longdesc:
   rurl:
 -
-  fullname:
+  fullname: Leslie Zhai
   username: xiangzhai
-  description:
-  longdesc:
+  description: The father of little Ray.
+  longdesc: >
+    As a fan of Leslie Cheung, I chose "Leslie" as my English name when I was
+    a High school student in Wisco No.3 Middle School; As a KDE developer, I am
+    maintaining K3B, also submitted some patches for KF5 and Plasma; As a LLVM
+    hacker, I taught the analyzer about Glib API to check Memory-leak.
   rurl:
 -
   fullname:
