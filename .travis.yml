@@ -12,7 +12,6 @@ cache:
 before_install:
   - wget "http://web.archive.org/web/20170317065557/http://www.unicode.org/Public/UNIDATA/UnicodeData.txt" -O /tmp/data/UnicodeData.txt
   - NODE_UNICODETABLE_UNICODEDATA_TXT=/tmp/data/UnicodeData.txt npm update
-  - npm install -g mocha
 addons:
   apt:
     packages:
