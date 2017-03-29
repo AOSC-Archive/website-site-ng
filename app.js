@@ -16,7 +16,8 @@ const log = require('./controllers/log.js');
   app.set('views', './views');
 
 // Routing - Filters
-  app.use(express.static('static'));
+  app.use('/assets/', express.static('static/assets'));
+  app.use('/assets/i/de-preview/', express.static('static/images-preview'));
   app.use('/', require('./controllers/router.js'));
   app.use('/admin', require('./controllers/router-admin.js'));
   app.get( '*' , (req, res) => {
