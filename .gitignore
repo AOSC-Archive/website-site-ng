@@ -8,6 +8,7 @@
 /.buildpath
 /build/
 */archive/
+/coverage
 
 __MACOSX
 
