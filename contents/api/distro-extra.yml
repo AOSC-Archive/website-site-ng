@@ -121,31 +121,6 @@ generalDistros:
             list:
               - caption: Download tarball (20170226)
                 url: /os-amd64/cinnamon/aosc-os_cinnamon_20170226_amd64.tar.xz
-    - name: Budgie
-      previewDir: /budgie
-      downloadTree:
-        nodeName: Architecture
-        cases:
-          - caseName: AMD64
-            list:
-              - caption: Download tarball (20170226)
-                url: /os-amd64/budgie/aosc-os_budgie_20170226_amd64.tar.xz
-          - caseName: ARMv7
-            nodeName: SoC
-            cases:
-              - caseName: Generic
-                nodeName: ~
-                list:
-                  - caption: Download tarball (20170227)
-                    url: /os-armel/budgie/aosc-os_budgie_20170227_armel.tar.xz
-          - caseName: ARMv8
-            nodeName: SoC
-            cases:
-              - caseName: Generic
-                nodeName: ~
-                list:
-                  - caption: Download tarball (20170227)
-                    url: /os-arm64/budgie/aosc-os_budgie_20170227_arm64.tar.xz
     - name: LXDE
       previewDir: /lxde
       downloadTree:
