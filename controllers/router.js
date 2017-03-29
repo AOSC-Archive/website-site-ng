@@ -14,6 +14,7 @@ let slug = require('slug');
 slug.defaults.mode = 'pretty';
 
 const CONTENTS_DIR = 'contents';
+const PREVIEW_DIR = 'static/images-preview';
 
 const HOME_MAXITEM = 8;
 const HOME_MAXIMAGE = 6;
@@ -449,7 +450,7 @@ router.get('/api/distro-extra', (req, res) => {
     'downloadTree': undefined,
     'repoBaseDir': undefined
   };
-  let path = distros.generalDistros.previewDirPrefix + distro.previewDir;
+  let path = PREVIEW_DIR + distro.previewDir;
   let URLpath = distros.generalDistros.previewDirURLPrefix + distro.previewDir;
   let childrenInDir = [];
   try {

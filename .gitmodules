@@ -1,3 +1,6 @@
 [submodule "contents"]
 	path = contents
 	url = https://github.com/AOSC-Dev/website-content.git
+[submodule "static/images-preview"]
+	path = static/images-preview
+	url = https://github.com/AOSC-Dev/images-preview.git
