@@ -1,0 +1,29 @@
+extend _template
+
+block content
+  +people-wrapper
+    +people-main
+      :markdown-it
+        # Just For Fun.
+        
+        ## Who Am I
+        
+        - Junde Yhi (aka Minyong LI)
+        - Undergraduate Computer Science and Technology major at Beijing Normal University - Hong Kong Baptist University United International Colleage
+
+        ## My Devices
+        
+        - **AMD64**
+            - HP Pavilion G6-2328TX w/ Intel Core i5-3230M
+                - AMD64 Packaging & Testing, named **Yhi64**
+            - Dell Vostro 14-5459 w/ Intel Core i5-6200U
+                - Daily usage
+        - **MIPS64**
+            - Lemote A1601 w/ Loongson 3A-2000C @ 1GHz
+                - `mipsel` and `mips64el` Packaging, named **Godson64** and **Godson32**
+
+    +people-side-panel
+      h1 Links
+      
+      p: a.btn.btn-primary(href="https://lmy441900.github.io") Blog
+      p: a.btn.btn-primary(href="https://github.com/lmy441900") Github
