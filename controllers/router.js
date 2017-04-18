@@ -428,7 +428,7 @@ router.get('/feed.rss', (req, res) => {
       });
     }
     res.header('Content-Type', 'application/xml');
-    res.send(feed.render());
+    res.send(feed.rss2());
   });
 })
 
