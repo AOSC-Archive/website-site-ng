@@ -11,6 +11,9 @@ let md = require('./markdown.js');
 let log = require('./log.js');
 let newsdb = require('./news-db.js');
 let slug = require('slug');
+let mirror_status = require('./mirror-status');
+let moment = require('moment');
+require('twix');  // Will modify prototype of 'moment'
 slug.defaults.mode = 'pretty';
 
 const CONTENTS_DIR = 'contents';
@@ -309,6 +312,12 @@ router.get('/people/~:person', (req, res, next) => {
   return;
 });
 
+router.get('/mirror-status', (req, res) => {
+  res.render('mirror-status', {
+    'params': mirror_status.getMirrorsInfo(),
+    'moment': moment
+  });
+});
 
 router.get('/about', (req, res) => {
   const abt = readYAML('about');
@@ -434,6 +443,10 @@ router.get('/api/splashes', (req, res) => {
 router.get('/api/distro', (req, res) => {
   const params = readYAML('api/distro');
   res.send(params);
+});
+
+router.get('/api/mirror-status', (req, res) => {
+  res.send(mirror_status.getMirrorsInfo());
 });
 
 router.get('/api/distro-extra', (req, res) => {
