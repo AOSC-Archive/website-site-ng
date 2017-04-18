@@ -1,5 +1,6 @@
 const should = require('should');
 const request = require('supertest');
+const xsd = require('libxml-xsd');
 const url = 'http://127.0.0.1:3000';
 
 function createRandomString(length, callback) {
@@ -36,7 +37,7 @@ request(url).get('/').end(function(err, res) {
 
 describe('Basic Tests', function() {
     // Test 1-1: If pages could be visited with HTTP 200 (OK)
-    const pages = ['/assets/i/aosc.png', '/news', '/community', '/projects', '/about', '/os-download', '/people'];
+    const pages = ['/assets/i/aosc.png', '/news', '/community', '/projects', '/about', '/os-download', '/people', '/mirror-status'];
     describe('Can visit basic pages', function() {
         it('should load index page properly', function(done) {
             this.timeout(5000);
@@ -68,7 +69,7 @@ describe('Images Tests', function() {
     // Test 2-1: If thumbnails are generated (we'll only sample one here)
     require('./controllers/router.js');
     const tmb_img = '/assets/i/gallery/thumbs/2016-aoscc-stickers-3.jpg.jpg';
-    const full_img = '/assets/i/gallery/2016-aoscc-day1-a-warm-note-from-geekpie.jpg';
+    const full_img = '/assets/i/test.png';
     it('should download the thumbnail properly', function(done) {
         request(url).get(tmb_img).expect(200, done);
     });
@@ -261,4 +262,36 @@ describe('Admin Page', function() {
             });
         });
     });
+});
+
+describe('SEO related pages', function() {
+  it('should generate sitemap correctly', function(done) {
+    request(url).get('/sitemap.xml').end(function(err, res) {
+      if (err) throw err;
+      res.status.should.be.equal(200, 'Cannot load sitemap!');
+      xsd.parseFile('./tests/sitemap.xsd', function(err, schema) {
+        if(err) throw err;
+        schema.validate(res.text, function(err, warn) {
+          if (err) throw err;
+          if (warn) throw warn;
+          done();
+        });
+      });
+    });
+  });
+
+  it('should generate RSS feed correctly', function(done) {
+    request(url).get('/feed.rss').end(function(err, res) {
+      if (err) throw err;
+      res.status.should.be.equal(200, 'Cannot load RSS feed!');
+      xsd.parseFile('./tests/RSS20.xsd', function(err, schema) {
+        if(err) throw err;
+        schema.validate(res.text, function(err, warn) {
+          if (err) throw err;
+          if (warn) throw warn;
+          done();
+        });
+      });
+    });
+  });
 });
