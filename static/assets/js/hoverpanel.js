@@ -8,7 +8,7 @@
       selector  : "p",
       speed     : "fast",
       delay     : 100,
-    }
+    };
     return $(this).each(function() {
 
       var setttings = $.extend(defaults, options || {});

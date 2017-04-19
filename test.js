@@ -10,6 +10,17 @@ function createRandomString(length, callback) {
     });
 }
 
+function validateXML(xsd_file, xml, cb) {
+  xsd.parseFile(xsd_file, function(err, schema) {
+    if(err) throw err;
+    schema.validate(xml, function(err, warn) {
+      if (err) throw err;
+      if (warn) throw warn;
+      cb();
+    });
+  });
+}
+
 function getSlug(url, ext, callback) {
     request(url).get('/news')
         .end(function(err, res) {
@@ -29,7 +40,7 @@ function getSlug(url, ext, callback) {
 
 request(url).get('/').end(function(err, res) {
     if (err) {
-        require('./app.js').app;
+        const app = require('./app.js').app;
     } else {
         console.warn('\x1b[0;33m' + 'Using already started instance for test may cause data damage!!!' + '\x1b[0m');
     }
@@ -44,7 +55,7 @@ describe('Basic Tests', function() {
             request(url).get('/').expect(200, done);
         });
         for (let page of pages) {
-            it('should load ' + page.slice(1) + ' page properly', function(done) {
+            it('should load ' + page.slice(1) + ' page properly', (done) => {
                 request(url).get(page).expect(200, done);
             });
         }
@@ -58,8 +69,8 @@ describe('Basic Tests', function() {
         const subpages = ['/assets', '/news', '/community', '/projects', '/about', '/os-download', '/people', '/people/~lionnatsu'];
         for (let subpage of subpages) {
             it('should display 404 page on unreachable ' + subpage.slice(1) + ' sub page(s)',
-                function(done) {
-                    request(url).get(subpage + '/no-such-cute-lion-outside-aosc').expect(404, done);
+                (done) => {
+                  request(url).get(subpage + '/no-such-cute-lion-outside-aosc').expect(404, done);
                 });
         }
         it('should return error status when malformed request received', function(done) {
@@ -292,14 +303,7 @@ describe('SEO related pages', function() {
     request(url).get('/sitemap.xml').end(function(err, res) {
       if (err) throw err;
       res.status.should.be.equal(200, 'Cannot load sitemap!');
-      xsd.parseFile('./tests/sitemap.xsd', function(err, schema) {
-        if(err) throw err;
-        schema.validate(res.text, function(err, warn) {
-          if (err) throw err;
-          if (warn) throw warn;
-          done();
-        });
-      });
+      validateXML('./tests/sitemap.xsd', res.text, done);
     });
   });
 
@@ -307,14 +311,7 @@ describe('SEO related pages', function() {
     request(url).get('/feed.rss').end(function(err, res) {
       if (err) throw err;
       res.status.should.be.equal(200, 'Cannot load RSS feed!');
-      xsd.parseFile('./tests/RSS20.xsd', function(err, schema) {
-        if(err) throw err;
-        schema.validate(res.text, function(err, warn) {
-          if (err) throw err;
-          if (warn) throw warn;
-          done();
-        });
-      });
+      validateXML('./tests/RSS20.xsd', res.text, done);
     });
   });
 });

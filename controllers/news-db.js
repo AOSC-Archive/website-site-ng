@@ -69,9 +69,7 @@ redisNews.get('prototypeVersion', (err, result) => {
 function formatDate(date) {
   const month = ['January', 'February', 'March', 'April', 'May',
     'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  return month[date.getUTCMonth()] + ' '
-               + date.getUTCDate() + ', '
-               + date.getUTCFullYear();
+  return month[date.getUTCMonth()] + ' ' + date.getUTCDate() + ', ' + date.getUTCFullYear();
 }
 
 exports.slug = slug;
@@ -82,7 +80,7 @@ exports.render = stru => {
   let xstru = stru;
   date.setTime(xstru.timestamp);
   xstru.date = formatDate(date).toUpperCase();
-  xstru.htmlcontent = xstru.content == undefined? '' : md.render(xstru.content);
+  xstru.htmlcontent = (xstru.content === undefined) ? '' : md.render(xstru.content);
   return xstru;
 };
 
@@ -141,7 +139,7 @@ exports.filters = {
     };
   },
   hasImage() {
-    return (object, index, positiveCount) => object.imgThumb != undefined && object.imgThumb != '';
+    return (object, index, positiveCount) => object.imgThumb !== undefined && object.imgThumb !== '';
   },
   both(a, b) {
     // AND
@@ -167,7 +165,7 @@ exports.delete = (id, callback) => {
         .del('item:' + id)
         .zrem('items', slug)
         .exec(() => callback(true));
-  })
+  });
 };
 
 exports.put = (news, callback) => {
@@ -180,7 +178,7 @@ exports.put = (news, callback) => {
 };
 
 exports.post = (news, callback) => {
-  if(news.title == '') {
+  if(news.title === '') {
     exports.delete(news.timestamp, callback);
   } else {
     exports.slugFix(news.slug, fixedSlug => {
@@ -192,7 +190,7 @@ exports.post = (news, callback) => {
 
 exports.get = (id, doRender, callback) =>
   redisNews.get('item:' + id, (err, content) => {
-    if(content == null) {
+    if(content === null) {
       log.error('news-db: get() ' + err);
       callback(null);
       return;
@@ -215,7 +213,7 @@ exports.revResolve = (id, callback) => {
 };
 
 exports.has = (slug, callback) => {
-  exports.resolve(slug, id => callback(id != null));
+  exports.resolve(slug, id => callback(id !== null));
 };
 
 exports.slugFix = (slug, callback) => {

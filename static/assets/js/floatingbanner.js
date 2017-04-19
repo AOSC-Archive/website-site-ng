@@ -1,6 +1,6 @@
 $(function() {
 
-  if($("#flag-not-extend-banner-floating").length == 0) {
+  if($("#flag-not-extend-banner-floating").length === 0) {
     var navHeight, floatBannerTop, floatBannerStatus;
 
     floatBannerStatus = false;

@@ -16,7 +16,7 @@ function forEachStylus(callback) {
   let files = fs.readdirSync(STYLUS_DIR);
   files.forEach(function(file) {
     let regExFilename = file.match(/^[^\.]+(?!\.include)(?=\.styl$)/i);
-    if(regExFilename == null) return;
+    if(regExFilename === null) return;
     if(!fs.statSync(fullPathOfStylus(regExFilename)).isFile()) return;
     callback(regExFilename[0]);
   });
