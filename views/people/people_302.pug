@@ -1,4 +1,17 @@
 extend _template
+block banner
+  .row
+    .col-sm-12
+      h1
+        a#link-to-projects(href="/people") PEOPLE
+        |&nbsp;/&nbsp;
+        =params.person.username
+      h2 To another sector of the Internet.
+    .col-sm-6
+      p.
+        Watch out! This person volunteered to guide you on a trip to another Internet sector.
+        Be sure to take care and bring all your travel document with you, and we wish you a good trip.
+
 block content
   +people-wrapper
     +people-main

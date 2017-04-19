@@ -1,4 +1,19 @@
 extend _template
+block banner
+  .row
+    .col-sm-12
+      h1
+        a#link-to-projects(href="/people") PEOPLE
+        |&nbsp;/&nbsp;
+        =params.person.username
+      h2 One does not simply create a page in two seconds.
+    .col-sm-6
+      p.
+        One must appreciate the process of writing a personal webpage. 
+        It is a notion, a symbol, a signifier of our freedom of speech, freedom of expression, 
+        and the freedom of action... Heck, go elsewhere for now, jeez!
+
+
 block content
   +people-wrapper
     +people-main
