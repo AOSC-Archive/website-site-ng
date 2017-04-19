@@ -19,7 +19,7 @@ redisAuth.select('0');
 exports.getStatus = (ticket, callback) => {
   if(!ticket) return callback({status: 'INVALID', ttl: -1});
   redisAuth.get(ticket, (err, result) => {
-    if(result == null) return callback({status: 'INVALID', ttl: -1});
+    if(result === null) return callback({status: 'INVALID', ttl: -1});
     redisAuth.ttl(ticket, (err, resultTTL) => callback({status: result, ttl: resultTTL}));
   });
 };
@@ -35,6 +35,7 @@ exports.createListener = (ticket, resolve, callback) => {
     switch(message.toLowerCase()) {
       case 'accept':
         resolve(ticket);
+        break;
       case 'break':
         session.unsubscribe();
         session.quit();
@@ -61,7 +62,7 @@ exports.createTicket = callback => {
       if (err) throw err;
       callback(buf.toString('base64'));
     });
-  };
+  }
   function has(ticket, callback) {
     exports.getStatus(ticket, result => callback(result.status != 'INVALID'));
   }
@@ -79,7 +80,7 @@ exports.createTicket = callback => {
       });
     }
     createRandomString(ticket => iterator(ticket, callback));
-  };
+  }
   generateTicket(ticket => {
     redisAuth.setex(ticket, TICKET_ACCEPT_TIMEOUT, 'PENDING');
     exports.createListener(ticket, () => {
