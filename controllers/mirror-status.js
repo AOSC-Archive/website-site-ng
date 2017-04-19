@@ -1,10 +1,19 @@
 (() => {
 'use strict';
 const request = require('request');
-const mirrors = require('./mirrors.json');
+const yaml = require('js-yaml');
+const fs = require('fs');
 
-let mirrors_info = mirrors.mirrors;
-let repo_info = mirrors.repo;
+const CONTENTS_DIR = 'contents';
+let mirrors_info, repo_info;
+
+(function readConfig() {
+  let mirrors = yaml.safeLoad(fs.readFileSync(CONTENTS_DIR + '/mirrors.yml', 'utf8'));
+  if (mirrors) {
+    mirrors_info = mirrors.mirrors;
+    repo_info = mirrors.repo;
+  }
+})();
 
 function checkSite(result, url) {
   request({
@@ -22,6 +31,7 @@ function checkSite(result, url) {
       return;
     }
     result.status = res.statusCode;
+    result.status_desc = res.statusMessage;
     result.lupd = parseInt(data.trim()) * 1000;
   });
 }
