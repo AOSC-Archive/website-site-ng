@@ -13,6 +13,8 @@ let newsdb = require('./news-db.js');
 let slug = require('slug');
 let mirror_status = require('./mirror-status');
 let moment = require('moment');
+let rss = require('feed');
+let sm = require('sitemap');
 require('twix');  // Will modify prototype of 'moment'
 slug.defaults.mode = 'pretty';
 
@@ -329,8 +331,8 @@ router.get('/os-download', (req, res) => {
 
 // SiteMap
 router.get('/sitemap.xml', (req, res) => {
-  var sm = require('sitemap');
-  var sitemap = sm.createSitemap({
+  // TODO: cache the sitemap
+  let sitemap = sm.createSitemap({
     hostname: 'https://aosc.io',
     cacheTime: 600000,
     urls: [{
@@ -392,8 +394,8 @@ router.get('/sitemap.xml', (req, res) => {
 });
 
 router.get('/feed.rss', (req, res) => {
-  var Feed = require('feed');
-  var feed = new Feed({
+  // TODO: cache the feed
+  let feed = new rss({
     title: 'AOSC News',
     description: 'News feed from AOSC',
     id: 'https://aosc.io',
@@ -401,6 +403,7 @@ router.get('/feed.rss', (req, res) => {
     image: 'https://aosc.io/assets/i/aosc.svg',
     copyright: 'Copyleft 2011–2017, members of the community'
   });
+  feed.addCategory('Technology');
 
   newsdb.enum(1, -1, true, null, items => {
     let item;
@@ -408,7 +411,7 @@ router.get('/feed.rss', (req, res) => {
       feed.addItem({
         title: item.title,
         id: item.slug,
-        link: 'https://aosc.io/' + item.URL,
+        link: 'https://aosc.io/news/' + item.slug,
         description: item.htmlcontent
       });
     }
