@@ -12,6 +12,8 @@ cache:
 before_install:
   - wget "http://web.archive.org/web/20170317065557/http://www.unicode.org/Public/UNIDATA/UnicodeData.txt" -O /tmp/data/UnicodeData.txt
   - NODE_UNICODETABLE_UNICODEDATA_TXT=/tmp/data/UnicodeData.txt npm update
+  - wget "http://lorempixel.com/400/200" -O "${TRAVIS_BUILD_DIR}/static/assets/i/test.png"
+  - wget "http://lorempixel.com/400/600" -O "${TRAVIS_BUILD_DIR}/static/assets/i/gallery/2016-aoscc-stickers-3.jpg"
 addons:
   apt:
     packages:
