@@ -19,7 +19,7 @@ mixin mirror-entry(mirror_info, repo_info)
       td(class=lag > 57600000 ? 'danger' : 'warning') #{moment(mirror_info.lupd).twix(repo_info.lupd).humanizeLength()} behind
     td #{moment(mirror_info.lack).format('YYYY-MM-DD HH:mm:ss')}
     if mirror_info.status
-      td #{mirror_info.status}
+      td #{mirror_info.status} (#{mirror_info.status_desc})
     else
       td N/A
 
@@ -59,10 +59,13 @@ block content
         td #{params.repo_info.region}
         td
           a(href=params.repo_info.url) #{params.repo_info.name}
-        td #{moment(params.repo_info.lupd).format('YYYY-MM-DD HH:mm:ss')} (#{moment(params.repo_info.lupd).twix(Date.now()).humanizeLength()} ago)
+        if params.repo_info.status == 200
+          td #{moment(params.repo_info.lupd).format('YYYY-MM-DD HH:mm:ss')} (#{moment(params.repo_info.lupd).twix(Date.now()).humanizeLength()} ago)
+        else
+          td N/A
         td.info #{params.repo_info.status == 200 ? 'Origin' : 'Error'}
         td #{moment(params.repo_info.lack).format('YYYY-MM-DD HH:mm:ss')} (#{moment(params.repo_info.lack).twix(Date.now()).humanizeLength()} ago)
-        td #{params.repo_info.status}
+        td #{params.repo_info.status} (#{params.repo_info.status_desc})
       for mirror in params.mirrors
         +mirror-entry(mirror, params.repo_info)
   script.
