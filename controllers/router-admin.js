@@ -49,7 +49,7 @@ function requirePermission(callback) {
       }
       return res.redirect('/admin/auth');
     });
-  }
+  };
 }
 
 router.get('/auth' , (req, res) => {
