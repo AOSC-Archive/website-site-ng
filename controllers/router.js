@@ -40,7 +40,7 @@ function trimNumber(min, i, d, max) {
   if (min > max) {
     log.error('trimNumber: min > max.');
     return d;
-  };
+  }
   if (!n) n = d;
   if (n < min) n = min;
   if (n > max) n = max;
@@ -49,7 +49,7 @@ function trimNumber(min, i, d, max) {
 
 function createPageInfo(request, total, size, pagesPerList) {
   let _totalPages = Math.ceil(total / size);
-  if (_totalPages == 0) _totalPages = 1;
+  if (_totalPages === 0) _totalPages = 1;
   const totalPages = _totalPages;
   const currentPage = trimNumber(1, request, 1, totalPages);
   const pages = {
@@ -161,7 +161,7 @@ function thumb(input) {
       thumb(p);
     }
   }
-})()
+})();
 
 function getGallery() {
   let imgUrlList = readYAML('gallery');
@@ -269,40 +269,25 @@ router.get('/people/~:person', (req, res, next) => {
     res.status(302).render('people/people_302', {
       'params': {
         'person': {
-          username: person.username,
-          description: 'To another sector of the Internet.',
-          longdesc: 'Watch out! This person volunteered to guide you on a trip to another Internet sector. Be sure to take care and bring all your travel document with you, and we wish you a good trip.'
+          username: person.username
         },
         'rurl': person.rurl
       }
     });
     return;
   }
-  let hasStylesheet = true;
-  try {
-    fs.accessSync('stylesheets/people-' + person.username + '.styl');
-  } catch (e) {
-    if (e.code == 'ENOENT') hasStylesheet = false;
-    else throw e;
-  }
-  try {
-    fs.accessSync('views/people/' + person.username + '.pug');
-  } catch (e) {
-    if (e.code == 'ENOENT') {
-      log.debug('router: Client requested a unreachable URI ' + req.originalUrl);
-      res.status(404).render('people/people_404', {
-        'params': {
-          'person': {
-            username: person.username,
-            description: 'One does not simply create a page in two seconds.',
-            longdesc: 'One must appreciate the process of writing a personal webpage. It is a notion, a symbol, a signifier of our freedom of speech, freedom of expression, and the freedom of action... Heck, go elsewhere for now, jeez!'
-          }
+  let hasStylesheet = false;
+  if (!fs.existsSync('stylesheets/people-' + person.username + '.styl')) hasStylesheet = true;
+  if (!fs.existsSync('views/people/' + person.username + '.pug')) {
+    log.debug('router: Client requested a unreachable URI ' + req.originalUrl);
+    res.status(404).render('people/people_404', {
+      'params': {
+        'person': {
+          username: person.username
         }
-      });
-      return;
-    } else {
-      throw e;
-    }
+      }
+    });
+    return;
   }
   res.render('people/' + person.username, {
     'params': {
@@ -334,7 +319,7 @@ router.get('/about', (req, res) => {
 
 router.get('/os-download', (req, res) => {
   const mdText = fs.readFileSync(CONTENTS_DIR + '/os-download.md', 'utf8');
-  const mdHtml = mdText == undefined ? '' : md.render(mdText);
+  const mdHtml = (mdText === undefined) ? '' : md.render(mdText);
   res.render('os-download', {
     'params': {
       'guideHtml': mdHtml
@@ -430,7 +415,7 @@ router.get('/feed.rss', (req, res) => {
     res.header('Content-Type', 'application/xml');
     res.send(feed.rss2());
   });
-})
+});
 
 // APIs
 router.get('/api/splashes', (req, res) => {
