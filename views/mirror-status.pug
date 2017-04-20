@@ -26,6 +26,19 @@ mixin mirror-entry(mirror_info, repo_info)
 block head-custom
   +meta-title("AOSC Mirror Status")
   +meta-description("Anthon Open Source Community")
+  
+append javascript
+  +include-js('/assets/js/footable.min.js')
+  +include-js('/assets/js/client.min.js')
+  +include-js('/assets/js/mirror-status.js')
+  script.
+    jQuery(function($){
+      $('.table').footable();
+    });
+
+append stylesheet
+  +include-css('/assets/css/mirror-status.css')
+  +include-css('/assets/css/footable.bootstrap.min.css')
 
 block banner
   .row
@@ -40,11 +53,6 @@ block banner
         community and our generous sponsors.
 
 block content
-  +include-js('/assets/js/footable.min.js')
-  +include-js('/assets/js/client.min.js')
-  +include-js('/assets/js/mirror-status.js')
-  +include-css('/assets/css/mirror-status.css')
-  +include-css('/assets/css/footable.bootstrap.min.css')
   table.table#mirrors-tb
     thead
       tr
@@ -75,8 +83,3 @@ block content
     span(style="display: none;")#pdesc Crunching mirrors information for you, just a moment...!
     div.progress(style="display: none;")#pbar
       div.progress-bar.progress-bar-striped.active#pgs(role="progressbar", aria-valuenow="70", aria-valuemin="0", aria-valuemax="100", style="width:0%") 0%
-  br
-  script.
-    jQuery(function($){
-      $('.table').footable();
-    });
