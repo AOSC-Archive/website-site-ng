@@ -26,7 +26,7 @@ mixin mirror-entry(mirror_info, repo_info)
 block head-custom
   +meta-title("AOSC Mirror Status")
   +meta-description("Anthon Open Source Community")
-  
+
 block banner
   .row
     .col-sm-12
@@ -41,6 +41,8 @@ block banner
 
 block content
   +include-js('/assets/js/footable.min.js')
+  +include-js('/assets/js/client.min.js')
+  +include-js('/assets/js/mirror-status.js')
   +include-css('/assets/css/mirror-status.css')
   +include-css('/assets/css/footable.bootstrap.min.css')
   table.table#mirrors-tb
@@ -68,6 +70,12 @@ block content
         td #{params.repo_info.status} (#{params.repo_info.status_desc})
       for mirror in params.mirrors
         +mirror-entry(mirror, params.repo_info)
+  p
+    a.btn.btn-primary#gen-btn(href="javascript:void(0);", onclick="startMeasurement();") Generate APT Configuration
+    span(style="display: none;")#pdesc Crunching mirrors information for you, just a moment...!
+    div.progress(style="display: none;")#pbar
+      div.progress-bar.progress-bar-striped.active#pgs(role="progressbar", aria-valuenow="70", aria-valuemin="0", aria-valuemax="100", style="width:0%") 0%
+  br
   script.
     jQuery(function($){
       $('.table').footable();
