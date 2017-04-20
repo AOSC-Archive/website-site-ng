@@ -35,7 +35,7 @@ exports.createListener = (ticket, resolve, callback) => {
     switch(message.toLowerCase()) {
       case 'accept':
         resolve(ticket);
-        break;
+        // Fall through
       case 'break':
         session.unsubscribe();
         session.quit();
