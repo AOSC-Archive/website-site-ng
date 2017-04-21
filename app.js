@@ -16,6 +16,8 @@ const log = require('./controllers/log.js');
   app.set('views', './views');
 
 // Routing - Filters
+  app.use('/', express.static('seo-override-nogit'));
+  app.use('/', express.static('seo-override'));
   app.use('/assets/', express.static('static/assets'));
   app.use('/assets/i/de-preview/', express.static('static/images-preview'));
   app.use('/', require('./controllers/router.js'));

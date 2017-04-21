@@ -7,6 +7,8 @@
 !/static/assets/css/font-awesome*
 !/static/assets/css/bootstrap*
 !/static/assets/css/magnific-popup.css
+/seo-override-nogit/*
+/seo-override-nogit/.*
 /.buildpath
 /build/
 */archive/
@@ -36,3 +38,4 @@ Thumbs.db
 .*/
 
 !DO-NOT-DELETE
+!.DO-NOT-DELETE
