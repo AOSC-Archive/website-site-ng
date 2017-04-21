@@ -18,7 +18,7 @@ let mirrors_info, repo_info;
 function checkSite(result, url) {
   request({
     url: url,
-    timeout: 5000,
+    timeout: 11000,
     headers: {
       'User-Agent': 'AOSC Mirrors Monitor'
     }
