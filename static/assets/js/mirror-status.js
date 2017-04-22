@@ -33,13 +33,13 @@ function startMeasurement() {
   $('#gen-btn').fadeOut(10);
   $('#pdesc').fadeIn(1333);
   $.getJSON('/api/mirror-status', function(data) {
-    var mirrors = data.mirrors;
+    var mirrors = data['mirrors'];
     $('#pbar').fadeIn(100);
     pgress = 0;
     setTimeout(genList, 10000);
     timer = setInterval(updateProgress, 100);
     for (var i = 0; i < mirrors.length; i++) {
-      checkSpeed(mirrors[i].url, mirrors[i].name, data.repo_info.lupd - mirrors[i].lupd);
+      checkSpeed(mirrors[i].url, mirrors[i].name, data['repo_info']['lupd'] - mirrors[i]['lupd']);
     }
   });
 }
@@ -60,8 +60,8 @@ function download(filename, text) {
 
 function genList() {
   lists.sort(function(a, b) {
-    if (a.score > b.score) return 1;
-    if (a.score < b.score) return -1;
+    if (a['score'] > b['score']) return 1;
+    if (a['score'] < b['score']) return -1;
     return 0;
   });
   const final_result = lists;
@@ -72,3 +72,4 @@ function genList() {
   }
   download('sources.list', output);
 }
+window['startMeasurement'] = startMeasurement;
