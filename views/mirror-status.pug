@@ -14,6 +14,8 @@ mixin mirror-entry(mirror_info, repo_info)
       td.danger Failed: #{mirror_info.status_desc}
     else if mirror_info.lupd == repo_info.lupd
       td.success Up to date!
+    else if !repo_info.lupd
+      td N/A
     else if mirror_info.lupd < repo_info.lupd
       - var lag = Math.floor((repo_info.lupd - mirror_info.lupd));
       td(class=lag > 57600000 ? 'danger' : 'warning') #{moment(mirror_info.lupd).twix(repo_info.lupd).humanizeLength()} behind
@@ -30,7 +32,7 @@ block head-custom
 append javascript
   +include-js('/assets/js/footable.min.js')
   +include-js('/assets/js/client.min.js')
-  +include-js('/assets/js/mirror-status.js')
+  +include-js('/assets/js/mirror-status.min.js')
   script.
     jQuery(function($){
       $('.table').footable();
