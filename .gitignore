@@ -5,7 +5,7 @@
 /static/assets/css/*
 /static/assets/css/*
 !/static/assets/css/font-awesome*
-!/static/assets/css/bootstrap*
+!/static/assets/css/*bootstrap*
 !/static/assets/css/magnific-popup.css
 /seo-override-nogit/*
 /seo-override-nogit/.*
