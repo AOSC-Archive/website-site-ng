@@ -14,7 +14,7 @@ else
   echo "Redis Server PID: $!"
 fi
 
-mocha "$@"
+"${mocha_binary}" "$@"
 mocha_status=$?
 kill -TERM ${redis_pid}
 exit ${mocha_status}
