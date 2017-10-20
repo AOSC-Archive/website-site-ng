@@ -8,11 +8,8 @@ node_js:
 cache:
   directories:
     - node_modules # NPM packages
-    - /tmp/data/
 before_install:
-  - if [[ ${TRAVIS_NODE_VERSION} == "node"  ]]; then npm install -g npm@4.6.1; fi  # Temporarily workaround issue npm/npm#16824 (regression)
-  - wget -c "http://web.archive.org/web/20170317065557/http://www.unicode.org/Public/UNIDATA/UnicodeData.txt" -O /tmp/data/UnicodeData.txt
-  - NODE_UNICODETABLE_UNICODEDATA_TXT=/tmp/data/UnicodeData.txt npm update
+  - if [[ ${TRAVIS_NODE_VERSION} == "node"  ]]; then npm install -g npm@4; fi  # Temporarily workaround issue npm/npm#16824 (regression)
   - wget "http://lorempixel.com/400/200" -O "${TRAVIS_BUILD_DIR}/static/assets/i/test.png"
   - wget "http://lorempixel.com/400/600" -O "${TRAVIS_BUILD_DIR}/static/assets/i/gallery/2016-aoscc-stickers-3.jpg"
 addons:
