@@ -9,7 +9,7 @@ if [[ ${redis_pid} -gt 0 ]]; then
   echo "Using existing redis server (PID: ${redis_pid})"
 else
   echo "Starting new redis server instance"
-  bash -c 'redis-server & ( sleep 15 && kill -TERM $! )' &
+  redis-server &
   redis_pid=$!
   echo "Redis Server PID: $!"
 fi
