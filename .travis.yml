@@ -14,6 +14,8 @@ before_install:
   - export PATH=$HOME/.yarn/bin:$PATH
   - wget "http://lorempixel.com/400/200" -O "${TRAVIS_BUILD_DIR}/static/assets/i/test.png"
   - wget "http://lorempixel.com/400/600" -O "${TRAVIS_BUILD_DIR}/static/assets/i/gallery/2016-aoscc-stickers-3.jpg"
+install:
+  - yarn
 addons:
   apt:
     packages:
