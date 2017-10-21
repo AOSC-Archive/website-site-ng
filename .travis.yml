@@ -3,7 +3,7 @@ dist: trusty
 sudo: false
 node_js:
    - "6"
-   - "6.1"
+   - "6.2.2"
    - "node"
 cache:
   yarn: true

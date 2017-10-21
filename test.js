@@ -315,4 +315,9 @@ describe('SEO related pages', () => {
       // validateXML('./tests/RSS20.xsd', res.text, done);
     });
   });
+  it('Close Redis Instance', function() {
+    const redisSender = require('redis').createClient();
+    redisSender.shutdown();
+    redisSender.quit();
+  });
 });
