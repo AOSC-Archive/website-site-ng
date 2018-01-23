@@ -29,9 +29,9 @@
     "coveralls": "^3.0.0",
     "istanbul": "^0.4.5",
     "libxml-xsd": "^0.5.2",
-    "mocha": "^4.0.1",
+    "mocha": "^5.0.0",
     "mocha-lcov-reporter": "^1.3.0",
-    "should": "^13.1.3",
+    "should": "^13.2.1",
     "supertest": "^3.0.0"
   },
   "scripts": {
