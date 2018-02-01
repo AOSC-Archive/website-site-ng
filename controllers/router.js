@@ -145,22 +145,30 @@ function thumb(input) {
 }
 
 (function thumbs() {
-  const path = 'static/assets/i/gallery';
+  let path = ['static/assets/i/gallery'];
   let childrenInDir = [];
   try {
-    childrenInDir = fs.readdirSync(path);
+    childrenInDir = fs.readdirSync(PREVIEW_DIR);
   } catch (e) {
-    log.error('thumbs: failed to read directory: ' + path);
+    log.error('thumbs: failed to read directory: ' + PREVIEW_DIR);
   }
-  for (let c of childrenInDir) {
-    let p = path + '/' + c;
-    if (fs.statSync(p).isFile()) {
-      // try {
-      //   fs.accessSync(getThumbPath(p));
-      // } catch (e) {
-      //   thumb(p);
-      // }
-      thumb(p);
+
+  for (let item of childrenInDir) {
+    let fullPath = PREVIEW_DIR + '/' + item;
+    if (item != '.git' && fs.statSync(fullPath).isDirectory()) {
+      path.push(fullPath);
+    }
+  }
+
+  for (let imgDir of path) {
+    try {
+      childrenInDir = fs.readdirSync(imgDir);
+    } catch (e) {
+      log.error('thumbs: failed to read directory: ' + imgDir);
+    }
+    for (let c of childrenInDir) {
+      let p = imgDir + '/' + c;
+      if (fs.statSync(p).isFile()) thumb(p);
     }
   }
 })();
