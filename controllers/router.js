@@ -7,6 +7,7 @@ let router = express.Router();
 
 let yaml = require('js-yaml');
 let fs = require('fs');
+let path = require('path');
 let md = require('./markdown.js');
 let log = require('./log.js');
 let newsdb = require('./news-db.js');
@@ -133,13 +134,19 @@ function getThumbPath(input) {
   return lv + '/thumbs/' + rv + '.jpg';
 }
 
-function thumb(input) {
+function thumb(input, resize=true) {
   log.info(`imagemagick: generate thumbnail for ${input}`);
-  require('imagemagick').resize({
-    srcPath: input,
-    dstPath: getThumbPath(input),
-    width: 256
-  }, (err, stdout, stderr) => {
+  if (resize) {
+    require('imagemagick').resize({
+      srcPath: input,
+      dstPath: getThumbPath(input),
+      width: 256
+    }, (err, stdout, stderr) => {
+      if (err) throw err;
+    });
+    return;
+  }
+  require('imagemagick').convert([input, getThumbPath(input)], (err, stdout, stderr) => {
     if (err) throw err;
   });
 }
@@ -160,15 +167,15 @@ function thumb(input) {
     }
   }
 
-  for (let imgDir of path) {
+  for (let i = 0; i < path.length; i++) {
     try {
-      childrenInDir = fs.readdirSync(imgDir);
+      childrenInDir = fs.readdirSync(path[i]);
     } catch (e) {
-      log.error('thumbs: failed to read directory: ' + imgDir);
+      log.error('thumbs: failed to read directory: ' + path[i]);
     }
     for (let c of childrenInDir) {
-      let p = imgDir + '/' + c;
-      if (fs.statSync(p).isFile()) thumb(p);
+      let p = path[i] + '/' + c;
+      if (fs.statSync(p).isFile()) thumb(p, (i<1));
     }
   }
 })();
