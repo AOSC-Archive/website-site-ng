@@ -416,7 +416,7 @@ router.get('/feed.rss', (req, res) => {
     id: 'https://aosc.io',
     link: 'https://aosc.io',
     image: 'https://aosc.io/assets/i/aosc.svg',
-    copyright: 'Copyleft 2011–2017, members of the community'
+    copyright: 'Copyleft 2011–2018, members of the community'
   });
   feed.addCategory('Technology');
 
