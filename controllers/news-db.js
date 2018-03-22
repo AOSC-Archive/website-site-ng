@@ -36,6 +36,7 @@ let slug    = require('slug');
 let md      = require('./markdown.js');
 let log     = require('./log.js');
 
+slug.defaults.modes['pretty'].lower = true;
 slug.defaults.mode = 'pretty';
 bluebird.promisifyAll(redis.RedisClient.prototype);
 bluebird.promisifyAll(redis.Multi.prototype);
@@ -72,7 +73,14 @@ function formatDate(date) {
   return month[date.getUTCMonth()] + ' ' + date.getUTCDate() + ', ' + date.getUTCFullYear();
 }
 
-exports.slug = slug;
+exports.slug = (title, timestamp) => {
+  if (!timestamp) {
+    return slug(title);
+  } else {
+    let prefix = timestamp % 9999;
+    return `${prefix}-${slug(title)}`
+  }
+};
 
 exports.render = stru => {
   if(!stru) return null;
@@ -218,8 +226,6 @@ exports.has = (slug, callback) => {
 
 exports.slugFix = (slug, callback) => {
   function iterator(slug, suffix, callback){
-    let prefix = getRandomInt(1000, 9999);
-    slug = (prefix + '-' + slug).toLowerCase();
     let fixedSlug = suffix > 0 ? slug + '-' + suffix : slug;
     exports.has(fixedSlug, exist => {
       log.debug('conflict: ' + fixedSlug + ' ' + exist);

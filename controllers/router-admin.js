@@ -108,7 +108,7 @@ router.all('/news-post' , requirePermission((req, res) => {
       'imgOrig' : req.body.imgOrig,
       'content' : req.body.content,
       'timestamp' : req.body.timestamp,
-      'slug' : newsdb.slug(req.body.title),
+      'slug' : newsdb.slug(req.body.title, req.body.timestamp),
     }, () => res.redirect('/'));
   } else if(req.body.action == 'put') {
     log.debug('redis: put news ' + req.body.title);
@@ -119,7 +119,7 @@ router.all('/news-post' , requirePermission((req, res) => {
       'imgOrig' : req.body.imgOrig,
       'content' : req.body.content,
       'timestamp' : req.body.timestamp,
-      'slug' : newsdb.slug(req.body.title),
+      'slug' : newsdb.slug(req.body.title, req.body.timestamp),
     }, () => res.redirect('/'));
   } else if(req.body.action == 'fetch') {
     newsdb.get(req.body.timestamp, true, result =>
