@@ -222,7 +222,7 @@ describe('Admin Page', () => {
       // Test 3-2-3.1: If news could be modified
       it('should be able to modify news', done => {
         news_template.content = 'This is a test.\n\n`Test Identifier: ' + test_news_ext + test_timestamp + '`\n\nCreated By Mocha Test Framework';
-        news_template.action = 'post';
+        news_template.action = 'put';
         request(url).post('/admin/news-post').type('form').set('Cookie', authCookies)
           .send(news_template)
           .expect(302, done);
