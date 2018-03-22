@@ -1,8 +1,4 @@
 #!/bin/bash
-clean_up() {
-    kill -TERM "${redis_pid}";
-    exit "$1";
-}
 
 redis_pid=$(pidof redis-server)
 mocha_binary="./node_modules/mocha/bin/_mocha"
@@ -18,7 +14,7 @@ fi
 NODE_ENV=test ./node_modules/.bin/istanbul cover "${mocha_binary}" --report lcovonly -- -R spec
 mocha_status=$?
 if [[ ${mocha_status} -ne 0 ]]; then
-    clean_up ${mocha_status}
+    exit ${mocha_status}
 fi
 ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info || true
 clean_up 0
