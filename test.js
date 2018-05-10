@@ -33,8 +33,9 @@ function getSlug(url, ext, callback) {
       if (slug) {
         slug = slug[1];
         callback(slug);
-      }
+      } else {
       callback();
+      }
     });
 }
 
