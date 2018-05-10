@@ -2,9 +2,8 @@ language: node_js
 dist: trusty
 sudo: false
 node_js:
-   - "6"
-   - "6.2.2"
-   - "node"
+   - "7"
+   - "lts/carbon"
 cache:
   yarn: true
   directories:
@@ -12,8 +11,8 @@ cache:
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s --
   - export PATH=$HOME/.yarn/bin:$PATH
-  - wget "http://lorempixel.com/400/200" -O "${TRAVIS_BUILD_DIR}/static/assets/i/test.png"
-  - wget "http://lorempixel.com/400/600" -O "${TRAVIS_BUILD_DIR}/static/assets/i/gallery/2016-aoscc-stickers-3.jpg"
+  - wget "http://via.placeholder.com/400x200" -O "${TRAVIS_BUILD_DIR}/static/assets/i/test.png"
+  - wget "http://via.placeholder.com/400x200" -O "${TRAVIS_BUILD_DIR}/static/assets/i/gallery/2016-aoscc-stickers-3.jpg"
 install:
   - yarn
 addons:
