@@ -69,6 +69,9 @@ function genList() {
   for (var i = 0; i < final_result.length; i++) {
     var prefix = (i ? '# ' : '');
     output += '# ' + final_result[i].name + '\n#\n' + prefix + 'deb ' + final_result[i].url + 'os-' + cpu_arch + '/os3-dpkg /\n' + prefix + 'deb ' + final_result[i].url + 'os-noarch/os3-dpkg /\n#\n';
+    if ($('#testing-chkbox').is(":checked")) {
+      output += 'deb ' + final_result[i].url + 'os-' + cpu_arch + '/testing/os-' + cpu_arch + '/os3-dpkg /\n' + prefix + 'deb ' + final_result[i].url + 'os-noarch/testing/os-noarch/os3-dpkg /\n#\n';
+    }
   }
   download('sources.list', output);
 }

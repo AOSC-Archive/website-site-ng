@@ -81,6 +81,9 @@ block content
       for mirror in params.mirrors
         +mirror-entry(mirror, params.repo_info)
   p
+    div.checkbox(style="float: right")
+      input#testing-chkbox(type="checkbox")
+      label(for="testing-chkbox") Enable testing?
     a.btn.btn-primary#gen-btn(href="javascript:void(0);", onclick="startMeasurement();") Generate APT Configuration
     span(style="display: none;")#pdesc Crunching mirrors information for you, just a moment...!
     div.progress(style="display: none;")#pbar
