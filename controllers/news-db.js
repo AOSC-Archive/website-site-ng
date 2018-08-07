@@ -32,17 +32,19 @@ const prototypeVersion = 3;
 
 let redis   = require('redis');
 let bluebird= require('bluebird');
-let slug    = require('slug');
+let slugify = require('slugify');
 let md      = require('./markdown.js');
 let log     = require('./log.js');
 
-slug.defaults.modes['pretty'].lower = true;
-slug.defaults.mode = 'pretty';
 bluebird.promisifyAll(redis.RedisClient.prototype);
 bluebird.promisifyAll(redis.Multi.prototype);
 
 let redisNews = redis.createClient({prefix: 'news:'});
 redisNews.select('0');
+
+function slug(txt) {
+    return slugify(txt, {lower: true, remove: /[*+~.()'"!:@]/g});
+}
 
 redisNews.expandWithScores = arr => {
     let result = [];
