@@ -11,13 +11,11 @@ let path = require('path');
 let md = require('./markdown.js');
 let log = require('./log.js');
 let newsdb = require('./news-db.js');
-let slug = require('slug');
 let mirror_status = require('./mirror-status');
 let moment = require('moment');
 let rss = require('feed');
 let sm = require('sitemap');
 require('twix');  // Will modify prototype of 'moment'
-slug.defaults.mode = 'pretty';
 
 const CONTENTS_DIR = 'contents';
 const PREVIEW_DIR = 'static/images-preview';
@@ -410,7 +408,7 @@ router.get('/sitemap.xml', (req, res) => {
 
 router.get('/feed.rss', (req, res) => {
   // TODO: cache the feed
-  let feed = new rss({
+  let feed = new rss.Feed({
     title: 'AOSC News',
     description: 'News feed from AOSC',
     id: 'https://aosc.io',
