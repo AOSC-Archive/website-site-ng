@@ -127,7 +127,7 @@ exports.enum = (begin, maxCount, doRender, filter, callback) => {
       let positiveCount = 0;
       let index = 0;
       for(let obj of objectList) {
-        if(maxCount != -1 && positiveCount-begin+1 >= maxCount) break;
+        if(maxCount !== -1 && positiveCount-begin+1 >= maxCount) break;
         if(!filter(obj, index++, positiveCount)) continue;
         positiveCount++;
         if(positiveCount >= begin) contentList.push(obj);
@@ -144,7 +144,7 @@ exports.enum = (begin, maxCount, doRender, filter, callback) => {
 exports.filters = {
   type(list) {
     return (object, index, positiveCount) => {
-      for (let i of list) if(object.type == i) return true;
+      for (let i of list) if(object.type === i) return true;
       return false;
     };
   },
