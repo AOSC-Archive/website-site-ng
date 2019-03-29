@@ -13,7 +13,7 @@ const CONTENTS_DIR    = 'contents';
 
 const SECURE_RESTRICT = true;
 
-const isLocalDebug = req => req.hostname=='127.0.0.1' || req.hostname=='localhost';
+const isLocalDebug = req => req.hostname==='127.0.0.1' || req.hostname==='localhost';
 
 function saveTicketCookie(res, ticket, expire) {
   res.cookie('adminTicket', ticket, {
@@ -42,7 +42,7 @@ router.use((req, res, next) => {
 function requirePermission(callback) {
   return (req, res, next) => {
     auth.getStatus(req.ticket, status => {
-      if(status.status == 'ACCEPTED') {
+      if(status.status === 'ACCEPTED') {
         req.ttl = status.ttl;
         saveTicketCookie(res, req.ticket, req.ttl);
         return callback(req, res, next);
@@ -55,7 +55,7 @@ function requirePermission(callback) {
 router.get('/auth' , (req, res) => {
   new Promise((resolve, reject) =>
     auth.getStatus(req.ticket, status => {
-      if(status.status == 'ACCEPTED') {
+      if(status.status === 'ACCEPTED') {
         res.redirect('/');
         reject();
       } else {
@@ -77,8 +77,8 @@ router.get('/auth' , (req, res) => {
 
 router.get('/api/wait-ticket' , (req, res) =>
   auth.getStatus(req.ticket, status => {
-    if(status.status == 'ACCEPTED') res.send('accepted');
-    if(status.status == 'INVALID') res.send('noooooo');
+    if(status.status === 'ACCEPTED') res.send('accepted');
+    if(status.status === 'INVALID') res.send('noooooo');
     auth.createListener(req.ticket, () => res.send('accepted'), () => {});
   })
 );
@@ -99,7 +99,7 @@ router.get('/' , requirePermission((req, res) =>
 ));
 
 router.all('/news-post' , requirePermission((req, res) => {
-  if(req.body.action == 'post') {
+  if(req.body.action === 'post') {
     log.debug('redis: post news ' + req.body.title);
     newsdb.post({
       'title' : req.body.title,
@@ -110,7 +110,7 @@ router.all('/news-post' , requirePermission((req, res) => {
       'timestamp' : req.body.timestamp,
       'slug' : newsdb.slug(req.body.title, req.body.timestamp),
     }, () => res.redirect('/'));
-  } else if(req.body.action == 'put') {
+  } else if(req.body.action === 'put') {
     log.debug('redis: put news ' + req.body.title);
     newsdb.put({
       'title' : req.body.title,
@@ -121,7 +121,7 @@ router.all('/news-post' , requirePermission((req, res) => {
       'timestamp' : req.body.timestamp,
       'slug' : newsdb.slug(req.body.title, req.body.timestamp),
     }, () => res.redirect('/'));
-  } else if(req.body.action == 'fetch') {
+  } else if(req.body.action === 'fetch') {
     newsdb.get(req.body.timestamp, true, result =>
       res.render('admin/news-post', {'params' : result})
     );

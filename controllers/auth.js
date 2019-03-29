@@ -64,7 +64,7 @@ exports.createTicket = callback => {
     });
   }
   function has(ticket, callback) {
-    exports.getStatus(ticket, result => callback(result.status != 'INVALID'));
+    exports.getStatus(ticket, result => callback(result.status !== 'INVALID'));
   }
   function generateTicket(callback) {
     function iterator(ticket, callback){
