@@ -23,4 +23,3 @@ if [[ ${mocha_status} -ne 0 ]]; then
     exit ${mocha_status}
 fi
 ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info || true
-clean_up 0
