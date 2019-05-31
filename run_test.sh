@@ -11,10 +11,16 @@ else
   echo "Starting new redis server instance"
   redis-server &
   redis_pid=$!
-  echo "Redis Server PID: $!"
+  echo "Redis Server PID: $redis_pid"
 fi
+
+node app.js &
+app_pid=$!
+sleep 3
+echo "Main process PID: $app_pid"
 
 "${mocha_binary}" "$@"
 mocha_status=$?
+kill -TERM ${app_pid} || true
 kill -TERM ${redis_pid} || true
 exit ${mocha_status}

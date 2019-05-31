@@ -11,7 +11,13 @@ else
   echo "Redis Server PID: $!"
 fi
 
+node app.js &
+app_pid=$!
+sleep 3
+echo "Main process PID: $app_pid"
+
 NODE_ENV=test ./node_modules/.bin/istanbul cover "${mocha_binary}" --report lcovonly -- -R spec
+kill -TERM ${app_pid} || true
 mocha_status=$?
 if [[ ${mocha_status} -ne 0 ]]; then
     exit ${mocha_status}
