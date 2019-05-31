@@ -425,7 +425,8 @@ router.get('/feed.rss', (req, res) => {
         title: item.title,
         id: item.slug,
         link: 'https://aosc.io/news/' + item.slug,
-        description: item.htmlcontent
+        description: item.htmlcontent,
+        date: new Date(parseInt(item.timestamp))
       });
     }
     res.header('Content-Type', 'application/xml');
