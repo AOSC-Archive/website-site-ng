@@ -98,6 +98,20 @@ router.get('/' , requirePermission((req, res) =>
   }})
 ));
 
+router.get('/api/list-news', requirePermission((req, res) => {
+  newsdb.enum(1, -1, false, null, list => {
+    let output = [];
+    for (const item of list) {
+      output.push({
+        title: item.title,
+        type: list.type,
+        ts: item.timestamp
+      });
+    }
+    res.send(output);
+  });
+}));
+
 router.all('/news-post' , requirePermission((req, res) => {
   if(req.body.action === 'post') {
     log.debug('redis: post news ' + req.body.title);
