@@ -6,47 +6,125 @@ block head-custom
 
 append stylesheet
   +include-css("/assets/css/admin-news-post.css")
+  +include-css("/assets/css/easymde.min.css")
 
 include ../templates/flow-include
 block content
+  //- Loader modal
+  div#news-loader.modal.fade(data-backdrop="static")
+    div.modal-dialog(role="dialog")
+      div.modal-content
+        div.modal-header
+          button.close(type="button", data-dismiss="modal", aria-label="Close")
+            span(aria-hidden="true") &times;
+          h2.modal-title.afe-news-post-title LOAD EXISTING
+        div.modal-body
+          div#news-loader-p(data-loading-text="Loading...")
+          div.list-group#news-loader-list
+  //- Preview modal
+  div#preview.modal.fade
+    div.modal-dialog(role="document")
+      div.modal-content
+        div.modal-header
+          button.close(type="button", data-dismiss="modal", aria-label="Close")
+            span(aria-hidden="true") &times;
+          h2.modal-title.afe-news-post-title PREVIEW
+        div.modal-body
+          +flow([params])
+      
   #wrapper.row
-    .col-sm-8
-      h2.afe-news-post-title PREVIEW
-      +flow([params])
-    .col-sm-4
-      h2.afe-news-post-title EDITOR
-      form(method="post", action="#")
-        p: input(name="title", type="text", placeholder="(Leave here empty to delete news) Title", value=params.title)
-        p: input(name="type", type="text", placeholder="(Required except fetching) Type: news, bug, etc.", value=params.type)
-        p: textarea(name="content")=params.content
-        p: input(name="imgOrig", type="text", placeholder="(Optional) URL of Image", value=params.imgOrig)
-        p: input(name="imgThumb", type="text", placeholder="(Required if the former is not empty) Thumbnail", value=params.imgThumb)
-        p: input(name="timestamp", type="text", placeholder="(Unique, Key) Timestamp", required, value=params.timestamp)
-        p
-          input#radio-fetch(type="radio", name="action", value="fetch")
-          label.afe-radio-caption(for="radio-fetch") Fetch
+    h2.afe-news-post-title EDITOR
+    form(method="post", action="#")
+      p: input.form-control(name="title", type="text", placeholder="(Leave here empty to delete news) Title", value=params.title)
+      p: input.form-control(name="type", type="text", placeholder="(Required except fetching) Type: news, bug, etc.", value=params.type)
+      p: textarea#content(name="content")=params.content
+      p: input.form-control(name="imgOrig", type="text", placeholder="(Optional) URL of Image", value=params.imgOrig)
+      p: input.form-control(name="imgThumb", type="text", placeholder="(Required if the former is not empty) Thumbnail", value=params.imgThumb)
+      p: input.form-control(name="timestamp", type="text", placeholder="(Unique, Key) Timestamp", required, value=params.timestamp)
+      p
+        input#radio-fetch(type="radio", name="action", value="fetch")
+        label.afe-radio-caption(for="radio-fetch") Fetch
 
-          input#radio-preview(type="radio", name="action", value="preview", checked="checked")
-          label.afe-radio-caption(for="radio-preview") Preview
+        input#radio-preview(type="radio", name="action", value="preview", checked="checked")
+        label.afe-radio-caption(for="radio-preview") Preview
 
-          br
+        br
 
-          if params.previewed
-            input#radio-post(type="radio", name="action", value="post")
-          else
-            input#radio-post(type="radio", name="action", value="post", disabled)
-          label.afe-radio-caption(for="radio-post") Post (preview first)
+        if params.previewed
+          input#radio-post(type="radio", name="action", value="post")
+        else
+          input#radio-post(type="radio", name="action", value="post", disabled)
+        label.afe-radio-caption(for="radio-post") Post (preview first)
 
-          if params.previewed
-            input#radio-put(type="radio", name="action", value="put")
-          else
-            input#radio-put(type="radio", name="action", value="put", disabled)
-          label.afe-radio-caption(for="radio-fetch") Put (override)
+        if params.previewed
+          input#radio-put(type="radio", name="action", value="put")
+        else
+          input#radio-put(type="radio", name="action", value="put", disabled)
+        label.afe-radio-caption(for="radio-put") Put (override)
 
-        p: input(type="submit", value="Submit")
+      p
+        input.btn.btn-primary(type="submit", value="Submit")
+    button.btn.btn-primary(onclick="listExisting();") Load
 
 include ../templates/lightbox-include
 append stylesheet
   +lightbox-css()
 append javascript
+  if params.previewed
+    script.
+      // show preview if user submitted the form to preview the news
+      $("#preview").modal('show');
+append javascript
   +lightbox-js-flow()
+  +include-js('/assets/js/easymde.min.js')
+  script.
+    function zenMode(enabled) {
+      if (enabled) {
+        // remove banner
+        $(".afe-banner").fadeOut(300);
+        // the following fixes the MDE editor issues 
+        // when entering full screen mode
+        $("body")[0].style.paddingTop = "0px";
+        $("#nav").fadeOut(300);
+        $("footer").fadeOut(300);
+      } else {
+        // restore everything
+        $(".afe-banner").fadeIn(300);
+        $("#nav").fadeIn(300);
+        $("body")[0].style.paddingTop = "20px";
+        $("footer").fadeIn(300);
+      }
+    }
+    function listExisting() {
+      $("#news-loader").modal("show");
+      $('#news-loader-p').button('loading');
+      var loader = $("#news-loader-list")[0];
+      loader.innerHTML = '';
+      $.get("/admin/api/list-news").then(function(list) {
+        for (var entry of list) {
+          var tag = document.createElement('a');
+          tag.setAttribute('class', 'list-group-item');
+          tag.setAttribute('href', '#');
+          tag.setAttribute('onclick', 'loadExisting(' + entry.ts + ');');
+          tag.innerText = entry.title;
+          loader.appendChild(tag);
+          $('#news-loader-p').button('reset');
+        }
+      });
+    }
+    function loadExisting(ts) {
+      $('#news-loader-p').button('loading');
+      var loader = $("#news-loader-list")[0];
+      loader.innerHTML = '';
+      $('[name=timestamp]')[0].value = ts;
+      $('#radio-fetch')[0].checked = true;
+      $('input.btn[type=submit]')[0].click();
+    }
+    var easyMDE = new EasyMDE({
+      element: $('#content')[0], autosave: {
+          enabled: true,
+          delay: 1000,
+          uniqueId: 'mde-autosave'
+      },
+      onToggleFullScreen: zenMode
+    });
