@@ -8,6 +8,7 @@
 !/static/assets/css/*bootstrap*
 !/static/assets/css/qtcreator*.css
 !/static/assets/css/magnific-popup.css
+!/static/assets/css/easymde.min.css
 /seo-override-nogit/*
 /seo-override-nogit/.*
 /.buildpath
