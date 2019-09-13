@@ -144,7 +144,7 @@ function thumb(input, resize=true) {
     });
     return;
   }
-  require('imagemagick').convert([input, getThumbPath(input)], (err, stdout, stderr) => {
+  require('imagemagick').convert([input, "-quality", "45", getThumbPath(input)], (err, stdout, stderr) => {
     if (err) throw err;
   });
 }
