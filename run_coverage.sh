@@ -1,7 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e
 
-redis_pid=$(pidof redis-server)
-mocha_binary="./node_modules/mocha/bin/_mocha"
+redis_pid=$(pidof redis-server) || true
+mocha_binary="./node_modules/mocha/bin/mocha"
+export NODE_ENV=test
 if [[ ${redis_pid} -gt 0 ]]; then
   echo "Using existing redis server (PID: ${redis_pid})"
 else
@@ -11,13 +12,7 @@ else
   echo "Redis Server PID: $!"
 fi
 
-node app.js &
-app_pid=$!
-sleep 3
-echo "Main process PID: $app_pid"
-
-NODE_ENV=test ./node_modules/.bin/istanbul cover "${mocha_binary}" --report lcovonly -- -R spec
-kill -TERM ${app_pid} || true
+./node_modules/.bin/nyc "${mocha_binary}" --report lcovonly -- -R spec
 mocha_status=$?
 if [[ ${mocha_status} -ne 0 ]]; then
     exit ${mocha_status}

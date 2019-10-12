@@ -299,6 +299,7 @@ describe('SEO related pages', () => {
     });
   });
   after(function() {
-    redisSender.quit()
+    redisSender.quit();
+    process.exit(0);
   });
 });
