@@ -12,7 +12,7 @@ else
   echo "Redis Server PID: $!"
 fi
 
-./node_modules/.bin/nyc "${mocha_binary}" --report lcovonly -- -R spec
+./node_modules/.bin/nyc --reporter=lcovonly "${mocha_binary}"
 mocha_status=$?
 if [[ ${mocha_status} -ne 0 ]]; then
     exit ${mocha_status}
