@@ -7,6 +7,8 @@ This is the Community Portal of AOSC.
 
 这是 AOSC 社区门户网站项目。
 
+## WARNING: This project has been deprecated, it has been superseded by https://github.com/AOSC-Dev/aosc-portal-kiss.github.io
+
 ## To new developers - 对新的参与者
 
 Please refer to [REQUIREMENT.md](REQUIREMENT.md) for
